@@ -7,7 +7,6 @@ import java.util.Date;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Event {
-
     
     private String m_sTitle;
     private String m_sDescription;
