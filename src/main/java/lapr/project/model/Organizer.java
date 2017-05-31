@@ -4,6 +4,9 @@ package lapr.project.model;
  *
  * @author MarioDias
  */
-public class Organizer {
+public class Organizer extends User{
     
+    public Organizer(){
+        super();
+    }
 }
