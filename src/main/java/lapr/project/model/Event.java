@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Event {
 
+    
     private String m_sTitle;
     private String m_sDescription;
     private Date m_dEventBegin;
