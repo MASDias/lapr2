@@ -11,55 +11,55 @@ package lapr.project.model;
  */
 public class User {
 
-    private String m_sName;
-    private String m_sEmail;
-    private String m_sUserName;
-    private String m_sPassword;
+    private String name;
+    private String email;
+    private String userName;
+    private String password;
 
-    public User(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword) {
-        this.m_sName = m_sName;
-        this.m_sEmail = m_sEmail;
-        this.m_sUserName = m_sUserName;
-        this.m_sPassword = m_sPassword;
+    public User(String name, String email, String userName, String password) {
+        this.name = name;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
     }
 
     public User() {
     }
 
     public String getName() {
-        return m_sName;
+        return name;
     }
 
-    public void setNome(String m_sName) {
-        this.m_sName = m_sName;
+    public void setNome(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
-        return m_sEmail;
+        return email;
     }
 
-    public void setEmail(String m_sEmail) {
-        this.m_sEmail = m_sEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserName() {
-        return m_sUserName;
+        return userName;
     }
 
-    public void setUserName(String m_sUserName) {
-        this.m_sUserName = m_sUserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return m_sPassword;
+        return password;
     }
 
-    public void setPassword(String m_sPassword) {
-        this.m_sPassword = m_sPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User: " + m_sName + "\nUserName: " + m_sUserName + "\nEmail: " + m_sEmail;
+        return "User: " + name + "\nUserName: " + userName + "\nEmail: " + email;
     }
 }
