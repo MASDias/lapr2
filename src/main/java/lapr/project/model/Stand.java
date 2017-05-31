@@ -11,35 +11,16 @@ import java.io.Serializable;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Stand implements Serializable{
-    private String m_sName;
+public class Stand implements Serializable {
 
-    public Stand(String m_sName) {
+    private String m_sName;
+    private double area;
+
+    public Stand(String m_sName, double area) {
         this.m_sName = m_sName;
+        this.area = area;
     }
 
     public Stand() {
-    }
-
-    public String getName() {
-        return m_sName;
-    }
-
-    public void setName(String m_sName) {
-        this.m_sName = m_sName;
-    }
-    
-    @Override
-    public String toString(){
-        return "Name: " + m_sName;
-    }
-    
-    @Override
-    public boolean equals(Object o){
-        Stand stand = (Stand)o;
-        if(this.m_sName.equals(stand.getName())){
-            return true;
-        }
-        return false;
     }
 }
