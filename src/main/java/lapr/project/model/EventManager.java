@@ -9,11 +9,18 @@ package lapr.project.model;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventManager {
+public class EventManager extends User{
     private User u;
     
     public EventManager(User u){
         this.u=u;
+    }
+
+    public EventManager(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword) {
+        super(m_sName, m_sEmail, m_sUserName, m_sPassword);
+    }
+
+    public EventManager() {
     }
 
     /**
