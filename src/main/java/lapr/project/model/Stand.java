@@ -16,11 +16,12 @@ public class Stand implements Serializable {
     private String m_sName;
     private double area;
 
+    public Stand() {
+    }
+
     public Stand(String m_sName, double area) {
         this.m_sName = m_sName;
         this.area = area;
     }
 
-    public Stand() {
-    }
 }
