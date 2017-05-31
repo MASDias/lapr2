@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 /**
- *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Tests {
@@ -18,11 +17,7 @@ public class Tests {
         User u1 = new User("Abilio Madureira", "abiliom", "abiliomadureira@gmail.com", "123abc123");
         User u2 = new User("Gonçalo Fonseca", "goncalof", "goncalofonseca@hotmail.com", "abc123abc");
         User u3 = new User("Emilio Carvalhosa", "emilioc", "emiliocarvalhosa@sapo.pt", "qwerty");
-        if (EventManagerCreatorTest()) {
-            System.out.println("Success Creating Event Manager");
-        }else{
-            System.out.println("Failed to create Event Manager");
-        }
+
         System.out.println(u1);
         System.out.println("");
         System.out.println(u2);
@@ -31,13 +26,10 @@ public class Tests {
 
     }
 
-    public static boolean EventManagerCreatorTest() {
-        EventManager eManager = new EventManager("Mario Dias", "md@gmail.com", "mdias", "123");
+    public static void EventManagerCreatorTest() {
+        EventManager eManager = new EventManager("Mario Dias", "", "", "");
+        String expectedResult = "[Mario Dias]";
         
-        if (eManager != null) {
-            return true;
-        }
-        return false;
     }
 
 }
