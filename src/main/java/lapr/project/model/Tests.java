@@ -8,6 +8,7 @@ package lapr.project.model;
 /**
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
+import static org.junit.Assert.*;
 public class Tests {
 
     /**
@@ -28,8 +29,8 @@ public class Tests {
 
     public static void EventManagerCreatorTest() {
         EventManager eManager = new EventManager("Mario Dias", "", "", "");
-        String expectedResult = "[Mario Dias]";
-        
+        EventManager expectedResult = new EventManager("Mario Dias","","","");
+        assertEquals(expectedResult, eManager);
     }
 
 }

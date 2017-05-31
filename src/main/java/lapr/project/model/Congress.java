@@ -9,10 +9,11 @@ import java.util.Date;
 public class Congress extends Event{
 
     public Congress() {
+        
     }
 
-    public Congress(String m_sTitle, String m_sDescription, Date m_dEventBegin, Date m_dEventEnd, Local m_lLocal) {
-        super(m_sTitle, m_sDescription, m_dEventBegin, m_dEventEnd, m_lLocal);
+    public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+        super(title, description, eventBegin, eventEnd, local);
     }
     
 }

@@ -11,6 +11,7 @@ public class EventEmployee extends User{
     }
 
     public EventEmployee() {
+    
     }
     
 }
