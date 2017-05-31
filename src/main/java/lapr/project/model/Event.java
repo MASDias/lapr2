@@ -15,6 +15,7 @@ public class Event {
     private Local local;
 
     public Event() {
+        
     }
 
     public Event(String title, String description, Date eventBegin, Date eventEnd, Local local) {
@@ -24,5 +25,11 @@ public class Event {
         this.eventEnd = eventEnd;
         this.local = local;
     }
+
+    private  String getTitle() {
+        return title;
+    }
+
+   
     
 }
