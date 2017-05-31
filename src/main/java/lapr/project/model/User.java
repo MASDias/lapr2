@@ -10,6 +10,7 @@ package lapr.project.model;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class User {
+
     private String m_sName;
     private String m_sEmail;
     private String m_sUserName;
@@ -56,6 +57,9 @@ public class User {
     public void setPassword(String m_sPassword) {
         this.m_sPassword = m_sPassword;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "User: " + m_sName + "\nUserName: " + m_sUserName + "\nEmail: " + m_sEmail;
+    }
 }
