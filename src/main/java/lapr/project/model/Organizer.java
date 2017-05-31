@@ -6,8 +6,8 @@ package lapr.project.model;
  */
 public class Organizer extends User{
     
-    public Organizer(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword){
-        super(m_sName, m_sEmail, m_sUserName, m_sPassword);
+    public Organizer(String name, String email, String username, String password){
+        super(name, email, username, password);
     }
     
     public Organizer(){
