@@ -18,7 +18,6 @@ class Main {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-
 		CalculatorExample calculatorExample = new CalculatorExample();
 		System.out.println(calculatorExample.sum(3, 5));
 	}
