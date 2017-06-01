@@ -6,32 +6,32 @@ package lapr.project.model;
  */
 public class Local {
 
-    private String m_sAddress;
-    private double m_dArea;
+    private String address;
+    private double area;
 
     public Local() {
         
     }
 
-    public Local(String m_sAddress, double m_dArea) {
-        this.m_sAddress = m_sAddress;
-        this.m_dArea = m_dArea;
+    public Local(String address, double area) {
+        this.address = address;
+        this.area = area;
     }
 
-    public String getM_sAddress() {
-        return m_sAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setM_sAddress(String m_sAddress) {
-        this.m_sAddress = m_sAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public double getM_dArea() {
-        return m_dArea;
+    public double getArea() {
+        return area;
     }
 
-    public void setM_dArea(double m_dArea) {
-        this.m_dArea = m_dArea;
+    public void setArea(double area) {
+        this.area = area;
     }
     
 }
