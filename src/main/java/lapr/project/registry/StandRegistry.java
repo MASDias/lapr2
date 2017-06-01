@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package lapr.project.registers;
+package lapr.project.registry;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,11 +15,11 @@ import lapr.project.model.Stand;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class StandRegister  {
+public class StandRegistry  {
 
     private ArrayList<Stand> listStands;
 
-    public StandRegister(){
+    public StandRegistry(){
         this.listStands=new ArrayList<>();
     }
 

@@ -26,4 +26,46 @@ public class Event {
         this.local = local;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getEventBegin() {
+        return eventBegin;
+    }
+
+    public void setEventBegin(Date eventBegin) {
+        this.eventBegin = eventBegin;
+    }
+
+    public Date getEventEnd() {
+        return eventEnd;
+    }
+
+    public void setEventEnd(Date eventEnd) {
+        this.eventEnd = eventEnd;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
+    }
+    
+    
+
 }
