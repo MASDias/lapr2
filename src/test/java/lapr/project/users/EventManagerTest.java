@@ -17,20 +17,20 @@ public class EventManagerTest {
 
     @Test
     public static void EnsureSameObjectEventManagerIsEqual() {
-        lapr.project.Users.EventManager eManager = new lapr.project.Users.EventManager("mario", "m@gmail.com", "mario1", "m123");
+        lapr.project.users.EventManager eManager = new lapr.project.users.EventManager("mario", "m@gmail.com", "mario1", "m123");
         assertEquals(eManager, eManager);
     }
 
     @Test
     public static void EnsureSameObjectsEventManagerAreNotEqual() {
-        lapr.project.Users.EventManager eManager = new lapr.project.Users.EventManager("mario", "m@gmail.com", "mario1", "m123");
-        lapr.project.Users.EventManager expectedResult = new lapr.project.Users.EventManager("Z", "c", "b", "a");
+        lapr.project.users.EventManager eManager = new lapr.project.users.EventManager("mario", "m@gmail.com", "mario1", "m123");
+        lapr.project.users.EventManager expectedResult = new lapr.project.users.EventManager("Z", "c", "b", "a");
         assertNotEquals(expectedResult, eManager);
     }
 
     @Test
     public static void EnsureDifferentObjectsEventManagerAreNotEqual() {
-        lapr.project.Users.EventManager eManager = new lapr.project.Users.EventManager("mario", "m@gmail.com", "mario1", "m123");
+        lapr.project.users.EventManager eManager = new lapr.project.users.EventManager("mario", "m@gmail.com", "mario1", "m123");
         Object expectedResult = new Object();
         assertNotEquals(eManager, expectedResult);
     }

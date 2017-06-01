@@ -13,14 +13,14 @@ import java.io.Serializable;
  */
 public class Stand implements Serializable {
 
-    private String m_sName;
+    private String name;
     private double area;
 
     public Stand() {
     }
 
-    public Stand(String m_sName, double area) {
-        this.m_sName = m_sName;
+    public Stand(String name, double area) {
+        this.name = name;
         this.area = area;
     }
 

@@ -26,10 +26,4 @@ public class Event {
         this.local = local;
     }
 
-    private  String getTitle() {
-        return title;
-    }
-
-   
-    
 }

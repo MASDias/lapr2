@@ -8,7 +8,6 @@ package lapr.project.users;
 /**
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-import lapr.project.Users.User;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
