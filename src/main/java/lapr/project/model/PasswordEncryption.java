@@ -6,7 +6,7 @@ package lapr.project.model;
  */
 public class PasswordEncryption {
 
-    private static final int[] shift = {125, 65, 20, 896, 45, 11, 637, 200, 193, 469};
+    private static final int[] shift = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
 
     public String Encryption(String password, int encryptKey) {
         String encrytion = "";

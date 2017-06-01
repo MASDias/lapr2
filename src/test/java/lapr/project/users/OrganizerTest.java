@@ -16,20 +16,20 @@ import org.junit.Test;
 public class OrganizerTest {
 
     @Test
-    public  void EnsureSameObjectOrganizerIsEqual() {
+    public void EnsureSameObjectOrganizerIsEqual() {
         Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         assertEquals(organizer, organizer);
     }
 
     @Test
-    public  void EnsureSameObjectsOrganizerAreNotEqual() {
+    public void EnsureSameObjectsOrganizerAreNotEqual() {
         Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         Organizer expectedResult = new Organizer("Z", "c", "b", "a");
         assertNotEquals(organizer, expectedResult);
     }
 
     @Test
-    public  void EnsureDifferentObjectsOrganizerAreNotEqual() {
+    public void EnsureDifferentObjectsOrganizerAreNotEqual() {
         Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         Object expectedResult = new Object();
         assertNotEquals(organizer, expectedResult);

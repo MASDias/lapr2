@@ -16,21 +16,21 @@ import org.junit.Test;
 public class EventEmployeeTest {
 
     @Test
-    public static void EnsureSameObjectEventEmployeeIsEqual() {
-        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123",3);
+    public void EnsureSameObjectEventEmployeeIsEqual() {
+        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
         assertEquals(eEmployee, eEmployee);
     }
 
     @Test
-    public static void EnsureSameObjectsEventEmployeeAreNotEqual() {
-        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123",3);
-        EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a",3);
+    public void EnsureSameObjectsEventEmployeeAreNotEqual() {
+        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
+        EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a", 3);
         assertNotEquals(eEmployee, expectedResult);
     }
 
     @Test
-    public static void EnsureDifferentObjectsEventEmployeeAreNotEqual() {
-        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123",3);
+    public void EnsureDifferentObjectsEventEmployeeAreNotEqual() {
+        EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
         Object expectedResult = new Object();
         assertNotEquals(eEmployee, expectedResult);
     }

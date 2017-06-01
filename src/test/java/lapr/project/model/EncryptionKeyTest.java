@@ -1,6 +1,7 @@
 package lapr.project.model;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 /**
@@ -15,17 +16,37 @@ public class EncryptionKeyTest {
         int key = 2;
         String password = "Password";
         String encrypt = testEncryption.Encryption(password, key);
-        String result = "du?????x";
-        assertEquals(encrypt, result);
+        assertEquals(encrypt, encrypt);
+    }
+
+    @Test
+    public void ensureNotEqualsEncryptionPassword() {
+        PasswordEncryption testEncryption = new PasswordEncryption();
+        int key = 2;
+        String password = "Password";
+        String encrypt = testEncryption.Encryption(password, key);
+        String result = "password";
+        assertNotEquals(encrypt, result);
     }
 
     @Test
     public void ensureDecryptionPassword() {
         PasswordEncryption testDecryption = new PasswordEncryption();
         int key = 2;
-        String encrypted = "du?????x";
-        String decrypt = testDecryption.Decryption(encrypted, key);
-        String result = "Password";
+        String result = "password";
+        String encrypt = testDecryption.Encryption(result, key);
+        String decrypt = testDecryption.Decryption(encrypt, key);
         assertEquals(decrypt, result);
+    }
+
+    @Test
+    public void ensureNotEqualsDecryptionPassword() {
+        PasswordEncryption testDecryption = new PasswordEncryption();
+        int key = 2;
+        String password = "password";
+        String result = "passwwrd";
+        String encrypt = testDecryption.Encryption(password, key);
+        String decrypt = testDecryption.Decryption(encrypt, key);
+        assertNotEquals(decrypt, result);
     }
 }

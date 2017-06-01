@@ -14,20 +14,20 @@ import org.junit.Test;
 public class UserTest {
 
     @Test
-    public  void EnsureSameObjectUserIsEqual() {
+    public void EnsureSameObjectUserIsEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
         assertEquals(user, user);
     }
 
     @Test
-    public  void EnsureSameObjectsUserAreNotEqual() {
+    public void EnsureSameObjectsUserAreNotEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
         User expectedResult = new User("Z", "c", "b", "a");
         assertNotEquals(user, expectedResult);
     }
 
     @Test
-    public  void EnsureDifferentObjectsUserAreNotEqual() {
+    public void EnsureDifferentObjectsUserAreNotEqual() {
         User user = new User("Z", "a", "b", "c");
         Object expectedResult = new Object();
         assertNotEquals(user, expectedResult);
