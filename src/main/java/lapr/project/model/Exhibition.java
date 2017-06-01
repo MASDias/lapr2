@@ -4,15 +4,22 @@ import java.util.Date;
 
 /**
  *
- * @author 
+ * @author
  */
-public class Exhibition extends Event{
+public class Exhibition extends Event {
+
+    private int invites;
+    private Stand stand;
 
     public Exhibition() {
     }
 
-    public Exhibition(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+    public Exhibition(int invites, Stand stand, String title, String description, Date eventBegin, Date eventEnd, Local local) {
         super(title, description, eventBegin, eventEnd, local);
+        this.invites = invites;
+        this.stand = stand;
     }
+
     
+
 }
