@@ -2,16 +2,19 @@ package lapr.project.users;
 
 /**
  *
- * @author 
+ * @author
  */
-public class EventEmployee extends User{
+public class EventEmployee extends User {
 
-    public EventEmployee(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword) {
+    private int experience;
+
+    public EventEmployee(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword, int experience) {
         super(m_sName, m_sEmail, m_sUserName, m_sPassword);
+        this.experience = experience;
     }
 
     public EventEmployee() {
-        
+
     }
-    
+
 }

@@ -10,7 +10,7 @@ import lapr.project.registers.StandRegister;
 public class Exhibition extends Event {
 
     private int invites;
-    private StandRegister standList;
+    private StandRegister standRegister;
 
     public Exhibition() {
     }
@@ -18,7 +18,7 @@ public class Exhibition extends Event {
     public Exhibition(int invites, StandRegister standList, String title, String description, Date eventBegin, Date eventEnd, Local local) {
         super(title, description, eventBegin, eventEnd, local);
         this.invites = invites;
-        this.standList = standList;
+        this.standRegister = standList;
     }
 
     
