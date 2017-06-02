@@ -28,7 +28,7 @@ public class ApplicationsList {
         this.applicationsList = applicationsList;
     }
     
-    public boolean validate(Application application){
+    private boolean validate(Application application){
         for(Application a: applicationsList){
             if(a.equals(application)){
                 return false;

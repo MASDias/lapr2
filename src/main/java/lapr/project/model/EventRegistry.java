@@ -28,7 +28,7 @@ public class EventRegistry {
         this.eventsList = eventsList;
     }
 
-    public boolean validate(Event event) {
+    private boolean validate(Event event) {
         for (Event e : eventsList) {
             if (e.equals(event)) {
                 return false;
