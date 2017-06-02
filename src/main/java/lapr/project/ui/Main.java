@@ -2,7 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.PasswordEncryption;
-import lapr.project.users.User;
+import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
 
 /**
