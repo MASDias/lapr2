@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lapr.project.model.Event;
 
 /**
  *
