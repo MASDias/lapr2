@@ -46,6 +46,7 @@ public class UserTest {
         User expectedResult = new User("Andre", "cc@gmail.com", "123Andre", "absdde");
         assertNotEquals(result, expectedResult);
     }
+
     @Test
     public void EnsureDifferenObjectsEmptyIsNotEqual() {
         User result = new User();

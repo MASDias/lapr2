@@ -51,4 +51,29 @@ public class CongressTest {
         Object result = new Object();
         assertNotEquals(event, result);
     }
+
+    @Test
+    public void EnsureSameObjectEmptyCongressIsEqual() throws Exception {
+        Congress event = new Congress();
+        assertEquals(event, event);
+    }
+
+    @Test
+    public void EnsureSameObjectEmptyCongressIsNotEqual() throws Exception {
+        Congress result = new Congress();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+
+        Congress expectedResult = new Congress("Model Example", "Example string", beginning, end, local);
+        assertNotEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureDifferentObjectEmptyCongressIsNotEqual() throws Exception {
+        Congress result = new Congress();
+        Object expectedResult = new Object();
+        assertNotEquals(result, expectedResult);
+    }
 }
