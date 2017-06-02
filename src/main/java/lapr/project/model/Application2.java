@@ -25,7 +25,7 @@ public class Application2 {
     
     @Override
     public String toString(){
-        return "Description: " +description+ "\nEvent: " + event.toString() + "\nDecision: " +decision;
+        return "Description: " +description+ "\n" + event.toString() + "\nDecision: " +decision;
     }
     
     

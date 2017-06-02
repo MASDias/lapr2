@@ -21,5 +21,10 @@ public class Event {
         this.eventEnd = eventEnd;
         this.local = local;
     }
+    
+    @Override
+    public String toString(){
+        return "Title: " +title+"\nDescription: "+description+"\nDate Begin: "+eventBegin.toString().substring(0, 10)+"\nDate End: " +eventEnd.toString().substring(0, 10)+ "\nLocal: " +local;
+    }
 
 }

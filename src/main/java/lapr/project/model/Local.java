@@ -30,4 +30,8 @@ public class Local {
         this.area = area;
     }
 
+    @Override
+    public String toString(){
+        return "Address: " +address;
+    }
 }

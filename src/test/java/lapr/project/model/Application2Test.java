@@ -37,8 +37,10 @@ public class Application2Test {
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, false);
-        assertNotEquals(application, application);
+        Application2 application = new Application2("qwert", event, false);
+        Application2 application2 = new Application2("qwerty", event, false);
+        
+        assertNotEquals(application, application2);
     }
 
     @Test
@@ -62,7 +64,7 @@ public class Application2Test {
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         Application2 application = new Application2("qwerty", event, false);
         String result = application.toString();
-        String expectedResult = "Name: stand\nArea: 500.0";
+        String expectedResult = "Description: qwerty\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street\nDecision: false";
         assertEquals(result, expectedResult);
     }
 
@@ -75,7 +77,7 @@ public class Application2Test {
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         Application2 application = new Application2("qwerty", event, false);
         String result = application.toString();
-        String expectedResult = "Name: stand\nArea: 700";
+        String expectedResult = "Description: qwert\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street\nDecision: false";
         assertNotEquals(result, expectedResult);
     }
 }
