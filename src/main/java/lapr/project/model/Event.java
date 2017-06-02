@@ -7,13 +7,12 @@ import java.util.Date;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Event {
-    
+
     private String title;
     private String description;
     private Date eventBegin;
     private Date eventEnd;
     private Local local;
-
 
     public Event(String title, String description, Date eventBegin, Date eventEnd, Local local) {
         this.title = title;
@@ -23,7 +22,4 @@ public class Event {
         this.local = local;
     }
 
-    public Event() {
-        
-    }
 }

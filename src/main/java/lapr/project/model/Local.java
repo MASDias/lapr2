@@ -9,10 +9,6 @@ public class Local {
     private String address;
     private double area;
 
-    public Local() {
-        
-    }
-
     public Local(String address, double area) {
         this.address = address;
         this.area = area;
@@ -33,5 +29,5 @@ public class Local {
     public void setArea(double area) {
         this.area = area;
     }
-    
+
 }

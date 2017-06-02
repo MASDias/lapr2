@@ -37,38 +37,19 @@ public class EventEmployeeTest {
     }
 
     @Test
-    public void EnsureSameObjectEventEmployeeEmptyIsEqual() {
-        EventEmployee eEmployee = new EventEmployee();
-        assertEquals(eEmployee, eEmployee);
-    }
-
-    @Test
-    public void EnsureSameObjectsEventEmployeeEmptyAreNotEqual() {
-        EventEmployee eEmployee = new EventEmployee();
-        EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a", 3);
-        assertNotEquals(eEmployee, expectedResult);
-    }
-
-    @Test
-    public void EnsureDifferentObjectsEventEmployeeEmptyAreNotEqual() {
-        EventEmployee eEmployee = new EventEmployee();
-        Object expectedResult = new Object();
-        assertNotEquals(eEmployee, expectedResult);
-    }
-    @Test
-    public void EnsureToStringIsEqual(){
+    public void EnsureToStringIsEqual() {
         EventEmployee employeeResult = new EventEmployee("Z", "c", "b", "a", 1);
         String result = employeeResult.toString();
         String expectedResult = "Name: Z\nEmail: c\nUserName: b\nExperience: 1";
-        assertEquals(result,expectedResult);
+        assertEquals(result, expectedResult);
     }
-    
+
     @Test
-    public void EnsureToStringIsNotEqual(){
+    public void EnsureToStringIsNotEqual() {
         EventEmployee employeeResult = new EventEmployee("Z", "c", "b", "a", 1);
         String result = employeeResult.toString();
         String expectedResult = "Name: l\nEmail: c\nUserName: b\nExperience: 1";
-        assertNotEquals(result,expectedResult);
+        assertNotEquals(result, expectedResult);
     }
 
     @Test
@@ -79,7 +60,7 @@ public class EventEmployeeTest {
         int result = employee.getExperience();
         assertEquals(result, expectedResult);
     }
-    
+
     @Test
     public void EnsureSetExperienceIsNotEqual() {
         EventEmployee employee = new EventEmployee("Z", "c", "b", "a", 1);
@@ -88,21 +69,21 @@ public class EventEmployeeTest {
         int result = employee.getExperience();
         assertNotEquals(result, expectedResult);
     }
-    
+
     @Test
-    public void EnsureGetExperienceIsEqual(){
+    public void EnsureGetExperienceIsEqual() {
         EventEmployee employee = new EventEmployee("Z", "c", "b", "a", 1);
         int expectedResult = 1;
         int result = employee.getExperience();
         assertEquals(result, expectedResult);
     }
-    
+
     @Test
-    public void EnsureGetExperienceIsNotEqual(){
+    public void EnsureGetExperienceIsNotEqual() {
         EventEmployee employee = new EventEmployee("Z", "c", "b", "a", 1);
         int expectedResult = 2;
         int result = employee.getExperience();
         assertNotEquals(result, expectedResult);
     }
-    
+
 }

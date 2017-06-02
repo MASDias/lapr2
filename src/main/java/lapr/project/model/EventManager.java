@@ -15,7 +15,4 @@ public class EventManager extends User {
         super(name, email, userName, password);
     }
 
-    public EventManager() {
-    }
-
 }

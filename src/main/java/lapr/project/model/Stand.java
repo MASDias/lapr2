@@ -19,9 +19,6 @@ public class Stand {
         this.area = area;
     }
 
-    public Stand() {
-    }
-
     public float getArea() {
         return area;
     }

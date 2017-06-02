@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 package lapr.project.model;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class StandTest {
+
     @Test
     public void EnsureSameObjectStandIsEqual() {
         Stand stand = new Stand("stand", 500);
@@ -33,39 +36,19 @@ public class StandTest {
     }
 
     @Test
-    public void EnsureSameObjectStandEmptyIsEqual() {
-        Stand stand = new Stand();
-        assertEquals(stand, stand);
-    }
-
-    @Test
-    public void EnsureSameObjectsStandEmptyAreNotEqual() {
-        Stand stand = new Stand();
-        Stand expectedResult = new Stand("stand", 700);
-        assertNotEquals(stand, expectedResult);
-    }
-
-    @Test
-    public void EnsureDifferentObjectsStandEmptyAreNotEqual() {
-        Stand stand = new Stand();
-        Object expectedResult = new Object();
-        assertNotEquals(stand, expectedResult);
-    }
-    
-    @Test
-    public void EnsureToStringIsEqual(){
+    public void EnsureToStringIsEqual() {
         Stand stand = new Stand("stand", 500);
         String result = stand.toString();
         String expectedResult = "Name: stand\nArea: 500.0";
-        assertEquals(result,expectedResult);
+        assertEquals(result, expectedResult);
     }
-    
+
     @Test
-    public void EnsureToStringIsNotEqual(){
+    public void EnsureToStringIsNotEqual() {
         Stand stand = new Stand("stand", 500);
         String result = stand.toString();
         String expectedResult = "Name: stand\nArea: 700";
-        assertNotEquals(result,expectedResult);
+        assertNotEquals(result, expectedResult);
     }
 
     @Test
@@ -76,7 +59,7 @@ public class StandTest {
         float result = stand.getArea();
         assertEquals(result, expectedResult, 0.00);
     }
-    
+
     @Test
     public void EnsureSetAreaIsNotEqual() {
         Stand stand = new Stand("stand", 500);
@@ -85,17 +68,17 @@ public class StandTest {
         float result = stand.getArea();
         assertEquals(result, expectedResult, 0.00);
     }
-    
+
     @Test
-    public void EnsureGetAreaIsEqual(){
+    public void EnsureGetAreaIsEqual() {
         Stand stand = new Stand("stand", 500);
         float expectedResult = 500;
         float result = stand.getArea();
         assertEquals(result, expectedResult, 0.00);
     }
-    
+
     @Test
-    public void EnsureGetAreaIsNotEqual(){
+    public void EnsureGetAreaIsNotEqual() {
         Stand stand = new Stand("stand", 500);
         float expectedResult = 700;
         float result = stand.getArea();

@@ -34,24 +34,4 @@ public class UserTest {
         assertNotEquals(user, expectedResult);
     }
 
-    @Test
-    public void EnsureSameObjectEmptyIsEqual() {
-        User user = new User();
-        assertEquals(user, user);
-    }
-
-    @Test
-    public void EnsureSameObjectEmptyIsNotEqual() {
-        User result = new User();
-        User expectedResult = new User("Andre", "cc@gmail.com", "123Andre", "absdde");
-        assertNotEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureDifferenObjectsEmptyIsNotEqual() {
-        User result = new User();
-        User expectedResult = new User("Andre", "cc@gmail.com", "123Andre", "absdde");
-        assertNotEquals(result, expectedResult);
-    }
-
 }

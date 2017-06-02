@@ -5,7 +5,6 @@
  */
 package lapr.project.users;
 
-
 import lapr.project.model.EventManager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -36,25 +35,5 @@ public class EventManagerTest {
         Object expectedResult = new Object();
         assertNotEquals(eManager, expectedResult);
     }
-    @Test
-    public void EnsureSameObjectEmptyEventManagerIsEqual() {
-        EventManager eManager = new EventManager();
-        assertEquals(eManager, eManager);
-    }
 
-    @Test
-    public void EnsureSameObjectsEmptyEventManagerAreNotEqual() {
-        EventManager eManager = new EventManager();
-        EventManager expectedResult = new EventManager("Z", "c", "b", "a");
-        assertNotEquals(expectedResult, eManager);
-    }
-
-    @Test
-    public void EnsureDifferentObjectsEmptyEventManagerAreNotEqual() {
-        EventManager eManager = new EventManager();
-        Object expectedResult = new Object();
-        assertNotEquals(eManager, expectedResult);
-    }
-    
-    
 }
