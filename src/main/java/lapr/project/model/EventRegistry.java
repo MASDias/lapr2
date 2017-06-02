@@ -41,7 +41,7 @@ public class EventRegistry {
         if (validate(event)) {
             eventsList.add(event);
         } else {
-            JOptionPane.showMessageDialog(null, "The Event " + event.getTitle(), "Error!", -1);
+            JOptionPane.showMessageDialog(null, "Error!");
         }
     }
 }
