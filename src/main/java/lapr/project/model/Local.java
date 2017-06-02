@@ -2,7 +2,7 @@ package lapr.project.model;
 
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Local {
 
@@ -11,22 +11,6 @@ public class Local {
 
     public Local(String address, double area) {
         this.address = address;
-        this.area = area;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public double getArea() {
-        return area;
-    }
-
-    public void setArea(double area) {
         this.area = area;
     }
 
