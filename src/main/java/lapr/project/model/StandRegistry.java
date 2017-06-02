@@ -6,10 +6,11 @@
 
 package lapr.project.model;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
-import lapr.project.model.Stand;
+
 
 /**
  *
@@ -17,17 +18,17 @@ import lapr.project.model.Stand;
  */
 public class StandRegistry  {
 
-    private ArrayList<Stand> listStands;
+    private List<Stand> listStands;
 
     public StandRegistry(){
         this.listStands=new ArrayList<>();
     }
 
-    public ArrayList<Stand> getListStands() {
+    public List<Stand> getListStands() {
         return listStands;
     }
 
-    public void setListaStands(ArrayList<Stand> listaStands) {
+    public void setListaStands(List<Stand> listaStands) {
         this.listStands = listaStands;
     }
     

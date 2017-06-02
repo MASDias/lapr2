@@ -5,6 +5,8 @@
  */
 package lapr.project.users;
 
+
+import lapr.project.model.EventManager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -17,21 +19,42 @@ public class EventManagerTest {
 
     @Test
     public void EnsureSameObjectEventManagerIsEqual() {
-        lapr.project.model.EventManager eManager = new lapr.project.model.EventManager("mario", "m@gmail.com", "mario1", "m123");
+        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
         assertEquals(eManager, eManager);
     }
 
     @Test
     public void EnsureSameObjectsEventManagerAreNotEqual() {
-        lapr.project.model.EventManager eManager = new lapr.project.model.EventManager("mario", "m@gmail.com", "mario1", "m123");
-        lapr.project.model.EventManager expectedResult = new lapr.project.model.EventManager("Z", "c", "b", "a");
+        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
+        EventManager expectedResult = new EventManager("Z", "c", "b", "a");
         assertNotEquals(expectedResult, eManager);
     }
 
     @Test
     public void EnsureDifferentObjectsEventManagerAreNotEqual() {
-        lapr.project.model.EventManager eManager = new lapr.project.model.EventManager("mario", "m@gmail.com", "mario1", "m123");
+        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
         Object expectedResult = new Object();
         assertNotEquals(eManager, expectedResult);
     }
+    @Test
+    public void EnsureSameObjectEmptyEventManagerIsEqual() {
+        EventManager eManager = new EventManager();
+        assertEquals(eManager, eManager);
+    }
+
+    @Test
+    public void EnsureSameObjectsEmptyEventManagerAreNotEqual() {
+        EventManager eManager = new EventManager();
+        EventManager expectedResult = new EventManager("Z", "c", "b", "a");
+        assertNotEquals(expectedResult, eManager);
+    }
+
+    @Test
+    public void EnsureDifferentObjectsEmptyEventManagerAreNotEqual() {
+        EventManager eManager = new EventManager();
+        Object expectedResult = new Object();
+        assertNotEquals(eManager, expectedResult);
+    }
+    
+    
 }

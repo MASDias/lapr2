@@ -11,8 +11,8 @@ package lapr.project.model;
  */
 public class EventManager extends User {
 
-    public EventManager(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword) {
-        super(m_sName, m_sEmail, m_sUserName, m_sPassword);
+    public EventManager(String name, String email, String userName, String password) {
+        super(name, email, userName, password);
     }
 
     public EventManager() {

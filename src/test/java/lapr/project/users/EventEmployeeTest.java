@@ -102,7 +102,7 @@ public class EventEmployeeTest {
         EventEmployee employee = new EventEmployee("Z", "c", "b", "a", 1);
         int expectedResult = 2;
         int result = employee.getExperience();
-        assertEquals(result, expectedResult);
+        assertNotEquals(result, expectedResult);
     }
     
 }

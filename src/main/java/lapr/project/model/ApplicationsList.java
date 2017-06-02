@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,17 +14,17 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class ApplicationsList {
-    private ArrayList<Application> applicationsList;
+    private List<Application> applicationsList;
     
     public ApplicationsList(){
         this.applicationsList = new ArrayList<>();
     }
     
-    public ArrayList<Application> getApplicationsList(){
+    public List<Application> getApplicationsList(){
         return applicationsList;
     }
     
-    public void setApplicationsList(ArrayList<Application> applicationsList){
+    public void setApplicationsList(List<Application> applicationsList){
         this.applicationsList = applicationsList;
     }
     
