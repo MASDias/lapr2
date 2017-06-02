@@ -5,10 +5,10 @@
  */
 package lapr.project.model;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lapr.project.model.User;
+
 
 /**
  *
@@ -30,7 +30,7 @@ public class UserRegistry  {
         this.usersList = usersList;
     }
     
-    public boolean validate(User user){
+    private boolean validate(User user){
         for (User u: usersList){
             if(u.equals(user)){
                 return false;

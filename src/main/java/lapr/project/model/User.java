@@ -6,6 +6,7 @@ package lapr.project.model;
  */
 public class User {
 
+    private int key;
     private String name;
     private String email;
     private String userName;
@@ -15,10 +16,8 @@ public class User {
         this.name = name;
         this.email = email;
         this.userName = userName;
+        this.key = (int) (0 + Math.random() * 9);
         this.password = password;
-    }
-
-    public User() {
     }
 
     public String getName() {
@@ -51,6 +50,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public int getKey() {
+        return key;
     }
 
     @Override

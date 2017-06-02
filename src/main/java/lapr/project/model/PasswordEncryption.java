@@ -6,26 +6,26 @@ package lapr.project.model;
  */
 public class PasswordEncryption {
 
-    private static final int[] shift = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
+    private static final int[] KEY = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
 
     public String Encryption(String password, int encryptKey) {
         String encrytion = "";
-        char ch;
+        char character;
         for (int i = 0; i < password.length(); i++) {
-            ch = password.charAt(i);
-            ch += shift[encryptKey];
-            encrytion += ch;
+            character = password.charAt(i);
+            character += KEY[encryptKey];
+            encrytion += character;
         }
         return encrytion;
     }
 
     public String Decryption(String encrypted, int decryptKey) {
         String decryption = "";
-        char ch;
+        char character;
         for (int i = 0; i < encrypted.length(); i++) {
-            ch = encrypted.charAt(i);
-            ch -= shift[decryptKey];
-            decryption += ch;
+            character = encrypted.charAt(i);
+            character -= KEY[decryptKey];
+            decryption += character;
         }
         return decryption;
     }

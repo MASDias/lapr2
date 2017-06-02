@@ -5,41 +5,31 @@
  */
 package lapr.project.model;
 
-import java.io.Serializable;
-
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Stand  {
+public class Stand {
 
     private String name;
-    private double area;
+    private float area;
 
-    public Stand(String name, double area) {
+    public Stand(String name, float area) {
         this.name = name;
         this.area = area;
     }
-    
-    public Stand() {
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getArea() {
+    public float getArea() {
         return area;
     }
 
-    public void setArea(double area) {
+    public void setArea(float area) {
         this.area = area;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Name: " + name + "\nArea: " + area;
+    }
 
 }
