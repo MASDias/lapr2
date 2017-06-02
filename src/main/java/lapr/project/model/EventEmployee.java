@@ -1,4 +1,4 @@
-package lapr.project.users;
+package lapr.project.model;
 
 /**
  *

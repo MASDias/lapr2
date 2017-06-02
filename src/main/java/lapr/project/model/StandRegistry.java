@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package lapr.project.registry;
+package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
