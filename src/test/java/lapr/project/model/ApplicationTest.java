@@ -42,6 +42,7 @@ public class ApplicationTest {
 		List<Keyword> expectedKeywordList = new ArrayList<>();
 		expectedKeywordList.add(new Keyword("Doors"));
 
+                
 		Application candidatura = new Application("MyCandidatura", new ArrayList<>());
 		candidatura.addKeyword(new Keyword("Doors"));
 
@@ -51,7 +52,7 @@ public class ApplicationTest {
 
 	}
 
-	@Test
+	@Test 
 	public void ensureXMLElementExportToStringIsValid() throws Exception {
 		String expected = "<application>" + getLineBreak() +
 				"<description>MyApplication</description>" + getLineBreak() +
