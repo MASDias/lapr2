@@ -34,4 +34,76 @@ public class UserTest {
         assertNotEquals(user, expectedResult);
     }
 
+    
+    @Test
+    public void EnsureSetNameIsEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String expectedResult = "a";
+        user.setName("a");
+        String result = user.getName();
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureSetNameIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String expectedResult = "b";
+        user.setName("a");
+        String result = user.getName();
+        assertNotEquals(result, expectedResult);
+    }
+    
+    @Test
+    public void EnsureSetEmailIsEqual() {
+        User user = new User("Z", "t", "b", "c");
+        String expectedResult = "a";
+        user.setEmail("a");
+        String result = user.getEmail();
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureSetEmailIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String expectedResult = "b";
+        user.setEmail("a");
+        String result = user.getEmail();
+        assertNotEquals(result, expectedResult);
+    }
+    
+    @Test
+    public void EnsureSetUsernameIsEqual() {
+        User user = new User("Z", "t", "b", "c");
+        String expectedResult = "a";
+        user.setUserName("a");
+        String result = user.getUserName();
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureSetUsernameIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String expectedResult = "b";
+        user.setUserName("a");
+        String result = user.getUserName();
+        assertNotEquals(result, expectedResult);
+    }
+    
+    @Test
+    public void EnsureToStringIsEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String result = user.toString();
+        String expectedResult = "User: Z\nUserName: b\nEmail: a";
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureToStringIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");
+        String result = user.toString();
+        String expectedResult = "User: l\nUserName: b\nEmail: a";
+        assertNotEquals(result, expectedResult);
+    }
+    
+    
 }

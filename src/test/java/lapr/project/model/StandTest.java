@@ -63,10 +63,10 @@ public class StandTest {
     @Test
     public void EnsureSetAreaIsNotEqual() {
         Stand stand = new Stand("stand", 500);
-        float expectedResult = 700;
+        float expectedResult = 600;
         stand.setArea(700);
         float result = stand.getArea();
-        assertEquals(result, expectedResult, 0.00);
+        assertNotEquals(result, expectedResult, 0.00);
     }
 
     @Test
