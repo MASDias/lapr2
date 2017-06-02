@@ -23,13 +23,6 @@ public class OrganizerTest {
     }
 
     @Test
-    public void EnsureSameContentOrganizerIsEqual() {
-        Organizer result = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
-        Organizer expectedResult = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
     public void EnsureSameObjectsOrganizerAreNotEqual() {
         Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         Organizer expectedResult = new Organizer("Z", "c", "b", "a");

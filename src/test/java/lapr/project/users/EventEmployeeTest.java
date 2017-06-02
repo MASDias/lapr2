@@ -23,13 +23,6 @@ public class EventEmployeeTest {
     }
 
     @Test
-    public void EnsureSameContentEventEmployeeIsEqual() {
-        EventEmployee result = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
-        EventEmployee expectedResult = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
     public void EnsureSameObjectsEventEmployeeAreNotEqual() {
         EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);
         EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a", 3);

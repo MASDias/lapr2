@@ -21,13 +21,6 @@ public class UserTest {
     }
 
     @Test
-    public void EnsureSameContentUserIsEqual() {
-        User result = new User("mario", "m@gmail.com", "mario1", "m123");
-        User expectedResult = new User("mario", "m@gmail.com", "mario1", "m123");
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
     public void EnsureSameObjectsUserAreNotEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
         User expectedResult = new User("Z", "c", "b", "a");

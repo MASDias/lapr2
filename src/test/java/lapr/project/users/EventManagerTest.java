@@ -21,12 +21,7 @@ public class EventManagerTest {
         EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
         assertEquals(eManager, eManager);
     }
-    @Test
-    public void EnsureSameContentEventManagerIsEqual() {
-        EventManager result = new EventManager("mario", "m@gmail.com", "mario1", "m123");
-        EventManager expectedResult = new EventManager("mario", "m@gmail.com", "mario1", "m123");
-        assertEquals(result, expectedResult);
-    }
+    
 
     @Test
     public void EnsureSameObjectsEventManagerAreNotEqual() {
