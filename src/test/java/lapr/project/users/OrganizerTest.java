@@ -35,4 +35,20 @@ public class OrganizerTest {
         Object expectedResult = new Object();
         assertNotEquals(organizer, expectedResult);
     }
+    
+    @Test
+    public void EnsureToStringIsEqual() {
+        Organizer organizer = new Organizer("James", "james@gmail.com", "juanjames", "123456789");
+        String result = organizer.toString();
+        String expectedResult = "Name: James\nEmail: james@gmail.com\nUsername: juanjames";
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void EnsureToStringIsNotEqual() {
+        Organizer organizer = new Organizer("James", "james@gmail.com", "juanjames", "123456789");
+        String result = organizer.toString();
+        String expectedResult = "Name: Jame\nEmail: james@gmail.com\nUsername: juanjames";
+        assertNotEquals(result, expectedResult);
+    }
 }
