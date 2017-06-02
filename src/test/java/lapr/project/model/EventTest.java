@@ -5,7 +5,9 @@
  */
 package lapr.project.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -17,21 +19,35 @@ import org.junit.Test;
 public class EventTest {
 
     @Test
-    public void EnsureSameObjectEventIsEqual() {
-        Event event = new Event("Model Example", "Explae string", new Date(2017, 3, 15), new Date(2017, 4, 15), new Local("Example street", 500));
+    public void EnsureSameObjectEventIsEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local);
         assertEquals(event, event);
     }
 
     @Test
-    public void EnsureSameObjectsEventAreNotEqual() {
-        Event event = new Event("Model Example", "Example string", new Date(2017, 3, 15), new Date(2017, 4, 15), new Local("Example street", 500));
-        Event result = new Event("Model", "string", new Date(2016, 3, 15), new Date(2016, 4, 15), new Local("Example street", 500));
+    public void EnsureSameObjectsEventAreNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        
+        Event event = new Event("Model Example", "Example string", beginning, end, local);
+        Event result = new Event("Model", "string", end, beginning, local);
         assertNotEquals(event, result);
     }
 
     @Test
-    public void EnsureDifferentObjectsEventAreNotEqual() {
-        Event event = new Event("Model Example", "Example string", new Date(2017, 3, 15), new Date(2017, 4, 15), new Local("Example street", 500));
+    public void EnsureDifferentObjectsEventAreNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        
+        Event event = new Event("Model Example", "Example string", beginning, end, local);
         Object result = new Object();
         assertNotEquals(event, result);
     }
