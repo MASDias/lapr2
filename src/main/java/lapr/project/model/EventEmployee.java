@@ -8,8 +8,8 @@ public class EventEmployee extends User {
 
     private int experience;
 
-    public EventEmployee(String m_sName, String m_sEmail, String m_sUserName, String m_sPassword, int experience) {
-        super(m_sName, m_sEmail, m_sUserName, m_sPassword);
+    public EventEmployee(String name, String email, String userName, String password, int experience) {
+        super(name, email, userName, password);
         this.experience = experience;
     }
 
@@ -17,4 +17,8 @@ public class EventEmployee extends User {
 
     }
 
+    @Override
+    public String toString(){
+        return "Name: " + super.getName() + "\nEmail: " +super.getEmail()+ "\nUserName: " +super.getUserName()+ "\nExperience: " +experience;
+    }
 }
