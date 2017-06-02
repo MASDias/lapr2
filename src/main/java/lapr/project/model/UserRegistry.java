@@ -5,10 +5,10 @@
  */
 package lapr.project.model;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lapr.project.model.User;
+
 
 /**
  *

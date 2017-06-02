@@ -35,4 +35,32 @@ public class EventEmployeeTest {
         Object expectedResult = new Object();
         assertNotEquals(eEmployee, expectedResult);
     }
+
+    @Test
+    public void EnsureSameObjectEventEmployeeEmptyIsEqual() {
+        EventEmployee eEmployee = new EventEmployee();
+        assertEquals(eEmployee, eEmployee);
+    }
+
+    @Test
+    public void EnsureSameObjectsEventEmployeeEmptyAreNotEqual() {
+        EventEmployee eEmployee = new EventEmployee();
+        EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a", 3);
+        assertNotEquals(eEmployee, expectedResult);
+    }
+
+    @Test
+    public void EnsureDifferentObjectsEventEmployeeEmptyAreNotEqual() {
+        EventEmployee eEmployee = new EventEmployee();
+        Object expectedResult = new Object();
+        assertNotEquals(eEmployee, expectedResult);
+    }
+
+    @Test
+    public void EnsureSetExperience() {
+        EventEmployee result = new EventEmployee("Z", "c", "b", "a", 1);
+        EventEmployee expectedResult = new EventEmployee("Z", "c", "b", "a", 3);
+        result.setExperience(3);
+        assertEquals(result, expectedResult);
+    }
 }
