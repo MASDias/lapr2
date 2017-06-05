@@ -15,22 +15,22 @@ import javax.swing.JOptionPane;
  */
 public class StandRegistry {
 
-    private List<Stand> listStands;
+    private List<Stand> standsList;
 
     public StandRegistry() {
-        this.listStands = new ArrayList<>();
+        this.standsList = new ArrayList<>();
     }
 
     public List<Stand> getListStands() {
-        return listStands;
+        return standsList;
     }
 
     public void setListaStands(List<Stand> listaStands) {
-        this.listStands = listaStands;
+        this.standsList = listaStands;
     }
 
     private boolean validate(Stand stand) {
-        for (Stand s : listStands) {
+        for (Stand s : standsList) {
             if (s.equals(stand)) {
                 return false;
             }
@@ -40,13 +40,13 @@ public class StandRegistry {
 
     public void addStand(Stand stand) {
         if (validate(stand)) {
-            listStands.add(stand);
+            standsList.add(stand);
         } else {
             JOptionPane.showMessageDialog(null, "Error!");
         }
     }
     
     public int size (){
-        return listStands.size();
+        return standsList.size();
     }
 }
