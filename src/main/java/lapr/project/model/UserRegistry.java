@@ -46,4 +46,8 @@ public class UserRegistry  {
             JOptionPane.showMessageDialog(null, "The User "+user.getName(), "Error!", -1);
         }
     }
+    
+    public int size (){
+        return usersList.size();
+    }
 }
