@@ -7,6 +7,7 @@ package lapr.project.model;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -16,17 +17,17 @@ import javax.swing.JOptionPane;
  */
 public class UserRegistry  {
     
-    private ArrayList<User> usersList;
+    private List<User> usersList;
     
     public UserRegistry(){
         this.usersList = new ArrayList<>();
     }
     
-    public ArrayList<User> getUsersList(){
+    public List<User> getUsersList(){
         return usersList;
     }
     
-    public void setUsersList(ArrayList<User> usersList){
+    public void setUsersList(List<User> usersList){
         this.usersList = usersList;
     }
     
