@@ -12,6 +12,7 @@ public class EncryptionKeyTest {
 
     @Test
     public void ensureEncryptionPassword() {
+        
         PasswordEncryption testEncryption = new PasswordEncryption();
         int key = 2;
         String password = "Password";

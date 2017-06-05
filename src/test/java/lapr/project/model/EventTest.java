@@ -18,6 +18,7 @@ import org.junit.Test;
  */
 public class EventTest {
 
+    
     @Test
     public void EnsureSameObjectEventIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);

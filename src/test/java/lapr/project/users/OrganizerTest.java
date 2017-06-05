@@ -16,6 +16,7 @@ import org.junit.Test;
  */
 public class OrganizerTest {
 
+    
     @Test
     public void EnsureSameObjectOrganizerIsEqual() {
         Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");

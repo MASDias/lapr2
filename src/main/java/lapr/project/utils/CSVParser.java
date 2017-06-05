@@ -42,9 +42,6 @@ public class CSVParser {
 
         } catch (IOException ex) {
             Logger.getLogger(CSVParser.class.getName()).log(Level.SEVERE, null, ex);  
-            
-            
-            
         }
     }
 }

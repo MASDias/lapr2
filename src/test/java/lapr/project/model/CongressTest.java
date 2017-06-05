@@ -18,6 +18,7 @@ import org.junit.Test;
  */
 public class CongressTest {
 
+    
     @Test
     public void EnsureSameObjectCongressIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);

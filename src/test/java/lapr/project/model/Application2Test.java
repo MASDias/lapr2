@@ -79,5 +79,6 @@ public class Application2Test {
         String result = application.toString();
         String expectedResult = "Description: qwert\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street\nDecision: false";
         assertNotEquals(result, expectedResult);
+        
     }
 }

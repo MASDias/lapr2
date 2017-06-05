@@ -15,6 +15,7 @@ import org.junit.Test;
  */
 public class StandTest {
 
+    
     @Test
     public void EnsureSameObjectStandIsEqual() {
         Stand stand = new Stand("stand", 500);

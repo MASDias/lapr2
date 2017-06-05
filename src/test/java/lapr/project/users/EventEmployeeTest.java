@@ -16,6 +16,7 @@ import org.junit.Test;
  */
 public class EventEmployeeTest {
 
+    
     @Test
     public void EnsureSameObjectEventEmployeeIsEqual() {
         EventEmployee eEmployee = new EventEmployee("Miguel", "miguel@gmail.com", "miguel4", "miguel123", 3);

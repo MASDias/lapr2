@@ -16,6 +16,7 @@ import org.junit.Test;
  */
 public class ApplicationsListTest {
     
+    
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception{
         ApplicationsList list = new ApplicationsList();

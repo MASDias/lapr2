@@ -16,6 +16,7 @@ import org.junit.Test;
  */
 public class EventManagerTest {
 
+    
     @Test
     public void EnsureSameObjectEventManagerIsEqual() {
         EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");

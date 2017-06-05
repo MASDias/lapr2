@@ -18,6 +18,7 @@ import org.junit.Test;
  */
 public class ExhibitionTest {
 
+    
     @Test
     public void EnsureSameObjectStandIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);

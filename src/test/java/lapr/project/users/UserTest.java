@@ -14,6 +14,7 @@ import org.junit.Test;
 
 public class UserTest {
 
+    
     @Test
     public void EnsureSameObjectUserIsEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");

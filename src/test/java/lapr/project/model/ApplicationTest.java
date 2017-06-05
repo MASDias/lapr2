@@ -121,6 +121,7 @@ public class ApplicationTest {
 		result = result.importContentFromXMLNode(elementCandidatura);
 
 		assertEquals(expected, result);
+                
 	}
 
 	@Test
