@@ -13,14 +13,21 @@ public class Event {
     private Date eventBegin;
     private Date eventEnd;
     private Local local;
+    private ApplicationsList applicationsList;
 
-    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local,ApplicationsList applicationsList ) {
         this.title = title;
         this.description = description;
         this.eventBegin = eventBegin;
         this.eventEnd = eventEnd;
         this.local = local;
+        this.applicationsList = applicationsList;
     }
+
+    public ApplicationsList getApplicationsList() {
+        return applicationsList;
+    }
+    
     
     @Override
     public String toString(){

@@ -17,7 +17,6 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class ExhibitionTest {
-
     
     @Test
     public void EnsureSameObjectStandIsEqual() throws Exception {
@@ -25,7 +24,7 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local);
+        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local, null);
         assertEquals(exhibition, exhibition);
     }
 
@@ -35,8 +34,8 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local);
-        Exhibition exhibition2 = new Exhibition(10, null, "Exhibition", "Cool Exhibition", beginning, end, local);
+        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local, null);
+        Exhibition exhibition2 = new Exhibition(10, null, "Exhibition", "Cool Exhibition", beginning, end, local, null);
         assertNotEquals(exhibition, exhibition2);
     }
 
@@ -47,7 +46,7 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local);
+        Exhibition exhibition = new Exhibition(20, null, "Exhibition", "Cool Exhibition", beginning, end, local, null);
         assertEquals(exhibition, exhibition);
         Object expectedResult = new Object();
         assertNotEquals(exhibition, expectedResult);

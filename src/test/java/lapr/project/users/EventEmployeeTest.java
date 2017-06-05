@@ -44,7 +44,7 @@ public class EventEmployeeTest {
         String expectedResult = "Name: Z\nEmail: c\nUserName: b\nExperience: 1";
         assertEquals(result, expectedResult);
     }
-
+    
     @Test
     public void EnsureToStringIsNotEqual() {
         EventEmployee employeeResult = new EventEmployee("Z", "c", "b", "a", 1);

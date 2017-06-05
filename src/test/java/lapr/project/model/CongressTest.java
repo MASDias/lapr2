@@ -18,14 +18,13 @@ import org.junit.Test;
  */
 public class CongressTest {
 
-    
     @Test
     public void EnsureSameObjectCongressIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Congress event = new Congress("Model Example", "Explae string", beginning, end, local);
+        Congress event = new Congress("Model Example", "Explae string", beginning, end, local, null);
         assertEquals(event, event);
     }
 
@@ -36,8 +35,8 @@ public class CongressTest {
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
 
-        Congress event = new Congress("Model Example", "Example string", beginning, end, local);
-        Congress result = new Congress("Model", "string", end, beginning, local);
+        Congress event = new Congress("Model Example", "Example string", beginning, end, local, null);
+        Congress result = new Congress("Model", "string", end, beginning, local, null);
         assertNotEquals(event, result);
     }
 
@@ -48,7 +47,7 @@ public class CongressTest {
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
 
-        Congress event = new Congress("Model Example", "Example string", beginning, end, local);
+        Congress event = new Congress("Model Example", "Example string", beginning, end, local, null);
         Object result = new Object();
         assertNotEquals(event, result);
     }

@@ -25,7 +25,7 @@ public class EventTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
         assertEquals(event, event);
     }
 
@@ -36,8 +36,8 @@ public class EventTest {
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
         
-        Event event = new Event("Model Example", "Example string", beginning, end, local);
-        Event result = new Event("Model", "string", end, beginning, local);
+        Event event = new Event("Model Example", "Example string", beginning, end, local, null);
+        Event result = new Event("Model", "string", end, beginning, local, null);
         assertNotEquals(event, result);
     }
 
@@ -48,7 +48,7 @@ public class EventTest {
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
         
-        Event event = new Event("Model Example", "Example string", beginning, end, local);
+        Event event = new Event("Model Example", "Example string", beginning, end, local, null);
         Object result = new Object();
         assertNotEquals(event, result);
     }
