@@ -45,4 +45,8 @@ public class StandRegistry {
             JOptionPane.showMessageDialog(null, "Error!");
         }
     }
+    
+    public int size (){
+        return listStands.size();
+    }
 }
