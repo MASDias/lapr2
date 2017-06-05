@@ -14,22 +14,22 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class ApplicationsList {
-    private List<Application> applicationsList;
+    private List<Application2> applicationsList;
     
     public ApplicationsList(){
         this.applicationsList = new ArrayList<>();
     }
     
-    public List<Application> getApplicationsList(){
+    public List<Application2> getApplicationsList(){
         return applicationsList;
     }
     
-    public void setApplicationsList(List<Application> applicationsList){
+    public void setApplicationsList(List<Application2> applicationsList){
         this.applicationsList = applicationsList;
     }
     
-    private boolean validate(Application application){
-        for(Application a: applicationsList){
+    private boolean validate(Application2 application){
+        for(Application2 a: applicationsList){
             if(a.equals(application)){
                 return false;
             }
@@ -37,11 +37,15 @@ public class ApplicationsList {
         return true;
     }
     
-    public void addApplication(Application application){
+    public void addApplication(Application2 application){
         if(validate(application)){
             applicationsList.add(application);
         }else{
             JOptionPane.showMessageDialog(null, "Can't add application to list!");
         }
+    }
+    
+    public int size (){
+        return applicationsList.size();
     }
 }
