@@ -44,4 +44,8 @@ public class EventRegistry {
             JOptionPane.showMessageDialog(null, "Error!");
         }
     }
+    
+    public int size (){
+        return eventsList.size();
+    }
 }
