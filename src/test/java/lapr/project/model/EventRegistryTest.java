@@ -9,11 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 /**
  *
- * @author Miguel Santos <1161386@isep.ipp.pt>
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class EventRegistryTest {
     
@@ -31,4 +32,52 @@ public class EventRegistryTest {
         int expectedResult = 1;
         assertEquals(size, expectedResult);
     }
+    
+     @Test
+    public void EnsureSameObjectsEventRegistryListAreEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        
+        EventRegistry list = new EventRegistry();
+        list.addEvent(event);
+        assertEquals(list, list);
+    }
+
+    @Test
+    public void EnsureSameObjectsEventRegistryListAreNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        
+      
+        EventRegistry list = new EventRegistry();
+        EventRegistry list2 = new EventRegistry();
+        list.addEvent(event);
+        assertNotEquals(list, list2);
+    }
+
+
+
+    @Test
+    public void EnsureGetEventRegistryListIsNotEqual() throws Exception {
+        EventRegistry result = new EventRegistry();
+        EventRegistry expectedResult = new EventRegistry();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Local local = new Local("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, result);
+
+       
+        result.addEvent(event);
+        assertNotEquals(result, expectedResult);
+    }
+
+
 }
