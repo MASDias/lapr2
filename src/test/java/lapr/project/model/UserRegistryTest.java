@@ -26,4 +26,6 @@ public class UserRegistryTest {
         assertEquals(size,expectedResult);
     }
     
+    
+    
 }
