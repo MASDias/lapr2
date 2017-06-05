@@ -27,6 +27,10 @@ public class Event {
     public ApplicationsList getApplicationsList() {
         return applicationsList;
     }
+
+    public void setApplicationsList(ApplicationsList applicationsList) {
+        this.applicationsList = applicationsList;
+    }
     
     
     @Override
