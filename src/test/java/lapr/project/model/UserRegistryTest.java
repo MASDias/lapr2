@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.List;
+import static org.apache.maven.wagon.PathUtils.user;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -55,7 +57,7 @@ public class UserRegistryTest {
 
         UserRegistry list = new UserRegistry();
         UserRegistry list2 = new UserRegistry();
-        list.addUser(user);
+        list.addUser(user);        
         list2 = list.getUsersList();
         UserRegistry result = list2;
         UserRegistry expectedResult = list;
