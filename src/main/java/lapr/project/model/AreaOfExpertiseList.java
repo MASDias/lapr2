@@ -21,11 +21,11 @@ public class AreaOfExpertiseList {
         this.areaOfExpertiseList = new ArrayList<>();
     }
 
-    public List<AreaOfExpertise> getApplicationsList() {
+    public List<AreaOfExpertise> getAreaOfExpertiseList() {
         return areaOfExpertiseList;
     }
 
-    public void setApplicationsList(List<AreaOfExpertise> areaOfExpertiseList) {
+    public void setAreaOfExpertiseList(List<AreaOfExpertise> areaOfExpertiseList) {
         this.areaOfExpertiseList = areaOfExpertiseList;
     }
 
@@ -38,11 +38,11 @@ public class AreaOfExpertiseList {
         return true;
     }
 
-    public void addApplication(AreaOfExpertise areaOfExpertise) {
+    public void addAreaOfExpertise(AreaOfExpertise areaOfExpertise) {
         if (validate(areaOfExpertise)) {
             areaOfExpertiseList.add(areaOfExpertise);
         } else {
-            JOptionPane.showMessageDialog(null, "Can't add application to list!");
+            JOptionPane.showMessageDialog(null, "Can't add expert to list!");
         }
     }
 
