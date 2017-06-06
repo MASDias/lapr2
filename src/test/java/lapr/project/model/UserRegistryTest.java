@@ -16,8 +16,8 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class UserRegistryTest {
-    
-     public void EnsureAddUserMethodAddsUserToList() throws Exception {
+
+    public void EnsureAddUserMethodAddsUserToList() throws Exception {
         UserRegistry list = new UserRegistry();
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
         User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
@@ -47,22 +47,6 @@ public class UserRegistryTest {
         UserRegistry list2 = new UserRegistry();
         list.addUser(user);
         assertNotEquals(list, list2);
-
     }
-    
-     @Test
-    public void EnsureGetUserListIsEqual() throws Exception {
-        
-        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
 
-        UserRegistry list = new UserRegistry();
-        UserRegistry list2 = new UserRegistry();
-        list.addUser(user);        
-        list2 = list.getUsersList();
-        UserRegistry result = list2;
-        UserRegistry expectedResult = list;
-        
-        assertNotEquals(result, expectedResult);
-
-    }
 }
