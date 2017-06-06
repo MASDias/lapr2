@@ -65,18 +65,18 @@ public class EventRegistryTest {
 
     @Test
     public void EnsureGetEventRegistryListIsNotEqual() throws Exception {
-        EventRegistry result = new EventRegistry();
-        EventRegistry expectedResult = new EventRegistry();
+        ApplicationsList al = new ApplicationsList();
+        ApplicationsList al2 = new ApplicationsList();
         
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, result);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, al);
 
        
-        result.addEvent(event);
-        assertNotEquals(result, expectedResult);
+        event.setApplicationsList(al);
+        assertNotEquals(al, al2);
     }
 
 
