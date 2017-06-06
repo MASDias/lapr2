@@ -1,5 +1,7 @@
 package lapr.project.ui;
 
+import lapr.project.model.Application2;
+import lapr.project.model.ApplicationsList;
 import lapr.project.model.CalculatorExample;
 
 /**

@@ -10,11 +10,16 @@ package lapr.project.model;
  * @author MarioDias
  */
 public class Theme {
+
     private String theme;
 
     public Theme(String theme) {
         this.theme = theme;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Theme: " + theme;
+    }
+
 }

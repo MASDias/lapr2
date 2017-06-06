@@ -16,4 +16,9 @@ public class Workshop {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Workshop name: " + name +" "+ theme;
+    }
+
 }
