@@ -1,7 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.model.Application2;
-import lapr.project.model.ApplicationsList;
 import lapr.project.model.CalculatorExample;
 
 /**
@@ -21,7 +19,7 @@ class Main {
      */
     public static void main(String[] args) {
         CalculatorExample calculatorExample = new CalculatorExample();
-        System.out.println(calculatorExample.sum(3, 5));
+        System.out.println(calculatorExample.sum(3, 5));   
     }
 
 }
