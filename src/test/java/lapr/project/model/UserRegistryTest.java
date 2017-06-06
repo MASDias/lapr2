@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 /**
@@ -14,8 +15,7 @@ import org.junit.Test;
  */
 public class UserRegistryTest {
     
-    @Test
-    public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception{
+     public void EnsureAddUserMethodAddsUserToList() throws Exception {
         UserRegistry list = new UserRegistry();
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
         User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
@@ -23,9 +23,44 @@ public class UserRegistryTest {
         list.addUser(u2);
         int size = list.size();
         int expectedResult = 2;
-        assertEquals(size,expectedResult);
+        assertEquals(size, expectedResult);
+    }
+
+    @Test
+    public void EnsureSameObjectsEventRegistryListAreEqual() throws Exception {
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+
+        UserRegistry list = new UserRegistry();
+
+        list.addUser(u1);
+        assertEquals(list, list);
+    }
+
+    @Test
+    public void EnsureSameObjectsUserListAreNotEqual() throws Exception {
+
+        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+
+        UserRegistry list = new UserRegistry();
+        UserRegistry list2 = new UserRegistry();
+        list.addUser(user);
+        assertNotEquals(list, list2);
+
     }
     
-    
-    
+     @Test
+    public void EnsureGetUserListIsEqual() throws Exception {
+        
+        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+
+        UserRegistry list = new UserRegistry();
+        UserRegistry list2 = new UserRegistry();
+        list.addUser(user);
+        list2 = list.getUsersList();
+        UserRegistry result = list2;
+        UserRegistry expectedResult = list;
+        
+        assertNotEquals(result, expectedResult);
+
+    }
 }
