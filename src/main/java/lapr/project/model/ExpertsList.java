@@ -41,7 +41,7 @@ public class ExpertsList {
         if(validate(expert)){
             expertsList.add(expert);
         }else{
-            JOptionPane.showMessageDialog(null, "Can't add application to list!");
+            JOptionPane.showMessageDialog(null, "Can't add expert to list!");
         }
     }
     
