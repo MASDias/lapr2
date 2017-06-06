@@ -18,20 +18,23 @@ public class ExpertTest {
     
     @Test
     public void EnsureSameObjectExpertIsEqual() {
-        Expert expert = new Expert("gonçalo", null);
+        AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();
+        Expert expert = new Expert("gonçalo", areasOfExpertise);
         assertEquals(expert, expert);
     }
 
     @Test
     public void EnsureSameObjectsExpertAreNotEqual() {
-        Expert expert = new Expert("mario", null);
-        User expectedResult = new User("Z", "c", "b", "a");
+        AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();
+        Expert expert = new Expert("mario", areasOfExpertise);
+        Expert expectedResult = new Expert("Z", areasOfExpertise);
         assertNotEquals(expert, expectedResult);
     }
 
     @Test
     public void EnsureDifferentObjectsExpertAreNotEqual() {
-        Expert expert = new Expert("Z", null);
+        AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();
+        Expert expert = new Expert("Z", areasOfExpertise);
         Object expectedResult = new Object();
         assertNotEquals(expert, expectedResult);
     }
