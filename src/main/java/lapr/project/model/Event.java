@@ -15,7 +15,7 @@ public class Event {
     private Local local;
     private ApplicationsList applicationsList;
 
-    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local,ApplicationsList applicationsList ) {
+    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local, Keyword keywords, ApplicationsList applicationsList) {
         this.title = title;
         this.description = description;
         this.eventBegin = eventBegin;
@@ -31,11 +31,10 @@ public class Event {
     public void setApplicationsList(ApplicationsList applicationsList) {
         this.applicationsList = applicationsList;
     }
-    
-    
+
     @Override
-    public String toString(){
-        return "Title: " +title+"\nDescription: "+description+"\nDate Begin: "+eventBegin.toString().substring(0, 10)+"\nDate End: " +eventEnd.toString().substring(0, 10)+ "\nLocal: " +local;
+    public String toString() {
+        return "Title: " + title + "\nDescription: " + description + "\nDate Begin: " + eventBegin.toString().substring(0, 10) + "\nDate End: " + eventEnd.toString().substring(0, 10) + "\nLocal: " + local;
     }
 
 }

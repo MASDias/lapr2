@@ -25,7 +25,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         
         list.addEvent(event);
         int size = list.size();
@@ -39,7 +39,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         
         EventRegistry list = new EventRegistry();
         list.addEvent(event);
@@ -52,7 +52,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         
       
         EventRegistry list = new EventRegistry();
@@ -72,7 +72,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, al);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, al);
 
        
         event.setApplicationsList(al);

@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class Congress extends Event {
 
-    public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local, ApplicationsList applicationsList) {
-        super(title, description, eventBegin, eventEnd, local, applicationsList);
+    public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local, Keyword keywords, ApplicationsList applicationsList) {
+        super(title, description, eventBegin, eventEnd, local, keywords, applicationsList);
     }
 
 }

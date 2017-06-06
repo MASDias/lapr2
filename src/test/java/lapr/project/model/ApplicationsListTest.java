@@ -25,7 +25,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         Application2 application = new Application2("qwert", event, false);
         Application2 application2 = new Application2("qwerty", event, false);
         list.addApplication(application);
@@ -41,7 +41,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         Application2 application = new Application2("qwerty", event, true);
         ApplicationsList list = new ApplicationsList();
         list.addApplication(application);
@@ -54,7 +54,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
         
         Application2 application = new Application2("qwerty", event, true);
         ApplicationsList list = new ApplicationsList();
@@ -71,7 +71,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, list);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, list);
         
         ApplicationsList result = event.getApplicationsList();
         ApplicationsList expectedResult = list;
@@ -87,7 +87,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, result);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, result);
 
         Application2 application = new Application2("hello", event, true);
         result.addApplication(application);
@@ -102,7 +102,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,null, null);
        
         event.setApplicationsList(result);
         ApplicationsList expectedResult = event.getApplicationsList();
@@ -117,7 +117,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local, null);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, null,null);
        
         event.setApplicationsList(result);
         ApplicationsList expectedResult = new ApplicationsList();
