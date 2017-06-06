@@ -21,4 +21,12 @@ public class Workshop {
         return "Workshop name: " + name +" "+ theme;
     }
 
+    ExpertsList getExpertsList() {
+        return expertList;
+    }
+
+    void setExpertsList(ExpertsList expertList) {
+        this.expertList = expertList;
+    }
+
 }
