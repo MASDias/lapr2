@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.model.CalculatorExample;
-import lapr.project.model.User;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
