@@ -19,5 +19,13 @@ public class Expert {
             this.expertiseAreas = expertiseArea;
         }
 
+    public AreaOfExpertiseList getExpertiseAreas() {
+        return expertiseAreas;
+    }
+
+    public void setExpertiseAreas(AreaOfExpertiseList expertiseAreas) {
+        this.expertiseAreas = expertiseAreas;
+    }
+    
 
 }
