@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -20,7 +19,7 @@ public class ExhibitionTest {
 
     @Test
     public void EnsureSameObjectStandIsEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
@@ -30,7 +29,7 @@ public class ExhibitionTest {
 
     @Test
     public void EnsureSameObjectsStandAreNotEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
@@ -42,7 +41,7 @@ public class ExhibitionTest {
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() throws Exception {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
