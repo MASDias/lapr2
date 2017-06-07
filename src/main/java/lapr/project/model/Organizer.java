@@ -6,8 +6,19 @@ package lapr.project.model;
  */
 public class Organizer extends User {
 
+    private EventRegistry eventRegistry;
+
     public Organizer(String name, String email, String username, String password) {
         super(name, email, username, password);
+        this.eventRegistry = new EventRegistry();
+    }
+
+    public EventRegistry getEventRegistry() {
+        return eventRegistry;
+    }
+
+    public void setEventRegistry(EventRegistry eventRegistry) {
+        this.eventRegistry = eventRegistry;
     }
 
     @Override

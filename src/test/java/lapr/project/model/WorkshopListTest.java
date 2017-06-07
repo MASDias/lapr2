@@ -14,13 +14,14 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class WorkshopListTest {
+
     @Test
     public void EnsureAddWorkshopListMethodAddsExpertToList() {
         WorkshopList list = new WorkshopList();
         ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert,theme);
-        Workshop workshop2 = new Workshop("Gonçalo", expert,theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
+        Workshop workshop2 = new Workshop("Gonçalo", expert, theme);
         list.addWorkshop(workshop);
         list.addWorkshop(workshop2);
         int size = list.size();
@@ -32,7 +33,7 @@ public class WorkshopListTest {
     public void EnsureSameObjectsWorkshopListIsEqual() {
         ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert ,theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
         WorkshopList result = new WorkshopList();
         result.addWorkshop(workshop);
         assertEquals(result, result);
@@ -42,7 +43,7 @@ public class WorkshopListTest {
     public void EnsureSameObjectsWorkshopListAreNotEqual() {
         ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert , theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
         WorkshopList result = new WorkshopList();
         WorkshopList expectedResult = new WorkshopList();
         result.addWorkshop(workshop);
@@ -53,7 +54,7 @@ public class WorkshopListTest {
     public void EnsureDifferentObjectsWorkshopListAreNotEqual() {
         ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert , theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
         WorkshopList result = new WorkshopList();
         result.addWorkshop(workshop);
         Object expectedResult = new Object();
@@ -63,7 +64,8 @@ public class WorkshopListTest {
     @Test
     public void EnsureGetWorkshopListIsEqual() {
         WorkshopList list = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", list, null, null, null, null, null);
+        Congress congress = new Congress("blabla", "bla bla", null, null, null);
+        congress.setWorkshopList(list);
         WorkshopList result = congress.getWorkshopList();
         WorkshopList expectedResult = list;
         assertEquals(result, expectedResult);
@@ -73,8 +75,8 @@ public class WorkshopListTest {
     public void EnsureGetWorkshopListIsNotEqual() {
         WorkshopList list = new WorkshopList();
         WorkshopList list2 = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", list, null, null, null, null, null);
-
+        Congress congress = new Congress("blabla", "bla bla", null, null, null);
+        congress.setWorkshopList(list);
         WorkshopList result = congress.getWorkshopList();
         WorkshopList expectedResult = list2;
         assertNotEquals(result, expectedResult);
@@ -83,19 +85,19 @@ public class WorkshopListTest {
     @Test
     public void EnsureSetWorkshopListIsEqual() {
         WorkshopList result = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", result, null, null, null, null, null);
-        
+        Congress congress = new Congress("blabla", "bla bla", null, null, null);
+
         congress.setWorkshopList(result);
         WorkshopList expectedResult = congress.getWorkshopList();
         assertEquals(expectedResult, result);
     }
-    
+
     @Test
     public void EnsureSetWorkshopListIsNotEqual() {
         WorkshopList result = new WorkshopList();
         WorkshopList list = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", result, null, null, null, null, null);
-        
+        Congress congress = new Congress("blabla", "bla bla", null, null, null);
+
         congress.setWorkshopList(result);
         WorkshopList expectedResult = list;
         assertNotEquals(expectedResult, result);

@@ -14,14 +14,23 @@ public class Event {
     private Date eventEnd;
     private Local local;
     private ApplicationsList applicationsList;
+    private Keyword keyword;
 
-    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local, Keyword keywords, ApplicationsList applicationsList) {
+    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local) {
         this.title = title;
         this.description = description;
         this.eventBegin = eventBegin;
         this.eventEnd = eventEnd;
         this.local = local;
-        this.applicationsList = applicationsList;
+        this.applicationsList = new ApplicationsList();
+    }
+
+    public Keyword getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(Keyword keyword) {
+        this.keyword = keyword;
     }
 
     public ApplicationsList getApplicationsList() {

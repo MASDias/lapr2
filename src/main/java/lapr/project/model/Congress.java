@@ -10,9 +10,9 @@ public class Congress extends Event {
 
     WorkshopList workshopList;
 
-    public Congress(String title, String description, WorkshopList workshopList, Date eventBegin, Date eventEnd, Local local, Keyword keywords, ApplicationsList applicationsList) {
-        super(title, description, eventBegin, eventEnd, local, keywords, applicationsList);
-        this.workshopList=workshopList;
+    public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+        super(title, description, eventBegin, eventEnd, local);
+        this.workshopList=new WorkshopList();
     }
 
     public WorkshopList getWorkshopList() {

@@ -24,7 +24,7 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, null, null, 20, null);
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
     }
 
@@ -34,8 +34,8 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition( "Exhibition", "Cool Exhibition", beginning, end, local, null,null,20, null);
-        Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, null,null,10, null);
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
+        Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 10);
         assertNotEquals(exhibition, exhibition2);
     }
 
@@ -46,7 +46,7 @@ public class ExhibitionTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, null,null,20, null);
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
         Object expectedResult = new Object();
         assertNotEquals(exhibition, expectedResult);
