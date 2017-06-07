@@ -32,7 +32,7 @@ public class Event {
     public void setKeyword(Keyword keyword) {
         this.keyword = keyword;
     }
-
+ 
     public ApplicationsList getApplicationsList() {
         return applicationsList;
     }

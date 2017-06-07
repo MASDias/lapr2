@@ -14,7 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Represents a keyword.
  *
- * @author by Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Keyword implements Exportable, Importable<Keyword> {
 
