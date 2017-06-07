@@ -15,4 +15,11 @@ public class Congress extends Event {
         this.workshopList=workshopList;
     }
 
+    public WorkshopList getWorkshopList() {
+        return this.workshopList;
+    }
+    public void  setWorkshopList(WorkshopList workshopList) {
+        this.workshopList = workshopList;
+        
+    }
 }
