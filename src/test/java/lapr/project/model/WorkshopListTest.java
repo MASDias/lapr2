@@ -11,7 +11,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Paulo Moreira <1151172@isep.ipp.pt>
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class WorkshopListTest {
     @Test
