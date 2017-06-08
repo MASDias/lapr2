@@ -5,8 +5,17 @@
  */
 package lapr.project.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.model.Congress;
+import lapr.project.model.Exhibition;
+import lapr.project.model.ListLocals;
 import lapr.project.model.Local;
 import lapr.project.model.OrganizersList;
 
@@ -17,15 +26,27 @@ import lapr.project.model.OrganizersList;
 public class CreateEvent extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-    private DefaultListModel<String> modelOrganizerList = new DefaultListModel<String>();
-    private DefaultListModel<String> modelOrganizerListEvent = new DefaultListModel<String>();
+//    private DefaultListModel<String> modelOrganizerList = new DefaultListModel<String>();
+//    private DefaultListModel<String> modelOrganizerListEvent = new DefaultListModel<String>();
 
     /**
      * Creates new form CreateEvent
      */
-
     public CreateEvent() {
+//        ArrayList<Local> l = new ArrayList();
+//        Local a = new Local("asdasd", 123);
+//        Local a2 = new Local("asdasd", 123);
+//        Local a3 = new Local("asdasd", 123);
+//        Local a4 = new Local("asdasd", 123);
+//        l.add(a4);
+//        l.add(a3);
+//        l.add(a2);
+//        l.add(a);
+//        for (Local local : l) {
+//            locals.addItem(local.toString());
+//        }
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -37,6 +58,7 @@ public class CreateEvent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextField = new javax.swing.JTextArea();
@@ -77,6 +99,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
         descriptionTextField.setColumns(20);
         descriptionTextField.setRows(5);
+        descriptionTextField.setPreferredSize(new java.awt.Dimension(180, 94));
         jScrollPane1.setViewportView(descriptionTextField);
 
         jLabel1.setText("Event name:");
@@ -89,7 +112,8 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jLabel6.setText("Description:");
 
-        locals.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        locals.setMinimumSize(new java.awt.Dimension(180, 20));
+        locals.setPreferredSize(new java.awt.Dimension(180, 20));
         locals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 localsActionPerformed(evt);
@@ -102,15 +126,20 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jLabel8.setText("Submission Application ends:");
 
-        eventBeginningSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        eventBeginningSpinner.setModel(new javax.swing.SpinnerDateModel());
 
-        eventEndSpinner.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        eventEndSpinner.setModel(new javax.swing.SpinnerDateModel());
 
         SubmitAppStart.setModel(new javax.swing.SpinnerDateModel());
 
-        submitAppEnd.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        submitAppEnd.setModel(new javax.swing.SpinnerDateModel());
 
         congressRadiobtn.setText("Congress");
+        congressRadiobtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                congressRadiobtnActionPerformed(evt);
+            }
+        });
 
         exhibitionRadiobtn.setText("Exhibiton");
 
@@ -150,36 +179,35 @@ public class CreateEvent extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(locals, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(newAddressbtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(exhibitionRadiobtn)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(eventEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(SubmitAppStart, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(eventEndSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(71, 71, 71))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(SubmitAppStart, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(locals, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(newAddressbtn))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -187,22 +215,22 @@ public class CreateEvent extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
+                                    .addComponent(addOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(congressRadiobtn)
-                                .addGap(43, 43, 43)))
+                                .addComponent(congressRadiobtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(removeOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                            .addComponent(jLabel9)
+                            .addComponent(exhibitionRadiobtn)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(newEventbtn)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancelbtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,29 +305,54 @@ public class CreateEvent extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void localsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localsActionPerformed
-
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         setVisible(false);
     }//GEN-LAST:event_exitItemActionPerformed
+
+    private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        OrganizersList orgList = new OrganizersList();
+        String name = nameTextField.getText();
+        String dateBString = sdf.format(eventBeginningSpinner.getValue());
+        String dateEString = sdf.format(eventEndSpinner.getValue());
+        Local local = new Local("teste", 123);
+        String description = descriptionTextField.getText();
+        String dateSubB = sdf.format(SubmitAppStart.getValue());
+        String dateSubE = sdf.format(submitAppEnd.getValue());
+        try {
+            Date db = sdf.parse(dateBString);
+            Date de = sdf.parse(dateEString);
+            if (congressRadiobtn.isSelected()) {
+                Congress c = new Congress(name, description, db, de, local);
+                System.out.println("Congress");
+            } else if (exhibitionRadiobtn.isSelected()) {
+                String n = JOptionPane.showInputDialog("Insert the number of invites available for the Exhibition");
+                int nInvites = Integer.parseInt(n);
+                Exhibition e = new Exhibition(name, description, db, de, local, nInvites);
+                System.out.println("Exhibition");
+            } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Please choose the type of event");
+            }
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Error inserting date");
+        }
+    }//GEN-LAST:event_newEventbtnActionPerformed
 
     private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
         // TODO add your handling code here:
@@ -309,16 +362,15 @@ public class CreateEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_removeOrganizerbtnActionPerformed
 
-    private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
-        OrganizersList orgList = new OrganizersList();
-        String name= nameTextField.getText();
-        String dateB = eventBeginningSpinner.getValue().toString().substring(0,10);
-        String dateE = eventEndSpinner.getValue().toString().substring(0,10);
-        Local local = (Local) locals.getSelectedItem();
-        String description = descriptionTextField.getText();
-        String dateSubB = SubmitAppStart.getValue().toString().substring(0,10);
-        String dateSubE = submitAppEnd.getValue().toString().substring(0,10);
-    }//GEN-LAST:event_newEventbtnActionPerformed
+    private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
+        congressRadiobtn.setSelected(true);
+        exhibitionRadiobtn.setSelected(false);
+
+    }//GEN-LAST:event_congressRadiobtnActionPerformed
+
+    private void localsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_localsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +410,7 @@ public class CreateEvent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner SubmitAppStart;
     private javax.swing.JButton addOrganizerbtn;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelbtn;
     private javax.swing.JRadioButton congressRadiobtn;
     private javax.swing.JTextArea descriptionTextField;

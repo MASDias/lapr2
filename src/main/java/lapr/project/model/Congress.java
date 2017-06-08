@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class Congress extends Event {
 
+    StandRegistry standRegistry;
     WorkshopList workshopList;
     ApplicationsList applicationList;
 
@@ -15,6 +16,7 @@ public class Congress extends Event {
         super(title, description, eventBegin, eventEnd, local);
         this.workshopList = new WorkshopList();
         this.applicationList = new ApplicationsList();
+        this.standRegistry = new StandRegistry();
     }
 
     public WorkshopList getWorkshopList() {

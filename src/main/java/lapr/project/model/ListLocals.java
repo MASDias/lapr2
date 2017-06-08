@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class ListLocals {
 
-    private List<Local> localList;
+    private ArrayList<Local> localList;
 
     public ListLocals() {
         this.localList = new ArrayList<>();
@@ -25,7 +26,7 @@ public class ListLocals {
         return localList;
     }
 
-    public void setListLocals(List<Local> localList) {
+    public void setListLocals(ArrayList<Local> localList) {
         this.localList = localList;
     }
 

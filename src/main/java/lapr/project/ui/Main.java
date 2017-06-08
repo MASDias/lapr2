@@ -23,12 +23,8 @@ class Main {
      */
     public static void main(String[] args) throws Exception {
         CalculatorExample calculatorExample = new CalculatorExample();
-        System.out.println(calculatorExample.sum(3, 5));   
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date beginning = sdf.parse("23-08-2017");
-        Date end = sdf.parse("01-10-2017");
-        
-        System.out.println(sdf.format(beginning));
+        System.out.println(calculatorExample.sum(3, 5));
+        CreateEvent cr = new CreateEvent();
     }
 
 }
