@@ -6,7 +6,7 @@
 package lapr.project.ui;
 
 import lapr.project.model.Organizer;
-import lapr.project.model.OrganizersList;
+
 
 /**
  *
@@ -15,7 +15,6 @@ import lapr.project.model.OrganizersList;
 public class CreateEvent extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-    private OrganizersList organizerList;
 
     /**
      * Creates new form CreateEvent
@@ -184,6 +183,11 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel5.setText("Organizer list");
 
         addOrganizerbtn.setText("Add Organizer");
+        addOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrganizerbtnActionPerformed(evt);
+            }
+        });
 
         fileMenu.setText("File");
 
@@ -247,6 +251,10 @@ public class CreateEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_exitItemActionPerformed
 
+    private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addOrganizerbtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,7 +306,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<Organizer> jList1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

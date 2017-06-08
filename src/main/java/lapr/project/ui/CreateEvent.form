@@ -324,7 +324,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Organizer&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -338,6 +338,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Organizer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOrganizerbtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
