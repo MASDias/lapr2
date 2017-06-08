@@ -9,17 +9,19 @@ import java.util.Date;
 public class Congress extends Event {
 
     WorkshopList workshopList;
+    ApplicationsList applicationList;
 
     public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local) {
         super(title, description, eventBegin, eventEnd, local);
-        this.workshopList=new WorkshopList();
+        this.workshopList = new WorkshopList();
+        this.applicationList = new ApplicationsList();
     }
 
     public WorkshopList getWorkshopList() {
         return this.workshopList;
     }
-    public void  setWorkshopList(WorkshopList workshopList) {
+
+    public void setWorkshopList(WorkshopList workshopList) {
         this.workshopList = workshopList;
-        
     }
 }
