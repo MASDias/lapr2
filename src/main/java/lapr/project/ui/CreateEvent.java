@@ -90,9 +90,6 @@ public class CreateEvent extends javax.swing.JFrame {
         addOrganizerbtn = new javax.swing.JButton();
         newEventbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        exitItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Create Event");
@@ -291,21 +288,6 @@ public class CreateEvent extends javax.swing.JFrame {
                     .addComponent(cancelbtn)))
         );
 
-        fileMenu.setText("File");
-
-        exitItem.setText("Exit");
-        exitItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(exitItem);
-        exitItem.getAccessibleContext().setAccessibleName("");
-
-        jMenuBar1.add(fileMenu);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,10 +307,6 @@ public class CreateEvent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_exitItemActionPerformed
 
     private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -426,8 +404,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JSpinner eventBeginningSpinner;
     private javax.swing.JSpinner eventEndSpinner;
     private javax.swing.JRadioButton exhibitionRadiobtn;
-    private javax.swing.JMenuItem exitItem;
-    private javax.swing.JMenu fileMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -439,7 +415,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
