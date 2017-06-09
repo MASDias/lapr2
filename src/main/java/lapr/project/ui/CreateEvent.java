@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import lapr.project.model.Congress;
 import lapr.project.model.Exhibition;
@@ -33,19 +35,19 @@ public class CreateEvent extends javax.swing.JFrame {
      * Creates new form CreateEvent
      */
     public CreateEvent() {
-//        ArrayList<Local> l = new ArrayList();
+        initComponents();
+//        ListLocals list = new ListLocals();
 //        Local a = new Local("asdasd", 123);
 //        Local a2 = new Local("asdasd", 123);
 //        Local a3 = new Local("asdasd", 123);
 //        Local a4 = new Local("asdasd", 123);
-//        l.add(a4);
-//        l.add(a3);
-//        l.add(a2);
-//        l.add(a);
-//        for (Local local : l) {
-//            locals.addItem(local.toString());
+//        list.addLocal(a4);
+//        list.addLocal(a3);
+//        list.addLocal(a2);
+//        list.addLocal(a);
+//        for (int i = 0; i < list.size(); i++) {
+//            locals.addItem(list.getLocal(i));
 //        }
-        initComponents();
         setVisible(true);
     }
 
@@ -142,6 +144,11 @@ public class CreateEvent extends javax.swing.JFrame {
         });
 
         exhibitionRadiobtn.setText("Exhibiton");
+        exhibitionRadiobtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exhibitionRadiobtnActionPerformed(evt);
+            }
+        });
 
         jScrollPane3.setViewportView(jList2);
 
@@ -193,13 +200,11 @@ public class CreateEvent extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(eventEndSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(71, 71, 71))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eventEndSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(SubmitAppStart, javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,12 +370,16 @@ public class CreateEvent extends javax.swing.JFrame {
     private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
         congressRadiobtn.setSelected(true);
         exhibitionRadiobtn.setSelected(false);
-
     }//GEN-LAST:event_congressRadiobtnActionPerformed
 
     private void localsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_localsActionPerformed
+
+    private void exhibitionRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exhibitionRadiobtnActionPerformed
+        congressRadiobtn.setSelected(false);
+        exhibitionRadiobtn.setSelected(true);
+    }//GEN-LAST:event_exhibitionRadiobtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,7 +444,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JComboBox<String> locals;
+    private javax.swing.JComboBox<Local> locals;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton newAddressbtn;
     private javax.swing.JButton newEventbtn;

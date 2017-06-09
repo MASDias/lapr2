@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class ListLocals {
 
-    private ArrayList<Local> localList;
+    private List<Local> localList;
 
     public ListLocals() {
         this.localList = new ArrayList<>();
@@ -26,8 +26,12 @@ public class ListLocals {
         return localList;
     }
 
-    public void setListLocals(ArrayList<Local> localList) {
+    public void setListLocals(List<Local> localList) {
         this.localList = localList;
+    }
+
+    public Local getLocal(int index) {
+        return localList.get(index);
     }
 
     private boolean validate(Local local) {
