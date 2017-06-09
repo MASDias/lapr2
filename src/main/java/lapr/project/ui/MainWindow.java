@@ -10,6 +10,7 @@ package lapr.project.ui;
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class MainWindow extends javax.swing.JFrame {
+private static final long serialVersionUID = 1;
 
     /**
      * Creates new form MainWindow
