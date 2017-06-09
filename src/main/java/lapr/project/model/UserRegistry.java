@@ -5,69 +5,59 @@
  */
 package lapr.project.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class UserRegistry  {
-    
+public class UserRegistry {
+
     private List<User> usersList;
-    
+
     /**
      *
      */
-    public UserRegistry(){
+    public UserRegistry() {
         this.usersList = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return
      */
-    public List<User> getUsersList(){
+    public List<User> getUsersList() {
         return usersList;
     }
-    
-    /**
-     *
-     * @param usersList
-     */
-    public void setUsersList(List<User> usersList){
-        this.usersList = usersList;
-    }
-    
-    private boolean validate(User user){
-        for (User u: usersList){
-            if(u.equals(user)){
+
+    private boolean validate(User user) {
+        for (User u : usersList) {
+            if (u.equals(user)) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      *
      * @param user
      */
-    public void addUser(User user){
-        if(validate(user)){
+    public void addUser(User user) {
+        if (validate(user)) {
             usersList.add(user);
-        }else{
-            JOptionPane.showMessageDialog(null, "The User "+user.getName(), "Error!", -1);
+        } else {
+            JOptionPane.showMessageDialog(null, "The User " + user.getName(), "Error!", -1);
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return usersList.size();
     }
 }

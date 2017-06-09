@@ -1,4 +1,3 @@
-
 package lapr.project.model;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class WorkshopList {
+
     private List<Workshop> workshopList;
 
     /**
@@ -25,14 +25,6 @@ public class WorkshopList {
      */
     public List<Workshop> getWorkshopList() {
         return workshopList;
-    }
-
-    /**
-     *
-     * @param workshopList
-     */
-    public void setWorkshopList(List<Workshop> workshopList) {
-        this.workshopList = workshopList;
     }
 
     private boolean validate(Workshop workshop) {

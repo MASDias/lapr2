@@ -32,14 +32,6 @@ public class StandRegistry {
         return standsList;
     }
 
-    /**
-     *
-     * @param listaStands
-     */
-    public void setListaStands(List<Stand> listaStands) {
-        this.standsList = listaStands;
-    }
-
     private boolean validate(Stand stand) {
         for (Stand s : standsList) {
             if (s.equals(stand)) {
@@ -60,12 +52,12 @@ public class StandRegistry {
             JOptionPane.showMessageDialog(null, "Error!");
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return standsList.size();
     }
 }

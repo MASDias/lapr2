@@ -59,60 +59,6 @@ public class EventManagerListTest {
      * @throws Exception
      */
     @Test
-    public void ensureSetEventManagerListMethodSetsEventManagerList() throws Exception {
-        EventManagerList expectedList = new EventManagerList();
-        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
-        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
-        EventManager em1 = new EventManager(u1);
-        EventManager em2 = new EventManager(u2);
-        expectedList.addEventManager(em1);
-        expectedList.addEventManager(em2);
-        EventManagerList list = new EventManagerList();
-        List<EventManager> gotList = expectedList.getEventManagersList();
-        list.setEventManagersList(gotList);
-        assertEquals(list.getEventManagersList(), gotList);
-    }
-
-    /**
-     *
-     * @throws Exception
-     */
-    @Test
-    public void ensureSetEventManagerListMethodDoesntSetEventManagerList() throws Exception {
-        EventManagerList expectedList = new EventManagerList();
-        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
-        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
-        EventManager em1 = new EventManager(u1);
-        EventManager em2 = new EventManager(u2);
-        expectedList.addEventManager(em1);
-        expectedList.addEventManager(em2);
-        EventManagerList list = new EventManagerList();
-        list.setEventManagersList(expectedList.getEventManagersList());
-        expectedList.getEventManagersList().clear();
-        assertNotEquals(list, expectedList);
-    }
-
-    /**
-     *
-     * @throws Exception
-     */
-    @Test
-    public void ensureGetEventManagerListMethodReturnsEventManagerList() throws Exception {
-        EventManagerList expectedList = new EventManagerList();
-        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
-        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
-        EventManager em1 = new EventManager(u1);
-        EventManager em2 = new EventManager(u2);
-        List<EventManager> list = expectedList.getEventManagersList();
-        expectedList.setEventManagersList(new ArrayList<EventManager>());
-        assertEquals(list, expectedList.getEventManagersList());
-    }
-
-    /**
-     *
-     * @throws Exception
-     */
-    @Test
     public void ensureGetEventManagerListMethodDoesntReturnEventManagerList() throws Exception {
         EventManagerList expectedList = new EventManagerList();
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");

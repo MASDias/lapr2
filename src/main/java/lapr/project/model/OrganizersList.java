@@ -14,57 +14,50 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class OrganizersList {
+
     private List<Organizer> organizersList;
-    
+
     /**
      *
      */
-    public OrganizersList(){
+    public OrganizersList() {
         this.organizersList = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return
      */
-    public List<Organizer> getOrganizersList(){
+    public List<Organizer> getOrganizersList() {
         return organizersList;
     }
-    
-    /**
-     *
-     * @param organizersList
-     */
-    public void setOrganizersList(List<Organizer> organizersList){
-        this.organizersList = organizersList;
-    }
-    
-    private boolean validate(Organizer organizer){
-        for (Organizer u: organizersList){
-            if(u.equals(organizer)){
+
+    private boolean validate(Organizer organizer) {
+        for (Organizer u : organizersList) {
+            if (u.equals(organizer)) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      *
      * @param organizer
      */
-    public void addOrganizer(Organizer organizer){
-        if(validate(organizer)){
+    public void addOrganizer(Organizer organizer) {
+        if (validate(organizer)) {
             organizersList.add(organizer);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return organizersList.size();
     }
 }

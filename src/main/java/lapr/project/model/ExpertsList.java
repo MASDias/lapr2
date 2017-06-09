@@ -14,57 +14,50 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class ExpertsList {
+
     private List<Expert> expertsList;
-    
+
     /**
      *
      */
-    public ExpertsList(){
+    public ExpertsList() {
         this.expertsList = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return
      */
-    public List<Expert> getExpertsList(){
+    public List<Expert> getExpertsList() {
         return expertsList;
     }
-    
-    /**
-     *
-     * @param expertsList
-     */
-    public void setExpertsList(List<Expert> expertsList){
-        this.expertsList = expertsList;
-    }
-    
-    private boolean validate(Expert expert){
-        for(Expert a: expertsList){
-            if(a.equals(expert)){
+
+    private boolean validate(Expert expert) {
+        for (Expert a : expertsList) {
+            if (a.equals(expert)) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      *
      * @param expert
      */
-    public void addExpert(Expert expert){
-        if(validate(expert)){
+    public void addExpert(Expert expert) {
+        if (validate(expert)) {
             expertsList.add(expert);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Can't add expert to list!");
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return expertsList.size();
     }
 }

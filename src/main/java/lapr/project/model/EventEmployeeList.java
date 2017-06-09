@@ -14,57 +14,50 @@ import javax.swing.JOptionPane;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class EventEmployeeList {
+
     private List<EventEmployee> employeeList;
-    
+
     /**
      *
      */
-    public EventEmployeeList(){
+    public EventEmployeeList() {
         this.employeeList = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return
      */
-    public List<EventEmployee> getEmployeeList(){
+    public List<EventEmployee> getEmployeeList() {
         return employeeList;
     }
-    
-    /**
-     *
-     * @param employeeList
-     */
-    public void setEmployeeList(List<EventEmployee> employeeList){
-        this.employeeList = employeeList;
-    }
-    
-    private boolean validate(EventEmployee user){
-        for (EventEmployee u: employeeList){
-            if(u.equals(user)){
+
+    private boolean validate(EventEmployee user) {
+        for (EventEmployee u : employeeList) {
+            if (u.equals(user)) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      *
      * @param employee
      */
-    public void addEmployee(EventEmployee employee){
-        if(validate(employee)){
+    public void addEmployee(EventEmployee employee) {
+        if (validate(employee)) {
             employeeList.add(employee);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return employeeList.size();
     }
 }

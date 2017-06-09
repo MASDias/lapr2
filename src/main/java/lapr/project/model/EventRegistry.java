@@ -31,14 +31,6 @@ public class EventRegistry {
         return eventsList;
     }
 
-    /**
-     *
-     * @param eventsList
-     */
-    public void setEventsList(ArrayList<Event> eventsList) {
-        this.eventsList = eventsList;
-    }
-
     private boolean validate(Event event) {
         for (Event e : eventsList) {
             if (e.equals(event)) {
@@ -59,12 +51,12 @@ public class EventRegistry {
             JOptionPane.showMessageDialog(null, "Error!");
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return eventsList.size();
     }
 }

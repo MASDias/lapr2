@@ -13,61 +13,51 @@ import javax.swing.JOptionPane;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-
-
 public class EventManagerList {
-    
+
     private List<EventManager> managerList;
-    
+
     /**
      *
      */
-    public EventManagerList(){
+    public EventManagerList() {
         this.managerList = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return
      */
-    public List<EventManager> getEventManagersList(){
+    public List<EventManager> getEventManagersList() {
         return managerList;
     }
-    
-    /**
-     *
-     * @param managerList
-     */
-    public void setEventManagersList(List<EventManager> managerList){
-        this.managerList = managerList;
-    }
-    
-    private boolean validate(EventManager eventManager){
-        for (EventManager u: managerList){
-            if(u.equals(eventManager)){
+
+    private boolean validate(EventManager eventManager) {
+        for (EventManager u : managerList) {
+            if (u.equals(eventManager)) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      *
      * @param eventManager
      */
-    public void addEventManager(EventManager eventManager){
-        if(validate(eventManager)){
+    public void addEventManager(EventManager eventManager) {
+        if (validate(eventManager)) {
             managerList.add(eventManager);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Error already exists", "Error!", -1);
         }
     }
-    
+
     /**
      *
      * @return
      */
-    public int size (){
+    public int size() {
         return managerList.size();
     }
 }

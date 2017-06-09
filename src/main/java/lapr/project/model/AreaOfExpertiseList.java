@@ -32,14 +32,6 @@ public class AreaOfExpertiseList {
         return areaOfExpertiseList;
     }
 
-    /**
-     *
-     * @param areaOfExpertiseList
-     */
-    public void setAreaOfExpertiseList(List<AreaOfExpertise> areaOfExpertiseList) {
-        this.areaOfExpertiseList = areaOfExpertiseList;
-    }
-
     private boolean validate(AreaOfExpertise areaOfExpertise) {
         for (AreaOfExpertise a : areaOfExpertiseList) {
             if (a.equals(areaOfExpertise)) {
