@@ -24,7 +24,8 @@ class Main {
     public static void main(String[] args) throws Exception {
         CalculatorExample calculatorExample = new CalculatorExample();
         System.out.println(calculatorExample.sum(3, 5));
-        CreateEvent cr = new CreateEvent();
-    }
+        MainWindow mw = new MainWindow();
+//        CreateEvent cr = new CreateEvent();
+    }   
 
 }
