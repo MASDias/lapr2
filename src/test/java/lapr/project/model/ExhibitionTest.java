@@ -17,34 +17,46 @@ import org.junit.Test;
  */
 public class ExhibitionTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectStandIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsStandAreNotEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 10);
         assertNotEquals(exhibition, exhibition2);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
         Object expectedResult = new Object();

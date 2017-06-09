@@ -16,6 +16,14 @@ public class Enterprise {
     private int nif;
     private int contact;
 
+    /**
+     *
+     * @param name
+     * @param email
+     * @param adress
+     * @param nif
+     * @param contact
+     */
     public Enterprise(String name, String email, String adress, int nif, int contact) {
         this.name = name;
         this.email = email;

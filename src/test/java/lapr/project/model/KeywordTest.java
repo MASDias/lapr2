@@ -36,27 +36,39 @@ public class KeywordTest {
 		return stringUtil.getLineBreak();
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureSameContentObjectsAreEqual() {
 		Keyword expected = new Keyword("Doors");
 		Keyword result = new Keyword("Doors");
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureSameObjectIsEqual() {
 		Keyword expected = new Keyword("Doors");
 		assertEquals(expected, expected);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureDifferentObjectsAreNotEqual() {
 		Keyword expected = new Keyword("Doors");
 		Object result = new Object();
 		assertNotEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureHashCodeIsCorrect() {
 		Keyword firstKeyword = new Keyword("Doors");
 
@@ -65,7 +77,11 @@ public class KeywordTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureXMLElementExportToStringIsValid() throws Exception {
 		String expected = "<keyword>" + getLineBreak() +
 				"<value>Doors</value>" + getLineBreak() +
@@ -75,7 +91,11 @@ public class KeywordTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureXMLElementExportToNodeIsValid() throws Exception {
 		DocumentBuilderFactory factory =
 				DocumentBuilderFactory.newInstance();
@@ -111,7 +131,11 @@ public class KeywordTest {
 		assertTrue(expected.isEqualNode(result));
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
 		Keyword expected = new Keyword("Doors");
 
@@ -146,7 +170,11 @@ public class KeywordTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void testCreateExportImport() throws Exception {
 		String filename = "target/test-classes/TestKeywordImportExport.xml";
 		Keyword expected = new Keyword("Doors");

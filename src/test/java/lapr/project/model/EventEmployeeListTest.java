@@ -14,6 +14,10 @@ import org.junit.Test;
  */
 public class EventEmployeeListTest {
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception{
         EventEmployeeList list = new EventEmployeeList();

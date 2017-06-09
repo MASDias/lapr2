@@ -12,14 +12,25 @@ import javax.swing.JOptionPane;
 public class WorkshopList {
     private List<Workshop> workshopList;
 
+    /**
+     *
+     */
     public WorkshopList() {
         this.workshopList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Workshop> getWorkshopList() {
         return workshopList;
     }
 
+    /**
+     *
+     * @param workshopList
+     */
     public void setWorkshopList(List<Workshop> workshopList) {
         this.workshopList = workshopList;
     }
@@ -33,6 +44,10 @@ public class WorkshopList {
         return true;
     }
 
+    /**
+     *
+     * @param workshop
+     */
     public void addWorkshop(Workshop workshop) {
         if (validate(workshop)) {
             workshopList.add(workshop);
@@ -41,6 +56,10 @@ public class WorkshopList {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int size() {
         return workshopList.size();
     }

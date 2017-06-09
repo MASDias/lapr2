@@ -18,6 +18,10 @@ import org.junit.Test;
  */
 public class EventManagerListTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureAddEventManagerMethodAddsEventManagerToList() throws Exception {
         EventManagerList list = new EventManagerList();
@@ -32,6 +36,10 @@ public class EventManagerListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureAddEventManagerMethodDoesntAddEventManagerToList() throws Exception {
         EventManagerList list = new EventManagerList();
@@ -46,6 +54,10 @@ public class EventManagerListTest {
         assertNotEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureSetEventManagerListMethodSetsEventManagerList() throws Exception {
         EventManagerList expectedList = new EventManagerList();
@@ -61,6 +73,10 @@ public class EventManagerListTest {
         assertEquals(list.getEventManagersList(), gotList);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureSetEventManagerListMethodDoesntSetEventManagerList() throws Exception {
         EventManagerList expectedList = new EventManagerList();
@@ -76,6 +92,10 @@ public class EventManagerListTest {
         assertNotEquals(list, expectedList);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureGetEventManagerListMethodReturnsEventManagerList() throws Exception {
         EventManagerList expectedList = new EventManagerList();
@@ -88,6 +108,10 @@ public class EventManagerListTest {
         assertEquals(list, expectedList.getEventManagersList());
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureGetEventManagerListMethodDoesntReturnEventManagerList() throws Exception {
         EventManagerList expectedList = new EventManagerList();
@@ -102,6 +126,10 @@ public class EventManagerListTest {
         assertNotEquals(list, expected);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureConstructorEventManagerListWorks() throws Exception {
         EventManagerList list = new EventManagerList();
@@ -118,6 +146,10 @@ public class EventManagerListTest {
 
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void ensureConstructorEventManagerListDoesntWork() throws Exception {
         EventManagerList list = new EventManagerList();

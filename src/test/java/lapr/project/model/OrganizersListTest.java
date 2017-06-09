@@ -15,6 +15,10 @@ import org.junit.Test;
  */
 public class OrganizersListTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception {
 
@@ -30,6 +34,10 @@ public class OrganizersListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsOrganizersListAreEqual() throws Exception {
 
@@ -40,6 +48,10 @@ public class OrganizersListTest {
         assertEquals(list, list);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsApplicationsListAreNotEqual() throws Exception {
         User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");

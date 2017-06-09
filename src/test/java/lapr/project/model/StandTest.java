@@ -15,13 +15,18 @@ import org.junit.Test;
  */
 public class StandTest {
 
-    
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectStandIsEqual() {
         Stand stand = new Stand("stand", 500);
         assertEquals(stand, stand);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsStandAreNotEqual() {
         Stand stand = new Stand("stand", 500);
@@ -29,6 +34,9 @@ public class StandTest {
         assertNotEquals(stand, expected);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() {
         Stand stand = new Stand("stand", 500);
@@ -36,6 +44,9 @@ public class StandTest {
         assertNotEquals(stand, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsEqual() {
         Stand stand = new Stand("stand", 500);
@@ -44,6 +55,9 @@ public class StandTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsNotEqual() {
         Stand stand = new Stand("stand", 500);
@@ -52,6 +66,9 @@ public class StandTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetAreaIsEqual() {
         Stand stand = new Stand("stand", 500);
@@ -61,6 +78,9 @@ public class StandTest {
         assertEquals(result, expectedResult, 0.00);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetAreaIsNotEqual() {
         Stand stand = new Stand("stand", 500);
@@ -70,6 +90,9 @@ public class StandTest {
         assertNotEquals(result, expectedResult, 0.00);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetAreaIsEqual() {
         Stand stand = new Stand("stand", 500);
@@ -78,6 +101,9 @@ public class StandTest {
         assertEquals(result, expectedResult, 0.00);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetAreaIsNotEqual() {
         Stand stand = new Stand("stand", 500);

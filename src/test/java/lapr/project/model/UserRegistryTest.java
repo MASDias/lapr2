@@ -17,6 +17,10 @@ import org.junit.Test;
  */
 public class UserRegistryTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     public void EnsureAddUserMethodAddsUserToList() throws Exception {
         UserRegistry list = new UserRegistry();
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
@@ -28,6 +32,10 @@ public class UserRegistryTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsEventRegistryListAreEqual() throws Exception {
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
@@ -38,6 +46,10 @@ public class UserRegistryTest {
         assertEquals(list, list);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsUserListAreNotEqual() throws Exception {
 

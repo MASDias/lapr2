@@ -18,6 +18,10 @@ import org.junit.Test;
  */
 public class StandRegistryTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureAddApplicationMethodAddsStandToList() throws Exception {
         StandRegistry list = new StandRegistry();
@@ -30,6 +34,10 @@ public class StandRegistryTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsStandRegistryIsEqual() throws Exception {
         Stand s1 = new Stand("stand 1", 500);
@@ -38,6 +46,10 @@ public class StandRegistryTest {
         assertEquals(result, result);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsStandResgistryAreNotEqual() throws Exception {
         Stand s1 = new Stand("stand 1", 500);
@@ -47,6 +59,10 @@ public class StandRegistryTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureDifferentObjectsStandResgistryAreNotEqual() throws Exception {
         Stand s1 = new Stand("stand 1", 500);

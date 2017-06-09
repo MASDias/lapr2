@@ -19,14 +19,25 @@ public class UserRegistry  {
     
     private List<User> usersList;
     
+    /**
+     *
+     */
     public UserRegistry(){
         this.usersList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<User> getUsersList(){
         return usersList;
     }
     
+    /**
+     *
+     * @param usersList
+     */
     public void setUsersList(List<User> usersList){
         this.usersList = usersList;
     }
@@ -40,6 +51,10 @@ public class UserRegistry  {
         return true;
     }
     
+    /**
+     *
+     * @param user
+     */
     public void addUser(User user){
         if(validate(user)){
             usersList.add(user);
@@ -48,6 +63,10 @@ public class UserRegistry  {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return usersList.size();
     }

@@ -14,12 +14,19 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class AreaOfExpertiseTests {
-     @Test
+
+    /**
+     *
+     */
+    @Test
     public void EnsureSameObjectStandIsEqual() {
         AreaOfExpertise areaofexpertise = new AreaOfExpertise("dasda");
         assertEquals(areaofexpertise, areaofexpertise);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsStandAreNotEqual() {
         AreaOfExpertise areaofexpertise = new AreaOfExpertise("Paulo");
@@ -27,6 +34,9 @@ public class AreaOfExpertiseTests {
         assertNotEquals(areaofexpertise, expected);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() {
         AreaOfExpertise areaofexpertise = new AreaOfExpertise("Paulo");

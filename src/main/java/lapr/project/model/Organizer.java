@@ -9,14 +9,26 @@ public class Organizer {
     private EventRegistry eventRegistry;
     private User organizer;
 
+    /**
+     *
+     * @param organizer
+     */
     public Organizer(User organizer) {
         this.organizer = organizer;
     }
 
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventRegistry() {
         return eventRegistry;
     }
 
+    /**
+     *
+     * @param eventRegistry
+     */
     public void setEventRegistry(EventRegistry eventRegistry) {
         this.eventRegistry = eventRegistry;
     }

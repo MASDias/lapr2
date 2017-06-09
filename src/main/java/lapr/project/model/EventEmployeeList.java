@@ -16,14 +16,25 @@ import javax.swing.JOptionPane;
 public class EventEmployeeList {
     private List<EventEmployee> employeeList;
     
+    /**
+     *
+     */
     public EventEmployeeList(){
         this.employeeList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<EventEmployee> getEmployeeList(){
         return employeeList;
     }
     
+    /**
+     *
+     * @param employeeList
+     */
     public void setEmployeeList(List<EventEmployee> employeeList){
         this.employeeList = employeeList;
     }
@@ -37,6 +48,10 @@ public class EventEmployeeList {
         return true;
     }
     
+    /**
+     *
+     * @param employee
+     */
     public void addEmployee(EventEmployee employee){
         if(validate(employee)){
             employeeList.add(employee);
@@ -45,6 +60,10 @@ public class EventEmployeeList {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return employeeList.size();
     }

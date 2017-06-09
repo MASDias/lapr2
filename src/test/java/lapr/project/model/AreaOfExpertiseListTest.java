@@ -14,6 +14,10 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class AreaOfExpertiseListTest {
+
+    /**
+     *
+     */
     @Test
     public void EnsureAddAreaOfExpertiseListMethodAddsExpertToList() {
         AreaOfExpertiseList list = new AreaOfExpertiseList();
@@ -26,6 +30,9 @@ public class AreaOfExpertiseListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsAreaOfExpertiseListIsEqual() {
         AreaOfExpertise areaexpertise = new AreaOfExpertise("Pedro Abrunhosa");
@@ -34,6 +41,9 @@ public class AreaOfExpertiseListTest {
         assertEquals(result, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsAreaOfExpertiseListAreNotEqual() {
         AreaOfExpertise areaexpertise = new AreaOfExpertise("Pedro Abrunhosa");
@@ -43,6 +53,9 @@ public class AreaOfExpertiseListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsAreaOfExpertiseListAreNotEqual() {
         AreaOfExpertise areaexpertise = new AreaOfExpertise("Pedro Abrunhosa");
@@ -52,6 +65,9 @@ public class AreaOfExpertiseListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetAreaOfExpertiseListIsEqual() {
         AreaOfExpertiseList list = new AreaOfExpertiseList();
@@ -61,6 +77,9 @@ public class AreaOfExpertiseListTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetAreaOfExpertiseListIsNotEqual() {
         AreaOfExpertiseList list = new AreaOfExpertiseList();
@@ -71,6 +90,9 @@ public class AreaOfExpertiseListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetAreaOfExpertiseListIsEqual() {
         AreaOfExpertiseList result = new AreaOfExpertiseList();
@@ -81,6 +103,9 @@ public class AreaOfExpertiseListTest {
         assertEquals(expectedResult, result);
     }
     
+    /**
+     *
+     */
     @Test
     public void EnsureSetAreaOfExpertiseListIsNotEqual() {
         AreaOfExpertiseList result = new AreaOfExpertiseList();

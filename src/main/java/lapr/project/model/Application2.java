@@ -17,6 +17,12 @@ public class Application2 {
     private Event event;
     boolean decision;
 
+    /**
+     *
+     * @param description
+     * @param event
+     * @param decision
+     */
     public Application2(String description, Event event, boolean decision) {
         this.description = description;
         this.event = event;

@@ -17,14 +17,25 @@ public class AreaOfExpertiseList {
 
     private List<AreaOfExpertise> areaOfExpertiseList;
 
+    /**
+     *
+     */
     public AreaOfExpertiseList() {
         this.areaOfExpertiseList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<AreaOfExpertise> getAreaOfExpertiseList() {
         return areaOfExpertiseList;
     }
 
+    /**
+     *
+     * @param areaOfExpertiseList
+     */
     public void setAreaOfExpertiseList(List<AreaOfExpertise> areaOfExpertiseList) {
         this.areaOfExpertiseList = areaOfExpertiseList;
     }
@@ -38,6 +49,10 @@ public class AreaOfExpertiseList {
         return true;
     }
 
+    /**
+     *
+     * @param areaOfExpertise
+     */
     public void addAreaOfExpertise(AreaOfExpertise areaOfExpertise) {
         if (validate(areaOfExpertise)) {
             areaOfExpertiseList.add(areaOfExpertise);
@@ -46,6 +61,10 @@ public class AreaOfExpertiseList {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int size() {
         return areaOfExpertiseList.size();
     }

@@ -13,6 +13,10 @@ public class EventManager {
 
     private User eventManager;
 
+    /**
+     *
+     * @param eventManager
+     */
     public EventManager(User eventManager) {
         this.eventManager = eventManager;
     }

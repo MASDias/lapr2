@@ -13,17 +13,28 @@ import javax.swing.JOptionPane;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class ApplicationsList {
+public class ApplicationList {
     private List<Application2> applicationsList;
     
-    public ApplicationsList(){
+    /**
+     *
+     */
+    public ApplicationList(){
         this.applicationsList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Application2> getApplicationsList(){
         return applicationsList;
     }
     
+    /**
+     *
+     * @param applicationsList
+     */
     public void setApplicationsList(List<Application2> applicationsList){
         this.applicationsList = applicationsList;
     }
@@ -37,6 +48,10 @@ public class ApplicationsList {
         return true;
     }
     
+    /**
+     *
+     * @param application
+     */
     public void addApplication(Application2 application){
         if(validate(application)){
             applicationsList.add(application);
@@ -45,6 +60,10 @@ public class ApplicationsList {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return applicationsList.size();
     }

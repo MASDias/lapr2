@@ -16,14 +16,25 @@ import javax.swing.JOptionPane;
 public class OrganizersList {
     private List<Organizer> organizersList;
     
+    /**
+     *
+     */
     public OrganizersList(){
         this.organizersList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Organizer> getOrganizersList(){
         return organizersList;
     }
     
+    /**
+     *
+     * @param organizersList
+     */
     public void setOrganizersList(List<Organizer> organizersList){
         this.organizersList = organizersList;
     }
@@ -37,6 +48,10 @@ public class OrganizersList {
         return true;
     }
     
+    /**
+     *
+     * @param organizer
+     */
     public void addOrganizer(Organizer organizer){
         if(validate(organizer)){
             organizersList.add(organizer);
@@ -45,6 +60,10 @@ public class OrganizersList {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return organizersList.size();
     }

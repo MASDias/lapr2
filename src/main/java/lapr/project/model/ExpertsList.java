@@ -16,14 +16,25 @@ import javax.swing.JOptionPane;
 public class ExpertsList {
     private List<Expert> expertsList;
     
+    /**
+     *
+     */
     public ExpertsList(){
         this.expertsList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Expert> getExpertsList(){
         return expertsList;
     }
     
+    /**
+     *
+     * @param expertsList
+     */
     public void setExpertsList(List<Expert> expertsList){
         this.expertsList = expertsList;
     }
@@ -37,6 +48,10 @@ public class ExpertsList {
         return true;
     }
     
+    /**
+     *
+     * @param expert
+     */
     public void addExpert(Expert expert){
         if(validate(expert)){
             expertsList.add(expert);
@@ -45,6 +60,10 @@ public class ExpertsList {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return expertsList.size();
     }

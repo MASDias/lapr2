@@ -14,28 +14,44 @@ import javax.swing.JOptionPane;
  *
  * @author MarioDias
  */
-public class ListLocals {
+public class LocationList {
 
-    private List<Local> localList;
+    private List<Location> localList;
 
-    public ListLocals() {
+    /**
+     *
+     */
+    public LocationList() {
         this.localList = new ArrayList<>();
     }
 
-    public List<Local> getListLocals() {
+    /**
+     *
+     * @return
+     */
+    public List<Location> getListLocals() {
         return localList;
     }
 
-    public void setListLocals(List<Local> localList) {
+    /**
+     *
+     * @param localList
+     */
+    public void setListLocals(List<Location> localList) {
         this.localList = localList;
     }
 
-    public Local getLocal(int index) {
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Location getLocal(int index) {
         return localList.get(index);
     }
 
-    private boolean validate(Local local) {
-        for (Local a : localList) {
+    private boolean validate(Location local) {
+        for (Location a : localList) {
             if (a.equals(local)) {
                 return false;
             }
@@ -43,7 +59,11 @@ public class ListLocals {
         return true;
     }
 
-    public void addLocal(Local local) {
+    /**
+     *
+     * @param local
+     */
+    public void addLocal(Location local) {
         if (validate(local)) {
             localList.add(local);
         } else {
@@ -51,6 +71,10 @@ public class ListLocals {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int size() {
         return localList.size();
     }

@@ -10,6 +10,12 @@ public class Workshop {
     private Theme theme;
     private String name;
 
+    /**
+     *
+     * @param name
+     * @param expertList
+     * @param theme
+     */
     public Workshop(String name, ExpertsList expertList, Theme theme) {
         this.expertList = expertList;
         this.theme = theme;

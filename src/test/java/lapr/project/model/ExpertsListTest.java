@@ -15,6 +15,9 @@ import org.junit.Test;
  */
 public class ExpertsListTest {
 
+    /**
+     *
+     */
     @Test
     public void EnsureAddExpertMethodAddsExpertToList() {
         ExpertsList list = new ExpertsList();
@@ -28,6 +31,9 @@ public class ExpertsListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsExpertsListIsEqual() {
         AreaOfExpertiseList areaOfExpertise = new AreaOfExpertiseList();
@@ -37,6 +43,9 @@ public class ExpertsListTest {
         assertEquals(result, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsExpertsListAreNotEqual() {
         AreaOfExpertiseList areaOfExpertise = new AreaOfExpertiseList();
@@ -47,6 +56,9 @@ public class ExpertsListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsExpertsListAreNotEqual() {
         AreaOfExpertiseList areaOfExpertise = new AreaOfExpertiseList();
@@ -57,6 +69,9 @@ public class ExpertsListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetExpertsListIsEqual() {
         ExpertsList list = new ExpertsList();
@@ -67,6 +82,9 @@ public class ExpertsListTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetExpertsListIsNotEqual() {
         ExpertsList list = new ExpertsList();
@@ -78,6 +96,9 @@ public class ExpertsListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetExpertsListIsEqual() {
         ExpertsList result = new ExpertsList();
@@ -88,6 +109,9 @@ public class ExpertsListTest {
         assertEquals(expectedResult, result);
     }
     
+    /**
+     *
+     */
     @Test
     public void EnsureSetExpertsListIsNotEqual() {
         ExpertsList result = new ExpertsList();

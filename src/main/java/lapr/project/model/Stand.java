@@ -14,15 +14,28 @@ public class Stand {
     private String name;
     private float area;
 
+    /**
+     *
+     * @param name
+     * @param area
+     */
     public Stand(String name, float area) {
         this.name = name;
         this.area = area;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getArea() {
         return area;
     }
 
+    /**
+     *
+     * @param area
+     */
     public void setArea(float area) {
         this.area = area;
     }

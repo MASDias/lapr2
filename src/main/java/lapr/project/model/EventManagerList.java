@@ -19,14 +19,25 @@ public class EventManagerList {
     
     private List<EventManager> managerList;
     
+    /**
+     *
+     */
     public EventManagerList(){
         this.managerList = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<EventManager> getEventManagersList(){
         return managerList;
     }
     
+    /**
+     *
+     * @param managerList
+     */
     public void setEventManagersList(List<EventManager> managerList){
         this.managerList = managerList;
     }
@@ -40,6 +51,10 @@ public class EventManagerList {
         return true;
     }
     
+    /**
+     *
+     * @param eventManager
+     */
     public void addEventManager(EventManager eventManager){
         if(validate(eventManager)){
             managerList.add(eventManager);
@@ -48,6 +63,10 @@ public class EventManagerList {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return managerList.size();
     }

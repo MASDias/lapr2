@@ -17,7 +17,9 @@ import org.junit.Test;
  */
 public class EventManagerTest {
 
-    
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectEventManagerIsEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
@@ -25,7 +27,9 @@ public class EventManagerTest {
         assertEquals(result, result);
     }
     
-
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsEventManagerAreNotEqual() {
         
@@ -36,6 +40,9 @@ public class EventManagerTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsEventManagerAreNotEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");

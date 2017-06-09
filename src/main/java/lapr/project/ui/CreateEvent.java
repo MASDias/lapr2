@@ -17,8 +17,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import lapr.project.model.Congress;
 import lapr.project.model.Exhibition;
-import lapr.project.model.ListLocals;
-import lapr.project.model.Local;
+import lapr.project.model.LocationList;
+import lapr.project.model.Location;
 import lapr.project.model.OrganizersList;
 
 /**
@@ -36,11 +36,11 @@ public class CreateEvent extends javax.swing.JFrame {
      */
     public CreateEvent() {
         initComponents();
-//        ListLocals list = new ListLocals();
-//        Local a = new Local("asdasd", 123);
-//        Local a2 = new Local("asdasd", 123);
-//        Local a3 = new Local("asdasd", 123);
-//        Local a4 = new Local("asdasd", 123);
+//        LocationList list = new LocationList();
+//        Location a = new Location("asdasd", 123);
+//        Location a2 = new Location("asdasd", 123);
+//        Location a3 = new Location("asdasd", 123);
+//        Location a4 = new Location("asdasd", 123);
 //        list.addLocal(a4);
 //        list.addLocal(a3);
 //        list.addLocal(a2);
@@ -70,7 +70,7 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        locals = new javax.swing.JComboBox<Local>();
+        locals = new javax.swing.JComboBox<>();
         newAddressbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -81,10 +81,10 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        jList2 = new javax.swing.JList<>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
+        jList1 = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addOrganizerbtn = new javax.swing.JButton();
@@ -314,7 +314,7 @@ public class CreateEvent extends javax.swing.JFrame {
         String name = nameTextField.getText();
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
-        Local local = new Local("teste", 123);
+        Location local = new Location("teste", 123);
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());
@@ -419,7 +419,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JComboBox<Local> locals;
+    private javax.swing.JComboBox<Location> locals;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton newAddressbtn;
     private javax.swing.JButton newEventbtn;

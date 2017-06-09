@@ -15,6 +15,9 @@ import org.junit.Test;
  */
 public class WorkshopTests {
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectWorkshopIsEqual() {
         Theme theme = new Theme("Test Theme");
@@ -22,6 +25,9 @@ public class WorkshopTests {
         assertEquals(result, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsWorkshopAreNotEqual() {
         Theme theme = new Theme("Test Theme");
@@ -30,6 +36,9 @@ public class WorkshopTests {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsWorkshopAreNotEqual() {
         Theme theme = new Theme("Test Theme");
@@ -38,6 +47,9 @@ public class WorkshopTests {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsEqual() {
         Theme theme = new Theme("Test Theme");
@@ -47,6 +59,9 @@ public class WorkshopTests {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsNotEqual() {
         Theme theme = new Theme("Test Theme");

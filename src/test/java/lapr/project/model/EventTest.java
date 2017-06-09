@@ -17,35 +17,46 @@ import org.junit.Test;
  */
 public class EventTest {
 
-    
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectEventIsEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         assertEquals(event, event);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsEventAreNotEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         
         Event event = new Event("Model Example", "Example string", beginning, end, local);
         Event result = new Event("Model", "string", end, beginning, local);
         assertNotEquals(event, result);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureDifferentObjectsEventAreNotEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         
         Event event = new Event("Model Example", "Example string", beginning, end, local);
         Object result = new Object();

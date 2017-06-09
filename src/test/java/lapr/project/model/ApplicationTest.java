@@ -37,7 +37,11 @@ public class ApplicationTest {
 		return stringUtil.getLineBreak();
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureAddKeywordIsWorking() throws Exception {
 		List<Keyword> expectedKeywordList = new ArrayList<>();
 		expectedKeywordList.add(new Keyword("Doors"));
@@ -52,7 +56,11 @@ public class ApplicationTest {
 
 	}
 
-	@Test 
+    /**
+     *
+     * @throws Exception
+     */
+    @Test 
 	public void ensureXMLElementExportToStringIsValid() throws Exception {
 		String expected = "<application>" + getLineBreak() +
 				"<description>MyApplication</description>" + getLineBreak() +
@@ -74,7 +82,11 @@ public class ApplicationTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
 		List<Keyword> keywordList = new ArrayList<>();
 		keywordList.add(new Keyword("Doors"));
@@ -124,7 +136,10 @@ public class ApplicationTest {
                 
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureSameContentObjectsAreEqual() {
 		String description = "MyCandidatura";
 
@@ -138,7 +153,10 @@ public class ApplicationTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureSameObjectIsEqual() {
 		String description = "MyCandidatura";
 
@@ -151,7 +169,10 @@ public class ApplicationTest {
 		assertEquals(expected, expected);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureDifferentObjectsAreNotEqual() {
 		String description = "MyCandidatura";
 
@@ -165,7 +186,10 @@ public class ApplicationTest {
 		assertNotEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureDifferentDescriptionMakeObjectsNotEqual() {
 		String description1 = "MyCandidatura1";
 		String description2 = "MyCandidatura2";
@@ -180,7 +204,10 @@ public class ApplicationTest {
 		assertNotEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     */
+    @Test
 	public void ensureHashCodeIsCorrect() {
 		String description = "MyCandidatura";
 

@@ -15,7 +15,9 @@ import org.junit.Test;
  */
 public class ExpertTest {
     
-    
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectExpertIsEqual() {
         AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();
@@ -23,6 +25,9 @@ public class ExpertTest {
         assertEquals(expert, expert);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsExpertAreNotEqual() {
         AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();
@@ -31,6 +36,9 @@ public class ExpertTest {
         assertNotEquals(expert, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsExpertAreNotEqual() {
         AreaOfExpertiseList areasOfExpertise = new AreaOfExpertiseList();

@@ -8,6 +8,12 @@ public class PasswordEncryption {
 
     private static final int[] KEY = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
 
+    /**
+     *
+     * @param password
+     * @param encryptKey
+     * @return
+     */
     public String Encryption(String password, int encryptKey) {
         String encrytion = "";
         char character;
@@ -19,6 +25,12 @@ public class PasswordEncryption {
         return encrytion;
     }
 
+    /**
+     *
+     * @param encrypted
+     * @param decryptKey
+     * @return
+     */
     public String Decryption(String encrypted, int decryptKey) {
         String decryption = "";
         char character;

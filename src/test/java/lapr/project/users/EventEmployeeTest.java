@@ -17,6 +17,9 @@ import org.junit.Test;
  */
 public class EventEmployeeTest {
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectEventEmployeeIsEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -24,6 +27,9 @@ public class EventEmployeeTest {
         assertEquals(eEmployee, eEmployee);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsEventEmployeeAreNotEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -33,6 +39,9 @@ public class EventEmployeeTest {
         assertNotEquals(eEmployee, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsEventEmployeeAreNotEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -41,6 +50,9 @@ public class EventEmployeeTest {
         assertNotEquals(eEmployee, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsEqual() {
         User user = new User("Z", "c", "b", "a");
@@ -50,6 +62,9 @@ public class EventEmployeeTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsNotEqual() {
         User user = new User("Z", "c", "b", "a");
@@ -59,6 +74,9 @@ public class EventEmployeeTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetExperienceIsEqual() {
         User user = new User("Z", "c", "b", "a");
@@ -69,6 +87,9 @@ public class EventEmployeeTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetExperienceIsNotEqual() {
         User user = new User("Z", "c", "b", "a");
@@ -79,6 +100,9 @@ public class EventEmployeeTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetExperienceIsEqual() {
         User user = new User("Z", "c", "b", "a");
@@ -88,6 +112,9 @@ public class EventEmployeeTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetExperienceIsNotEqual() {
         User user = new User("Z", "c", "b", "a");

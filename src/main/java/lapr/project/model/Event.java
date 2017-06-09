@@ -12,32 +12,56 @@ public class Event {
     private String description;
     private Date eventBegin;
     private Date eventEnd;
-    private Local local;
-    private ApplicationsList applicationsList;
+    private Location local;
+    private ApplicationList applicationsList;
     private Keyword keyword;
 
-    public Event(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+    /**
+     *
+     * @param title
+     * @param description
+     * @param eventBegin
+     * @param eventEnd
+     * @param local
+     */
+    public Event(String title, String description, Date eventBegin, Date eventEnd, Location local) {
         this.title = title;
         this.description = description;
         this.eventBegin = eventBegin;
         this.eventEnd = eventEnd;
         this.local = local;
-        this.applicationsList = new ApplicationsList();
+        this.applicationsList = new ApplicationList();
     }
 
+    /**
+     *
+     * @return
+     */
     public Keyword getKeyword() {
         return keyword;
     }
 
+    /**
+     *
+     * @param keyword
+     */
     public void setKeyword(Keyword keyword) {
         this.keyword = keyword;
     }
  
-    public ApplicationsList getApplicationsList() {
+    /**
+     *
+     * @return
+     */
+    public ApplicationList getApplicationsList() {
         return applicationsList;
     }
 
-    public void setApplicationsList(ApplicationsList applicationsList) {
+    /**
+     *
+     * @param applicationsList
+     */
+    public void setApplicationsList(ApplicationList applicationsList) {
         this.applicationsList = applicationsList;
     }
 

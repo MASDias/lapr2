@@ -12,15 +12,24 @@ import lapr.project.model.User;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/**
+ *
+ * @author MarioDias
+ */
 public class UserTest {
 
-    
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectUserIsEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
         assertEquals(user, user);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsUserAreNotEqual() {
         User user = new User("mario", "m@gmail.com", "mario1", "m123");
@@ -28,6 +37,9 @@ public class UserTest {
         assertNotEquals(user, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsUserAreNotEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -35,7 +47,9 @@ public class UserTest {
         assertNotEquals(user, expectedResult);
     }
 
-    
+    /**
+     *
+     */
     @Test
     public void EnsureSetNameIsEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -45,6 +59,9 @@ public class UserTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetNameIsNotEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -54,6 +71,9 @@ public class UserTest {
         assertNotEquals(result, expectedResult);
     }
     
+    /**
+     *
+     */
     @Test
     public void EnsureSetEmailIsEqual() {
         User user = new User("Z", "t", "b", "c");
@@ -63,6 +83,9 @@ public class UserTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetEmailIsNotEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -72,6 +95,9 @@ public class UserTest {
         assertNotEquals(result, expectedResult);
     }
     
+    /**
+     *
+     */
     @Test
     public void EnsureSetUsernameIsEqual() {
         User user = new User("Z", "t", "b", "c");
@@ -81,6 +107,9 @@ public class UserTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetUsernameIsNotEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -90,6 +119,9 @@ public class UserTest {
         assertNotEquals(result, expectedResult);
     }
     
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsEqual() {
         User user = new User("Z", "a", "b", "c");
@@ -98,6 +130,9 @@ public class UserTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsNotEqual() {
         User user = new User("Z", "a", "b", "c");

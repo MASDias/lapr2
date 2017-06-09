@@ -10,19 +10,35 @@ public class Congress extends Event {
 
     StandRegistry standRegistry;
     WorkshopList workshopList;
-    ApplicationsList applicationList;
+    ApplicationList applicationList;
 
-    public Congress(String title, String description, Date eventBegin, Date eventEnd, Local local) {
+    /**
+     *
+     * @param title
+     * @param description
+     * @param eventBegin
+     * @param eventEnd
+     * @param local
+     */
+    public Congress(String title, String description, Date eventBegin, Date eventEnd, Location local) {
         super(title, description, eventBegin, eventEnd, local);
         this.workshopList = new WorkshopList();
-        this.applicationList = new ApplicationsList();
+        this.applicationList = new ApplicationList();
         this.standRegistry = new StandRegistry();
     }
 
+    /**
+     *
+     * @return
+     */
     public WorkshopList getWorkshopList() {
         return this.workshopList;
     }
 
+    /**
+     *
+     * @param workshopList
+     */
     public void setWorkshopList(WorkshopList workshopList) {
         this.workshopList = workshopList;
     }

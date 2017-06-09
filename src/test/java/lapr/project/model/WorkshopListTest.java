@@ -15,6 +15,9 @@ import org.junit.Test;
  */
 public class WorkshopListTest {
 
+    /**
+     *
+     */
     @Test
     public void EnsureAddWorkshopListMethodAddsExpertToList() {
         WorkshopList list = new WorkshopList();
@@ -29,6 +32,9 @@ public class WorkshopListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsWorkshopListIsEqual() {
         ExpertsList expert = new ExpertsList();
@@ -39,6 +45,9 @@ public class WorkshopListTest {
         assertEquals(result, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsWorkshopListAreNotEqual() {
         ExpertsList expert = new ExpertsList();
@@ -50,6 +59,9 @@ public class WorkshopListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsWorkshopListAreNotEqual() {
         ExpertsList expert = new ExpertsList();
@@ -61,6 +73,9 @@ public class WorkshopListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetWorkshopListIsEqual() {
         WorkshopList list = new WorkshopList();
@@ -71,6 +86,9 @@ public class WorkshopListTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureGetWorkshopListIsNotEqual() {
         WorkshopList list = new WorkshopList();
@@ -82,6 +100,9 @@ public class WorkshopListTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetWorkshopListIsEqual() {
         WorkshopList result = new WorkshopList();
@@ -92,6 +113,9 @@ public class WorkshopListTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSetWorkshopListIsNotEqual() {
         WorkshopList result = new WorkshopList();

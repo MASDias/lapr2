@@ -9,15 +9,28 @@ public class EventEmployee {
     private int experience;
     private User eventEmployee;
 
+    /**
+     *
+     * @param eventEmployee
+     * @param experience
+     */
     public EventEmployee(User eventEmployee, int experience) {
         this.experience = experience;
         this.eventEmployee = eventEmployee;
     }
 
+    /**
+     *
+     * @param experience
+     */
     public void setExperience(int experience) {
         this.experience = experience;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getExperience() {
         return experience;
     }

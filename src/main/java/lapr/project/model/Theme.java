@@ -13,6 +13,10 @@ public class Theme {
 
     private String theme;
 
+    /**
+     *
+     * @param theme
+     */
     public Theme(String theme) {
         this.theme = theme;
     }

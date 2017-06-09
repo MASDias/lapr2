@@ -16,14 +16,25 @@ public class EventRegistry {
 
     private ArrayList<Event> eventsList;
 
+    /**
+     *
+     */
     public EventRegistry() {
         this.eventsList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Event> getEventsList() {
         return eventsList;
     }
 
+    /**
+     *
+     * @param eventsList
+     */
     public void setEventsList(ArrayList<Event> eventsList) {
         this.eventsList = eventsList;
     }
@@ -37,6 +48,10 @@ public class EventRegistry {
         return true;
     }
 
+    /**
+     *
+     * @param event
+     */
     public void addEvent(Event event) {
         if (validate(event)) {
             eventsList.add(event);
@@ -45,6 +60,10 @@ public class EventRegistry {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return eventsList.size();
     }

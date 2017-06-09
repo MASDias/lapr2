@@ -17,14 +17,25 @@ public class StandRegistry {
 
     private List<Stand> standsList;
 
+    /**
+     *
+     */
     public StandRegistry() {
         this.standsList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Stand> getListStands() {
         return standsList;
     }
 
+    /**
+     *
+     * @param listaStands
+     */
     public void setListaStands(List<Stand> listaStands) {
         this.standsList = listaStands;
     }
@@ -38,6 +49,10 @@ public class StandRegistry {
         return true;
     }
 
+    /**
+     *
+     * @param stand
+     */
     public void addStand(Stand stand) {
         if (validate(stand)) {
             standsList.add(stand);
@@ -46,6 +61,10 @@ public class StandRegistry {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public int size (){
         return standsList.size();
     }

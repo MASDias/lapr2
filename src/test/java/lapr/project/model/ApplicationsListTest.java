@@ -18,13 +18,17 @@ import org.junit.Test;
  */
 public class ApplicationsListTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception {
-        ApplicationsList list = new ApplicationsList();
+        ApplicationList list = new ApplicationList();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         Application2 application = new Application2("qwert", event, false);
         Application2 application2 = new Application2("qwerty", event, false);
@@ -35,91 +39,115 @@ public class ApplicationsListTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsApplicationsListAreEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         Application2 application = new Application2("qwerty", event, true);
-        ApplicationsList list = new ApplicationsList();
+        ApplicationList list = new ApplicationList();
         list.addApplication(application);
         assertEquals(list, list);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsApplicationsListAreNotEqual() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
 
         Application2 application = new Application2("qwerty", event, true);
-        ApplicationsList list = new ApplicationsList();
-        ApplicationsList list2 = new ApplicationsList();
+        ApplicationList list = new ApplicationList();
+        ApplicationList list2 = new ApplicationList();
         list.addApplication(application);
         assertNotEquals(list, list2);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureGetApplicationsListIsEqual() throws Exception {
-        ApplicationsList list = new ApplicationsList();
+        ApplicationList list = new ApplicationList();
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
         event.setApplicationsList(list);
-        ApplicationsList result = event.getApplicationsList();
-        ApplicationsList expectedResult = list;
+        ApplicationList result = event.getApplicationsList();
+        ApplicationList expectedResult = list;
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureGetApplicationsListIsNotEqual() throws Exception {
-        ApplicationsList result = new ApplicationsList();
-        ApplicationsList expectedResult = new ApplicationsList();
+        ApplicationList result = new ApplicationList();
+        ApplicationList expectedResult = new ApplicationList();
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);       
         Application2 application = new Application2("hello", event, true);
         result.addApplication(application);
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSetApplicationsListIsEqual() throws Exception {
-        ApplicationsList result = new ApplicationsList();
+        ApplicationList result = new ApplicationList();
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
 
         event.setApplicationsList(result);
-        ApplicationsList expectedResult = event.getApplicationsList();
+        ApplicationList expectedResult = event.getApplicationsList();
         assertEquals(expectedResult, result);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSetApplicationsListIsNotEqual() throws Exception {
-        ApplicationsList result = new ApplicationsList();
+        ApplicationList result = new ApplicationList();
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local);
 
         event.setApplicationsList(result);
-        ApplicationsList expectedResult = new ApplicationsList();
+        ApplicationList expectedResult = new ApplicationList();
         assertNotEquals(expectedResult, result);
     }
 }

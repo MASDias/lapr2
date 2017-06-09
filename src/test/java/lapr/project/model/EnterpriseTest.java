@@ -14,12 +14,19 @@ import org.junit.Test;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class EnterpriseTest {
+
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectStandIsEqual() {
         Enterprise enterprise = new Enterprise("Paulo", null, null, 0, 0);
         assertEquals(enterprise, enterprise);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsStandAreNotEqual() {
         Enterprise enterprise = new Enterprise("Paulo", null, null, 0, 0);
@@ -27,6 +34,9 @@ public class EnterpriseTest {
         assertNotEquals(enterprise, expected);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() {
         Enterprise enterprise = new Enterprise("Paulo", null, null, 0, 0);

@@ -14,15 +14,28 @@ public class Expert {
     private String name;
     private AreaOfExpertiseList expertiseAreas;
 
-        public Expert(String name, AreaOfExpertiseList expertiseArea) {
+    /**
+     *
+     * @param name
+     * @param expertiseArea
+     */
+    public Expert(String name, AreaOfExpertiseList expertiseArea) {
             this.name = name;
             this.expertiseAreas = expertiseArea;
         }
 
+    /**
+     *
+     * @return
+     */
     public AreaOfExpertiseList getExpertiseAreas() {
         return expertiseAreas;
     }
 
+    /**
+     *
+     * @param expertiseAreas
+     */
     public void setExpertiseAreas(AreaOfExpertiseList expertiseAreas) {
         this.expertiseAreas = expertiseAreas;
     }

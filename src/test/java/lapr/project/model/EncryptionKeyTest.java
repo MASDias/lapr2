@@ -10,6 +10,9 @@ import org.junit.Test;
  */
 public class EncryptionKeyTest {
 
+    /**
+     *
+     */
     @Test
     public void ensureEncryptionPassword() {
         
@@ -20,6 +23,9 @@ public class EncryptionKeyTest {
         assertEquals(encrypt, encrypt);
     }
 
+    /**
+     *
+     */
     @Test
     public void ensureNotEqualsEncryptionPassword() {
         PasswordEncryption testEncryption = new PasswordEncryption();
@@ -30,6 +36,9 @@ public class EncryptionKeyTest {
         assertNotEquals(encrypt, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void ensureDecryptionPassword() {
         PasswordEncryption testDecryption = new PasswordEncryption();
@@ -40,6 +49,9 @@ public class EncryptionKeyTest {
         assertEquals(decrypt, result);
     }
 
+    /**
+     *
+     */
     @Test
     public void ensureNotEqualsDecryptionPassword() {
         PasswordEncryption testDecryption = new PasswordEncryption();

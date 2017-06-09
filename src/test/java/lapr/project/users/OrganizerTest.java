@@ -17,6 +17,9 @@ import org.junit.Test;
  */
 public class OrganizerTest {
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectOrganizerIsEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -24,6 +27,9 @@ public class OrganizerTest {
         assertEquals(organizer, organizer);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureSameObjectsOrganizerAreNotEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -33,6 +39,9 @@ public class OrganizerTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureDifferentObjectsOrganizerAreNotEqual() {
         User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
@@ -41,6 +50,9 @@ public class OrganizerTest {
         assertNotEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsEqual() {
         User user = new User("James", "james@gmail.com", "juanjames", "123456789");
@@ -50,6 +62,9 @@ public class OrganizerTest {
         assertEquals(result, expectedResult);
     }
 
+    /**
+     *
+     */
     @Test
     public void EnsureToStringIsNotEqual() {
         User user = new User("James", "james@gmail.com", "juanjames", "123456789");
