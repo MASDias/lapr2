@@ -16,6 +16,7 @@ private static final long serialVersionUID = 1;
      */
     public LoginUI() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -33,7 +34,7 @@ private static final long serialVersionUID = 1;
         okButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
 
         jLabel1.setText("Username / Email:");
@@ -52,8 +53,6 @@ private static final long serialVersionUID = 1;
                 okButtonActionPerformed(evt);
             }
         });
-
-        passwordField.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

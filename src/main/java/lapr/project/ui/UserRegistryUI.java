@@ -17,6 +17,7 @@ private static final long serialVersionUID = 1;
      */
     public UserRegistryUI() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -41,7 +42,7 @@ private static final long serialVersionUID = 1;
         CancelButton = new javax.swing.JButton();
         RegisterButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registry");
 
         jLabel1.setText("Name:");
@@ -60,9 +61,11 @@ private static final long serialVersionUID = 1;
             }
         });
 
-        passwordField.setText("jPasswordField1");
-
-        confirmPasswordField.setText("jPasswordField2");
+        confirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmPasswordFieldActionPerformed(evt);
+            }
+        });
 
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +152,10 @@ private static final long serialVersionUID = 1;
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelButtonActionPerformed
+
+    private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments

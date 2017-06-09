@@ -10,7 +10,8 @@ package lapr.project.ui;
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class MainWindow extends javax.swing.JFrame {
-private static final long serialVersionUID = 1;
+
+    private static final long serialVersionUID = 1;
 
     /**
      * Creates new form MainWindow
@@ -31,16 +32,31 @@ private static final long serialVersionUID = 1;
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        loginMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         RegisterMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         createEventMenuItem = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        defineUser = new javax.swing.JMenu();
+        defineEventManagerMenuItem = new javax.swing.JMenuItem();
+        defineOrganizerMenuItem = new javax.swing.JMenuItem();
+        defineEmployeeMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        defineUserMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Event Management");
 
         jMenu1.setText("Menu");
+
+        loginMenuItem.setText("Login");
+        loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(loginMenuItem);
+        jMenu1.add(jSeparator3);
 
         RegisterMenuItem.setMnemonic('M');
         RegisterMenuItem.setText("Register");
@@ -59,15 +75,36 @@ private static final long serialVersionUID = 1;
             }
         });
         jMenu1.add(createEventMenuItem);
-        jMenu1.add(jSeparator2);
+        jMenu1.add(jSeparator4);
 
-        defineUserMenuItem.setText("Define User");
-        defineUserMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        defineUser.setText("Define User");
+
+        defineEventManagerMenuItem.setText("Define Event Manager");
+        defineEventManagerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                defineUserMenuItemActionPerformed(evt);
+                defineEventManagerMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(defineUserMenuItem);
+        defineUser.add(defineEventManagerMenuItem);
+
+        defineOrganizerMenuItem.setText("Define Organizer");
+        defineOrganizerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defineOrganizerMenuItemActionPerformed(evt);
+            }
+        });
+        defineUser.add(defineOrganizerMenuItem);
+
+        defineEmployeeMenuItem.setText("Define Employee");
+        defineEmployeeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defineEmployeeMenuItemActionPerformed(evt);
+            }
+        });
+        defineUser.add(defineEmployeeMenuItem);
+
+        jMenu1.add(defineUser);
+        jMenu1.add(jSeparator2);
 
         jMenuBar1.add(jMenu1);
 
@@ -81,24 +118,37 @@ private static final long serialVersionUID = 1;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 281, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void createEventMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventMenuItemActionPerformed
+        CreateEvent event = new CreateEvent();
+
+    }//GEN-LAST:event_createEventMenuItemActionPerformed
+
     private void RegisterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterMenuItemActionPerformed
-        // TODO add your handling code here:
+        UserRegistryUI ur = new UserRegistryUI();
     }//GEN-LAST:event_RegisterMenuItemActionPerformed
 
-    private void defineUserMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineUserMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_defineUserMenuItemActionPerformed
+    private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
+        LoginUI login = new LoginUI();
+    }//GEN-LAST:event_loginMenuItemActionPerformed
 
-    private void createEventMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventMenuItemActionPerformed
-          CreateEvent event = new CreateEvent();
-        
-    }//GEN-LAST:event_createEventMenuItemActionPerformed
+    private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
+        DefineOrganizer defineOrganizer = new DefineOrganizer();
+    }//GEN-LAST:event_defineOrganizerMenuItemActionPerformed
+
+    private void defineEventManagerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEventManagerMenuItemActionPerformed
+        DefineEventManager dem = new DefineEventManager();
+    }//GEN-LAST:event_defineEventManagerMenuItemActionPerformed
+
+    private void defineEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEmployeeMenuItemActionPerformed
+        DefineEventEmployee dee = new DefineEventEmployee();
+    }//GEN-LAST:event_defineEmployeeMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,10 +188,16 @@ private static final long serialVersionUID = 1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem RegisterMenuItem;
     private javax.swing.JMenuItem createEventMenuItem;
-    private javax.swing.JMenuItem defineUserMenuItem;
+    private javax.swing.JMenuItem defineEmployeeMenuItem;
+    private javax.swing.JMenuItem defineEventManagerMenuItem;
+    private javax.swing.JMenuItem defineOrganizerMenuItem;
+    private javax.swing.JMenu defineUser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JMenuItem loginMenuItem;
     // End of variables declaration//GEN-END:variables
 }

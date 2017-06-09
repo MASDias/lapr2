@@ -6,20 +6,20 @@
 package lapr.project.ui;
 
 import lapr.project.model.Event;
-import lapr.project.model.EventEmployee;
+import lapr.project.model.Organizer;
 import lapr.project.model.User;
 
 /**
  *
- * @author MarioDias
+ * @author Miguel Santos <1161386@isep.ipp.pt>
  */
-public class DefineEventEmployee extends javax.swing.JFrame {
+public class DefineOrganizer extends javax.swing.JFrame {
+private static final long serialVersionUID = 1;
 
-     private static final long serialVersionUID = 1;
     /**
-     * Creates new form DefineEventEmployee
+     * Creates new form DefineOrganizer
      */
-    public DefineEventEmployee() {
+    public DefineOrganizer() {
         initComponents();
         setVisible(true);
     }
@@ -34,30 +34,28 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        okBtn = new javax.swing.JButton();
+        eventComboBox = new javax.swing.JComboBox<Event>();
+        removeUserBtn = new javax.swing.JButton();
+        addUserBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventEmployeeJList = new javax.swing.JList<EventEmployee>();
+        eventOrganizerJList = new javax.swing.JList<Organizer>();
         jScrollPane2 = new javax.swing.JScrollPane();
         userJList = new javax.swing.JList<User>();
-        addUserBtn = new javax.swing.JButton();
-        removeUserBtn = new javax.swing.JButton();
-        eventComboBox = new javax.swing.JComboBox<Event>();
-        okBtn = new javax.swing.JButton();
-        cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Define Event Employee");
+        setTitle("Define Organizer");
 
         jLabel1.setText("Event:");
 
-        jLabel2.setText("Users List:");
+        cancelBtn.setText("Cancel");
 
-        jLabel3.setText("Event Employee:");
+        okBtn.setText("OK");
 
-        jScrollPane1.setViewportView(eventEmployeeJList);
-
-        jScrollPane2.setViewportView(userJList);
+        removeUserBtn.setText("<<");
 
         addUserBtn.setText(">>");
         addUserBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -66,53 +64,47 @@ public class DefineEventEmployee extends javax.swing.JFrame {
             }
         });
 
-        removeUserBtn.setText("<<");
+        jLabel3.setText("Organizer:");
 
-        okBtn.setText("OK");
-        okBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okBtnActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Users List:");
 
-        cancelBtn.setText("Cancel");
+        jScrollPane1.setViewportView(eventOrganizerJList);
+
+        jScrollPane2.setViewportView(userJList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel2)
-                                .addGap(98, 98, 98))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addUserBtn)
-                            .addComponent(removeUserBtn))))
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap())
+                .addComponent(eventComboBox, 0, 189, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(118, 118, 118))
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,18 +117,16 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(32, 32, 32)
                         .addComponent(addUserBtn)
                         .addGap(18, 18, 18)
                         .addComponent(removeUserBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okBtn)
                     .addComponent(cancelBtn))
@@ -149,10 +139,6 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addUserBtnActionPerformed
-
-    private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_okBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,20 +157,20 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DefineEventEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DefineEventEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DefineEventEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DefineEventEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DefineEventEmployee().setVisible(true);
+                new DefineOrganizer().setVisible(true);
             }
         });
     }
@@ -193,7 +179,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private javax.swing.JButton addUserBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<Event> eventComboBox;
-    private javax.swing.JList<EventEmployee> eventEmployeeJList;
+    private javax.swing.JList<Organizer> eventOrganizerJList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

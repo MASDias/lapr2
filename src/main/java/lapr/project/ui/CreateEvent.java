@@ -70,7 +70,7 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        locals = new javax.swing.JComboBox<>();
+        locals = new javax.swing.JComboBox<Local>();
         newAddressbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -81,17 +81,17 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jList2 = new javax.swing.JList<String>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<String>();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addOrganizerbtn = new javax.swing.JButton();
         newEventbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create Event");
 
         jPanel1.setToolTipText("");
@@ -158,9 +158,9 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jList1);
 
-        jLabel9.setText("Organizer for the event");
+        jLabel9.setText("Event's Organizers");
 
-        jLabel5.setText("Organizer list");
+        jLabel5.setText("Users List");
 
         addOrganizerbtn.setText("Add Organizer");
         addOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
