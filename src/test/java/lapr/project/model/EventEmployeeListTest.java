@@ -17,8 +17,10 @@ public class EventEmployeeListTest {
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception{
         EventEmployeeList list = new EventEmployeeList();
-        EventEmployee e1 = new EventEmployee("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789", 1);
-        EventEmployee e2 = new EventEmployee("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321", 3);
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
+        EventEmployee e1 = new EventEmployee(u1, 1);
+        EventEmployee e2 = new EventEmployee(u2, 3);
         list.addEmployee(e1);
         list.addEmployee(e2);
         int size = list.size();

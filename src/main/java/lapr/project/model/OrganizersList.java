@@ -41,7 +41,7 @@ public class OrganizersList {
         if(validate(organizer)){
             organizersList.add(organizer);
         }else{
-            JOptionPane.showMessageDialog(null, "The employee "+organizer.getName(), "Error!", -1);
+            JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
         }
     }
     

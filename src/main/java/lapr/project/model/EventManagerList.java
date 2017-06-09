@@ -44,7 +44,7 @@ public class EventManagerList {
         if(validate(eventManager)){
             managerList.add(eventManager);
         }else{
-            JOptionPane.showMessageDialog(null, "The event manager "+eventManager.getName(), "Error!", -1);
+            JOptionPane.showMessageDialog(null, "Error already exists", "Error!", -1);
         }
     }
     

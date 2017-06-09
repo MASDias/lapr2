@@ -6,6 +6,7 @@
 package lapr.project.users;
 
 import lapr.project.model.EventManager;
+import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -19,23 +20,28 @@ public class EventManagerTest {
     
     @Test
     public void EnsureSameObjectEventManagerIsEqual() {
-        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
-        assertEquals(eManager, eManager);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventManager result = new EventManager(user);
+        assertEquals(result, result);
     }
     
 
     @Test
     public void EnsureSameObjectsEventManagerAreNotEqual() {
-        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
-        EventManager expectedResult = new EventManager("Z", "c", "b", "a");
-        assertNotEquals(expectedResult, eManager);
+        
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        User user2 = new User("Z", "c", "b", "a");
+        EventManager result = new EventManager(user);
+        EventManager expectedResult = new EventManager(user2);
+        assertNotEquals(result, expectedResult);
     }
 
     @Test
     public void EnsureDifferentObjectsEventManagerAreNotEqual() {
-        EventManager eManager = new EventManager("mario", "m@gmail.com", "mario1", "m123");
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventManager result = new EventManager(user);
         Object expectedResult = new Object();
-        assertNotEquals(eManager, expectedResult);
+        assertNotEquals(result, expectedResult);
     }
 
 }

@@ -6,6 +6,7 @@
 package lapr.project.users;
 
 import lapr.project.model.Organizer;
+import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -16,40 +17,45 @@ import org.junit.Test;
  */
 public class OrganizerTest {
 
-    
     @Test
     public void EnsureSameObjectOrganizerIsEqual() {
-        Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        Organizer organizer = new Organizer(user);
         assertEquals(organizer, organizer);
     }
 
     @Test
     public void EnsureSameObjectsOrganizerAreNotEqual() {
-        Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
-        Organizer expectedResult = new Organizer("Z", "c", "b", "a");
-        assertNotEquals(organizer, expectedResult);
+        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        User user2 = new User("Z", "c", "b", "a");
+        Organizer result = new Organizer(user);
+        Organizer expectedResult = new Organizer(user2);
+        assertNotEquals(result, expectedResult);
     }
 
     @Test
     public void EnsureDifferentObjectsOrganizerAreNotEqual() {
-        Organizer organizer = new Organizer("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        Organizer result = new Organizer(user);
         Object expectedResult = new Object();
-        assertNotEquals(organizer, expectedResult);
+        assertNotEquals(result, expectedResult);
     }
-    
+
     @Test
     public void EnsureToStringIsEqual() {
-        Organizer organizer = new Organizer("James", "james@gmail.com", "juanjames", "123456789");
+        User user = new User("James", "james@gmail.com", "juanjames", "123456789");
+        Organizer organizer = new Organizer(user);
         String result = organizer.toString();
-        String expectedResult = "Name: James\nEmail: james@gmail.com\nUsername: juanjames";
+        String expectedResult = "Name: James\nUsername: juanjames\nEmail: james@gmail.com";
         assertEquals(result, expectedResult);
     }
 
     @Test
     public void EnsureToStringIsNotEqual() {
-        Organizer organizer = new Organizer("James", "james@gmail.com", "juanjames", "123456789");
+        User user = new User("James", "james@gmail.com", "juanjames", "123456789");
+        Organizer organizer = new Organizer(user);
         String result = organizer.toString();
-        String expectedResult = "Name: Jame\nEmail: james@gmail.com\nUsername: juanjames";
+        String expectedResult = "Name: Jame\nUsername: juanjames\nEmail: james@gmail.com";
         assertNotEquals(result, expectedResult);
     }
 }

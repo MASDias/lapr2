@@ -41,7 +41,7 @@ public class EventEmployeeList {
         if(validate(employee)){
             employeeList.add(employee);
         }else{
-            JOptionPane.showMessageDialog(null, "The employee "+employee.getName(), "Error!", -1);
+            JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
         }
     }
     
