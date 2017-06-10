@@ -5,6 +5,8 @@
  */
 package lapr.project.ui;
 
+import lapr.project.model.EventCenter;
+
 /**
  *
  * @author Miguel Santos <1161386@isep.ipp.pt>
@@ -12,11 +14,12 @@ package lapr.project.ui;
 public class MainWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-
+    private EventCenter eventCenter;
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        eventCenter = new EventCenter();
         initComponents();
         setVisible(true);
     }
@@ -131,7 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_createEventMenuItemActionPerformed
 
     private void RegisterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterMenuItemActionPerformed
-        CreateUser ur = new CreateUser();
+        CreateUser ur = new CreateUser(eventCenter);
     }//GEN-LAST:event_RegisterMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
