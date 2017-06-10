@@ -28,6 +28,7 @@ import lapr.project.model.OrganizersList;
 public class CreateEvent extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    
 //    private DefaultListModel<String> modelOrganizerList = new DefaultListModel<String>();
 //    private DefaultListModel<String> modelOrganizerListEvent = new DefaultListModel<String>();
 
@@ -81,10 +82,10 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<String>();
+        OrganizersList = new javax.swing.JList<String>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<String>();
+        usersJList = new javax.swing.JList<String>();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addOrganizerbtn = new javax.swing.JButton();
@@ -147,7 +148,7 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(jList2);
+        jScrollPane3.setViewportView(OrganizersList);
 
         removeOrganizerbtn.setText("Remove Organizer");
         removeOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +157,7 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(usersJList);
 
         jLabel9.setText("Event's Organizers");
 
@@ -337,6 +338,8 @@ public class CreateEvent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_newEventbtnActionPerformed
 
+    
+    
     private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addOrganizerbtnActionPerformed
@@ -395,6 +398,7 @@ public class CreateEvent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> OrganizersList;
     private javax.swing.JSpinner SubmitAppStart;
     private javax.swing.JButton addOrganizerbtn;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -413,8 +417,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -425,5 +427,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JButton newEventbtn;
     private javax.swing.JButton removeOrganizerbtn;
     private javax.swing.JSpinner submitAppEnd;
+    private javax.swing.JList<String> usersJList;
     // End of variables declaration//GEN-END:variables
 }

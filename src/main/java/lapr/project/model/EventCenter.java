@@ -6,17 +6,17 @@ package lapr.project.model;
  */
 public class EventCenter {
 
-    EventEmployeeList eventEmployeeList;
-    ApplicationList applicationList;
-    AreaOfExpertiseList areaExpertiseList;
-    EventManagerList eventManagerList;
-    EventRegistry eventRegistry;
-    ExpertsList expertList;
-    LocationList locationList;
-    OrganizersList organizersList;
-    StandRegistry standRegistry;
-    UserRegistry userRegistry;
-    WorkshopList workshopList;
+    private EventEmployeeList eventEmployeeList;
+    private ApplicationList applicationList;
+    private AreaOfExpertiseList areaExpertiseList;
+    private EventManagerList eventManagerList;
+    private EventRegistry eventRegistry;
+    private ExpertsList expertList;
+    private LocationList locationList;
+    private OrganizersList organizersList;
+    private StandRegistry standRegistry;
+    private UserRegistry userRegistry;
+    private WorkshopList workshopList;
 
     /**
      *

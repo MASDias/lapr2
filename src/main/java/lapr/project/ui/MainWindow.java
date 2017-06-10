@@ -131,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_createEventMenuItemActionPerformed
 
     private void RegisterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterMenuItemActionPerformed
-        UserRegistryUI ur = new UserRegistryUI();
+        CreateUser ur = new CreateUser();
     }//GEN-LAST:event_RegisterMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed

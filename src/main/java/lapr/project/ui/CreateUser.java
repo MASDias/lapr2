@@ -5,29 +5,40 @@
  */
 package lapr.project.ui;
 
-import java.util.List;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import lapr.project.controller.CreateUserController;
+import lapr.project.model.EventCenter;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
 /**
  *
- * @author Miguel Santos <1161386@isep.ipp.pt>
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class UserRegistryUI extends javax.swing.JFrame {
+public class CreateUser extends javax.swing.JFrame {
 private static final long serialVersionUID = 1;
+private EventCenter eventCenter;
+private CreateUserController controller;
 private String name, username, email; 
 private String password, confirmedPassword;
 private UserRegistry usersList = new UserRegistry();
 
+
     /**
      * Creates new form UserRegistryUIw
      */
-    public UserRegistryUI() {
+    public CreateUser() {
+        
+        controller = new CreateUserController(eventCenter);
+        
         initComponents();
         setVisible(true);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,13 +183,15 @@ private UserRegistry usersList = new UserRegistry();
         
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
+    
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
 //        if(password.equals(confirmedPassword))
 //            JOptionPane.showMessageDialog(null, "Password and Confirmed Password are not the same!");
         
-        User user = new User(name, email, username, password);
-        usersList.addUser(user);
+        controller.newUser(name, username, email, password);
+        controller.addUser();
         
+         
         JOptionPane.showMessageDialog(null, "User created with success!");
         
         dispose();
@@ -222,20 +235,21 @@ private UserRegistry usersList = new UserRegistry();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserRegistryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserRegistryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserRegistryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserRegistryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserRegistryUI().setVisible(true);
+                new CreateUser().setVisible(true);
             }
         });
     }
