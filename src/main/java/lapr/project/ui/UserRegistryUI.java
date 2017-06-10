@@ -5,12 +5,20 @@
  */
 package lapr.project.ui;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
+
 /**
  *
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class UserRegistryUI extends javax.swing.JFrame {
 private static final long serialVersionUID = 1;
+private String name, username, email; 
+private String password, confirmedPassword;
+private UserRegistry usersList = new UserRegistry();
 
     /**
      * Creates new form UserRegistryUIw
@@ -58,6 +66,24 @@ private static final long serialVersionUID = 1;
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextFieldActionPerformed(evt);
+            }
+        });
+
+        userNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTextFieldActionPerformed(evt);
+            }
+        });
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -142,20 +168,42 @@ private static final long serialVersionUID = 1;
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
-        // TODO add your handling code here:
+        name = nameTextField.getText();
+        
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-        // TODO add your handling code here:
+//        if(password.equals(confirmedPassword))
+//            JOptionPane.showMessageDialog(null, "Password and Confirmed Password are not the same!");
+        
+        User user = new User(name, email, username, password);
+        usersList.addUser(user);
+        
+        JOptionPane.showMessageDialog(null, "User created with success!");
+        
+        dispose();
+        
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
-        // TODO add your handling code here:
+        confirmedPassword = String.valueOf(confirmPasswordField.getPassword());
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
+
+    private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
+        username = userNameTextField.getText();
+    }//GEN-LAST:event_userNameTextFieldActionPerformed
+
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+        email = emailTextField.getText();
+    }//GEN-LAST:event_emailTextFieldActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        password = String.valueOf(passwordField.getPassword());
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
