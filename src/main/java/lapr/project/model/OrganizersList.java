@@ -60,4 +60,8 @@ public class OrganizersList {
     public int size() {
         return organizersList.size();
     }
+    
+    public Organizer getOrganizer(int index){
+        return organizersList.get(index);
+    }
 }

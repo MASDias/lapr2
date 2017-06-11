@@ -126,7 +126,7 @@ public class UserTest {
     public void EnsureToStringIsEqual() {
         User user = new User("Z", "a", "b", "c");
         String result = user.toString();
-        String expectedResult = "Name: Z\nUsername: b\nEmail: a";
+        String expectedResult = "Name: Z\n Username: b\n Email: a";
         assertEquals(result, expectedResult);
     }
 

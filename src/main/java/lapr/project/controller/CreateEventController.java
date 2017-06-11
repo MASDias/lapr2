@@ -12,6 +12,7 @@ import javax.swing.JList;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.Organizer;
+import lapr.project.model.OrganizersList;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -37,5 +38,9 @@ public class CreateEventController {
      */
     public UserRegistry getUsersList() {
         return eventCenter.getUserRegistry();
+    }
+    
+    public OrganizersList getOrganizersList(){
+        return eventCenter.getOrganizersList();
     }
 }
