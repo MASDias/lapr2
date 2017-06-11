@@ -38,9 +38,12 @@ public class CreateEvent extends javax.swing.JFrame {
     private CreateEventController controller;
     private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
     private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<Organizer>();
+    private UserRegistry listUsers;
+    private OrganizersList listOrganizers;
 
     /**
      * Creates new form CreateEvent
+     *
      * @param eventCenter
      */
     public CreateEvent(EventCenter eventCenter) {
@@ -60,17 +63,17 @@ public class CreateEvent extends javax.swing.JFrame {
 //            locals.addItem(list.getLocal(i));
 //        }
 
-        UserRegistry list = controller.getUsersList();
+        listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
-        for (int i = 0; i < list.size(); i++) {
-            modelUsersList.addElement(list.getUser(i));
+        for (int i = 0; i < listUsers.size(); i++) {
+            modelUsersList.addElement(listUsers.getUser(i));
         }
 
-        OrganizersList listOrganizers= controller.getOrganizersList();
+        listOrganizers = controller.getOrganizersList();
         User u = new User("Miguel", "lol", "kkkk", "shuashuashua");
         Organizer o = new Organizer(u);
         listOrganizers.addOrganizer(o);
-        organizersList.setModel(modelOrganizerListEvent);
+        organizersJList.setModel(modelOrganizerListEvent);
         for (int i = 0; i < listOrganizers.size(); i++) {
             modelOrganizerListEvent.addElement(listOrganizers.getOrganizer(i));
         }
@@ -107,7 +110,7 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        organizersList = new javax.swing.JList<Organizer>();
+        organizersJList = new javax.swing.JList<Organizer>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         usersJList = new javax.swing.JList<User>();
@@ -173,7 +176,7 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(organizersList);
+        jScrollPane3.setViewportView(organizersJList);
 
         removeOrganizerbtn.setText("Remove Organizer");
         removeOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -376,12 +379,31 @@ public class CreateEvent extends javax.swing.JFrame {
 
 
     private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
-        
-        
+        try{
+        User u = modelUsersList.getElementAt(usersJList.getSelectedIndex());
+        Organizer o = new Organizer(u);
+        listOrganizers.addOrganizer(o);
+        modelOrganizerListEvent.addElement(o);
+        modelUsersList.removeElement(u);
+        } catch (ArrayIndexOutOfBoundsException e) {
+                    JOptionPane.showMessageDialog(null, "No user selected");
+        }
     }//GEN-LAST:event_addOrganizerbtnActionPerformed
 
     private void removeOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrganizerbtnActionPerformed
-        // TODO add your handling code here:
+        try{
+        Organizer o = modelOrganizerListEvent.getElementAt(organizersJList.getSelectedIndex());
+        for (int i = 0; i < listUsers.size(); i++) {          
+            User u = listUsers.getUser(i);
+            if(u.getUserName().equals(o.getOrganizer().getUserName())){
+                modelUsersList.addElement(u);
+            }
+        }
+        listOrganizers.removeOrganizer(o);
+        modelOrganizerListEvent.removeElement(o);
+        } catch (ArrayIndexOutOfBoundsException e) {
+                    JOptionPane.showMessageDialog(null, "No organizer selected");
+        }
     }//GEN-LAST:event_removeOrganizerbtnActionPerformed
 
     private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
@@ -464,7 +486,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton newAddressbtn;
     private javax.swing.JButton newEventbtn;
-    private javax.swing.JList<Organizer> organizersList;
+    private javax.swing.JList<Organizer> organizersJList;
     private javax.swing.JButton removeOrganizerbtn;
     private javax.swing.JSpinner submitAppEnd;
     private javax.swing.JList<User> usersJList;

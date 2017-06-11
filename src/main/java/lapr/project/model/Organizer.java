@@ -32,6 +32,10 @@ public class Organizer {
     public void setEventRegistry(EventRegistry eventRegistry) {
         this.eventRegistry = eventRegistry;
     }
+    
+    public User getOrganizer(){
+        return organizer;
+    }
 
     @Override
     public String toString() {

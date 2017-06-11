@@ -64,4 +64,8 @@ public class OrganizersList {
     public Organizer getOrganizer(int index){
         return organizersList.get(index);
     }
+    
+    public void removeOrganizer(Organizer o){
+        organizersList.remove(o);
+    }
 }
