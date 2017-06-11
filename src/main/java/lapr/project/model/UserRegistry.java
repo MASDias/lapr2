@@ -60,4 +60,8 @@ public class UserRegistry {
     public int size() {
         return usersList.size();
     }
+    
+    public User getUser(int index){
+        return usersList.get(index);
+    }
 }

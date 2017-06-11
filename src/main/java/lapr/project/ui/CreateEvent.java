@@ -9,17 +9,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import lapr.project.controller.CreateEventController;
 import lapr.project.model.Congress;
+import lapr.project.model.EventCenter;
 import lapr.project.model.Exhibition;
 import lapr.project.model.LocationList;
 import lapr.project.model.Location;
 import lapr.project.model.OrganizersList;
+import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
 
 /**
  *
@@ -28,14 +33,17 @@ import lapr.project.model.OrganizersList;
 public class CreateEvent extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-    
-//    private DefaultListModel<String> modelOrganizerList = new DefaultListModel<String>();
+    private EventCenter eventCenter;
+    private CreateEventController controller;
+//    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
 //    private DefaultListModel<String> modelOrganizerListEvent = new DefaultListModel<String>();
 
     /**
      * Creates new form CreateEvent
      */
-    public CreateEvent() {
+    public CreateEvent(EventCenter eventCenter) {
+        this.eventCenter = eventCenter;
+        controller = new CreateEventController(eventCenter);
         initComponents();
 //        LocationList list = new LocationList();
 //        Location a = new Location("asdasd", 123);
@@ -49,6 +57,26 @@ public class CreateEvent extends javax.swing.JFrame {
 //        for (int i = 0; i < list.size(); i++) {
 //            locals.addItem(list.getLocal(i));
 //        }
+        DefaultListModel model = (DefaultListModel) usersJList.getModel();
+        
+        List list = controller.getUsersList();
+//             User u = new User("22as", "asdsa", "asdasd", "AS");
+//             User u2 = new User("asdasdas", "asdsa", "asdasd", "AS");
+//             User u3 = new User("9ihjkh", "asdsa", "asdasd", "AS");
+//             User u4 = new User("dndscsdc", "asdsa", "asdasd", "AS");
+//             list.addUser(u);
+//             list.addUser(u2);
+//             list.addUser(u3);
+//             list.addUser(u4);
+        for (Object User : list) {          
+            model.addElement(User);
+            
+        }
+            
+        
+        
+        
+          
         setVisible(true);
     }
 
@@ -85,7 +113,7 @@ public class CreateEvent extends javax.swing.JFrame {
         OrganizersList = new javax.swing.JList<String>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        usersJList = new javax.swing.JList<String>();
+        usersJList = new javax.swing.JList<lapr.project.model.User>();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addOrganizerbtn = new javax.swing.JButton();
@@ -365,37 +393,37 @@ public class CreateEvent extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateEvent().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CreateEvent().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> OrganizersList;
@@ -427,6 +455,6 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JButton newEventbtn;
     private javax.swing.JButton removeOrganizerbtn;
     private javax.swing.JSpinner submitAppEnd;
-    private javax.swing.JList<String> usersJList;
+    private javax.swing.JList<User> usersJList;
     // End of variables declaration//GEN-END:variables
 }
