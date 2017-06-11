@@ -29,6 +29,7 @@ private UserRegistry usersList = new UserRegistry();
 
     /**
      * Creates new form UserRegistryUIw
+     * @param eventCenter
      */
     public CreateUser(EventCenter eventCenter) {
         this.eventCenter = eventCenter;

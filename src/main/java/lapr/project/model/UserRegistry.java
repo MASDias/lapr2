@@ -61,6 +61,11 @@ public class UserRegistry {
         return usersList.size();
     }
     
+    /**
+     *
+     * @param index
+     * @return
+     */
     public User getUser(int index){
         return usersList.get(index);
     }

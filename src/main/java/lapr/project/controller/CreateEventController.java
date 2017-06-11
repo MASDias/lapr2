@@ -22,18 +22,20 @@ import lapr.project.model.UserRegistry;
 public class CreateEventController {
 
     private EventCenter eventCenter;
-    private ArrayList<User> usersList;
-    private ArrayList<Organizer> OrganizersList;
 
+    /**
+     *
+     * @param eventCenter
+     */
     public CreateEventController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }
 
+    /**
+     *
+     * @return
+     */
     public UserRegistry getUsersList() {
         return eventCenter.getUserRegistry();
-    }
-
-    public User getUser(int index) {
-        return usersList.get(index);
     }
 }

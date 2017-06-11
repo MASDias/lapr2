@@ -16,14 +16,28 @@ public class CreateUserController {
     private User user;
     private EventCenter eventCenter;
     
+    /**
+     *
+     * @param eventCenter
+     */
     public CreateUserController(EventCenter eventCenter){
         this.eventCenter = eventCenter;
     }
     
+    /**
+     *
+     * @param name
+     * @param username
+     * @param email
+     * @param password
+     */
     public void newUser(String name, String username, String email, String password){
         this.user = new User(name, username, email, password);
     }
     
+    /**
+     *
+     */
     public void addUser(){
         this.eventCenter.getUserRegistry().getUsersList().add(user);
     }

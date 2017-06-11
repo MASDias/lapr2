@@ -41,6 +41,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
     /**
      * Creates new form CreateEvent
+     * @param eventCenter
      */
     public CreateEvent(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
