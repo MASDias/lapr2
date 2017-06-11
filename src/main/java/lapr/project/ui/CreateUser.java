@@ -22,8 +22,6 @@ public class CreateUser extends javax.swing.JFrame {
 private static final long serialVersionUID = 1;
 private EventCenter eventCenter;
 private CreateUserController controller;
-private String name, username, email; 
-private String password, confirmedPassword;
 private UserRegistry usersList = new UserRegistry();
 
 
@@ -182,7 +180,7 @@ private UserRegistry usersList = new UserRegistry();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
-        name = nameTextField.getText();
+        
         
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
@@ -190,15 +188,24 @@ private UserRegistry usersList = new UserRegistry();
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
 //        if(password.equals(confirmedPassword))
 //            JOptionPane.showMessageDialog(null, "Password and Confirmed Password are not the same!");
-        
-        controller.newUser(name, username, email, password);
+        if(nameTextField.getText().isEmpty() || userNameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || String.valueOf(passwordField.getPassword()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "                          Missing Data!", "Error!", -1);
+        }else{
+            if(String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))){
+                
+            
+        controller.newUser(nameTextField.getText(), userNameTextField.getText(), emailTextField.getText(), String.valueOf(passwordField.getPassword()));
         controller.addUser();
         
-         
         JOptionPane.showMessageDialog(null, "User created with success!");
         
         dispose();
         
+        }else{
+                JOptionPane.showMessageDialog(null, "Inserted passwords are not the same!", "Error!", -1);
+            }
+           
+        }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
@@ -206,19 +213,19 @@ private UserRegistry usersList = new UserRegistry();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
-        confirmedPassword = String.valueOf(confirmPasswordField.getPassword());
+        
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
-        username = userNameTextField.getText();
+            
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        email = emailTextField.getText();
+
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        password = String.valueOf(passwordField.getPassword());
+        
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**

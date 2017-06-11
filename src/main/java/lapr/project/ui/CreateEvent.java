@@ -62,14 +62,14 @@ public class CreateEvent extends javax.swing.JFrame {
 
         UserRegistry list = controller.getUsersList();
         usersJList.setModel(modelUsersList);
-        User u = new User("22as", "asdsa", "asdasd", "AS");
-        User u2 = new User("asdasdas", "asdsa", "asdasd", "AS");
-        User u3 = new User("9ihjkh", "asdsa", "asdasd", "AS");
-        User u4 = new User("dndscsdc", "asdsa", "asdasd", "AS");
-        list.addUser(u);
-        list.addUser(u2);
-        list.addUser(u3);
-        list.addUser(u4);
+//        User u = new User("22as", "asdsa", "asdasd", "AS");
+//        User u2 = new User("asdasdas", "asdsa", "asdasd", "AS");
+//        User u3 = new User("9ihjkh", "asdsa", "asdasd", "AS");
+//        User u4 = new User("dndscsdc", "asdsa", "asdasd", "AS");
+//        list.addUser(u);
+//        list.addUser(u2);
+//        list.addUser(u3);
+//        list.addUser(u4);
         for (int i = 0; i < list.size(); i++) {
             modelUsersList.addElement(list.getUser(i));
         }
