@@ -130,7 +130,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void createEventMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventMenuItemActionPerformed
         CreateEvent event = new CreateEvent(eventCenter);
-
     }//GEN-LAST:event_createEventMenuItemActionPerformed
 
     private void RegisterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterMenuItemActionPerformed

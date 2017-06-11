@@ -22,6 +22,7 @@ import lapr.project.model.EventCenter;
 import lapr.project.model.Exhibition;
 import lapr.project.model.LocationList;
 import lapr.project.model.Location;
+import lapr.project.model.Organizer;
 import lapr.project.model.OrganizersList;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
@@ -35,8 +36,8 @@ public class CreateEvent extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateEventController controller;
-//    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-//    private DefaultListModel<String> modelOrganizerListEvent = new DefaultListModel<String>();
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
+    private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<Organizer>();
 
     /**
      * Creates new form CreateEvent
@@ -57,26 +58,21 @@ public class CreateEvent extends javax.swing.JFrame {
 //        for (int i = 0; i < list.size(); i++) {
 //            locals.addItem(list.getLocal(i));
 //        }
-        DefaultListModel model = (DefaultListModel) usersJList.getModel();
-        
-        List list = controller.getUsersList();
-//             User u = new User("22as", "asdsa", "asdasd", "AS");
-//             User u2 = new User("asdasdas", "asdsa", "asdasd", "AS");
-//             User u3 = new User("9ihjkh", "asdsa", "asdasd", "AS");
-//             User u4 = new User("dndscsdc", "asdsa", "asdasd", "AS");
-//             list.addUser(u);
-//             list.addUser(u2);
-//             list.addUser(u3);
-//             list.addUser(u4);
-        for (Object User : list) {          
-            model.addElement(User);
-            
+
+        UserRegistry list = controller.getUsersList();
+        usersJList.setModel(modelUsersList);
+        User u = new User("22as", "asdsa", "asdasd", "AS");
+        User u2 = new User("asdasdas", "asdsa", "asdasd", "AS");
+        User u3 = new User("9ihjkh", "asdsa", "asdasd", "AS");
+        User u4 = new User("dndscsdc", "asdsa", "asdasd", "AS");
+        list.addUser(u);
+        list.addUser(u2);
+        list.addUser(u3);
+        list.addUser(u4);
+        for (int i = 0; i < list.size(); i++) {
+            modelUsersList.addElement(list.getUser(i));
         }
-            
-        
-        
-        
-          
+
         setVisible(true);
     }
 
@@ -99,7 +95,7 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        locals = new javax.swing.JComboBox<lapr.project.model.Location>();
+        locals = new javax.swing.JComboBox<>();
         newAddressbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -110,10 +106,10 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        OrganizersList = new javax.swing.JList<String>();
+        OrganizersList = new javax.swing.JList<>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        usersJList = new javax.swing.JList<lapr.project.model.User>();
+        usersJList = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addOrganizerbtn = new javax.swing.JButton();
@@ -366,8 +362,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_newEventbtnActionPerformed
 
-    
-    
+
     private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addOrganizerbtnActionPerformed
@@ -426,7 +421,7 @@ public class CreateEvent extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> OrganizersList;
+    private javax.swing.JList<Organizer> OrganizersList;
     private javax.swing.JSpinner SubmitAppStart;
     private javax.swing.JButton addOrganizerbtn;
     private javax.swing.ButtonGroup buttonGroup1;

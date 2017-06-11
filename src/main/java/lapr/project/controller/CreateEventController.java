@@ -13,28 +13,27 @@ import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.Organizer;
 import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class CreateEventController {
-    
+
     private EventCenter eventCenter;
     private ArrayList<User> usersList;
     private ArrayList<Organizer> OrganizersList;
-    
-    
-    public CreateEventController(EventCenter eventCenter){
+
+    public CreateEventController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }
-    
-    public List<User> getUsersList(){
-        return eventCenter.getUserRegistry().getUsersList();
+
+    public UserRegistry getUsersList() {
+        return eventCenter.getUserRegistry();
     }
-    
-    
-    public User getUser(int index){
+
+    public User getUser(int index) {
         return usersList.get(index);
     }
 }

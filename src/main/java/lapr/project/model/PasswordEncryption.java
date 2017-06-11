@@ -7,7 +7,7 @@ package lapr.project.model;
 public class PasswordEncryption {
 
     private static final int[] KEY = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
-
+    
     /**
      *
      * @param password
