@@ -389,7 +389,7 @@ public class CreateEvent extends javax.swing.JFrame {
             Date db = sdf.parse(dateBString);
             Date de = sdf.parse(dateEString);
             if (congressRadiobtn.isSelected()) {
-                Congress c = new Congress(name, description, db, de, local,100);
+                Congress c = new Congress(name, description, db, de, local, 100);
                 System.out.println("Congress");
             } else if (exhibitionRadiobtn.isSelected()) {
                 String n = JOptionPane.showInputDialog("Insert the number of invites available for the Exhibition");
@@ -453,45 +453,26 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void addOrganizerByIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerByIDTextFieldActionPerformed
         String userID = addOrganizerByIDTextField.getText();
-
         for (int i = 0; i < listUsers.size(); i++) {
             User u = listUsers.getUser(i);
-            if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
-                Organizer o = new Organizer(u);
-                for (int j = 0; j < listOrganizers.size(); j++) {
-                    Organizer organizer = listOrganizers.getOrganizer(j);
-                    if (organizer.equals(o)) {
-                        JOptionPane.showMessageDialog(null, "This user is already defined as organizer");
-                    } else {
-                        listOrganizers.addOrganizer(o);
-                        modelOrganizerListEvent.addElement(o);
-                        modelUsersList.removeElement(u);
-                    }
-                }
-                
+            Organizer o = new Organizer(u);
+            if(modelOrganizerListEvent.contains(o)){
+                JOptionPane.showMessageDialog(null, "This user is already defined as organizer");
+            }else if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+
+                listOrganizers.addOrganizer(o);
+                modelOrganizerListEvent.addElement(o);
+                modelUsersList.removeElement(u);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Given user doesn't exist");
             }
+            
         }
 
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
 
-    public UserRegistry getlistUsers() {
-        return this.listUsers;
-    }
-
-    public OrganizersList getlistOrganizers() {
-        return this.listOrganizers;
-    }
-
-    public DefaultListModel<User> getUsersListModel() {
-        return this.modelUsersList;
-    }
-
-    public DefaultListModel<Organizer> getOrganizersListModel() {
-        return this.modelOrganizerListEvent;
-    }
     /**
      * @param args the command line arguments
      */
