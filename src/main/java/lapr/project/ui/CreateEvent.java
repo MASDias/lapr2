@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.CreateEventController;
 import lapr.project.model.Congress;
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
 import lapr.project.model.Exhibition;
 import lapr.project.model.LocationList;
 import lapr.project.model.Location;
@@ -40,6 +41,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<Organizer>();
     private UserRegistry listUsers;
     private OrganizersList listOrganizers;
+    private EventRegistry listEvents;
 
     /**
      * Creates new form CreateEvent
@@ -62,6 +64,8 @@ public class CreateEvent extends javax.swing.JFrame {
 //        for (int i = 0; i < list.size(); i++) {
 //            locals.addItem(list.getLocal(i));
 //        }
+        listEvents = controller.getEventsList();
+        
 
         listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
@@ -389,18 +393,23 @@ public class CreateEvent extends javax.swing.JFrame {
             Date de = sdf.parse(dateEString);
             if (congressRadiobtn.isSelected()) {
                 Congress c = new Congress(name, description, db, de, local, 100);
+                listEvents.addEvent(c);
                 System.out.println("Congress");
+                JOptionPane.showMessageDialog(null, "Congress created with success!");
             } else if (exhibitionRadiobtn.isSelected()) {
                 String n = JOptionPane.showInputDialog("Insert the number of invites available for the Exhibition");
                 int nInvites = Integer.parseInt(n);
                 Exhibition e = new Exhibition(name, description, db, de, local, nInvites);
+                listEvents.addEvent(e);
                 System.out.println("Exhibition");
+                JOptionPane.showMessageDialog(null, "Exhibition created with success!");
             } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Error inserting date");
         }
+        dispose();
     }//GEN-LAST:event_newEventbtnActionPerformed
 
 

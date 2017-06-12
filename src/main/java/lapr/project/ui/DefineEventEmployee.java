@@ -39,8 +39,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineEventEmployeeController(eventCenter);
         initComponents();
-        
-        
+
         listEvents = controller.getEventList();
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
@@ -242,8 +241,37 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
-        // TODO add your handling code here:
+
+        String userID = userIDTextField.getText();
+        if (!validateEmployee(userID)) {
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                    EventEmployee e = new EventEmployee(u, 0);
+                    listEmployees.addEmployee(e);
+                    modelEmployeesList.addElement(e);
+                    modelUsersList.removeElement(u);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
+        }
+
+        userIDTextField.setText("");
+
     }//GEN-LAST:event_userIDTextFieldActionPerformed
+    public boolean validateEmployee(String id) {
+        for (int i = 0; i < listEmployees.size(); i++) {
+            String[] split = listEmployees.getEmployee(i).toString().split(" ");
+            if (split[5].equals(id) || split[3].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         dispose();
