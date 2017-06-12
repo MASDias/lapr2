@@ -71,4 +71,12 @@ public class UserRegistryTest {
         int expectedResult = 1;
         assertEquals(size, expectedResult);
     }
+   @Test
+   public void EnsureAddUserMethodAddsUserToListIndex() throws Exception {
+        UserRegistry list = new UserRegistry();
+        User result = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        list.addUser(result);
+        User expectedResult = list.getUser(0);
+        assertEquals(result, expectedResult);
+    }
 }
