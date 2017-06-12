@@ -8,9 +8,7 @@ import java.util.Date;
  */
 public class Congress extends Event {
 
-    StandRegistry standRegistry;
     WorkshopList workshopList;
-    ApplicationList applicationList;
 
     /**
      *
@@ -19,12 +17,11 @@ public class Congress extends Event {
      * @param eventBegin
      * @param eventEnd
      * @param local
+     * @param invites
      */
-    public Congress(String title, String description, Date eventBegin, Date eventEnd, Location local) {
-        super(title, description, eventBegin, eventEnd, local);
+    public Congress(String title, String description, Date eventBegin, Date eventEnd, Location local,int invites) {
+        super(title, description, eventBegin, eventEnd, local,invites);
         this.workshopList = new WorkshopList();
-        this.applicationList = new ApplicationList();
-        this.standRegistry = new StandRegistry();
     }
 
     /**

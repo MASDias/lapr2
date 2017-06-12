@@ -13,8 +13,11 @@ public class Event {
     private Date eventBegin;
     private Date eventEnd;
     private Location local;
+    private int invites;
     private ApplicationList applicationsList;
+    private EventEmployeeList eventEmployeeList;
     private Keyword keyword;
+    private StandRegistry standRegister;
 
     /**
      *
@@ -23,14 +26,18 @@ public class Event {
      * @param eventBegin
      * @param eventEnd
      * @param local
+     * @param invites
      */
-    public Event(String title, String description, Date eventBegin, Date eventEnd, Location local) {
+    public Event(String title, String description, Date eventBegin, Date eventEnd, Location local, int invites) {
         this.title = title;
         this.description = description;
         this.eventBegin = eventBegin;
         this.eventEnd = eventEnd;
         this.local = local;
+        this.invites = invites;
+        this.standRegister = new StandRegistry();
         this.applicationsList = new ApplicationList();
+        this.eventEmployeeList = new EventEmployeeList();
     }
 
     /**
@@ -39,6 +46,7 @@ public class Event {
      */
     public Keyword getKeyword() {
         return keyword;
+
     }
 
     /**
@@ -48,7 +56,7 @@ public class Event {
     public void setKeyword(Keyword keyword) {
         this.keyword = keyword;
     }
- 
+
     /**
      *
      * @return
@@ -63,6 +71,22 @@ public class Event {
      */
     public void setApplicationsList(ApplicationList applicationsList) {
         this.applicationsList = applicationsList;
+    }
+
+    public StandRegistry getStandRegister() {
+        return standRegister;
+    }
+
+    public void setStandRegister(StandRegistry standRegister) {
+        this.standRegister = standRegister;
+    }
+
+    public EventEmployeeList getEventEmployeeList() {
+        return eventEmployeeList;
+    }
+
+    public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {
+        this.eventEmployeeList = eventEmployeeList;
     }
 
     @Override

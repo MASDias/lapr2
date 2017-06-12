@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.model;
 
 import java.util.ArrayList;
@@ -11,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class LocationList {
 
@@ -22,14 +17,6 @@ public class LocationList {
      */
     public LocationList() {
         this.localList = new ArrayList<>();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public List<Location> getListLocals() {
-        return localList;
     }
 
     /**
@@ -57,8 +44,6 @@ public class LocationList {
     public void addLocal(Location local) {
         if (validate(local)) {
             localList.add(local);
-        } else {
-            JOptionPane.showMessageDialog(null, "Can't add local to list!");
         }
     }
 

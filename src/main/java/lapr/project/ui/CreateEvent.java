@@ -381,7 +381,7 @@ public class CreateEvent extends javax.swing.JFrame {
             Date db = sdf.parse(dateBString);
             Date de = sdf.parse(dateEString);
             if (congressRadiobtn.isSelected()) {
-                Congress c = new Congress(name, description, db, de, local);
+                Congress c = new Congress(name, description, db, de, local,100);
                 System.out.println("Congress");
             } else if (exhibitionRadiobtn.isSelected()) {
                 String n = JOptionPane.showInputDialog("Insert the number of invites available for the Exhibition");

@@ -29,8 +29,9 @@ public class Application2Test {
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
 
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, true);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         assertEquals(application, application);
     }
 
@@ -44,9 +45,11 @@ public class Application2Test {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwert", event, false);
-        Application2 application2 = new Application2("qwerty", event, false);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
+        Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 789456423, 951456312);
+        Application2 application2 = new Application2(e, event);
 
         assertNotEquals(application, application2);
     }
@@ -61,8 +64,9 @@ public class Application2Test {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, false);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         Object expectedResult = new Object();
         assertNotEquals(application, expectedResult);
     }
@@ -77,10 +81,11 @@ public class Application2Test {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, false);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         String result = application.toString();
-        String expectedResult = "Description: qwerty\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street\nDecision: false";
+        String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street";
         assertEquals(result, expectedResult);
     }
 
@@ -90,14 +95,15 @@ public class Application2Test {
      */
     @Test
     public void EnsureToStringIsNotEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, false);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         String result = application.toString();
-        String expectedResult = "Description: qwert\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street\nDecision: false";
+        String expectedResult = "Enterprise:enterprise2 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987: \nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street";
         assertNotEquals(result, expectedResult);
 
     }

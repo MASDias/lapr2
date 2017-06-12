@@ -54,7 +54,8 @@ public class EventCenterTest {
     public void EnsureSetApplicationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         ApplicationList result = new ApplicationList();
-        Application2 ee = new Application2("u1",null ,false);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 ee = new Application2(e,null);
         result.addApplication(ee);
         ec.setApplicationList(result);
         ApplicationList expectedResult = ec.getApplicationList();
@@ -65,7 +66,8 @@ public class EventCenterTest {
     public void EnsureGetApplicationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         ApplicationList result = new ApplicationList();
-        Application2 ee = new Application2("u1",null ,false);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 ee = new Application2(e,null);
         result.addApplication(ee);
         ec.setApplicationList(result);
         ApplicationList expectedResult = ec.getApplicationList();
@@ -123,7 +125,7 @@ public class EventCenterTest {
     public void EnsureGetEventRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventRegistry result = new EventRegistry();
-        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null);
+        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null,100);
         result.addEvent(ee);
         ec.setEventRegistry(result);
         EventRegistry expectedResult = ec.getEventRegistry();
@@ -134,7 +136,7 @@ public class EventCenterTest {
     public void EnsureSetEventRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventRegistry result = new EventRegistry();
-        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null);
+        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null,100);
         result.addEvent(ee);
         ec.setEventRegistry(result);
         EventRegistry expectedResult = ec.getEventRegistry();

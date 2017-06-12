@@ -5,6 +5,9 @@
  */
 package lapr.project.ui;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lapr.project.model.EventCenter;
 
 /**
@@ -15,10 +18,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
+
     /**
      * Creates new form MainWindow
      */
-    
+
     public MainWindow() {
         eventCenter = new EventCenter();
         initComponents();
@@ -46,7 +50,8 @@ public class MainWindow extends javax.swing.JFrame {
         defineEventManagerMenuItem = new javax.swing.JMenuItem();
         defineOrganizerMenuItem = new javax.swing.JMenuItem();
         defineEmployeeMenuItem = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        submitApplicationMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Event Management");
@@ -108,7 +113,15 @@ public class MainWindow extends javax.swing.JFrame {
         defineUser.add(defineEmployeeMenuItem);
 
         jMenu1.add(defineUser);
-        jMenu1.add(jSeparator2);
+        jMenu1.add(jSeparator5);
+
+        submitApplicationMenuItem.setText("Submit Application");
+        submitApplicationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitApplicationMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(submitApplicationMenuItem);
 
         jMenuBar1.add(jMenu1);
 
@@ -152,6 +165,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void defineEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEmployeeMenuItemActionPerformed
         DefineEventEmployee dee = new DefineEventEmployee();
     }//GEN-LAST:event_defineEmployeeMenuItemActionPerformed
+
+    private void submitApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitApplicationMenuItemActionPerformed
+        try {
+            SubmitApplication s = new SubmitApplication();
+        } catch (ParseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_submitApplicationMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +219,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JMenuItem submitApplicationMenuItem;
     // End of variables declaration//GEN-END:variables
 }

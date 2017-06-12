@@ -12,27 +12,28 @@ import java.util.List;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Application2 {
-    
+
     private String description;
     private Event event;
-    boolean decision;
+    private Evaluation evaluation;
+    private Enterprise enterprise;
 
-    /**
-     *
-     * @param description
-     * @param event
-     * @param decision
-     */
-    public Application2(String description, Event event, boolean decision) {
-        this.description = description;
+    public Application2(Enterprise enterprise, Event event) {
+        this.enterprise = enterprise;
         this.event = event;
-        this.decision = decision;
     }
-    
+
+    public Evaluation getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
+    }
+
     @Override
-    public String toString(){
-        return "Description: " +description+ "\n" + event.toString() + "\nDecision: " +decision;
+    public String toString() {
+        return enterprise.toString() + "\n" + event.toString();
     }
-    
-    
+
 }

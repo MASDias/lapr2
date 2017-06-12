@@ -29,9 +29,11 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwert", event, false);
-        Application2 application2 = new Application2("qwerty", event, false);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 987654321, 595323141);
+        Application2 application = new Application2(e, event);
+        Application2 application2 = new Application2(e2, event);
         list.addApplication(application);
         list.addApplication(application2);
         int size = list.size();
@@ -49,8 +51,9 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-        Application2 application = new Application2("qwerty", event, true);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         ApplicationList list = new ApplicationList();
         list.addApplication(application);
         assertEquals(list, list);
@@ -66,9 +69,9 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-
-        Application2 application = new Application2("qwerty", event, true);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         ApplicationList list = new ApplicationList();
         ApplicationList list2 = new ApplicationList();
         list.addApplication(application);
@@ -87,7 +90,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
         event.setApplicationsList(list);
         ApplicationList result = event.getApplicationsList();
         ApplicationList expectedResult = list;
@@ -107,8 +110,9 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);       
-        Application2 application = new Application2("hello", event, true);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application2 application = new Application2(e, event);
         result.addApplication(application);
         assertNotEquals(result, expectedResult);
     }
@@ -125,7 +129,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
 
         event.setApplicationsList(result);
         ApplicationList expectedResult = event.getApplicationsList();
@@ -144,7 +148,7 @@ public class ApplicationsListTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
 
         event.setApplicationsList(result);
         ApplicationList expectedResult = new ApplicationList();

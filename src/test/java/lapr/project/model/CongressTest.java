@@ -27,7 +27,7 @@ public class CongressTest {
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
         Location local = new Location("Example Street", 500);
-        Congress event = new Congress("Model Example", "Explae string", beginning, end, local);
+        Congress event = new Congress("Model Example", "Explae string", beginning, end, local,100);
         assertEquals(event, event);
     }
 
@@ -42,8 +42,8 @@ public class CongressTest {
         Date end = sdf.parse("10-10-2017");
         Location local = new Location("Example Street", 500);
 
-        Congress event = new Congress("Model Example", "Example string", beginning, end, local);
-        Congress result = new Congress("Model", "string", end, beginning, local);
+        Congress event = new Congress("Model Example", "Example string", beginning, end, local,100);
+        Congress result = new Congress("Model", "string", end, beginning, local,100);
         assertNotEquals(event, result);
     }
 
@@ -58,7 +58,7 @@ public class CongressTest {
         Date end = sdf.parse("10-10-2017");
         Location local = new Location("Example Street", 500);
 
-        Congress event = new Congress("Model Example", "Example string",  beginning, end, local);
+        Congress event = new Congress("Model Example", "Example string",  beginning, end, local,100);
         Object result = new Object();
         assertNotEquals(event, result);
     }

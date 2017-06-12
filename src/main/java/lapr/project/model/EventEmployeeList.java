@@ -24,14 +24,6 @@ public class EventEmployeeList {
         this.employeeList = new ArrayList<>();
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<EventEmployee> getEmployeeList() {
-        return employeeList;
-    }
-
     private boolean validate(EventEmployee user) {
         for (EventEmployee u : employeeList) {
             if (u.equals(user)) {
@@ -48,8 +40,6 @@ public class EventEmployeeList {
     public void addEmployee(EventEmployee employee) {
         if (validate(employee)) {
             employeeList.add(employee);
-        } else {
-            JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
         }
     }
 
