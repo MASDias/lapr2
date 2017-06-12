@@ -61,4 +61,13 @@ public class UserRegistryTest {
         assertNotEquals(list, list2);
     }
 
+   public void EnsureAddUserMethodAddsUserToListNotValid() throws Exception {
+        UserRegistry result = new UserRegistry();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        result.addUser(u1);
+        result.addUser(u1);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
 }

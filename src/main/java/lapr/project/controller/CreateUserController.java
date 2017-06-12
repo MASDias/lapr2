@@ -39,6 +39,6 @@ public class CreateUserController {
      *
      */
     public void addUser(){
-        this.eventCenter.getUserRegistry().getUsersList().add(user);
+        this.eventCenter.getUserRegistry().addUser(user);
     }
 }
