@@ -37,6 +37,21 @@ public class EventRegistryTest {
         assertEquals(size, expectedResult);
     }
     
+    public void EnsureAddEventMethodAddsUserToListNotValid() throws Exception {
+       EventRegistry result = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local);
+        
+        result.addEvent(event);
+        result.addEvent(event);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
+    
     /**
      *
      * @throws Exception
@@ -72,26 +87,6 @@ public class EventRegistryTest {
         list.addEvent(event);
         assertNotEquals(list, list2);
     }
-
-    /**
-     *
-     * @throws Exception
-     */
-    @Test
-    public void EnsureGetEventRegistryListIsNotEqual() throws Exception {
-        ApplicationList al = new ApplicationList();
-        ApplicationList al2 = new ApplicationList();
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
-        Event event = new Event("Model Example", "Explae string", beginning, end, local);
-
-       
-        event.setApplicationsList(al);
-        assertNotEquals(al, al2);
-    }
-
+    
 
 }
