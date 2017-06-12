@@ -37,7 +37,7 @@ public class EventEmployee {
 
     @Override
     public String toString() {
-        return eventEmployee.toString() + "\nExperience: " + experience;
+        return eventEmployee.toString() + " Experience: " + experience;
     }
     
     public User getEmployee(){

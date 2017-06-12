@@ -8,10 +8,16 @@ package lapr.project.ui;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.model.Application;
 import lapr.project.model.Congress;
+import lapr.project.model.Enterprise;
 import lapr.project.model.Event;
 import lapr.project.model.Exhibition;
+import lapr.project.model.Keyword;
 import lapr.project.model.Location;
+import lapr.project.model.Product;
 import lapr.project.model.Stand;
 
 /**
@@ -19,8 +25,9 @@ import lapr.project.model.Stand;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class SubmitApplication extends javax.swing.JFrame {
-
+    
     private static final long serialVersionUID = 1;
+    private DefaultListModel<Keyword> modelKeyword = new DefaultListModel<Keyword>();
 
     /**
      * Creates new form SubmitApplication
@@ -33,11 +40,10 @@ public class SubmitApplication extends javax.swing.JFrame {
         Congress event = new Congress("Model Example", "Explae string", beginning, end, local, 100);
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         initComponents();
-        pack();
+        keywordList.setModel(modelKeyword);
         eventsComboBox.addItem(event);
         eventsComboBox.addItem(exhibition);
         setVisible(true);
-
     }
 
     /**
@@ -133,13 +139,16 @@ public class SubmitApplication extends javax.swing.JFrame {
 
         invitesLabel.setText("Invites:");
 
-        productsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         productsLabel.setText("Products:");
 
         jScrollPane3.setViewportView(keywordList);
 
         addKeywordBtn.setText("Add Keyword");
+        addKeywordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addKeywordBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,8 +182,6 @@ public class SubmitApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(productsComboBox, 0, 250, Short.MAX_VALUE))
                     .addComponent(addressTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventsComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(taxpayerNumberTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,16 +192,18 @@ public class SubmitApplication extends javax.swing.JFrame {
                             .addComponent(addKeywordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3))
-                    .addComponent(stand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(stand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eventsComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(eventsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -241,7 +250,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                     .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(productsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submitButton)
                     .addComponent(cancelButton))
@@ -253,12 +262,89 @@ public class SubmitApplication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
+        
+        if (validateTaxpayerNumber() && validateContact() && validateInvites()) {
+            String enterpriseName = enterpriseNameTextField.getText();
+            String email = emailTextField.getText();
+            String address = addressTextField.getText();
+            String description = descriptionTextArea.getText();
+            Stand s = (Stand) stand.getSelectedItem();
+            int invites = Integer.parseInt(invitesTextField.getText());
+            int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+            int contactNumber = Integer.parseInt(contactTextField.getText());
+            Product product = (Product) productsComboBox.getSelectedItem();
+            Enterprise e = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
+            Application a = new Application(e, (Event) eventsComboBox.getSelectedItem());
+            dispose();
+        }
 
+    }//GEN-LAST:event_submitButtonActionPerformed
+    private boolean validateInvites() {
+        String stringInvites = invitesTextField.getText();
+        try {
+            int invites = Integer.parseInt(stringInvites);
+            if (invites <= 0) {
+                JOptionPane.showMessageDialog(null, "Insert a number above zero");
+                invitesTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format number for invites (only numbers)");
+            invitesTextField.setText("");
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validateContact() {
+        String stringContact = contactTextField.getText();
+        try {
+            int contactNumber = Integer.parseInt(contactTextField.getText());
+            if (stringContact.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on contact text field");
+                contactTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in contact Number(only numbers))");
+            contactTextField.setText("");
+            return false;
+        }
+    }
+    
+    private boolean validateTaxpayerNumber() {
+        String stringTaxpayer = taxpayerNumberTextField.getText();
+        try {
+            int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+            if (stringTaxpayer.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on taxpayer number text field");
+                taxpayerNumberTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in Taxpayer Number(only numbers))");
+            taxpayerNumberTextField.setText("");
+            return false;
+        }
+    }
     private void eventsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventsComboBoxActionPerformed
+
+    private void addKeywordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addKeywordBtnActionPerformed
+        String stringKeyword = keywordTextField.getText();
+        if (!stringKeyword.isEmpty()) {
+            Keyword keyword = new Keyword(stringKeyword);
+            modelKeyword.addElement(keyword);
+            keywordTextField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please insert a keyword");
+        }
+    }//GEN-LAST:event_addKeywordBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,9 +404,9 @@ public class SubmitApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<String> keywordList;
+    private javax.swing.JList<Keyword> keywordList;
     private javax.swing.JTextField keywordTextField;
-    private javax.swing.JComboBox<String> productsComboBox;
+    private javax.swing.JComboBox<Product> productsComboBox;
     private javax.swing.JLabel productsLabel;
     private javax.swing.JComboBox<Stand> stand;
     private javax.swing.JLabel standlistLabel;

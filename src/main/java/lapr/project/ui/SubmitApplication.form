@@ -76,8 +76,6 @@
                       <Component id="productsComboBox" pref="250" max="32767" attributes="0"/>
                   </Group>
                   <Component id="addressTextField" alignment="0" max="32767" attributes="0"/>
-                  <Component id="eventsComboBox" alignment="0" max="32767" attributes="0"/>
-                  <Component id="enterpriseNameTextField" alignment="0" max="32767" attributes="0"/>
                   <Component id="taxpayerNumberTextField" alignment="0" max="32767" attributes="0"/>
                   <Component id="contactTextField" alignment="0" max="32767" attributes="0"/>
                   <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
@@ -91,6 +89,8 @@
                       <Component id="jScrollPane3" max="32767" attributes="0"/>
                   </Group>
                   <Component id="stand" max="32767" attributes="0"/>
+                  <Component id="enterpriseNameTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="eventsComboBox" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
@@ -100,9 +100,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="eventsComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="eventsComboBox" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -163,7 +163,7 @@
                   <Component id="productsComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="productsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="submitButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -285,16 +285,11 @@
     <Component class="javax.swing.JComboBox" name="productsComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Product&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="productsLabel">
@@ -318,7 +313,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Keyword&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -327,6 +322,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Keyword"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addKeywordBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

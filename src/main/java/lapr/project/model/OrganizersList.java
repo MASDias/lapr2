@@ -24,14 +24,6 @@ public class OrganizersList {
         this.organizersList = new ArrayList<>();
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<Organizer> getOrganizersList() {
-        return organizersList;
-    }
-
     private boolean validate(Organizer organizer) {
         for (Organizer u : organizersList) {
             if (u.equals(organizer)) {

@@ -28,8 +28,6 @@ public class EventManagerList {
      *
      * @return
      */
-
-
     private boolean validate(EventManager eventManager) {
         for (EventManager u : managerList) {
             if (u.equals(eventManager)) {

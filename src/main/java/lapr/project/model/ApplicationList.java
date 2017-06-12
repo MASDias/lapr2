@@ -24,14 +24,6 @@ public class ApplicationList {
         this.applicationsList = new ArrayList<>();
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<Application> getApplicationsList() {
-        return applicationsList;
-    }
-
     private boolean validate(Application application) {
         for (Application a : applicationsList) {
             if (a.equals(application)) {
@@ -48,8 +40,6 @@ public class ApplicationList {
     public void addApplication(Application application) {
         if (validate(application)) {
             applicationsList.add(application);
-        } else {
-            JOptionPane.showMessageDialog(null, "Can't add application to list!");
         }
     }
 

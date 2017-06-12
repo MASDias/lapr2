@@ -123,4 +123,11 @@ public class Keyword implements Exportable, Importable<Keyword> {
 		return getValue().equals(that.getValue());
 
 	}
+
+    @Override
+    public String toString() {
+        return  value;
+    }
+        
+        
 }

@@ -58,7 +58,7 @@ public class EventEmployeeTest {
         User user = new User("Z", "c", "b", "a");
         EventEmployee employeeResult = new EventEmployee(user, 1);
         String result = employeeResult.toString();
-        String expectedResult = "Name: Z\n Username: b\n Email: c\nExperience: 1";
+        String expectedResult = "Name: Z Username: b Email: c Experience: 1";
         assertEquals(result, expectedResult);
     }
 
@@ -70,7 +70,7 @@ public class EventEmployeeTest {
         User user = new User("Z", "c", "b", "a");
         EventEmployee employeeResult = new EventEmployee(user, 1);
         String result = employeeResult.toString();
-        String expectedResult = "Name: l\nUsername: b\nEmail: c\nExperience: 1";
+        String expectedResult = "Name: l Username: b Email: c Experience: 1";
         assertNotEquals(result, expectedResult);
     }
 

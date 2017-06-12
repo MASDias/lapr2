@@ -26,6 +26,7 @@ public class OrganizerTest {
         Organizer organizer = new Organizer(user);
         assertEquals(organizer, organizer);
     }
+    
 
     /**
      *
@@ -58,7 +59,7 @@ public class OrganizerTest {
         User user = new User("James", "james@gmail.com", "juanjames", "123456789");
         Organizer organizer = new Organizer(user);
         String result = organizer.toString();
-        String expectedResult = "Name: James\n Username: juanjames\n Email: james@gmail.com";
+        String expectedResult = "Name: James Username: juanjames Email: james@gmail.com";
         assertEquals(result, expectedResult);
     }
 
@@ -70,7 +71,7 @@ public class OrganizerTest {
         User user = new User("James", "james@gmail.com", "juanjames", "123456789");
         Organizer organizer = new Organizer(user);
         String result = organizer.toString();
-        String expectedResult = "Name: Jame\nUsername: juanjames\nEmail: james@gmail.com";
+        String expectedResult = "Name: Jame Username: juanjames Email: james@gmail.com";
         assertNotEquals(result, expectedResult);
     }
 }
