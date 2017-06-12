@@ -1,0 +1,264 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lapr.project.model;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import org.junit.Test;
+
+/**
+ *
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
+ */
+public class EventCenterTest {
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetEmployeeListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventEmployeeList result = new EventEmployeeList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventEmployee ee = new EventEmployee(u1, 3);
+        result.addEmployee(ee);
+        ec.setEventEmployeeList(result);
+        EventEmployeeList expectedResult = ec.getEventEmployeeList();
+
+        assertEquals(result, expectedResult);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureSetEmployeeListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventEmployeeList result = new EventEmployeeList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventEmployee ee = new EventEmployee(u1, 3);
+        result.addEmployee(ee);
+        ec.setEventEmployeeList(result);
+        EventEmployeeList expectedResult = ec.getEventEmployeeList();
+
+        assertEquals(result, expectedResult);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureSetApplicationListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        ApplicationList result = new ApplicationList();
+        Application2 ee = new Application2("u1",null ,false);
+        result.addApplication(ee);
+        ec.setApplicationList(result);
+        ApplicationList expectedResult = ec.getApplicationList();
+
+        assertEquals(result, expectedResult);
+    }
+    @Test
+    public void EnsureGetApplicationListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        ApplicationList result = new ApplicationList();
+        Application2 ee = new Application2("u1",null ,false);
+        result.addApplication(ee);
+        ec.setApplicationList(result);
+        ApplicationList expectedResult = ec.getApplicationList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetAreaOfExpertiseListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        AreaOfExpertiseList result = new AreaOfExpertiseList();
+        AreaOfExpertise ee = new AreaOfExpertise("u1");
+        result.addAreaOfExpertise(ee);
+        ec.setAreaExpertiseList(result);
+        AreaOfExpertiseList expectedResult = ec.getAreaExpertiseList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetAreaOfExpertiseListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        AreaOfExpertiseList result = new AreaOfExpertiseList();
+        AreaOfExpertise ee = new AreaOfExpertise("u1");
+        result.addAreaOfExpertise(ee);
+        ec.setAreaExpertiseList(result);
+        AreaOfExpertiseList expectedResult = ec.getAreaExpertiseList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetEventManagerListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventManagerList result = new EventManagerList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventManager ee = new EventManager(u1);
+        result.addEventManager(ee);
+        ec.setEventManagerList(result);
+        EventManagerList expectedResult = ec.getEventManagerList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetEventManagerListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventManagerList result = new EventManagerList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventManager ee = new EventManager(u1);
+        result.addEventManager(ee);
+        ec.setEventManagerList(result);
+        EventManagerList expectedResult = ec.getEventManagerList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetEventRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventRegistry result = new EventRegistry();
+        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null);
+        result.addEvent(ee);
+        ec.setEventRegistry(result);
+        EventRegistry expectedResult = ec.getEventRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetEventRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        EventRegistry result = new EventRegistry();
+        Event ee = new Event("Miguel", "miguel@gmail.com,", null,null,null);
+        result.addEvent(ee);
+        ec.setEventRegistry(result);
+        EventRegistry expectedResult = ec.getEventRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetExpertsListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        ExpertsList result = new ExpertsList();
+        Expert u1 = new Expert("Miguel", null);
+        result.addExpert(u1);
+        ec.setExpertList(result);
+        ExpertsList expectedResult = ec.getExpertList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetExpertsListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        ExpertsList result = new ExpertsList();
+        Expert u1 = new Expert("Miguel", null);
+        result.addExpert(u1);
+        ec.setExpertList(result);
+        ExpertsList expectedResult = ec.getExpertList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetLocationListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        LocationList result = new LocationList();
+        Location u1 = new Location("Miguel",1);
+        result.addLocal(u1);
+        ec.setLocationList(result);
+        LocationList expectedResult = ec.getLocationList();
+
+        assertEquals(result, expectedResult);
+    }
+    
+    public void EnsureGetLocationListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        LocationList result = new LocationList();
+        Location u1 = new Location("Miguel",1);
+        result.addLocal(u1);
+        ec.setLocationList(result);
+        LocationList expectedResult = ec.getLocationList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetOrganizersListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        OrganizersList result = new OrganizersList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        Organizer u2 = new Organizer(u1);
+        result.addOrganizer(u2);
+        ec.setOrganizersList(result);
+        OrganizersList expectedResult = ec.getOrganizersList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetOrganizersListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        OrganizersList result = new OrganizersList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        Organizer u2 = new Organizer(u1);
+        result.addOrganizer(u2);
+        ec.setOrganizersList(result);
+        OrganizersList expectedResult = ec.getOrganizersList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetStandRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        StandRegistry result = new StandRegistry();
+        Stand ee = new Stand("Miguel",546);
+        result.addStand(ee);
+        ec.setStandRegistry(result);
+        StandRegistry expectedResult = ec.getStandRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetStandRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        StandRegistry result = new StandRegistry();
+        Stand ee = new Stand("Miguel",546);
+        result.addStand(ee);
+        ec.setStandRegistry(result);
+        StandRegistry expectedResult = ec.getStandRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetUserRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        UserRegistry result = new UserRegistry();
+        User ee = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        result.addUser(ee);
+        ec.setUserRegistry(result);
+        UserRegistry expectedResult = ec.getUserRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetUserRegistryListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        UserRegistry result = new UserRegistry();
+        User ee = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        result.addUser(ee);
+        ec.setUserRegistry(result);
+        UserRegistry expectedResult = ec.getUserRegistry();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureSetWorkshopListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        WorkshopList result = new WorkshopList();
+        ExpertsList el = new ExpertsList();
+        Theme th = new Theme("sda");
+        Workshop u2 = new Workshop("sdads",el,th);
+        result.addWorkshop(u2);
+        ec.setWorkshopList(result);
+        WorkshopList expectedResult = ec.getWorkshopList();
+
+        assertEquals(result, expectedResult);
+    }
+    public void EnsureGetWorkshopListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        WorkshopList result = new WorkshopList();
+        ExpertsList el = new ExpertsList();
+        Theme th = new Theme("sda");
+        Workshop u2 = new Workshop("sdads",el,th);
+        result.addWorkshop(u2);
+        ec.setWorkshopList(result);
+        WorkshopList expectedResult = ec.getWorkshopList();
+
+        assertEquals(result, expectedResult);
+    }
+}
