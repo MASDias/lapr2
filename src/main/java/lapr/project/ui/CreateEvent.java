@@ -70,10 +70,7 @@ public class CreateEvent extends javax.swing.JFrame {
         }
 
         listOrganizers = controller.getOrganizersList();
-        User u = new User("Miguel", "lol", "kkkk", "shuashuashua");
-        Organizer o = new Organizer(u);
-        listOrganizers.addOrganizer(o);
-        organizersJList.setModel(modelOrganizerListEvent);
+        organizersList.setModel(modelOrganizerListEvent);
         for (int i = 0; i < listOrganizers.size(); i++) {
             modelOrganizerListEvent.addElement(listOrganizers.getOrganizer(i));
         }
@@ -110,7 +107,7 @@ public class CreateEvent extends javax.swing.JFrame {
         congressRadiobtn = new javax.swing.JRadioButton();
         exhibitionRadiobtn = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        organizersJList = new javax.swing.JList<Organizer>();
+        organizersList = new javax.swing.JList<Organizer>();
         removeOrganizerbtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         usersJList = new javax.swing.JList<User>();
@@ -119,6 +116,7 @@ public class CreateEvent extends javax.swing.JFrame {
         addOrganizerbtn = new javax.swing.JButton();
         newEventbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
+        addOrganizerByID = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create Event");
@@ -176,7 +174,7 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(organizersJList);
+        jScrollPane3.setViewportView(organizersList);
 
         removeOrganizerbtn.setText("Remove Organizer");
         removeOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +189,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jLabel5.setText("Users List");
 
-        addOrganizerbtn.setText("Add Organizer");
+        addOrganizerbtn.setText("Add Organizer From List");
         addOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrganizerbtnActionPerformed(evt);
@@ -212,18 +210,21 @@ public class CreateEvent extends javax.swing.JFrame {
             }
         });
 
+        addOrganizerByID.setText("Add Organizer By ID");
+        addOrganizerByID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrganizerByIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(addOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(removeOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(57, 57, 57))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(127, 127, 127))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,11 +274,19 @@ public class CreateEvent extends javax.swing.JFrame {
                             .addComponent(exhibitionRadiobtn)
                             .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(225, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addOrganizerByID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addOrganizerbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(removeOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -318,11 +327,13 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeOrganizerbtn)
-                    .addComponent(addOrganizerbtn))
+                    .addComponent(addOrganizerbtn)
+                    .addComponent(removeOrganizerbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addOrganizerByID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newEventbtn)
                     .addComponent(cancelbtn)))
@@ -346,6 +357,7 @@ public class CreateEvent extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
@@ -392,7 +404,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void removeOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrganizerbtnActionPerformed
         try{
-        Organizer o = modelOrganizerListEvent.getElementAt(organizersJList.getSelectedIndex());
+        Organizer o = modelOrganizerListEvent.getElementAt(organizersList.getSelectedIndex());
         for (int i = 0; i < listUsers.size(); i++) {          
             User u = listUsers.getUser(i);
             if(u.getUserName().equals(o.getOrganizer().getUserName())){
@@ -423,6 +435,11 @@ public class CreateEvent extends javax.swing.JFrame {
     private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
         dispose();
     }//GEN-LAST:event_cancelbtnActionPerformed
+
+    private void addOrganizerByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerByIDActionPerformed
+        AddOrganizerByIDUI aobi = new AddOrganizerByIDUI();
+        
+    }//GEN-LAST:event_addOrganizerByIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -461,6 +478,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner SubmitAppStart;
+    private javax.swing.JButton addOrganizerByID;
     private javax.swing.JButton addOrganizerbtn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelbtn;
@@ -486,7 +504,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton newAddressbtn;
     private javax.swing.JButton newEventbtn;
-    private javax.swing.JList<Organizer> organizersJList;
+    private javax.swing.JList<Organizer> organizersList;
     private javax.swing.JButton removeOrganizerbtn;
     private javax.swing.JSpinner submitAppEnd;
     private javax.swing.JList<User> usersJList;
