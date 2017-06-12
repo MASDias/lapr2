@@ -377,7 +377,6 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        OrganizersList orgList = new OrganizersList();
         String name = nameTextField.getText();
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
@@ -453,26 +452,34 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void addOrganizerByIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerByIDTextFieldActionPerformed
         String userID = addOrganizerByIDTextField.getText();
-        for (int i = 0; i < listUsers.size(); i++) {
-            User u = listUsers.getUser(i);
-            Organizer o = new Organizer(u);
-            if(modelOrganizerListEvent.contains(o)){
-                JOptionPane.showMessageDialog(null, "This user is already defined as organizer");
-            }else if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
-
-                listOrganizers.addOrganizer(o);
-                modelOrganizerListEvent.addElement(o);
-                modelUsersList.removeElement(u);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+        if (!validateOrganizer(userID)) {
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                    Organizer o = new Organizer(u);
+                    listOrganizers.addOrganizer(o);
+                    modelOrganizerListEvent.addElement(o);
+                    modelUsersList.removeElement(u);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                }
             }
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
         }
 
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
-
+    public boolean validateOrganizer(String id) {
+        for (int i = 0; i < listOrganizers.size(); i++) {
+            String[] split = listOrganizers.getOrganizer(i).toString().split(" ");
+            if (split[5].equals(id) || split[3].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
