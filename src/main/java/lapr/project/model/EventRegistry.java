@@ -52,4 +52,8 @@ public class EventRegistry {
     public int size() {
         return eventsList.size();
     }
+    
+    public Event getEvent(int index){
+        return eventsList.get(index);
+    }
 }

@@ -163,7 +163,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_defineEventManagerMenuItemActionPerformed
 
     private void defineEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEmployeeMenuItemActionPerformed
-        DefineEventEmployee dee = new DefineEventEmployee();
+        DefineEventEmployee dee = new DefineEventEmployee(eventCenter);
     }//GEN-LAST:event_defineEmployeeMenuItemActionPerformed
 
     private void submitApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitApplicationMenuItemActionPerformed

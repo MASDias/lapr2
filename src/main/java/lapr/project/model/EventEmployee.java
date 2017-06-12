@@ -39,4 +39,8 @@ public class EventEmployee {
     public String toString() {
         return eventEmployee.toString() + "\nExperience: " + experience;
     }
+    
+    public User getEmployee(){
+        return eventEmployee;
+    }
 }

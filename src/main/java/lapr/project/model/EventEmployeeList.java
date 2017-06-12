@@ -50,4 +50,12 @@ public class EventEmployeeList {
     public int size() {
         return employeeList.size();
     }
+    
+    public EventEmployee getEmployee(int index){
+        return employeeList.get(index);
+    }
+    
+    public void removeEmployee(EventEmployee e){
+        employeeList.remove(e);
+    }
 }
