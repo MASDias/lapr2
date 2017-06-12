@@ -22,14 +22,7 @@ public class EventRegistry {
     public EventRegistry() {
         this.eventsList = new ArrayList<>();
     }
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<Event> getEventsList() {
-        return eventsList;
-    }
+ 
 
     private boolean validate(Event event) {
         for (Event e : eventsList) {
