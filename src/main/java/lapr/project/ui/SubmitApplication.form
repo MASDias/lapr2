@@ -73,21 +73,26 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="productsLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="productsComboBox" pref="193" max="32767" attributes="0"/>
+                      <Component id="productsComboBox" pref="250" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="stand" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="1" pref="350" max="32767" attributes="0"/>
-                      <Component id="addressTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="eventsComboBox" alignment="0" max="32767" attributes="0"/>
-                      <Component id="enterpriseNameTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="taxpayerNumberTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="contactTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="addressTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="eventsComboBox" alignment="0" max="32767" attributes="0"/>
+                  <Component id="enterpriseNameTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="taxpayerNumberTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="contactTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="keywordTextField" max="32767" attributes="0"/>
+                          <Component id="addKeywordBtn" pref="143" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" max="32767" attributes="0"/>
                   </Group>
+                  <Component id="stand" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,12 +139,19 @@
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="keywordTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="addKeywordBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jScrollPane3" min="-2" pref="95" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="stand" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="standlistLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -151,7 +163,7 @@
                   <Component id="productsComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="productsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="submitButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelButton" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -177,21 +189,6 @@
         <Property name="text" type="java.lang.String" value="Taxpayer Number:"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="descriptionTextArea1">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Description:"/>
@@ -266,16 +263,11 @@
     <Component class="javax.swing.JComboBox" name="stand">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Stand&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="standlistLabel">
@@ -308,6 +300,32 @@
     <Component class="javax.swing.JLabel" name="productsLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Products:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="keywordTextField">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="keywordList">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="addKeywordBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Add Keyword"/>
       </Properties>
     </Component>
   </SubComponents>

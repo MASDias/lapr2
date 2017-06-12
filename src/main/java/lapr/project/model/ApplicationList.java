@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class ApplicationList {
 
-    private List<Application2> applicationsList;
+    private List<Application> applicationsList;
 
     /**
      *
@@ -28,12 +28,12 @@ public class ApplicationList {
      *
      * @return
      */
-    public List<Application2> getApplicationsList() {
+    public List<Application> getApplicationsList() {
         return applicationsList;
     }
 
-    private boolean validate(Application2 application) {
-        for (Application2 a : applicationsList) {
+    private boolean validate(Application application) {
+        for (Application a : applicationsList) {
             if (a.equals(application)) {
                 return false;
             }
@@ -45,7 +45,7 @@ public class ApplicationList {
      *
      * @param application
      */
-    public void addApplication(Application2 application) {
+    public void addApplication(Application application) {
         if (validate(application)) {
             applicationsList.add(application);
         } else {

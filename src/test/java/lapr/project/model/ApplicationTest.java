@@ -1,227 +1,110 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lapr.project.model;
 
-import lapr.project.utils.StringUtil;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
- * Class to demonstrate a Candidatura simple example.
  *
- * @author Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class ApplicationTest {
 
-	/**
-	 * StringUtil variable to access utils for Strings.
-	 */
-	private StringUtil stringUtil = new StringUtil();
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureSameObjectsApplicationIsEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
 
-	/**
-	 * Get OS independent line break.
-	 *
-	 * @return OS independent line break "%n".
-	 */
-	private String getLineBreak() {
-		if (stringUtil == null) {
-			stringUtil = new StringUtil();
-		}
-		return stringUtil.getLineBreak();
-	}
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, event);
+        assertEquals(application, application);
+    }
 
     /**
      *
      * @throws Exception
      */
     @Test
-	public void ensureAddKeywordIsWorking() throws Exception {
-		List<Keyword> expectedKeywordList = new ArrayList<>();
-		expectedKeywordList.add(new Keyword("Doors"));
+    public void EnsureSameObjectsApplicationAreNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, event);
+        Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 789456423, 951456312);
+        Application application2 = new Application(e, event);
 
-                
-		Application candidatura = new Application("MyCandidatura", new ArrayList<>());
-		candidatura.addKeyword(new Keyword("Doors"));
-
-		List<Keyword> resultList = candidatura.getKeywordList();
-
-		assertArrayEquals(expectedKeywordList.toArray(), resultList.toArray());
-
-	}
-
-    /**
-     *
-     * @throws Exception
-     */
-    @Test 
-	public void ensureXMLElementExportToStringIsValid() throws Exception {
-		String expected = "<application>" + getLineBreak() +
-				"<description>MyApplication</description>" + getLineBreak() +
-				"<keywords>" + getLineBreak() +
-				"<keyword>" + getLineBreak() +
-				"<value>Doors</value>" + getLineBreak() +
-				"</keyword>" + getLineBreak() +
-				"<keyword>" + getLineBreak() +
-				"<value>Windows</value>" + getLineBreak() +
-				"</keyword>" + getLineBreak() +
-				"</keywords>" + getLineBreak() +
-				"</application>" + getLineBreak();
-
-		List<Keyword> keywordList = new ArrayList<>();
-		keywordList.add(new Keyword("Doors"));
-		keywordList.add(new Keyword("Windows"));
-		Application application = new Application("MyApplication", keywordList);
-		String result = application.exportContentToString();
-		assertEquals(expected, result);
-	}
+        assertNotEquals(application, application2);
+    }
 
     /**
      *
      * @throws Exception
      */
     @Test
-	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
-		List<Keyword> keywordList = new ArrayList<>();
-		keywordList.add(new Keyword("Doors"));
-		keywordList.add(new Keyword("Windows"));
-
-		Application expected = new Application("MyApplication", keywordList);
-
-		DocumentBuilderFactory factory =
-				DocumentBuilderFactory.newInstance();
-
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
-
-		//Obtain a new document
-		Document document = builder.newDocument();
-
-		//Create root element
-		Element elementCandidatura = document.createElement("application");
-
-		//Create a sub-element
-		Element elementDescription = document.createElement("description");
-
-		//Set the sub-element value
-		elementDescription.setTextContent("MyApplication");
-
-		//Add sub-element to root element
-		elementCandidatura.appendChild(elementDescription);
-
-		//Create a sub-element
-		Element elementKeywords = document.createElement("keywords");
-
-		//iterate over keywords
-		for (Keyword keyword : keywordList) {
-			Node keywordNode = keyword.exportContentToXMLNode();
-			elementKeywords.appendChild(document.importNode(keywordNode, true));
-		}
-
-		elementCandidatura.appendChild(elementKeywords);
-
-		//Add root element to document
-		document.appendChild(elementCandidatura);
-
-		Application result = new Application();
-		result = result.importContentFromXMLNode(elementCandidatura);
-
-		assertEquals(expected, result);
-                
-	}
+    public void EnsureDifferentObjectsApplicationAreNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, event);
+        Object expectedResult = new Object();
+        assertNotEquals(application, expectedResult);
+    }
 
     /**
      *
+     * @throws Exception
      */
     @Test
-	public void ensureSameContentObjectsAreEqual() {
-		String description = "MyCandidatura";
-
-		List<Keyword> keywords = new ArrayList<>();
-		keywords.add(new Keyword("Doors"));
-		keywords.add(new Keyword("Windows"));
-
-		Application expected = new Application(description, keywords);
-		Application result = new Application(description, keywords);
-
-		assertEquals(expected, result);
-	}
+    public void EnsureToStringIsEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, event);
+        String result = application.toString();
+        String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987\nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street";
+        assertEquals(result, expectedResult);
+    }
 
     /**
      *
+     * @throws Exception
      */
     @Test
-	public void ensureSameObjectIsEqual() {
-		String description = "MyCandidatura";
+    public void EnsureToStringIsNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street", 500);
+        Event event = new Event("Model Example", "Explae string", beginning, end, local,100);
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, event);
+        String result = application.toString();
+        String expectedResult = "Enterprise:enterprise2 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987: \nTitle: Model Example\nDescription: Explae string\nDate Begin: Tue Jan 10\nDate End: Mon Jan 30\nLocal: Address: Example Street";
+        assertNotEquals(result, expectedResult);
 
-		List<Keyword> keywords = new ArrayList<>();
-		keywords.add(new Keyword("Doors"));
-		keywords.add(new Keyword("Windows"));
-
-		Application expected = new Application(description, keywords);
-
-		assertEquals(expected, expected);
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void ensureDifferentObjectsAreNotEqual() {
-		String description = "MyCandidatura";
-
-		List<Keyword> keywords = new ArrayList<>();
-		keywords.add(new Keyword("Doors"));
-		keywords.add(new Keyword("Windows"));
-
-		Application expected = new Application(description, keywords);
-
-		Object result = new Object();
-		assertNotEquals(expected, result);
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void ensureDifferentDescriptionMakeObjectsNotEqual() {
-		String description1 = "MyCandidatura1";
-		String description2 = "MyCandidatura2";
-
-		List<Keyword> keywords = new ArrayList<>();
-		keywords.add(new Keyword("Doors"));
-		keywords.add(new Keyword("Windows"));
-
-		Application expected = new Application(description1, keywords);
-		Application result = new Application(description2, keywords);
-
-		assertNotEquals(expected, result);
-	}
-
-    /**
-     *
-     */
-    @Test
-	public void ensureHashCodeIsCorrect() {
-		String description = "MyCandidatura";
-
-		List<Keyword> keywords = new ArrayList<>();
-		keywords.add(new Keyword("Doors"));
-		keywords.add(new Keyword("Windows"));
-
-		Application application = new Application(description, keywords);
-
-		int expected = 461375881;
-		int result = application.hashCode();
-		assertEquals(expected, result);
-
-	}
-
-
+    }
 }

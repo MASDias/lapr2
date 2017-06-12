@@ -32,8 +32,8 @@ public class ApplicationsListTest {
         Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 987654321, 595323141);
-        Application2 application = new Application2(e, event);
-        Application2 application2 = new Application2(e2, event);
+        Application application = new Application(e, event);
+        Application application2 = new Application(e2, event);
         list.addApplication(application);
         list.addApplication(application2);
         int size = list.size();
@@ -53,7 +53,7 @@ public class ApplicationsListTest {
         Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application2 application = new Application2(e, event);
+        Application application = new Application(e, event);
         ApplicationList list = new ApplicationList();
         list.addApplication(application);
         assertEquals(list, list);
@@ -71,7 +71,7 @@ public class ApplicationsListTest {
         Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application2 application = new Application2(e, event);
+        Application application = new Application(e, event);
         ApplicationList list = new ApplicationList();
         ApplicationList list2 = new ApplicationList();
         list.addApplication(application);
@@ -112,7 +112,7 @@ public class ApplicationsListTest {
         Location local = new Location("Example Street", 500);
         Event event = new Event("Model Example", "Explae string", beginning, end, local, 100);
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application2 application = new Application2(e, event);
+        Application application = new Application(e, event);
         result.addApplication(application);
         assertNotEquals(result, expectedResult);
     }
