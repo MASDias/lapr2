@@ -103,4 +103,15 @@ public class EventManagerListTest {
         EventManagerList expectedList = new EventManagerList();
         assertNotEquals(list, expectedList);
     }
+    @Test
+   public void EnsureAddEventMethodAddsEventToListNotValid() throws Exception {
+        EventManagerList result = new EventManagerList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventManager em = new EventManager(u1);
+        result.addEventManager(em);
+        result.addEventManager(em);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
 }

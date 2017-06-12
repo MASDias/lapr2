@@ -28,9 +28,7 @@ public class EventManagerList {
      *
      * @return
      */
-    public List<EventManager> getEventManagersList() {
-        return managerList;
-    }
+
 
     private boolean validate(EventManager eventManager) {
         for (EventManager u : managerList) {
@@ -48,8 +46,6 @@ public class EventManagerList {
     public void addEventManager(EventManager eventManager) {
         if (validate(eventManager)) {
             managerList.add(eventManager);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error already exists", "Error!", -1);
         }
     }
 
