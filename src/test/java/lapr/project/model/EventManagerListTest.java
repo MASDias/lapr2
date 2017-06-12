@@ -58,39 +58,39 @@ public class EventManagerListTest {
      *
      * @throws Exception
      */
-    @Test
-    public void ensureGetEventManagerListMethodDoesntReturnEventManagerList() throws Exception {
-        EventManagerList expectedList = new EventManagerList();
-        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
-        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
-        EventManager em1 = new EventManager(u1);
-        EventManager em2 = new EventManager(u2);
-        expectedList.addEventManager(em1);
-        expectedList.addEventManager(em2);
-        List<EventManager> list = expectedList.getEventManagersList();
-        List<EventManager> expected = new ArrayList<>();
-        assertNotEquals(list, expected);
-    }
+//    @Test
+//    public void ensureGetEventManagerListMethodDoesntReturnEventManagerList() throws Exception {
+//        EventManagerList expectedList = new EventManagerList();
+//        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+//        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
+//        EventManager em1 = new EventManager(u1);
+//        EventManager em2 = new EventManager(u2);
+//        expectedList.addEventManager(em1);
+//        expectedList.addEventManager(em2);
+//        List<EventManager> list = expectedList.getEventManagersList();
+//        List<EventManager> expected = new ArrayList<>();
+//        assertNotEquals(list, expected);
+//    }
 
     /**
      *
      * @throws Exception
      */
-    @Test
-    public void ensureConstructorEventManagerListWorks() throws Exception {
-        EventManagerList list = new EventManagerList();
-        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
-        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
-        EventManager em1 = new EventManager(u1);
-        EventManager em2 = new EventManager(u2);
-        list.addEventManager(em1);
-        list.addEventManager(em2);
-        EventManagerList expectedList = new EventManagerList();
-        expectedList.addEventManager(em1);
-        expectedList.addEventManager(em2);
-        assertEquals(list.getEventManagersList(), expectedList.getEventManagersList());
-
-    }
+//    @Test
+//    public void ensureConstructorEventManagerListWorks() throws Exception {
+//        EventManagerList list = new EventManagerList();
+//        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+//        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
+//        EventManager em1 = new EventManager(u1);
+//        EventManager em2 = new EventManager(u2);
+//        list.addEventManager(em1);
+//        list.addEventManager(em2);
+//        EventManagerList expectedList = new EventManagerList();
+//        expectedList.addEventManager(em1);
+//        expectedList.addEventManager(em2);
+//        assertEquals(list.getEventManagersList(), expectedList.getEventManagersList());
+//
+//    }
 
     /**
      *
