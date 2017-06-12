@@ -41,8 +41,6 @@ public class UserRegistry {
     public void addUser(User user) {
         if (validate(user)) {
             usersList.add(user);
-        } else {
-            JOptionPane.showMessageDialog(null, "The User " + user.getName(), "Error!", -1);
         }
     }
 
