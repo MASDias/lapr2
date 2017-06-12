@@ -24,13 +24,6 @@ public class UserRegistry {
         this.usersList = new ArrayList<>();
     }
 
-//    /**
-//     *
-//     * @return
-//     */
-//    public List<User> getUsersList() {
-//        return usersList;
-//    }
 
     private boolean validate(User user) {
         for (User u : usersList) {

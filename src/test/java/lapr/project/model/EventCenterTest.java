@@ -72,6 +72,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetAreaOfExpertiseListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         AreaOfExpertiseList result = new AreaOfExpertiseList();
@@ -82,6 +83,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetAreaOfExpertiseListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         AreaOfExpertiseList result = new AreaOfExpertiseList();
@@ -92,6 +94,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetEventManagerListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventManagerList result = new EventManagerList();
@@ -103,6 +106,8 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    
+    @Test
     public void EnsureGetEventManagerListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventManagerList result = new EventManagerList();
@@ -114,6 +119,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetEventRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventRegistry result = new EventRegistry();
@@ -124,6 +130,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetEventRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventRegistry result = new EventRegistry();
@@ -134,6 +141,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetExpertsListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         ExpertsList result = new ExpertsList();
@@ -144,6 +152,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetExpertsListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         ExpertsList result = new ExpertsList();
@@ -154,6 +163,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetLocationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         LocationList result = new LocationList();
@@ -164,7 +174,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
-    
+    @Test
     public void EnsureGetLocationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         LocationList result = new LocationList();
@@ -175,6 +185,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetOrganizersListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         OrganizersList result = new OrganizersList();
@@ -186,6 +197,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetOrganizersListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         OrganizersList result = new OrganizersList();
@@ -197,6 +209,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetStandRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         StandRegistry result = new StandRegistry();
@@ -207,6 +220,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetStandRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         StandRegistry result = new StandRegistry();
@@ -217,6 +231,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetUserRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         UserRegistry result = new UserRegistry();
@@ -227,6 +242,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetUserRegistryListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         UserRegistry result = new UserRegistry();
@@ -237,6 +253,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureSetWorkshopListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         WorkshopList result = new WorkshopList();
@@ -249,6 +266,7 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureGetWorkshopListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         WorkshopList result = new WorkshopList();
