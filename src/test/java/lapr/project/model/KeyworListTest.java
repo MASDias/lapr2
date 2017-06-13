@@ -21,7 +21,6 @@ public class KeyworListTest {
         KeywordList list = new KeywordList();
         Keyword k1 = new Keyword("123456789");
         Keyword k2 = new Keyword("qwerty");
-
         list.addKeyword(k1);
         list.addKeyword(k2);
         int size = list.size();
