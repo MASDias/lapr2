@@ -26,7 +26,7 @@ public class User {
         this.key = (int) (0 + Math.random() * 9);
         this.password = password;
     }
-
+    
     /**
      *
      * @return
@@ -58,7 +58,23 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
+    /**
+     * 
+     * @param password 
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setKey(int key){
+        this.key = key;
+    }
+    
     /**
      *
      * @return

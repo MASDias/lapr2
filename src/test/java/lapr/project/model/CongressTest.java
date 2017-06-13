@@ -26,7 +26,7 @@ public class CongressTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Congress event = new Congress("Model Example", "Explae string", beginning, end, local,100);
         assertEquals(event, event);
     }
@@ -40,7 +40,7 @@ public class CongressTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
 
         Congress event = new Congress("Model Example", "Example string", beginning, end, local,100);
         Congress result = new Congress("Model", "string", end, beginning, local,100);
@@ -56,7 +56,7 @@ public class CongressTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
 
         Congress event = new Congress("Model Example", "Example string",  beginning, end, local,100);
         Object result = new Object();

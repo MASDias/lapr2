@@ -169,7 +169,7 @@ public class EventCenterTest {
     public void EnsureSetLocationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         LocationList result = new LocationList();
-        Location u1 = new Location("Miguel",1);
+        Location u1 = new Location("Miguel");
         result.addLocal(u1);
         ec.setLocationList(result);
         LocationList expectedResult = ec.getLocationList();
@@ -180,7 +180,7 @@ public class EventCenterTest {
     public void EnsureGetLocationListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         LocationList result = new LocationList();
-        Location u1 = new Location("Miguel",1);
+        Location u1 = new Location("Miguel");
         result.addLocal(u1);
         ec.setLocationList(result);
         LocationList expectedResult = ec.getLocationList();

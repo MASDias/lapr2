@@ -382,7 +382,7 @@ public class CreateEvent extends javax.swing.JFrame {
         String name = nameTextField.getText();
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
-        Location local = new Location("teste", 123);
+        Location local = new Location("teste");
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());

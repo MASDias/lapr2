@@ -28,7 +28,7 @@ public class EventRegistryTest {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Event event = new Event("Model Example965", "Explae string", beginning, end, local, 100);
         list.addEvent(event);
         int size = list.size();
@@ -46,7 +46,7 @@ public class EventRegistryTest {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Event event = new Event("Model 98Example", "Explae string", beginning, end, local, 100);
         result.addEvent(event);
         result.addEvent(event);
@@ -64,7 +64,7 @@ public class EventRegistryTest {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Event event = new Event("Model Example50", "Explae string", beginning, end, local, 100);
         EventRegistry list = new EventRegistry();
         list.addEvent(event);
@@ -83,7 +83,7 @@ public class EventRegistryTest {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Event event = new Event("Model Example10", "Explae string", beginning, end, local, 100);
         EventRegistry list = new EventRegistry();
         list.addEvent(event);
@@ -99,7 +99,7 @@ public class EventRegistryTest {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Event event = new Event("Model Example6", "Explae string", beginning, end, local, 100);
         EventRegistry list = new EventRegistry();
         EventRegistry list2 = new EventRegistry();

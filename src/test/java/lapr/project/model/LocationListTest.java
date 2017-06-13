@@ -19,8 +19,8 @@ public class LocationListTest {
     public void EnsureAddLocalMethodAddsLocalToList() throws Exception {
 
         LocationList list = new LocationList();
-        Location l1 = new Location("Rua do prego", 10);
-        Location l2 = new Location("Avenida da Liberdade", 8);
+        Location l1 = new Location("Rua do prego");
+        Location l2 = new Location("Avenida da Liberdade");
 
         list.addLocal(l1);
         list.addLocal(l2);
@@ -35,7 +35,7 @@ public class LocationListTest {
     @Test
     public void EnsureAddLocalMethodAddsUserToListNotValid() throws Exception {
          LocationList result = new LocationList();
-        Location location = new Location("Rua do prego", 10);
+        Location location = new Location("Rua do prego");
         result.addLocal(location);
         result.addLocal(location);
         int size = result.size();
@@ -49,7 +49,7 @@ public class LocationListTest {
     @Test
     public void EnsureAddLocalMethodAddsUserToListIndex() throws Exception {
         LocationList list = new LocationList();
-        Location result = new Location("Rua do prego", 10);
+        Location result = new Location("Rua do prego");
         list.addLocal(result);
         Location expectedResult = list.getLocal(0);
         assertEquals(result, expectedResult);
@@ -63,7 +63,7 @@ public class LocationListTest {
     public void EnsureSameObjectsLocalListAreEqual() throws Exception {
 
         LocationList list = new LocationList();
-        Location location = new Location("Rua do prego", 10);
+        Location location = new Location("Rua do prego");
 
         list.addLocal(location);
         assertEquals(list, list);
@@ -75,7 +75,7 @@ public class LocationListTest {
      */
     @Test
     public void EnsureSameObjectsLocationListAreNotEqual() throws Exception {
-       Location location = new Location("Rua do prego", 10);
+       Location location = new Location("Rua do prego");
          LocationList list = new LocationList();
           LocationList list2 = new LocationList();
         list.addLocal(location);

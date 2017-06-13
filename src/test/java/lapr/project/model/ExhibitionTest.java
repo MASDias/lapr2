@@ -26,7 +26,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
         exhibition.getApplicationsList();
@@ -41,7 +41,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 10);
         assertNotEquals(exhibition, exhibition2);
@@ -57,7 +57,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition, exhibition);
         Object expectedResult = new Object();
@@ -69,7 +69,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         ApplicationList list = new ApplicationList();
         ApplicationList expectedList = list;
@@ -81,7 +81,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         ApplicationList list = new ApplicationList();
         ApplicationList expectedList = exhibition.getApplicationsList();
@@ -95,7 +95,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         Exhibition expectedResult = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         exhibition.setApplicationsList(expectedResult.getApplicationsList());
@@ -108,7 +108,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         ApplicationList list = new ApplicationList();
@@ -122,7 +122,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertEquals(exhibition.getStandRegister(), exhibition.getStandRegister());
     }
@@ -134,7 +134,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         assertNotEquals(exhibition.getStandRegister(), standRegistry);
     }
@@ -145,7 +145,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         exhibition.setStandRegister(standRegistry);
         assertEquals(exhibition.getStandRegister(), standRegistry);
@@ -157,7 +157,7 @@ public class ExhibitionTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
+        Location local = new Location("Example Street");
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
         exhibition.setStandRegister(standRegistry);
         StandRegistry expectedStandRegistry = new StandRegistry();

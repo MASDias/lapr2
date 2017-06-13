@@ -17,7 +17,7 @@ public class Location implements Serializable{
      * @param address
      * @param area
      */
-    public Location(String address, double area) {
+    public Location(String address) {
         this.address = address;
         this.area = area;
     }
