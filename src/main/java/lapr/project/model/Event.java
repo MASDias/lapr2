@@ -18,6 +18,7 @@ public class Event {
     private EventEmployeeList eventEmployeeList;
     private Keyword keyword;
     private StandRegistry standRegister;
+    private OrganizersList organizerList;
 
     /**
      *
@@ -38,8 +39,19 @@ public class Event {
         this.standRegister = new StandRegistry();
         this.applicationsList = new ApplicationList();
         this.eventEmployeeList = new EventEmployeeList();
+        this.organizerList = new OrganizersList();
     }
 
+    public OrganizersList getOrganizerList() {
+        return organizerList;
+    }
+
+    public void setOrganizerList(OrganizersList organizerList) {
+        this.organizerList = organizerList;
+    }
+
+    
+    
     /**
      *
      * @return

@@ -65,7 +65,7 @@ public class CreateEvent extends javax.swing.JFrame {
 //            locals.addItem(list.getLocal(i));
 //        }
         listEvents = controller.getEventsList();
-        
+        listOrganizers = new OrganizersList();
 
         listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
@@ -73,11 +73,9 @@ public class CreateEvent extends javax.swing.JFrame {
             modelUsersList.addElement(listUsers.getUser(i));
         }
 
-        listOrganizers = controller.getOrganizersList();
+
         organizersList.setModel(modelOrganizerListEvent);
-        for (int i = 0; i < listOrganizers.size(); i++) {
-            modelOrganizerListEvent.addElement(listOrganizers.getOrganizer(i));
-        }
+        
         setVisible(true);
     }
 
@@ -388,28 +386,35 @@ public class CreateEvent extends javax.swing.JFrame {
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());
+        String invitesString = invitationTextField.getText();
         try {
             Date db = sdf.parse(dateBString);
             Date de = sdf.parse(dateEString);
             if (congressRadiobtn.isSelected()) {
                 Congress c = new Congress(name, description, db, de, local, 100);
+                c.setOrganizerList(listOrganizers);
                 listEvents.addEvent(c);
                 System.out.println("Congress");
                 JOptionPane.showMessageDialog(null, "Congress created with success!");
+                modelOrganizerListEvent.removeAllElements();
+                dispose();
             } else if (exhibitionRadiobtn.isSelected()) {
-                String n = JOptionPane.showInputDialog("Insert the number of invites available for the Exhibition");
-                int nInvites = Integer.parseInt(n);
-                Exhibition e = new Exhibition(name, description, db, de, local, nInvites);
+                int invite = Integer.parseInt(invitesString);
+                Exhibition e = new Exhibition(name, description, db, de, local, invite);
+                e.setOrganizerList(listOrganizers);
                 listEvents.addEvent(e);
                 System.out.println("Exhibition");
                 JOptionPane.showMessageDialog(null, "Exhibition created with success!");
+                modelOrganizerListEvent.removeAllElements();
+                dispose();
             } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
+            
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Error inserting date");
         }
-        dispose();
+        
     }//GEN-LAST:event_newEventbtnActionPerformed
 
 
