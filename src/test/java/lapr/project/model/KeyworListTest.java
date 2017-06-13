@@ -64,9 +64,9 @@ public class KeyworListTest {
     public void EnsureSameObjectsKeywordListAreEqual() throws Exception {
 
         KeywordList list = new KeywordList();
-        Keyword location = new Keyword("123456789");
+        Keyword keyword = new Keyword("123456789");
 
-        list.addKeyword(location);
+        list.addKeyword(keyword);
         assertEquals(list, list);
     }
 
@@ -76,10 +76,10 @@ public class KeyworListTest {
      */
     @Test
     public void EnsureSameObjectsKeywordListAreNotEqual() throws Exception {
-        Keyword location = new Keyword ("123456789");
+        Keyword keyword = new Keyword ("123456789");
         KeywordList k1 = new KeywordList();
         KeywordList k2 = new KeywordList();
-        k1.addKeyword(location);
+        k1.addKeyword(keyword);
         assertNotEquals(k1, k2);
     }
 
