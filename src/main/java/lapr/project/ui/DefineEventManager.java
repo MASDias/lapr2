@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.DefineEventManagerController;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventManager;
@@ -18,13 +19,14 @@ import lapr.project.model.UserRegistry;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class DefineEventManager extends javax.swing.JFrame {
-private static final long serialVersionUID = 1;
-private EventCenter eventCenter;
-private DefineEventManagerController controller;
-private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-private DefaultListModel<EventManager> modelEventManagersList = new DefaultListModel<EventManager>();
-private UserRegistry listUsers;
-private EventManagerList listEventManagers;
+
+    private static final long serialVersionUID = 1;
+    private EventCenter eventCenter;
+    private DefineEventManagerController controller;
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
+    private DefaultListModel<EventManager> modelEventManagersList = new DefaultListModel<EventManager>();
+    private UserRegistry listUsers;
+    private EventManagerList listEventManagers;
 
     /**
      * Creates new form DefineEventManager
@@ -32,8 +34,21 @@ private EventManagerList listEventManagers;
     public DefineEventManager(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
         controller = new DefineEventManagerController(eventCenter);
-        
+
         initComponents();
+
+        listUsers = controller.getUsersList();
+        userJList.setModel(modelUsersList);
+        for (int i = 0; i < listUsers.size(); i++) {
+            modelUsersList.addElement(listUsers.getUser(i));
+        }
+
+        listEventManagers = controller.getEventManagerList();
+        eventManagerJList.setModel(modelEventManagersList);
+        for (int i = 0; i < listEventManagers.size(); i++) {
+            modelEventManagersList.addElement(listEventManagers.getEventManager(i));
+        }
+
         setVisible(true);
     }
 
@@ -49,7 +64,7 @@ private EventManagerList listEventManagers;
         jScrollPane2 = new javax.swing.JScrollPane();
         userJList = new javax.swing.JList<User>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventOrganizerJList = new javax.swing.JList<EventManager>();
+        eventManagerJList = new javax.swing.JList<EventManager>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         addUserBtn = new javax.swing.JButton();
@@ -57,14 +72,14 @@ private EventManagerList listEventManagers;
         okBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        eventManagerTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Define Event Manager");
 
         jScrollPane2.setViewportView(userJList);
 
-        jScrollPane1.setViewportView(eventOrganizerJList);
+        jScrollPane1.setViewportView(eventManagerJList);
 
         jLabel2.setText("Users List:");
 
@@ -92,8 +107,19 @@ private EventManagerList listEventManagers;
         });
 
         cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Define Event Manager By ID:");
+
+        eventManagerTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventManagerTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +135,7 @@ private EventManagerList listEventManagers;
                 .addGap(159, 159, 159)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eventManagerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -150,7 +176,7 @@ private EventManagerList listEventManagers;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventManagerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cancelBtn)
@@ -162,17 +188,73 @@ private EventManagerList listEventManagers;
     }// </editor-fold>//GEN-END:initComponents
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
+            EventManager em = new EventManager(u);
+            listEventManagers.addEventManager(em);
+            modelEventManagersList.addElement(em);
+            modelUsersList.removeElement(u);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No user selected");
+        }
+
     }//GEN-LAST:event_addUserBtnActionPerformed
 
     private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeUserBtnActionPerformed
+        try {
+            EventManager em = modelEventManagersList.getElementAt(eventManagerJList.getSelectedIndex());
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(em.getEventManager().getUserName())) {
+                    modelUsersList.addElement(u);
+                }
+            }
+            listEventManagers.removeEventManager(em);
+            modelEventManagersList.removeElement(em);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No event manager selected");
+        }    }//GEN-LAST:event_removeUserBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_okBtnActionPerformed
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void eventManagerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventManagerTextFieldActionPerformed
+        
+        String userID = eventManagerTextField.getText();
+        if (!validateEventManager(userID)) {
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                    EventManager e = new EventManager(u);
+                    listEventManagers.addEventManager(e);
+                    modelEventManagersList.addElement(e);
+                    modelUsersList.removeElement(u);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "That user is already a Event Manager");
+        }
+
+        eventManagerTextField.setText("");
+    }//GEN-LAST:event_eventManagerTextFieldActionPerformed
+
+    public boolean validateEventManager(String id) {
+        for (int i = 0; i < listEventManagers.size(); i++) {
+            String[] split = listEventManagers.getEventManager(i).toString().split(" ");
+            if (split[5].equals(id) || split[3].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param args the command line arguments
      */
@@ -181,13 +263,13 @@ private EventManagerList listEventManagers;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserBtn;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JList<EventManager> eventOrganizerJList;
+    private javax.swing.JList<EventManager> eventManagerJList;
+    private javax.swing.JTextField eventManagerTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton okBtn;
     private javax.swing.JButton removeUserBtn;
     private javax.swing.JList<User> userJList;

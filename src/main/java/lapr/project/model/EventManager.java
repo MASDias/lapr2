@@ -20,5 +20,13 @@ public class EventManager {
     public EventManager(User eventManager) {
         this.eventManager = eventManager;
     }
+    
+    public User getEventManager(){
+        return eventManager;
+    }
 
+    @Override
+    public String toString(){
+        return eventManager.toString();
+    }
 }

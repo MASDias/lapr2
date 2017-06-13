@@ -54,4 +54,12 @@ public class EventManagerList {
     public int size() {
         return managerList.size();
     }
+    
+    public EventManager getEventManager(int index){
+        return managerList.get(index);
+    }
+    
+    public void removeEventManager(EventManager eventManager){
+        managerList.remove(eventManager);
+    }
 }
