@@ -11,6 +11,10 @@ public class User {
     private String email;
     private String userName;
     private String password;
+    private boolean userStatus = false;
+    private boolean organizerStatus = false;
+    private boolean eventEmployeeStatus = false;
+    private boolean eventManagerStatus = false;
 
     /**
      *
@@ -25,8 +29,41 @@ public class User {
         this.userName = userName;
         this.key = (int) (0 + Math.random() * 9);
         this.password = password;
+        this.userStatus = true;
     }
-    
+
+    public boolean isUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(boolean userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    public boolean isOrganizerStatus() {
+        return organizerStatus;
+    }
+
+    public void setOrganizerStatus(boolean organizerStatus) {
+        this.organizerStatus = organizerStatus;
+    }
+
+    public boolean isEventEmployeeStatus() {
+        return eventEmployeeStatus;
+    }
+
+    public void setEventEmployeeStatus(boolean eventEmployeeStatus) {
+        this.eventEmployeeStatus = eventEmployeeStatus;
+    }
+
+    public boolean isEventManagerStatus() {
+        return eventManagerStatus;
+    }
+
+    public void setEventManagerStatus(boolean eventManagerStatus) {
+        this.eventManagerStatus = eventManagerStatus;
+    }
+
     /**
      *
      * @return
@@ -58,23 +95,23 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     /**
-     * 
-     * @param password 
+     *
+     * @param password
      */
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    
-    public void setKey(int key){
+
+    public void setKey(int key) {
         this.key = key;
     }
-    
+
     /**
      *
      * @return

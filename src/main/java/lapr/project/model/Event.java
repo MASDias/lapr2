@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -50,25 +51,6 @@ public class Event {
         this.organizerList = organizerList;
     }
 
-    
-    
-    /**
-     *
-     * @return
-     */
-    public Keyword getKeyword() {
-        return keyword;
-
-    }
-
-    /**
-     *
-     * @param keyword
-     */
-    public void setKeyword(Keyword keyword) {
-        this.keyword = keyword;
-    }
-
     /**
      *
      * @return
@@ -103,7 +85,10 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Title: " + title + "\nDescription: " + description + "\nDate Begin: " + eventBegin.toString().substring(0, 10) + "\nDate End: " + eventEnd.toString().substring(0, 10) + "\nLocal: " + local;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String eventBeginString = sdf.format(eventBegin);
+        String eventEndString = sdf.format(eventEnd);
+        return "Title: " + title + "\nDescription: " + description + "\nDate Begin: " + eventBeginString.substring(0, 10) + "\nDate End: " + eventEndString.substring(0, 10) + "\nLocal: " + local;
     }
 
 }

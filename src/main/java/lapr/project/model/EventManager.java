@@ -19,6 +19,7 @@ public class EventManager {
      */
     public EventManager(User eventManager) {
         this.eventManager = eventManager;
+        this.eventManager.setEventManagerStatus(true);
     }
     
     public User getEventManager(){

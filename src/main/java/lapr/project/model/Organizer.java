@@ -15,6 +15,7 @@ public class Organizer {
      */
     public Organizer(User organizer) {
         this.organizer = organizer;
+        this.organizer.setOrganizerStatus(true);
     }
 
     /**

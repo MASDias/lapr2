@@ -15,8 +15,9 @@ public class EventEmployee {
      * @param experience
      */
     public EventEmployee(User eventEmployee, int experience) {
-        this.experience = experience;
         this.eventEmployee = eventEmployee;
+        this.experience = experience;
+        this.eventEmployee.setEventEmployeeStatus(true);
     }
 
     /**

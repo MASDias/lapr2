@@ -18,15 +18,15 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
+    public static boolean loginStatus = false;
 
     /**
      * Creates new form MainWindow
      */
-
     public MainWindow(EventCenter eventCenter) {
-        this.eventCenter = eventCenter;
         initComponents();
-        setVisible(true);
+        this.eventCenter = eventCenter;
+        this.setVisible(true);
     }
 
     /**
@@ -160,7 +160,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_RegisterMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI();
+        LoginUI login = new LoginUI(loginStatus,eventCenter);
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
