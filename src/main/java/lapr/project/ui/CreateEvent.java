@@ -25,6 +25,7 @@ import lapr.project.model.LocationList;
 import lapr.project.model.Location;
 import lapr.project.model.Organizer;
 import lapr.project.model.OrganizersList;
+import lapr.project.model.StandRegistry;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -42,6 +43,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private UserRegistry listUsers;
     private OrganizersList listOrganizers;
     private EventRegistry listEvents;
+    private LocationList locationList;
 
     /**
      * Creates new form CreateEvent
@@ -50,32 +52,17 @@ public class CreateEvent extends javax.swing.JFrame {
      */
     public CreateEvent(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
-        controller = new CreateEventController(eventCenter);
+        controller = new CreateEventController(this.eventCenter);
         initComponents();
-//        LocationList list = new LocationList();
-//        Location a = new Location("asdasd", 123);
-//        Location a2 = new Location("asdasd", 123);
-//        Location a3 = new Location("asdasd", 123);
-//        Location a4 = new Location("asdasd", 123);
-//        list.addLocal(a4);
-//        list.addLocal(a3);
-//        list.addLocal(a2);
-//        list.addLocal(a);
-//        for (int i = 0; i < list.size(); i++) {
-//            locals.addItem(list.getLocal(i));
-//        }
         listEvents = controller.getEventsList();
-        listOrganizers = new OrganizersList();
+        locationList = controller.getLocationList();
 
         listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
-        for (int i = 0; i < listUsers.size(); i++) {
-            modelUsersList.addElement(listUsers.getUser(i));
-        }
-
-
+        listOrganizers = new OrganizersList();
         organizersList.setModel(modelOrganizerListEvent);
-        
+
+        initObjects();
         setVisible(true);
     }
 
@@ -98,7 +85,7 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        locals = new javax.swing.JComboBox<>();
+        locationCombobox = new javax.swing.JComboBox<>();
         newAddressbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -143,11 +130,11 @@ public class CreateEvent extends javax.swing.JFrame {
 
         jLabel6.setText("Description:");
 
-        locals.setMinimumSize(new java.awt.Dimension(180, 20));
-        locals.setPreferredSize(new java.awt.Dimension(180, 20));
-        locals.addActionListener(new java.awt.event.ActionListener() {
+        locationCombobox.setMinimumSize(new java.awt.Dimension(180, 20));
+        locationCombobox.setPreferredSize(new java.awt.Dimension(180, 20));
+        locationCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                localsActionPerformed(evt);
+                locationComboboxActionPerformed(evt);
             }
         });
 
@@ -249,7 +236,7 @@ public class CreateEvent extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(locals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(locationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(newAddressbtn))
                                         .addComponent(invitationTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +298,7 @@ public class CreateEvent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(locals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(locationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newAddressbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,9 +329,9 @@ public class CreateEvent extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addOrganizerbtn)
-                    .addComponent(removeOrganizerbtn))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeOrganizerbtn)
+                    .addComponent(addOrganizerbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -410,13 +397,22 @@ public class CreateEvent extends javax.swing.JFrame {
             } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
-            
+
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Error inserting date");
         }
-        
+
     }//GEN-LAST:event_newEventbtnActionPerformed
 
+    private void initObjects() {
+        for (int i = 0; i < listUsers.size(); i++) {
+            modelUsersList.addElement(listUsers.getUser(i));
+        }
+        for (int i = 0; i < locationList.size(); i++) {
+            locationCombobox.addItem(locationList.getLocal(i));
+            System.out.println(locationList.getLocal(i));
+        }
+    }
 
     private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
         try {
@@ -451,9 +447,9 @@ public class CreateEvent extends javax.swing.JFrame {
         exhibitionRadiobtn.setSelected(false);
     }//GEN-LAST:event_congressRadiobtnActionPerformed
 
-    private void localsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localsActionPerformed
+    private void locationComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_localsActionPerformed
+    }//GEN-LAST:event_locationComboboxActionPerformed
 
     private void exhibitionRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exhibitionRadiobtnActionPerformed
         congressRadiobtn.setSelected(false);
@@ -482,10 +478,10 @@ public class CreateEvent extends javax.swing.JFrame {
                     break;
                 }*/
             }
-             if(cont == 0) {
-                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");        
-              }
-             cont = 0;
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            }
+            cont = 0;
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
         }
@@ -566,7 +562,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JComboBox<lapr.project.model.Location> locals;
+    private javax.swing.JComboBox<Location> locationCombobox;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton newAddressbtn;
     private javax.swing.JButton newEventbtn;

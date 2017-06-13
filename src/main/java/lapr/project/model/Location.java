@@ -10,7 +10,6 @@ public class Location implements Serializable{
     private static final long serialVersionUID = 1;
 
     private String address;
-    private double area;
 
     /**
      *
@@ -19,7 +18,6 @@ public class Location implements Serializable{
      */
     public Location(String address) {
         this.address = address;
-        this.area = area;
     }
 
     @Override

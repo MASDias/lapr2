@@ -86,19 +86,14 @@ public class XMLReader {
                 Element user = (Element)users.item(i);
                 User u = new User(null,null,null,null);
                 String nomeStr = user.getElementsByTagName("Name").item(0).getTextContent();
-                System.out.println("Nome: "+ nomeStr);
                 
                 String emailStr = user.getElementsByTagName("Email").item(0).getTextContent();
-                System.out.println("Email: "+ emailStr);
                 
                 String usernameStr = user.getElementsByTagName("Username").item(0).getTextContent();
-                System.out.println("Username: "+ usernameStr);
                 
                 String passwordStr = user.getElementsByTagName("Password").item(0).getTextContent();
-                System.out.println("Password: "+ passwordStr);
                 
                 int key = Integer.parseInt(user.getElementsByTagName("Serialkey").item(0).getTextContent());
-                System.out.println("Serial Key: "+ key);
                 
                 u = new User(nomeStr,emailStr,usernameStr,passwordStr);  
                 u.setKey(key);
@@ -115,10 +110,8 @@ public class XMLReader {
                 Element stand = (Element)stands.item(i);
                 
                 String addressStr = stand.getElementsByTagName("address").item(0).getTextContent();
-                System.out.println("Adress: "+ addressStr);
                 
                 float area = Float.parseFloat(stand.getElementsByTagName("area").item(0).getTextContent());
-                System.out.println("Area: "+ area);
                 
                 Stand s = new Stand(addressStr, area);
                 standsList.addStand(s);
@@ -136,8 +129,7 @@ public class XMLReader {
                 Location l = new Location(null);
                 
                 String addressStr = location.getElementsByTagName("address").item(0).getTextContent();
-                System.out.println("Adress: "+ addressStr);
-                
+                l = new Location(addressStr);
                 locationsList.addLocal(l);
             }
             eventCenter.setLocationList(locationsList);
