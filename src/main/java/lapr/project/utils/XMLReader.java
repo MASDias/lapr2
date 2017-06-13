@@ -86,25 +86,22 @@ public class XMLReader {
                 Element user = (Element)users.item(i);
                 User u = new User(null,null,null,null);
                 String nomeStr = user.getElementsByTagName("Name").item(0).getTextContent();
-                System.out.println("Nome: "+nomeStr);
-                u.setName(nomeStr);
+                System.out.println("Nome: "+ nomeStr);
                 
                 String emailStr = user.getElementsByTagName("Email").item(0).getTextContent();
-                System.out.println("Email: "+emailStr);
-                u.setEmail(emailStr);
+                System.out.println("Email: "+ emailStr);
                 
                 String usernameStr = user.getElementsByTagName("Username").item(0).getTextContent();
-                System.out.println("Username: "+usernameStr);
-                u.setUserName(usernameStr);
+                System.out.println("Username: "+ usernameStr);
                 
                 String passwordStr = user.getElementsByTagName("Password").item(0).getTextContent();
                 System.out.println("Password: "+ passwordStr);
-                u.setPassword(passwordStr);
                 
                 int key = Integer.parseInt(user.getElementsByTagName("Serialkey").item(0).getTextContent());
                 System.out.println("Serial Key: "+ key);
+                
+                u = new User(nomeStr,emailStr,usernameStr,passwordStr);  
                 u.setKey(key);
-                             
                 userList.addUser(u);
             }
             eventCenter.setUserRegistry(userList);
@@ -128,7 +125,7 @@ public class XMLReader {
             }
             eventCenter.setStandRegistry(standsList);
             
-            inputSource.setCharacterStream(new FileReader(xmlFileStands));
+            inputSource.setCharacterStream(new FileReader(xmlFileLocations));
             document = documentBuilder.parse(inputSource);
             
             NodeList locations = document.getElementsByTagName("Location");
@@ -143,7 +140,7 @@ public class XMLReader {
                 
                 locationsList.addLocal(l);
             }
-            eventCenter.setStandRegistry(standsList);
+            eventCenter.setLocationList(locationsList);
             
             
         } catch (FileNotFoundException e) {

@@ -5,22 +5,48 @@
  */
 package lapr.project.ui;
 
+import javax.swing.DefaultListModel;
+import lapr.project.controller.DefineOrganizerController;
 import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
 import lapr.project.model.Organizer;
+import lapr.project.model.OrganizersList;
 import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
 
 /**
  *
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class DefineOrganizer extends javax.swing.JFrame {
-private static final long serialVersionUID = 1;
+
+    private static final long serialVersionUID = 1;
+    private EventCenter eventCenter;
+    private UserRegistry usersList;
+    private OrganizersList organizersList;
+    private EventRegistry eventsList;
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
+    private DefaultListModel<Organizer> modelOrganizersList = new DefaultListModel<Organizer>();
+    private DefineOrganizerController controller;
 
     /**
      * Creates new form DefineOrganizer
      */
-    public DefineOrganizer() {
+    public DefineOrganizer(EventCenter eventCenter) {
+        this.eventCenter = eventCenter;
+        controller = new DefineOrganizerController(eventCenter);
         initComponents();
+        
+        usersList = controller.getUsersList();
+        userJList.setModel(modelUsersList);
+        for (int i = 0; i < usersList.size(); i++) {
+            modelUsersList.addElement(usersList.getUser(i));
+        }
+        
+        organizersList = new OrganizersList();
+        eventsList = controller.getEventsList();
+        
         setVisible(true);
     }
 
@@ -42,9 +68,11 @@ private static final long serialVersionUID = 1;
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventOrganizerJList = new javax.swing.JList<Organizer>();
+        organizerJList = new javax.swing.JList<Organizer>();
         jScrollPane2 = new javax.swing.JScrollPane();
         userJList = new javax.swing.JList<User>();
+        jLabel4 = new javax.swing.JLabel();
+        userIDTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Define Organizer");
@@ -54,6 +82,11 @@ private static final long serialVersionUID = 1;
         cancelBtn.setText("Cancel");
 
         okBtn.setText("OK");
+        okBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okBtnActionPerformed(evt);
+            }
+        });
 
         removeUserBtn.setText("<<");
 
@@ -64,13 +97,21 @@ private static final long serialVersionUID = 1;
             }
         });
 
-        jLabel3.setText("Organizer:");
+        jLabel3.setText("Organizers:");
 
         jLabel2.setText("Users List:");
 
-        jScrollPane1.setViewportView(eventOrganizerJList);
+        jScrollPane1.setViewportView(organizerJList);
 
         jScrollPane2.setViewportView(userJList);
+
+        jLabel4.setText("Add Organizer By ID:");
+
+        userIDTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userIDTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,10 +121,8 @@ private static final long serialVersionUID = 1;
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(eventComboBox, 0, 189, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(118, 118, 118))
+                .addComponent(eventComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -91,20 +130,29 @@ private static final long serialVersionUID = 1;
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removeUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userIDTextField))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(211, 211, 211))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,11 +174,15 @@ private static final long serialVersionUID = 1;
                         .addComponent(addUserBtn)
                         .addGap(18, 18, 18)
                         .addComponent(removeUserBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okBtn)
                     .addComponent(cancelBtn))
-                .addGap(27, 27, 27))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -140,53 +192,30 @@ private static final long serialVersionUID = 1;
         // TODO add your handling code here:
     }//GEN-LAST:event_addUserBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DefineOrganizer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_okBtnActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DefineOrganizer().setVisible(true);
-            }
-        });
-    }
+    private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userIDTextFieldActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<Event> eventComboBox;
-    private javax.swing.JList<Organizer> eventOrganizerJList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okBtn;
+    private javax.swing.JList<Organizer> organizerJList;
     private javax.swing.JButton removeUserBtn;
+    private javax.swing.JTextField userIDTextField;
     private javax.swing.JList<User> userJList;
     // End of variables declaration//GEN-END:variables
 }

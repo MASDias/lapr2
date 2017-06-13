@@ -93,6 +93,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "Name: " + name + " Username: " + userName + " Email: " + email;
+        return "Name:" + name + "; Username:" + userName + "; Email:" + email;
     }
 }

@@ -466,6 +466,7 @@ public class CreateEvent extends javax.swing.JFrame {
 
     private void addOrganizerByIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerByIDTextFieldActionPerformed
         String userID = addOrganizerByIDTextField.getText();
+        int cont = 0;
         if (!validateOrganizer(userID)) {
             for (int i = 0; i < listUsers.size(); i++) {
                 User u = listUsers.getUser(i);
@@ -474,11 +475,17 @@ public class CreateEvent extends javax.swing.JFrame {
                     listOrganizers.addOrganizer(o);
                     modelOrganizerListEvent.addElement(o);
                     modelUsersList.removeElement(u);
-                    break;
-                } else {
+                    cont++;
+                }/* else {
                     JOptionPane.showMessageDialog(null, "Given user doesn't exist");
-                }
+                    System.out.println(u.getUserName()+" "+u.getEmail());
+                    break;
+                }*/
             }
+             if(cont == 0) {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");        
+              }
+             cont = 0;
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
         }
@@ -487,8 +494,11 @@ public class CreateEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
     public boolean validateOrganizer(String id) {
         for (int i = 0; i < listOrganizers.size(); i++) {
-            String[] split = listOrganizers.getOrganizer(i).toString().split(" ");
-            if (split[5].equals(id) || split[3].equals(id)) {
+            String[] split = listOrganizers.getOrganizer(i).toString().split("; ");
+            split[0] = split[0].split(":")[1];
+            split[1] = split[1].split(":")[1];
+            split[2] = split[2].split(":")[1];
+            if (split[1].equals(id) || split[2].equals(id)) {
                 return true;
             }
         }
