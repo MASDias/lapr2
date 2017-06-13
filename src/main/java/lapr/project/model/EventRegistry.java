@@ -40,8 +40,6 @@ public class EventRegistry {
     public void addEvent(Event event) {
         if (validate(event)) {
             eventsList.add(event);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error!");
         }
     }
 
@@ -56,4 +54,6 @@ public class EventRegistry {
     public Event getEvent(int index){
         return eventsList.get(index);
     }
+    
+    
 }

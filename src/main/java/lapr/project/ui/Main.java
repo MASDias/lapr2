@@ -28,8 +28,7 @@ class Main {
         System.out.println(calculatorExample.sum(3, 13));
         MainWindow mw = new MainWindow();
         User u = new User("Miguel", "miguelazeredo@gmail.com", "miguelazeredo", "123456789");
-        EventEmployee e  = new EventEmployee(u,0);
-        System.out.println(e);
+        
 //        CreateEvent cr = new CreateEvent();
     }   
 

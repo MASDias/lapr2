@@ -19,7 +19,7 @@ import lapr.project.model.UserRegistry;
 
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class DefineEventEmployee extends javax.swing.JFrame {
 
