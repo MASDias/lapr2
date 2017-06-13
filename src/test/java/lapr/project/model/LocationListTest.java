@@ -28,6 +28,20 @@ public class LocationListTest {
         int expectedResult = 2;
         assertEquals(size, expectedResult);
     }
+     /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureAddApplicationMethodAddsUserToListNotValid() throws Exception {
+         LocationList result = new LocationList();
+        Location location = new Location("Rua do prego", 10);
+        result.addLocal(location);
+        result.addLocal(location);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
 
     /**
      *
