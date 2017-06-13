@@ -15,19 +15,19 @@ public class Evaluation {
     private int application;
     private int invitation;
     private int overall;
-    private int TOTAL_EVALUATION_AREAS = 3;
 
     /**
      *
      * @param knowledge
      * @param application
      * @param invitation
+     * @param overall
      */
-    public Evaluation(int knowledge, int application, int invitation) {
+    public Evaluation(int knowledge, int application, int invitation,int overall) {
         this.knowledge = knowledge;
         this.application = application;
         this.invitation = invitation;
-        this.overall = (this.knowledge + this.application + this.invitation) / TOTAL_EVALUATION_AREAS;
+        this.overall = overall;
     }
 
     /**
