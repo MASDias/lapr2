@@ -281,4 +281,26 @@ public class EventCenterTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test
+    public void EnsureSetProductListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        ProductList result = new ProductList();
+        Product product = new Product ("box");
+        result.addProduct (product);
+        ec.setProductList(result);
+        ProductList expectedResult = ec.getProductList();
+
+        assertEquals(result, expectedResult);
+    }
+    @Test
+    public void EnsureGetProductListEventCenterListMethod() {
+          EventCenter ec = new EventCenter();
+        ProductList result = new ProductList();
+        Product product = new Product ("box");
+        result.addProduct (product);
+        ec.setProductList(result);
+        ProductList expectedResult = ec.getProductList();
+
+        assertEquals(result, expectedResult);
+    }
 }
