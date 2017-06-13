@@ -8,6 +8,7 @@ package lapr.project.ui;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
 
 /**
@@ -18,7 +19,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
-    public static boolean loginStatus = false;
+    private boolean loginStatus;
+    private boolean userStatus = false;
+    private boolean organizerStatus = false;
+    private boolean eventEmployeeStatus = false;
+    private boolean eventManagerStatus = false;
 
     /**
      * Creates new form MainWindow
@@ -160,7 +165,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_RegisterMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI(loginStatus,eventCenter);
+        LoginUI login = new LoginUI(loginStatus, eventCenter);
+        this.userStatus = login.isUserStatus();
+        this.organizerStatus = login.isOrganizerStatus();
+        this.eventEmployeeStatus = login.isEventEmployeeStatus();
+        this.eventManagerStatus = login.isEventManagerStatus();
+
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed

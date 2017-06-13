@@ -19,15 +19,21 @@ public class EventManager {
      */
     public EventManager(User eventManager) {
         this.eventManager = eventManager;
-        this.eventManager.setEventManagerStatus(true);
     }
-    
-    public User getEventManager(){
+
+    public User getEventManager() {
         return eventManager;
     }
 
+    public String getUsername() {
+        return eventManager.getUserName();
+    }
+    public String getEmail() {
+        return eventManager.getEmail();
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return eventManager.toString();
     }
 }

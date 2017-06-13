@@ -12,9 +12,6 @@ public class User {
     private String userName;
     private String password;
     private boolean userStatus = false;
-    private boolean organizerStatus = false;
-    private boolean eventEmployeeStatus = false;
-    private boolean eventManagerStatus = false;
 
     /**
      *
@@ -34,34 +31,6 @@ public class User {
 
     public boolean isUserStatus() {
         return userStatus;
-    }
-
-    public void setUserStatus(boolean userStatus) {
-        this.userStatus = userStatus;
-    }
-
-    public boolean isOrganizerStatus() {
-        return organizerStatus;
-    }
-
-    public void setOrganizerStatus(boolean organizerStatus) {
-        this.organizerStatus = organizerStatus;
-    }
-
-    public boolean isEventEmployeeStatus() {
-        return eventEmployeeStatus;
-    }
-
-    public void setEventEmployeeStatus(boolean eventEmployeeStatus) {
-        this.eventEmployeeStatus = eventEmployeeStatus;
-    }
-
-    public boolean isEventManagerStatus() {
-        return eventManagerStatus;
-    }
-
-    public void setEventManagerStatus(boolean eventManagerStatus) {
-        this.eventManagerStatus = eventManagerStatus;
     }
 
     /**
@@ -110,6 +79,10 @@ public class User {
 
     public void setKey(int key) {
         this.key = key;
+    }
+
+    public int getKey() {
+        return key;
     }
 
     /**

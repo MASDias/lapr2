@@ -15,7 +15,6 @@ public class Organizer {
      */
     public Organizer(User organizer) {
         this.organizer = organizer;
-        this.organizer.setOrganizerStatus(true);
     }
 
     /**
@@ -33,13 +32,22 @@ public class Organizer {
     public void setEventRegistry(EventRegistry eventRegistry) {
         this.eventRegistry = eventRegistry;
     }
-    
-    public User getOrganizer(){
+
+    public User getOrganizer() {
         return organizer;
+    }
+
+    public String getEmail() {
+        return organizer.getEmail();
+    }
+
+    public String getUsername() {
+        return organizer.getUserName();
     }
 
     @Override
     public String toString() {
         return organizer.toString();
     }
+
 }

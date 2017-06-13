@@ -1,6 +1,8 @@
 package lapr.project.ui;
 
+import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
+import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
 /**
@@ -16,6 +18,8 @@ public class LoginUI extends javax.swing.JFrame {
     private boolean eventEmployeeStatus = false;
     private boolean eventManagerStatus = false;
     private EventCenter eventCenter;
+
+    private User user;
 
     /**
      * Creates new form LoginUI
@@ -114,21 +118,103 @@ public class LoginUI extends javax.swing.JFrame {
         UserRegistry userRegistry = eventCenter.getUserRegistry();
         String loginName = idTextField.getText();
         String passwordInfo = new String(passwordField.getPassword());
-        System.out.println(passwordInfo);
         for (int i = 0; i < userRegistry.size(); i++) {
+            System.out.println(i);
             if (userRegistry.getUser(i).getEmail().equals(loginName) || userRegistry.getUser(i).getUserName().equals(loginName)) {
-                userStatus= true;
-                break;
+                if (passwordInfo.equals(userRegistry.getUser(i).getPassword())) {
+                    userStatus = true;
+                    loginStatus = true;
+                    this.user = userRegistry.getUser(i);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Wrong Password!");
+                }
+                if (loginStatus) {
+                    this.organizerStatus = checkForOrganizerStatus(user);
+                    this.eventEmployeeStatus = checkForEventEmployeeStatus(user);
+                    this.eventManagerStatus = checkForEventManagerStatus(user);
+                    break;
+                }
             }
         }
+        if (validateLoginStatus()) {
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "The user does not exist or invalid login info");
+        }
     }
-    
 
+    private boolean validateLoginStatus() {
+        if (isLoginStatus()) {
+            userStatus = isUserStatus();
+            organizerStatus = isOrganizerStatus();
+            eventEmployeeStatus = isEventEmployeeStatus();
+            eventManagerStatus = isEventManagerStatus();
+            JOptionPane.showMessageDialog(null, "Success");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isLoginStatus() {
+        return loginStatus;
+    }
+
+    public boolean isUserStatus() {
+        return userStatus;
+    }
+
+    public boolean isEventEmployeeStatus() {
+        return eventEmployeeStatus;
+    }
+
+    public boolean isEventManagerStatus() {
+        return eventManagerStatus;
+    }
+
+    public boolean isOrganizerStatus() {
+        return organizerStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    private boolean checkForEventManagerStatus(User user) {
+        for (int i = 0; i < eventCenter.getEventManagerList().size(); i++) {
+            if (eventCenter.getEventManagerList().getEventManager(i).getEmail().equals(user.getEmail()) || eventCenter.getEventManagerList().getEventManager(i).getUsername().equals(user.getUserName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForEventEmployeeStatus(User user) {
+        for (int i = 0; i < eventCenter.getEventEmployeeList().size(); i++) {
+            if (eventCenter.getEventEmployeeList().getEmployee(i).getEmail().equals(user.getEmail()) || eventCenter.getEventEmployeeList().getEmployee(i).getUsername().equals(user.getUserName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForOrganizerStatus(User user) {
+        for (int i = 0; i < eventCenter.getOrganizersList().size(); i++) {
+            if (eventCenter.getOrganizersList().getOrganizer(i).getEmail().equals(user.getEmail()) || eventCenter.getOrganizersList().getOrganizer(i).getUsername().equals(user.getUserName())) {
+                return true;
+            }
+        }
+        return false;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField idTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton okButton;
+    public javax.swing.JButton okButton;
     private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
 }

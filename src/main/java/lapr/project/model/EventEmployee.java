@@ -17,7 +17,14 @@ public class EventEmployee {
     public EventEmployee(User eventEmployee, int experience) {
         this.eventEmployee = eventEmployee;
         this.experience = experience;
-        this.eventEmployee.setEventEmployeeStatus(true);
+    }
+
+    public String getEmail() {
+        return eventEmployee.getEmail();
+    }
+
+    public String getUsername() {
+        return eventEmployee.getUserName();
     }
 
     /**
@@ -40,8 +47,8 @@ public class EventEmployee {
     public String toString() {
         return eventEmployee.toString() + " Experience: " + experience;
     }
-    
-    public User getEmployee(){
+
+    public User getEmployee() {
         return eventEmployee;
     }
 }
