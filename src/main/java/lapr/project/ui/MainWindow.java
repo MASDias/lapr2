@@ -60,6 +60,8 @@ public class MainWindow extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EventManagementImage.jpg"))); // NOI18N
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 600, 330);
 
