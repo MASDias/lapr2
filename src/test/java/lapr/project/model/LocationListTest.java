@@ -16,7 +16,7 @@ import org.junit.Test;
 public class LocationListTest {
 
     @Test
-    public void EnsureAddApplicationMethodAddsLocalToList() throws Exception {
+    public void EnsureAddLocalMethodAddsLocalToList() throws Exception {
 
         LocationList list = new LocationList();
         Location l1 = new Location("Rua do prego", 10);
@@ -33,7 +33,7 @@ public class LocationListTest {
      * @throws Exception
      */
     @Test
-    public void EnsureAddApplicationMethodAddsUserToListNotValid() throws Exception {
+    public void EnsureAddLocalMethodAddsUserToListNotValid() throws Exception {
          LocationList result = new LocationList();
         Location location = new Location("Rua do prego", 10);
         result.addLocal(location);
@@ -41,6 +41,18 @@ public class LocationListTest {
         int size = result.size();
         int expectedResult = 1;
         assertEquals(size, expectedResult);
+    }
+ /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureAddLocalMethodAddsUserToListIndex() throws Exception {
+        LocationList list = new LocationList();
+        Location result = new Location("Rua do prego", 10);
+        list.addLocal(result);
+        Location expectedResult = list.getLocal(0);
+        assertEquals(result, expectedResult);
     }
 
     /**
