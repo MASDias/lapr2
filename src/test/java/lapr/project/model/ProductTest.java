@@ -35,4 +35,13 @@ public class ProductTest {
         Product product2 = new Product("box");
         assertNotEquals(product1, product2);
     }
+      /**
+     *
+     */
+    @Test
+    public void EnsureDifferentObjectsProductIsNotEqual() {
+        Product product = new Product("box");
+        Object expectedResult = new Object();
+        assertNotEquals(product, expectedResult);
+    }
 }
