@@ -10,40 +10,57 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import lapr.project.controller.SubmitApplicationController;
 import lapr.project.model.Application;
 import lapr.project.model.Congress;
 import lapr.project.model.Enterprise;
 import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
 import lapr.project.model.Exhibition;
 import lapr.project.model.Keyword;
 import lapr.project.model.Location;
 import lapr.project.model.Product;
+import lapr.project.model.ProductList;
 import lapr.project.model.Stand;
+import lapr.project.model.StandRegistry;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class SubmitApplication extends javax.swing.JFrame {
-    
+
     private static final long serialVersionUID = 1;
     private DefaultListModel<Keyword> modelKeyword = new DefaultListModel<Keyword>();
+    private StandRegistry standRegistry;
+    private ProductList productList;
+    private EventRegistry eventRegistry;
 
     /**
      * Creates new form SubmitApplication
      */
-    public SubmitApplication() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date beginning = sdf.parse("01-10-2017");
-        Date end = sdf.parse("10-10-2017");
-        Location local = new Location("Example Street", 500);
-        Congress event = new Congress("Model Example", "Explae string", beginning, end, local, 100);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
+    public SubmitApplication(EventCenter eventCenter) throws ParseException {
+        SubmitApplicationController controller = new SubmitApplicationController(eventCenter);
+        this.standRegistry = controller.getStandRegistry();
+        this.productList = controller.getProductList();
+        this.eventRegistry = controller.getEventRegistry();
         initComponents();
+        initCombobox();
         keywordList.setModel(modelKeyword);
-        eventsComboBox.addItem(event);
-        eventsComboBox.addItem(exhibition);
         setVisible(true);
+    }
+
+    private void initCombobox() {
+        for (int i = 0; i < this.eventRegistry.size(); i++) {
+            eventsComboBox.addItem(eventRegistry.getEvent(i));
+        }
+        for (int i = 0; i < this.productList.size(); i++) {
+            productsComboBox.addItem(productList.getProduct(i));
+        }
+        for (int i = 0; i < this.standRegistry.size(); i++) {
+            standComboBox.addItem(standRegistry.getStand(i));
+        }
     }
 
     /**
@@ -75,7 +92,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        stand = new javax.swing.JComboBox<>();
+        standComboBox = new javax.swing.JComboBox<>();
         standlistLabel = new javax.swing.JLabel();
         invitesLabel = new javax.swing.JLabel();
         invitesTextField = new javax.swing.JTextField();
@@ -192,7 +209,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                             .addComponent(addKeywordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3))
-                    .addComponent(stand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(standComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventsComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -242,7 +259,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(standlistLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -262,13 +279,13 @@ public class SubmitApplication extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        
+
         if (validateTaxpayerNumber() && validateContact() && validateInvites()) {
             String enterpriseName = enterpriseNameTextField.getText();
             String email = emailTextField.getText();
             String address = addressTextField.getText();
             String description = descriptionTextArea.getText();
-            Stand s = (Stand) stand.getSelectedItem();
+            Stand s = (Stand) standComboBox.getSelectedItem();
             int invites = Integer.parseInt(invitesTextField.getText());
             int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
             int contactNumber = Integer.parseInt(contactTextField.getText());
@@ -295,7 +312,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private boolean validateContact() {
         String stringContact = contactTextField.getText();
         try {
@@ -313,7 +330,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private boolean validateTaxpayerNumber() {
         String stringTaxpayer = taxpayerNumberTextField.getText();
         try {
@@ -408,7 +425,7 @@ public class SubmitApplication extends javax.swing.JFrame {
     private javax.swing.JTextField keywordTextField;
     private javax.swing.JComboBox<Product> productsComboBox;
     private javax.swing.JLabel productsLabel;
-    private javax.swing.JComboBox<Stand> stand;
+    private javax.swing.JComboBox<Stand> standComboBox;
     private javax.swing.JLabel standlistLabel;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField taxpayerNumberTextField;

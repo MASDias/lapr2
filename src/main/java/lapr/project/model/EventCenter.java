@@ -17,6 +17,7 @@ public class EventCenter {
     private StandRegistry standRegistry;
     private UserRegistry userRegistry;
     private WorkshopList workshopList;
+    private ProductList productList;
 
     /**
      *
@@ -33,6 +34,7 @@ public class EventCenter {
         this.standRegistry = new StandRegistry();
         this.userRegistry = new UserRegistry();
         this.workshopList = new WorkshopList();
+        this.productList=new ProductList();
     }
 
     /**
@@ -209,6 +211,14 @@ public class EventCenter {
      */
     public void setWorkshopList(WorkshopList workshopList) {
         this.workshopList = workshopList;
+    }
+
+    public ProductList getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
     }
 
 }

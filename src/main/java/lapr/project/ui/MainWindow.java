@@ -175,7 +175,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void submitApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitApplicationMenuItemActionPerformed
         try {
-            SubmitApplication s = new SubmitApplication();
+            SubmitApplication s = new SubmitApplication(eventCenter);
         } catch (ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }

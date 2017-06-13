@@ -24,12 +24,8 @@ public class StandRegistry {
         this.standsList = new ArrayList<>();
     }
 
-    /**
-     *
-     * @return
-     */
-    public List<Stand> getListStands() {
-        return standsList;
+    public Stand getStand(int index) {
+        return standsList.get(index);
     }
 
     private boolean validate(Stand stand) {
