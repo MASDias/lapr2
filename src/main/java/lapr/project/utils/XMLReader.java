@@ -34,32 +34,32 @@ public class XMLReader {
     /**
      *
      */
-    public String filepathUsers = "";
+    private String filepathUsers = "";
 
     /**
      *
      */
-    public String filepathStands = "";
+    private String filepathStands = "";
 
     /**
      *
      */
-    public String filepathLocations = "";
+    private String filepathLocations = "";
 
     /**
      *
      */
-    public final String DEFAULT_FILENAME_USERS = "xml/UserList.xml";
+    private final String DEFAULT_FILENAME_USERS = "xml/UserList.xml";
 
     /**
      *
      */
-    public final String DEFAULT_FILENAME_STANDS = "xml/StandsList.xml";
+    private final String DEFAULT_FILENAME_STANDS = "xml/StandsList.xml";
 
     /**
      *
      */
-    public final String DEFAULT_FILENAME_LOCATIONS = "xml/LocationXml.xml";
+    private final String DEFAULT_FILENAME_LOCATIONS = "xml/LocationXml.xml";
     
     /**
      *
@@ -192,7 +192,7 @@ public class XMLReader {
      * @param filepath
      * @return
      */
-    public boolean testFilepath(String filepath){
+    private boolean testFilepath(String filepath){
         File file = new File(filepath);
         if(!file.exists() || (file.exists() && !file.isDirectory())) { 
             System.out.println("File not found. Using default file");
