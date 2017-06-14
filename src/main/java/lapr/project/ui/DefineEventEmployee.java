@@ -41,7 +41,9 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineEventEmployeeController(eventCenter);
         initComponents();
-
+        
+        eventEmployeeJList.setModel(modelEmployeesList);
+        
         listUsers = controller.getUsersList();
         userJList.setModel(modelUsersList);
         for (int i = 0; i < listUsers.size(); i++) {
@@ -53,7 +55,6 @@ public class DefineEventEmployee extends javax.swing.JFrame {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
 
-        eventEmployeeJList.setModel(modelEmployeesList);
 
         setVisible(true);
     }

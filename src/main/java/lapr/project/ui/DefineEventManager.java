@@ -11,6 +11,7 @@ import lapr.project.controller.DefineEventManagerController;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventManager;
 import lapr.project.model.EventManagerList;
+import lapr.project.model.EventRegistry;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -27,9 +28,12 @@ public class DefineEventManager extends javax.swing.JFrame {
     private DefaultListModel<EventManager> modelEventManagersList = new DefaultListModel<EventManager>();
     private UserRegistry listUsers;
     private EventManagerList listEventManagers;
+    private EventRegistry listEvents;
 
     /**
      * Creates new form DefineEventManager
+     *
+     * @param eventCenter
      */
     public DefineEventManager(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
@@ -37,17 +41,20 @@ public class DefineEventManager extends javax.swing.JFrame {
 
         initComponents();
 
-        listUsers = controller.getUsersList();
-        userJList.setModel(modelUsersList);
-        for (int i = 0; i < listUsers.size(); i++) {
-            modelUsersList.addElement(listUsers.getUser(i));
-        }
-
         listEventManagers = controller.getEventManagerList();
         eventManagerJList.setModel(modelEventManagersList);
         for (int i = 0; i < listEventManagers.size(); i++) {
             modelEventManagersList.addElement(listEventManagers.getEventManager(i));
         }
+        
+        listUsers = controller.getUsersList();
+        userJList.setModel(modelUsersList);
+        for (int i = 0; i < listUsers.size(); i++) {
+            User u = listUsers.getUser(i);
+            modelUsersList.addElement(u);
+            validateUsersList();
+        }
+
 
         setVisible(true);
     }
@@ -76,6 +83,7 @@ public class DefineEventManager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Define Event Manager");
+        setResizable(false);
 
         jScrollPane2.setViewportView(userJList);
 
@@ -141,43 +149,43 @@ public class DefineEventManager extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(removeUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 177, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(addUserBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(removeUserBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addComponent(removeUserBtn)
+                        .addGap(54, 54, 54)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(eventManagerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cancelBtn)
                     .addComponent(okBtn))
@@ -187,6 +195,16 @@ public class DefineEventManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void validateUsersList() {
+        for (int i = 0; i < modelEventManagersList.size(); i++) {
+            for (int j = 0; j < modelUsersList.size(); j++) {
+
+                if (modelEventManagersList.getElementAt(i).getUsername().equals(modelUsersList.getElementAt(j).getUserName())) {
+                    modelUsersList.remove(j);
+                }
+            }
+        }
+    }
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
         try {
             User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
@@ -216,7 +234,12 @@ public class DefineEventManager extends javax.swing.JFrame {
         }    }//GEN-LAST:event_removeUserBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
+        for (int i = 0; i < listEventManagers.size(); i++) {
+            listEventManagers.addEventManager(modelEventManagersList.elementAt(i));
+        }
+        JOptionPane.showMessageDialog(null, "Event Managers defined with success!");
+        dispose();
+
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -224,7 +247,7 @@ public class DefineEventManager extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void eventManagerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventManagerTextFieldActionPerformed
-        
+
         String userID = eventManagerTextField.getText();
         if (!validateEventManager(userID)) {
             int cont = 0;
@@ -238,8 +261,8 @@ public class DefineEventManager extends javax.swing.JFrame {
                     cont++;
                 }
             }
-            if(cont == 0){
-               JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
             }
             cont = 0;
         } else {

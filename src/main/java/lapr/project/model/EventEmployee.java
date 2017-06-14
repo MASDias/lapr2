@@ -10,7 +10,7 @@ public class EventEmployee {
     private User eventEmployee;
     private EventRegistry eventRegistry;
     private ApplicationList applicationList;
-
+    
     /**
      *
      * @param eventEmployee
