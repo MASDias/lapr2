@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
+import lapr.project.model.User;
 
 /**
  *
@@ -19,7 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
-    private boolean loginStatus;
+    private boolean loginStatus = false;
     private boolean userStatus = false;
     private boolean organizerStatus = false;
     private boolean eventEmployeeStatus = false;
@@ -29,7 +30,12 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow(EventCenter eventCenter) {
+        
         initComponents();
+//        if(!loginStatus){
+//            registerMenuItem.setVisible(false);
+//            defineUser.setVisible(false);
+//        }
         this.eventCenter = eventCenter;
         this.setVisible(true);
     }
@@ -44,12 +50,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        userNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        RegisterMenuItem = new javax.swing.JMenuItem();
+        registerMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         createEventMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -66,7 +73,16 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
+        userNameLabel.setBackground(new java.awt.Color(0, 102, 204));
+        userNameLabel.setFont(new java.awt.Font("Georgia", 0, 11)); // NOI18N
+        userNameLabel.setForeground(new java.awt.Color(0, 204, 255));
+        userNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jPanel1.add(userNameLabel);
+        userNameLabel.setBounds(430, 10, 160, 20);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EventManagementImage.jpg"))); // NOI18N
+        jLabel2.setText("asdasd");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 600, 330);
 
@@ -81,14 +97,14 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(loginMenuItem);
         jMenu1.add(jSeparator3);
 
-        RegisterMenuItem.setMnemonic('M');
-        RegisterMenuItem.setText("Register");
-        RegisterMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        registerMenuItem.setMnemonic('M');
+        registerMenuItem.setText("Register");
+        registerMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterMenuItemActionPerformed(evt);
+                registerMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(RegisterMenuItem);
+        jMenu1.add(registerMenuItem);
         jMenu1.add(jSeparator1);
 
         createEventMenuItem.setText("Create Event");
@@ -160,17 +176,17 @@ public class MainWindow extends javax.swing.JFrame {
         CreateEvent event = new CreateEvent(eventCenter);
     }//GEN-LAST:event_createEventMenuItemActionPerformed
 
-    private void RegisterMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterMenuItemActionPerformed
+    private void registerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerMenuItemActionPerformed
         CreateUser ur = new CreateUser(eventCenter);
-    }//GEN-LAST:event_RegisterMenuItemActionPerformed
+    }//GEN-LAST:event_registerMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI(loginStatus, eventCenter);
+        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel);
         this.userStatus = login.isUserStatus();
         this.organizerStatus = login.isOrganizerStatus();
         this.eventEmployeeStatus = login.isEventEmployeeStatus();
         this.eventManagerStatus = login.isEventManagerStatus();
-
+        
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
@@ -229,7 +245,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem RegisterMenuItem;
     private javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;
     private javax.swing.JMenuItem defineEventManagerMenuItem;
@@ -244,6 +259,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
+    private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }

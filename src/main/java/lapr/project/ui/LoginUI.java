@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
 import lapr.project.model.User;
@@ -18,6 +19,7 @@ public class LoginUI extends javax.swing.JFrame {
     private boolean eventEmployeeStatus = false;
     private boolean eventManagerStatus = false;
     private EventCenter eventCenter;
+    private JLabel label;
 
     private User user;
 
@@ -27,9 +29,10 @@ public class LoginUI extends javax.swing.JFrame {
      * @param loginStatus
      * @param eventCenter
      */
-    public LoginUI(boolean loginStatus, EventCenter eventCenter) {
+    public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label) {
         this.loginStatus = loginStatus;
         this.eventCenter = eventCenter;
+        this.label = label;
         initComponents();
         this.setVisible(true);
     }
@@ -125,6 +128,7 @@ public class LoginUI extends javax.swing.JFrame {
                     userStatus = true;
                     loginStatus = true;
                     this.user = userRegistry.getUser(i);
+                    label.setText(user.getName());
                 } else {
                     JOptionPane.showMessageDialog(null, "Wrong Password!");
                 }
