@@ -8,6 +8,8 @@ public class EventEmployee {
 
     private int experience;
     private User eventEmployee;
+    private EventRegistry eventRegistry;
+    private ApplicationList applicationList;
 
     /**
      *
@@ -17,6 +19,8 @@ public class EventEmployee {
     public EventEmployee(User eventEmployee, int experience) {
         this.eventEmployee = eventEmployee;
         this.experience = experience;
+        this.eventRegistry = new EventRegistry();
+        this.applicationList= new ApplicationList();
     }
 
     public String getEmail() {
@@ -41,6 +45,22 @@ public class EventEmployee {
      */
     public int getExperience() {
         return experience;
+    }
+
+    public EventRegistry getEventRegistry() {
+        return eventRegistry;
+    }
+
+    public void setEventRegistry(EventRegistry eventRegistry) {
+        this.eventRegistry = eventRegistry;
+    }
+
+    public ApplicationList getApplicationList() {
+        return applicationList;
+    }
+
+    public void setApplicationList(ApplicationList applicationList) {
+        this.applicationList = applicationList;
     }
 
     @Override
