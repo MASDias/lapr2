@@ -12,7 +12,8 @@ import lapr.project.model.Application;
  * @author MarioDias
  */
 public class DecideApplicationUI extends javax.swing.JFrame {
-
+    private static final long serialVersionUID = 1;
+    
     /**
      * Creates new form DecideApplicationUI
      */

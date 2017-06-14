@@ -194,7 +194,7 @@ private UserRegistry usersList = new UserRegistry();
             if(String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))){
                 
             
-        controller.newUser(nameTextField.getText(), userNameTextField.getText(), emailTextField.getText(), String.valueOf(passwordField.getPassword()));
+        controller.newUser(nameTextField.getText(), emailTextField.getText(), userNameTextField.getText(), String.valueOf(passwordField.getPassword()));
         controller.addUser();
         
         JOptionPane.showMessageDialog(null, "User created with success!");

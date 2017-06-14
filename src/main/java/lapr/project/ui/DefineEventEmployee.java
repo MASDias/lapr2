@@ -209,9 +209,9 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addComponent(jScrollPane2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okBtn)
@@ -244,6 +244,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
         String userID = userIDTextField.getText();
         if (!validateEmployee(userID)) {
+            int cont = 0;
             for (int i = 0; i < listUsers.size(); i++) {
                 User u = listUsers.getUser(i);
                 if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
@@ -251,11 +252,13 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                     listEmployees.addEmployee(e);
                     modelEmployeesList.addElement(e);
                     modelUsersList.removeElement(u);
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                    cont++;
                 }
             }
+            if(cont == 0){
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            }
+            cont = 0;
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
         }
@@ -265,8 +268,11 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_userIDTextFieldActionPerformed
     public boolean validateEmployee(String id) {
         for (int i = 0; i < listEmployees.size(); i++) {
-            String[] split = listEmployees.getEmployee(i).toString().split(" ");
-            if (split[5].equals(id) || split[3].equals(id)) {
+            String[] split = listEmployees.getEmployee(i).toString().split("; ");
+            split[0] = split[0].split(":")[1];
+            split[1] = split[1].split(":")[1];
+            split[2] = split[2].split(":")[1];
+            if (split[1].equals(id) || split[2].equals(id)) {
                 return true;
             }
         }

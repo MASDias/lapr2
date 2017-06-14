@@ -227,6 +227,7 @@ public class DefineEventManager extends javax.swing.JFrame {
         
         String userID = eventManagerTextField.getText();
         if (!validateEventManager(userID)) {
+            int cont = 0;
             for (int i = 0; i < listUsers.size(); i++) {
                 User u = listUsers.getUser(i);
                 if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
@@ -234,11 +235,13 @@ public class DefineEventManager extends javax.swing.JFrame {
                     listEventManagers.addEventManager(e);
                     modelEventManagersList.addElement(e);
                     modelUsersList.removeElement(u);
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                    cont++;
                 }
             }
+            if(cont == 0){
+               JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            }
+            cont = 0;
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Event Manager");
         }
@@ -248,8 +251,11 @@ public class DefineEventManager extends javax.swing.JFrame {
 
     public boolean validateEventManager(String id) {
         for (int i = 0; i < listEventManagers.size(); i++) {
-            String[] split = listEventManagers.getEventManager(i).toString().split(" ");
-            if (split[5].equals(id) || split[3].equals(id)) {
+            String[] split = listEventManagers.getEventManager(i).toString().split("; ");
+            split[0] = split[0].split(":")[1];
+            split[1] = split[1].split(":")[1];
+            split[2] = split[2].split(":")[1];
+            if (split[1].equals(id) || split[2].equals(id)) {
                 return true;
             }
         }

@@ -84,7 +84,7 @@ public class XMLReader {
             for (int i = 0; i < users.getLength(); i++) {
                 
                 Element user = (Element)users.item(i);
-                User u = new User(null,null,null,null);
+                
                 String nomeStr = user.getElementsByTagName("Name").item(0).getTextContent();
                 
                 String emailStr = user.getElementsByTagName("Email").item(0).getTextContent();
@@ -95,7 +95,7 @@ public class XMLReader {
                 
                 int key = Integer.parseInt(user.getElementsByTagName("Serialkey").item(0).getTextContent());
                 
-                u = new User(nomeStr,emailStr,usernameStr,passwordStr);  
+                User u = new User(nomeStr,emailStr,usernameStr,passwordStr);  
                 u.setKey(key);
                 userList.addUser(u);
             }
@@ -126,10 +126,9 @@ public class XMLReader {
             for (int i = 0; i < locations.getLength(); i++) {
                 
                 Element location = (Element)locations.item(i);
-                Location l = new Location(null);
                 
                 String addressStr = location.getElementsByTagName("address").item(0).getTextContent();
-                l = new Location(addressStr);
+                Location l = new Location(addressStr);
                 locationsList.addLocal(l);
             }
             eventCenter.setLocationList(locationsList);
