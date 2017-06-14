@@ -22,7 +22,7 @@ import lapr.project.model.UserRegistry;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class DefineEventEmployee extends javax.swing.JFrame {
-
+    
     private static final long serialVersionUID = 1;
     private DefineEventEmployeeController controller;
     private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
@@ -31,6 +31,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private EventEmployeeList listEmployees;
     private EventRegistry listEvents;
     private EventCenter eventCenter;
+    private Event event;
 
     /**
      * Creates new form DefineEventEmployee
@@ -39,24 +40,20 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineEventEmployeeController(eventCenter);
         initComponents();
-
+        
         listEvents = controller.getEventList();
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
-
+        
         listUsers = controller.getUsersList();
         userJList.setModel(modelUsersList);
         for (int i = 0; i < listUsers.size(); i++) {
             modelUsersList.addElement(listUsers.getUser(i));
         }
-
-        listEmployees = controller.getEmployeesList();
+        
         eventEmployeeJList.setModel(modelEmployeesList);
-        for (int i = 0; i < listEmployees.size(); i++) {
-            modelEmployeesList.addElement(listEmployees.getEmployee(i));
-        }
-
+              
         setVisible(true);
     }
 
@@ -178,13 +175,13 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(151, 151, 151))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(219, 219, 219))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,11 +209,11 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(userIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okBtn)
                     .addComponent(cancelBtn))
-                .addGap(26, 26, 26))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -225,27 +222,36 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
         try {
+            if(listEvents.size() == 0){
+                JOptionPane.showMessageDialog(null, "There are no events!");
+            }else{
             User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
             EventEmployee e = new EventEmployee(u, 0);
             listEmployees.addEmployee(e);
             modelEmployeesList.addElement(e);
             modelUsersList.removeElement(u);
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "No user selected");
         }
 
     }//GEN-LAST:event_addUserBtnActionPerformed
-
+    
+    public void addEmployees() {
+        event = (Event) eventComboBox.getSelectedItem();
+        for (int i = 0; i < modelEmployeesList.size(); i++) {
+            event.getEventEmployeeList().addEmployee(modelEmployeesList.getElementAt(i));          
+        }
+    }
+    
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        
-
-        
-        
-        
+        addEmployees();  
+        JOptionPane.showMessageDialog(null, "Employees defined with success!");
+        dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
-
+        
         String userID = userIDTextField.getText();
         if (!validateEmployee(userID)) {
             int cont = 0;
@@ -259,14 +265,14 @@ public class DefineEventEmployee extends javax.swing.JFrame {
                     cont++;
                 }
             }
-            if(cont == 0){
-                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
             }
             cont = 0;
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
         }
-
+        
         userIDTextField.setText("");
 
     }//GEN-LAST:event_userIDTextFieldActionPerformed
@@ -288,7 +294,13 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
-        // TODO add your handling code here:
+          event = (Event) eventComboBox.getSelectedItem();
+          modelEmployeesList.removeAllElements();
+          listEmployees = event.getEventEmployeeList();
+          for (int i = 0; i < listEmployees.size(); i++) {
+            modelEmployeesList.addElement(listEmployees.getEmployee(i));
+        }
+          revalidate();
     }//GEN-LAST:event_eventComboBoxActionPerformed
 
     private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
