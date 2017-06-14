@@ -34,7 +34,7 @@ import lapr.project.model.UserRegistry;
  * @author MarioDias
  */
 public class CreateEvent extends javax.swing.JFrame {
-    
+
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateEventController controller;
@@ -56,13 +56,13 @@ public class CreateEvent extends javax.swing.JFrame {
         initComponents();
         listEvents = controller.getEventsList();
         locationList = controller.getLocationList();
-        
+
         listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
-        
+
         listOrganizers = new OrganizersList();
         organizersList.setModel(modelOrganizerListEvent);
-        
+
         initObjects();
         setVisible(true);
     }
@@ -367,7 +367,7 @@ public class CreateEvent extends javax.swing.JFrame {
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
         Location local = (Location) locationCombobox.getSelectedItem();
-        
+
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());
@@ -378,46 +378,46 @@ public class CreateEvent extends javax.swing.JFrame {
             if (congressRadiobtn.isSelected()) {
                 controller.getLocationList().getLocal(locationCombobox.getSelectedIndex()).setInUse(true);
                 int invite = Integer.parseInt(invitesString);
-                Congress c = new Congress(name, description, db, de, local, invite);
-                
-                c.setOrganizerList(listOrganizers);
-                listEvents.addEvent(c);
-                System.out.println("Congress");
-                if(listOrganizers.size()>1){
-                JOptionPane.showMessageDialog(null, "Congress created with success!");
-                modelOrganizerListEvent.removeAllElements();
-                dispose();
-                }else{
+                if (listOrganizers.size() > 1) {
+                    Congress c = new Congress(name, description, db, de, local, invite);
+
+                    c.setOrganizerList(listOrganizers);
+                    listEvents.addEvent(c);
+                    System.out.println("Congress");
+                    JOptionPane.showMessageDialog(null, "Congress created with success!");
+                    modelOrganizerListEvent.removeAllElements();
+                    dispose();
+                } else {
                     JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
                 }
             } else if (exhibitionRadiobtn.isSelected()) {
                 int invite = Integer.parseInt(invitesString);
-                Exhibition e = new Exhibition(name, description, db, de, local, invite);
-                
-                e.setOrganizerList(listOrganizers);
-                listEvents.addEvent(e);
-                System.out.println("Exhibition");
-                if(listOrganizers.size()>1){
-                JOptionPane.showMessageDialog(null, "Exhibition created with success!");
-                modelOrganizerListEvent.removeAllElements();
-                dispose();
-                }else{
+                if (listOrganizers.size() > 1) {
+                    Exhibition e = new Exhibition(name, description, db, de, local, invite);
+
+                    e.setOrganizerList(listOrganizers);
+                    listEvents.addEvent(e);
+                    System.out.println("Exhibition");
+                    JOptionPane.showMessageDialog(null, "Exhibition created with success!");
+                    modelOrganizerListEvent.removeAllElements();
+                    dispose();
+                } else {
                     JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
                 }
-                
+
             } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
-            
+
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Error inserting date");
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error in number of invites field");
         }
 
-        
+
     }//GEN-LAST:event_newEventbtnActionPerformed
-    
+
     private void initObjects() {
         for (int i = 0; i < listUsers.size(); i++) {
             modelUsersList.addElement(listUsers.getUser(i));
@@ -456,7 +456,7 @@ public class CreateEvent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No organizer selected");
         }
     }//GEN-LAST:event_removeOrganizerbtnActionPerformed
-    
+
 
     private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
         congressRadiobtn.setSelected(true);
@@ -489,7 +489,7 @@ public class CreateEvent extends javax.swing.JFrame {
                     modelUsersList.removeElement(u);
                     cont++;
                 }
-                
+
             }
             if (cont == 0) {
                 JOptionPane.showMessageDialog(null, "Given user doesn't exist");
@@ -498,7 +498,7 @@ public class CreateEvent extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
         }
-        
+
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
     public boolean validateOrganizer(String id) {

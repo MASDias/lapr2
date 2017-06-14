@@ -22,7 +22,7 @@ import lapr.project.model.UserRegistry;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class DefineEventEmployee extends javax.swing.JFrame {
-    
+
     private static final long serialVersionUID = 1;
     private DefineEventEmployeeController controller;
     private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
@@ -32,6 +32,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private EventRegistry listEvents;
     private EventCenter eventCenter;
     private Event event;
+    private User user;
 
     /**
      * Creates new form DefineEventEmployee
@@ -40,20 +41,20 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineEventEmployeeController(eventCenter);
         initComponents();
-        
-        listEvents = controller.getEventList();
-        for (int i = 0; i < listEvents.size(); i++) {
-            eventComboBox.addItem(listEvents.getEvent(i));
-        }
-        
+
         listUsers = controller.getUsersList();
         userJList.setModel(modelUsersList);
         for (int i = 0; i < listUsers.size(); i++) {
             modelUsersList.addElement(listUsers.getUser(i));
         }
-        
+
+        listEvents = controller.getEventList();
+        for (int i = 0; i < listEvents.size(); i++) {
+            eventComboBox.addItem(listEvents.getEvent(i));
+        }
+
         eventEmployeeJList.setModel(modelEmployeesList);
-              
+
         setVisible(true);
     }
 
@@ -222,36 +223,48 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
         try {
-            if(listEvents.size() == 0){
+            if (listEvents.size() == 0) {
                 JOptionPane.showMessageDialog(null, "There are no events!");
-            }else{
-            User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
-            EventEmployee e = new EventEmployee(u, 0);
-            listEmployees.addEmployee(e);
-            modelEmployeesList.addElement(e);
-            modelUsersList.removeElement(u);
+            } else {
+                User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
+
+                if (!checkEventEmployee(u.getUserName(), u.getEmail())) {
+                    EventEmployee e = new EventEmployee(u, 0);
+                    modelEmployeesList.addElement(e);
+                } else {
+                    JOptionPane.showMessageDialog(null, "This user is already in employee's list");
+                }
+
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "No user selected");
         }
 
     }//GEN-LAST:event_addUserBtnActionPerformed
-    
+    private boolean checkEventEmployee(String username, String email) {
+        for (int i = 0; i < modelEmployeesList.size(); i++) {
+            if (username.equals(modelEmployeesList.getElementAt(i).getUsername()) || email.equals(modelEmployeesList.getElementAt(i).getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addEmployees() {
         event = (Event) eventComboBox.getSelectedItem();
         for (int i = 0; i < modelEmployeesList.size(); i++) {
-            event.getEventEmployeeList().addEmployee(modelEmployeesList.getElementAt(i));          
+            event.getEventEmployeeList().addEmployee(modelEmployeesList.getElementAt(i));
         }
     }
-    
+
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        addEmployees();  
+        addEmployees();
         JOptionPane.showMessageDialog(null, "Employees defined with success!");
         dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
-        
+
         String userID = userIDTextField.getText();
         if (!validateEmployee(userID)) {
             int cont = 0;
@@ -272,10 +285,11 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
         }
-        
+
         userIDTextField.setText("");
 
     }//GEN-LAST:event_userIDTextFieldActionPerformed
+
     public boolean validateEmployee(String id) {
         for (int i = 0; i < listEmployees.size(); i++) {
             String[] split = listEmployees.getEmployee(i).toString().split("; ");
@@ -294,24 +308,30 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
-          event = (Event) eventComboBox.getSelectedItem();
-          modelEmployeesList.removeAllElements();
-          listEmployees = event.getEventEmployeeList();
-          for (int i = 0; i < listEmployees.size(); i++) {
-            modelEmployeesList.addElement(listEmployees.getEmployee(i));
+
+        event = (Event) eventComboBox.getSelectedItem();
+
+        if (!eventComboBox.getSelectedItem().toString().equals(event.toString())) {
+            JOptionPane.showMessageDialog(null, "Already Selected");
+        } else {
+            modelEmployeesList.removeAllElements();
+            updateEmployeeModel();
         }
-          revalidate();
     }//GEN-LAST:event_eventComboBoxActionPerformed
+
+    private void updateEmployeeModel() {
+        listEmployees = event.getEventEmployeeList();
+        for (int i = 0; i < listUsers.size(); i++) {
+            if (i < listEmployees.size()) {
+                modelEmployeesList.addElement(listEmployees.getEmployee(i));
+            }
+            modelUsersList.addElement(listUsers.getUser(i));
+        }
+    }
 
     private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
         try {
             EventEmployee e = modelEmployeesList.getElementAt(eventEmployeeJList.getSelectedIndex());
-            for (int i = 0; i < listUsers.size(); i++) {
-                User u = listUsers.getUser(i);
-                if (u.getUserName().equals(e.getEmployee().getUserName())) {
-                    modelUsersList.addElement(u);
-                }
-            }
             listEmployees.removeEmployee(e);
             modelEmployeesList.removeElement(e);
         } catch (ArrayIndexOutOfBoundsException e) {
