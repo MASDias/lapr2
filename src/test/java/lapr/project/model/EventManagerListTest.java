@@ -160,5 +160,6 @@ public class EventManagerListTest {
         int result = list.size();
         int expectedResult = 1;
         assertEquals(result,expectedResult);
+        
     }
 }
