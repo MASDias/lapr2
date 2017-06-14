@@ -114,4 +114,51 @@ public class EventManagerListTest {
         int expectedResult = 1;
         assertEquals(size, expectedResult);
     }
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetEventManagerIsEqual() throws Exception {
+        EventManagerList list = new EventManagerList();
+        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        EventManager eventManager = new EventManager(user);
+        list.addEventManager(eventManager);
+        EventManager result = list.getEventManager(0);
+        assertEquals(result,eventManager);
+    }
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetEventManagerIsNotEqual() throws Exception {
+        EventManagerList list = new EventManagerList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
+        EventManager eventManager = new EventManager(u1);
+        EventManager eventManager2 = new EventManager(u2);
+        list.addEventManager(eventManager);
+        list.addEventManager(eventManager2);
+        EventManager result = list.getEventManager(1);
+        assertNotEquals(result,eventManager);
+    }
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureRemoveEventManagerWorks() throws Exception {
+        EventManagerList list = new EventManagerList();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        User u2 = new User("Ricardo", "ricardoReis@gmail.com", "ricardoReis", "987654321");
+        EventManager eventManager = new EventManager(u1);
+        EventManager eventManager2 = new EventManager(u2);
+        list.addEventManager(eventManager);
+        list.addEventManager(eventManager2);
+        list.removeEventManager(eventManager);
+        int result = list.size();
+        int expectedResult = 1;
+        assertEquals(result,expectedResult);
+    }
 }
