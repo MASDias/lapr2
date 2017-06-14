@@ -53,10 +53,19 @@ public class OrganizersList {
         return organizersList.size();
     }
     
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Organizer getOrganizer(int index){
         return organizersList.get(index);
     }
     
+    /**
+     *
+     * @param o
+     */
     public void removeOrganizer(Organizer o){
         organizersList.remove(o);
     }

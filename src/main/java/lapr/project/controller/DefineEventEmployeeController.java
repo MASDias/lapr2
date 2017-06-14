@@ -18,18 +18,34 @@ import lapr.project.model.UserRegistry;
 public class DefineEventEmployeeController {
     private EventCenter eventCenter;
     
+    /**
+     *
+     * @param eventCenter
+     */
     public DefineEventEmployeeController(EventCenter eventCenter){
         this.eventCenter = eventCenter;
     }
     
+    /**
+     *
+     * @return
+     */
     public UserRegistry getUsersList(){
         return eventCenter.getUserRegistry();
     }
     
+    /**
+     *
+     * @return
+     */
     public EventEmployeeList getEmployeesList(){
         return eventCenter.getEventEmployeeList();
     }
     
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventList(){
         return eventCenter.getEventRegistry();
     }

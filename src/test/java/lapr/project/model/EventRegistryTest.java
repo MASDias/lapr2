@@ -29,7 +29,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model Example965", "Explae string", beginning, end, local, 100);
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
         list.addEvent(event);
         int size = list.size();
         int expectedResult = 1;
@@ -47,7 +47,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model 98Example", "Explae string", beginning, end, local, 100);
+        Event event = new Event("Model 98Example", "Explae string", beginning, end, null, null, local, 100);
         result.addEvent(event);
         result.addEvent(event);
         int size = result.size();
@@ -65,7 +65,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model Example50", "Explae string", beginning, end, local, 100);
+        Event event = new Event("Model Example50", "Explae string", beginning, end, null, null, local, 100);
         EventRegistry list = new EventRegistry();
         list.addEvent(event);
         int result = list.size();
@@ -84,7 +84,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model Example10", "Explae string", beginning, end, local, 100);
+        Event event = new Event("Model Example10", "Explae string", beginning, end, null, null, local, 100);
         EventRegistry list = new EventRegistry();
         list.addEvent(event);
         assertEquals(list, list);
@@ -100,7 +100,7 @@ public class EventRegistryTest {
         Date beginning = sdf.parse("01/10/2017");
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model Example6", "Explae string", beginning, end, local, 100);
+        Event event = new Event("Model Example6", "Explae string", beginning, end, null, null, local, 100);
         EventRegistry list = new EventRegistry();
         EventRegistry list2 = new EventRegistry();
         list.addEvent(event);

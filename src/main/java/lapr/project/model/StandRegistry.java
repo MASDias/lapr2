@@ -24,6 +24,11 @@ public class StandRegistry {
         this.standsList = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Stand getStand(int index) {
         return standsList.get(index);
     }

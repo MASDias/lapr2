@@ -13,18 +13,34 @@ public class SubmitApplicationController {
 
     EventCenter eventCenter;
 
+    /**
+     *
+     * @param eventCenter
+     */
     public SubmitApplicationController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }
 
+    /**
+     *
+     * @return
+     */
     public StandRegistry getStandRegistry() {
         return this.eventCenter.getStandRegistry();
     }
 
+    /**
+     *
+     * @return
+     */
     public ProductList getProductList() {
         return this.eventCenter.getProductList();
     }
 
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventRegistry() {
         return this.eventCenter.getEventRegistry();
     }

@@ -18,18 +18,34 @@ public class DefineOrganizerController {
 
     private EventCenter eventCenter;
 
+    /**
+     *
+     * @param eventCenter
+     */
     public DefineOrganizerController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }
     
+    /**
+     *
+     * @return
+     */
     public UserRegistry getUsersList(){
         return eventCenter.getUserRegistry();
     }
     
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventsList(){
         return eventCenter.getEventRegistry();
     }
     
+    /**
+     *
+     * @return
+     */
     public OrganizersList getOrganizersList(){
         return eventCenter.getOrganizersList();
     }

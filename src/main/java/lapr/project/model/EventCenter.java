@@ -213,10 +213,18 @@ public class EventCenter {
         this.workshopList = workshopList;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProductList getProductList() {
         return productList;
     }
 
+    /**
+     *
+     * @param productList
+     */
     public void setProductList(ProductList productList) {
         this.productList = productList;
     }

@@ -14,11 +14,14 @@ public class Exhibition extends Event {
      * @param description
      * @param eventBegin
      * @param eventEnd
+     * @param eventSubmissionBegin
+     * @param eventSubmissionEnd
      * @param local
      * @param invites
      */
-    public Exhibition(String title, String description, Date eventBegin, Date eventEnd, Location local, int invites) {
-        super(title, description, eventBegin, eventEnd, local, invites);
+
+    public Exhibition(String title, String description, Date eventBegin, Date eventEnd, Date eventSubmissionBegin, Date eventSubmissionEnd, Location local, int invites) {
+        super(title, description, eventBegin, eventEnd, eventSubmissionBegin, eventSubmissionEnd, local, invites);
     }
 
 }

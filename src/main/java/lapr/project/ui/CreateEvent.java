@@ -7,14 +7,8 @@ package lapr.project.ui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CreateEventController;
 import lapr.project.model.Congress;
@@ -25,7 +19,6 @@ import lapr.project.model.LocationList;
 import lapr.project.model.Location;
 import lapr.project.model.Organizer;
 import lapr.project.model.OrganizersList;
-import lapr.project.model.StandRegistry;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -375,11 +368,13 @@ public class CreateEvent extends javax.swing.JFrame {
         try {
             Date db = sdf.parse(dateBString);
             Date de = sdf.parse(dateEString);
+            Date dsb = sdf.parse(dateSubB);
+            Date dse = sdf.parse(dateSubE);
             if (congressRadiobtn.isSelected()) {
                 controller.getLocationList().getLocal(locationCombobox.getSelectedIndex()).setInUse(true);
                 int invite = Integer.parseInt(invitesString);
                 if (listOrganizers.size() > 1) {
-                    Congress c = new Congress(name, description, db, de, local, invite);
+                    Congress c = new Congress(name, description, db, de, dsb, dse, local, invite);
 
                     c.setOrganizerList(listOrganizers);
                     listEvents.addEvent(c);
@@ -393,8 +388,7 @@ public class CreateEvent extends javax.swing.JFrame {
             } else if (exhibitionRadiobtn.isSelected()) {
                 int invite = Integer.parseInt(invitesString);
                 if (listOrganizers.size() > 1) {
-                    Exhibition e = new Exhibition(name, description, db, de, local, invite);
-
+                    Exhibition e = new Exhibition(name, description, db, de, dsb, dse, local, invite);
                     e.setOrganizerList(listOrganizers);
                     listEvents.addEvent(e);
                     System.out.println("Exhibition");
@@ -501,52 +495,21 @@ public class CreateEvent extends javax.swing.JFrame {
 
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean validateOrganizer(String id) {
         for (int i = 0; i < listOrganizers.size(); i++) {
-            String[] split = listOrganizers.getOrganizer(i).toString().split("; ");
-            split[0] = split[0].split(":")[1];
-            split[1] = split[1].split(":")[1];
-            split[2] = split[2].split(":")[1];
-            if (split[1].equals(id) || split[2].equals(id)) {
+            if (listOrganizers.getOrganizer(i).getUsername().equals(id) || listOrganizers.getOrganizer(i).getEmail().equals(id)) {
                 return true;
             }
         }
         return false;
     }
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new CreateEvent().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner SubmitAppStart;

@@ -12,6 +12,10 @@ package lapr.project.model;
 public class Product {
     String productName;
 
+    /**
+     *
+     * @param productName
+     */
     public Product(String productName) {
         this.productName = productName;
     }

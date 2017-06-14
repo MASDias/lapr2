@@ -5,13 +5,9 @@
  */
 package lapr.project.ui;
 
-
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CreateUserController;
 import lapr.project.model.EventCenter;
-import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
 /**
@@ -19,27 +15,24 @@ import lapr.project.model.UserRegistry;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class CreateUser extends javax.swing.JFrame {
-private static final long serialVersionUID = 1;
-private EventCenter eventCenter;
-private CreateUserController controller;
-private UserRegistry usersList = new UserRegistry();
 
+    private static final long serialVersionUID = 1;
+    private EventCenter eventCenter;
+    private CreateUserController controller;
+    private UserRegistry usersList = new UserRegistry();
 
     /**
      * Creates new form UserRegistryUIw
+     *
      * @param eventCenter
      */
     public CreateUser(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
         controller = new CreateUserController(eventCenter);
-        
         initComponents();
         setVisible(true);
     }
-    
-    
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,31 +173,25 @@ private UserRegistry usersList = new UserRegistry();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
-        
-        
+
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
-    
+
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-//        if(password.equals(confirmedPassword))
-//            JOptionPane.showMessageDialog(null, "Password and Confirmed Password are not the same!");
-        if(nameTextField.getText().isEmpty() || userNameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || String.valueOf(passwordField.getPassword()).isEmpty()){
-            JOptionPane.showMessageDialog(null, "                          Missing Data!", "Error!", -1);
-        }else{
-            if(String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))){
-                
-            
-        controller.newUser(nameTextField.getText(), emailTextField.getText(), userNameTextField.getText(), String.valueOf(passwordField.getPassword()));
-        controller.addUser();
-        
-        JOptionPane.showMessageDialog(null, "User created with success!");
-        
-        dispose();
-        
-        }else{
+        if (nameTextField.getText().isEmpty() || userNameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || String.valueOf(passwordField.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Missing Data!", "Error!", -1);
+        } else {
+            if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))) {
+                if (controller.newUser(nameTextField.getText(), emailTextField.getText(), userNameTextField.getText(), String.valueOf(passwordField.getPassword()))) {
+                    controller.addUser();
+                    JOptionPane.showMessageDialog(null, "User created with success!");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid Data please check the fields!", "Error!", -1);
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "Inserted passwords are not the same!", "Error!", -1);
             }
-           
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
@@ -213,11 +200,11 @@ private UserRegistry usersList = new UserRegistry();
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
-        
+
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
-            
+
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
@@ -225,44 +212,9 @@ private UserRegistry usersList = new UserRegistry();
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        
+
     }//GEN-LAST:event_passwordFieldActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CreateUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new CreateUser().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;

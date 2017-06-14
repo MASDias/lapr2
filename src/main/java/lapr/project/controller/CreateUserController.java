@@ -30,9 +30,14 @@ public class CreateUserController {
      * @param username
      * @param email
      * @param password
+     * @return 
      */
-    public void newUser(String name, String username, String email, String password){
+    public boolean newUser(String name, String username, String email, String password){
         this.user = new User(name, username, email, password);
+        if (user.validateData()) {
+            return true;
+        }
+        return false;
     }
     
     /**

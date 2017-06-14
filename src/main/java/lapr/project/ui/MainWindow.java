@@ -17,7 +17,7 @@ import lapr.project.model.User;
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private boolean loginStatus = false;
@@ -28,6 +28,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form MainWindow
+     * @param eventCenter
      */
     public MainWindow(EventCenter eventCenter) {
         
@@ -66,6 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
         defineEmployeeMenuItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         submitApplicationMenuItem = new javax.swing.JMenuItem();
+        decideApplicationItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Event Management");
@@ -153,6 +155,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu1.add(submitApplicationMenuItem);
 
+        decideApplicationItem.setText("Decide Application");
+        decideApplicationItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decideApplicationItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(decideApplicationItem);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -205,6 +215,14 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_submitApplicationMenuItemActionPerformed
 
+    private void decideApplicationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decideApplicationItemActionPerformed
+        try { 
+            DecideApplicationUI dapp = new DecideApplicationUI(null);
+        } catch (ParseException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_decideApplicationItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -242,6 +260,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem createEventMenuItem;
+    private javax.swing.JMenuItem decideApplicationItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;
     private javax.swing.JMenuItem defineEventManagerMenuItem;
     private javax.swing.JMenuItem defineOrganizerMenuItem;

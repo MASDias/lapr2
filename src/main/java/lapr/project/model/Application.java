@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,27 +13,96 @@ import java.util.List;
  */
 public class Application {
 
-    private String description;
     private Event event;
     private Evaluation evaluation;
     private Enterprise enterprise;
+    private ArrayList<Evaluation> evaluationList;
+    private String description;
+    private int invites;
 
-    public Application(Enterprise enterprise, Event event) {
+    /**
+     *
+     * @param enterprise
+     * @param event
+     * @param invites
+     * @param description
+     */
+    public Application(Enterprise enterprise, Event event, int invites, String description) {
         this.enterprise = enterprise;
         this.event = event;
+        this.evaluationList = new ArrayList<>();
+        this.description = description;
+        this.invites = invites;
     }
 
-    public Evaluation getEvaluation() {
-        return evaluation;
+    /**
+     *
+     * @return
+     */
+    public int getInvites() {
+        return invites;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     *
+     * @param description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Event getEvent() {
+        return event;
+    }
+
+    /**
+     *
+     * @param evaluation
+     */
     public void setEvaluation(Evaluation evaluation) {
         this.evaluation = evaluation;
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Evaluation getEvaluation(int index) {
+        return evaluationList.get(index);
+    }
+
+    /**
+     *
+     * @param evaluation
+     */
+    public void addEvaluation(Evaluation evaluation) {
+        evaluationList.add(evaluation);
+    }
+
     @Override
     public String toString() {
-        return enterprise.toString() + "\n" + event.toString();
+        return enterprise.toString() + "; Invites:" + invites + "; Description:" + description;
     }
 
 }

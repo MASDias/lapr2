@@ -33,14 +33,26 @@ public class Organizer {
         this.eventRegistry = eventRegistry;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getOrganizer() {
         return organizer;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return organizer.getEmail();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return organizer.getUserName();
     }
