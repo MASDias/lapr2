@@ -123,17 +123,6 @@ public class EventEmployeeTest {
         int result = employee.getExperience();
         assertNotEquals(result, expectedResult);
     }
-  /**
-     *
-     */
-    @Test
-    public void EnsureGetEmployeeIsEqual() {
-       User user = new User("Z", "c", "b", "a");
-       EventEmployee employee = new EventEmployee(user, 1);
-       User result = employee.getEmployee();
-        
-        assertEquals(result, user);
-    }
 
     /**
      *
@@ -141,9 +130,10 @@ public class EventEmployeeTest {
     @Test
     public void EnsureGetEmployeeIsNotEqual() {
        User user = new User("Z", "c", "b", "a");
-       User expectedResult = new User ("R","t","e","r");
+      
        EventEmployee employee = new EventEmployee(user, 1);
-       User result = employee.getEmployee();
-       assertNotEquals(result, expectedResult);
+       User user2 = employee.getEmployee();
+        EventEmployee result = new EventEmployee (user2,4);
+       assertNotEquals(result, employee);
     }
 }
