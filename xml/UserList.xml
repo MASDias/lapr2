@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <UserRegistry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<User>
-		<Name>User number 170</Name>
-		<Username>username 653</Username>
-		<Email>36@email.com</Email>
-		<Password>Password493</Password>
+		<Name>Miguel Santos</Name>
+		<Username>miguelsantos</Username>
+		<Email>miguelsantos@gmail.com</Email>
+		<Password>averdadeira</Password>
 		<Serialkey>0</Serialkey>
 	</User>
 	<User>
-		<Name>User number 676</Name>
-		<Username>username 853</Username>
-		<Email>598@email.com</Email>
-		<Password>Password390</Password>
+		<Name>Mario Dias</Name>
+		<Username>mariodias</Username>
+		<Email>mariodias@gmail.com</Email>
+		<Password>averdadeira</Password>
 		<Serialkey>9</Serialkey>
 	</User>
 	<User>
-		<Name>User number 216</Name>
-		<Username>username 250</Username>
-		<Email>624@email.com</Email>
-		<Password>Password333</Password>
+		<Name>Ruben Santos</Name>
+		<Username>rubensantos</Username>
+		<Email>rubensantos@gmail.com</Email>
+		<Password>areal</Password>
 		<Serialkey>4</Serialkey>
 	</User>
 	<User>
-		<Name>User number 522</Name>
-		<Username>username 784</Username>
-		<Email>722@email.com</Email>
-		<Password>Password724</Password>
+		<Name>Tiago cunha</Name>
+		<Username>tiagocunha</Username>
+		<Email>tiagocunha@gmail.com</Email>
+		<Password>areal</Password>
 		<Serialkey>5</Serialkey>
 	</User>
 	<User>
-		<Name>User number 835</Name>
-		<Username>username 935</Username>
-		<Email>225@email.com</Email>
-		<Password>Password186</Password>
+		<Name>Paulo Cuino</Name>
+		<Username>paulocuino</Username>
+		<Email>paulocuino@gmail.com</Email>
+		<Password>areal</Password>
 		<Serialkey>2</Serialkey>
 	</User>
 	<User>

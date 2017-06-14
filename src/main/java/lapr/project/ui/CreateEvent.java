@@ -34,7 +34,7 @@ import lapr.project.model.UserRegistry;
  * @author MarioDias
  */
 public class CreateEvent extends javax.swing.JFrame {
-
+    
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateEventController controller;
@@ -56,12 +56,12 @@ public class CreateEvent extends javax.swing.JFrame {
         initComponents();
         listEvents = controller.getEventsList();
         locationList = controller.getLocationList();
-
+        
         listUsers = controller.getUsersList();
         usersJList.setModel(modelUsersList);
         listOrganizers = new OrganizersList();
         organizersList.setModel(modelOrganizerListEvent);
-
+        
         initObjects();
         setVisible(true);
     }
@@ -370,7 +370,8 @@ public class CreateEvent extends javax.swing.JFrame {
         String name = nameTextField.getText();
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
-        Location local = new Location("teste");
+        Location local = (Location) locationCombobox.getSelectedItem();
+        
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());
@@ -379,7 +380,10 @@ public class CreateEvent extends javax.swing.JFrame {
             Date db = sdf.parse(dateBString);
             Date de = sdf.parse(dateEString);
             if (congressRadiobtn.isSelected()) {
+                controller.getLocationList().getLocal(locationCombobox.getSelectedIndex()).setInUse(true);
+                
                 Congress c = new Congress(name, description, db, de, local, 100);
+                
                 c.setOrganizerList(listOrganizers);
                 listEvents.addEvent(c);
                 System.out.println("Congress");
@@ -389,6 +393,7 @@ public class CreateEvent extends javax.swing.JFrame {
             } else if (exhibitionRadiobtn.isSelected()) {
                 int invite = Integer.parseInt(invitesString);
                 Exhibition e = new Exhibition(name, description, db, de, local, invite);
+                
                 e.setOrganizerList(listOrganizers);
                 listEvents.addEvent(e);
                 System.out.println("Exhibition");
@@ -398,20 +403,21 @@ public class CreateEvent extends javax.swing.JFrame {
             } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
-
+            
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Error inserting date");
         }
 
     }//GEN-LAST:event_newEventbtnActionPerformed
-
+    
     private void initObjects() {
         for (int i = 0; i < listUsers.size(); i++) {
             modelUsersList.addElement(listUsers.getUser(i));
         }
         for (int i = 0; i < locationList.size(); i++) {
-            locationCombobox.addItem(locationList.getLocal(i));
-            System.out.println(locationList.getLocal(i));
+            if (!locationList.getLocal(i).isInUse()) {
+                locationCombobox.addItem(locationList.getLocal(i));
+            }
         }
     }
 
@@ -442,6 +448,7 @@ public class CreateEvent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No organizer selected");
         }
     }//GEN-LAST:event_removeOrganizerbtnActionPerformed
+    
 
     private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
         congressRadiobtn.setSelected(true);
@@ -474,10 +481,11 @@ public class CreateEvent extends javax.swing.JFrame {
                     modelUsersList.removeElement(u);
                     cont++;
                 }/* else {
-                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
-                    System.out.println(u.getUserName()+" "+u.getEmail());
-                    break;
-                }*/
+                 JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                 System.out.println(u.getUserName()+" "+u.getEmail());
+                 break;
+                 }*/
+                
             }
             if (cont == 0) {
                 JOptionPane.showMessageDialog(null, "Given user doesn't exist");
@@ -486,7 +494,7 @@ public class CreateEvent extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
         }
-
+        
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
     public boolean validateOrganizer(String id) {

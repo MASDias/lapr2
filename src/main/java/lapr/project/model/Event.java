@@ -17,7 +17,6 @@ public class Event {
     private int invites;
     private ApplicationList applicationsList;
     private EventEmployeeList eventEmployeeList;
-    private Keyword keyword;
     private StandRegistry standRegister;
     private OrganizersList organizerList;
 
@@ -41,6 +40,19 @@ public class Event {
         this.applicationsList = new ApplicationList();
         this.eventEmployeeList = new EventEmployeeList();
         this.organizerList = new OrganizersList();
+    }
+
+    public Location getLocal() {
+        return local;
+    }
+
+    
+    public Date getEventBegin() {
+        return eventBegin;
+    }
+
+    public Date getEventEnd() {
+        return eventEnd;
     }
 
     public OrganizersList getOrganizerList() {
@@ -88,7 +100,7 @@ public class Event {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String eventBeginString = sdf.format(eventBegin);
         String eventEndString = sdf.format(eventEnd);
-        return "Title: " + title + "\nDescription: " + description + "\nDate Begin: " + eventBeginString.substring(0, 10) + "\nDate End: " + eventEndString.substring(0, 10) + "\nLocal: " + local;
+        return "Title: " + title ;
     }
 
 }

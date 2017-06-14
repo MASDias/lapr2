@@ -237,7 +237,11 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_addUserBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
+        
+
+        
+        
+        
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed

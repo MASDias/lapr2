@@ -181,11 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_registerMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel);
-        this.userStatus = login.isUserStatus();
-        this.organizerStatus = login.isOrganizerStatus();
-        this.eventEmployeeStatus = login.isEventEmployeeStatus();
-        this.eventManagerStatus = login.isEventManagerStatus();
+        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus);
         
     }//GEN-LAST:event_loginMenuItemActionPerformed
 

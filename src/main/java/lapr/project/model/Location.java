@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -10,6 +11,7 @@ public class Location implements Serializable{
     private static final long serialVersionUID = 1;
 
     private String address;
+    private boolean inUse;
 
     /**
      *
@@ -24,4 +26,15 @@ public class Location implements Serializable{
     public String toString(){
         return "Address: " +address;
     }
+    
+    public void setInUse(boolean inUse){
+        this.inUse = inUse;
+    }
+
+    public boolean isInUse() {
+        return inUse;
+    }
+
+    
+    
 }

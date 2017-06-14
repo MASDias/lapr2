@@ -28,11 +28,24 @@ public class LoginUI extends javax.swing.JFrame {
      *
      * @param loginStatus
      * @param eventCenter
+     * @param label
+     * @param userStatus
+     * @param organizerStatus
+     * @param eventEmployeeStatus
+     * @param eventManagerStatus
      */
-    public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label) {
+    public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label, boolean userStatus, boolean organizerStatus, boolean eventEmployeeStatus, boolean eventManagerStatus) {
         this.loginStatus = loginStatus;
         this.eventCenter = eventCenter;
         this.label = label;
+        this.userStatus = userStatus;
+        this.organizerStatus = organizerStatus;
+        this.eventEmployeeStatus = eventEmployeeStatus;
+        this.eventManagerStatus = eventManagerStatus;
+        this.userStatus = userStatus;
+        this.organizerStatus = organizerStatus;
+        this.eventEmployeeStatus = eventEmployeeStatus;
+        this.eventManagerStatus = eventManagerStatus;
         initComponents();
         this.setVisible(true);
     }
@@ -142,9 +155,13 @@ public class LoginUI extends javax.swing.JFrame {
         }
         if (validateLoginStatus()) {
             this.dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "The user does not exist or invalid login info");
         }
+        System.out.println("User:" + userStatus);
+        System.out.println("Organizer:" + organizerStatus);
+        System.out.println("Event Employee:" + eventEmployeeStatus);
+        System.out.println("EventManager:" + eventManagerStatus);
     }
 
     private boolean validateLoginStatus() {

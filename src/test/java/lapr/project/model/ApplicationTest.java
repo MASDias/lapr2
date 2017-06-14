@@ -85,7 +85,7 @@ public class ApplicationTest {
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(e, event);
         String result = application.toString();
-        String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987\nTitle: Model Example\nDescription: Explae string\nDate Begin: 10-01-2017\nDate End: 30-01-2017\nLocal: Address: Example Street";
+        String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987\nTitle: Model Example";
         assertEquals(result, expectedResult);
     }
 

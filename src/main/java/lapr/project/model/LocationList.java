@@ -54,4 +54,8 @@ public class LocationList {
     public int size() {
         return localList.size();
     }
+
+    public void removeLocation(Location local) {
+        localList.remove(local);
+    }
 }
