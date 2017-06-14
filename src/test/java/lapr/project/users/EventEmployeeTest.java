@@ -129,11 +129,46 @@ public class EventEmployeeTest {
      */
     @Test
     public void EnsureGetEmployeeIsNotEqual() {
-       User user = new User("Z", "c", "b", "a");
-      
-       EventEmployee employee = new EventEmployee(user, 1);
-       User user2 = employee.getEmployee();
-        EventEmployee result = new EventEmployee (user2,4);
-       assertNotEquals(result, employee);
+        User user = new User("Z", "c", "b", "a");
+        EventEmployee employee = new EventEmployee(user, 1);
+        User user2 = employee.getEmployee();
+        EventEmployee result = new EventEmployee(user2, 4);
+        assertNotEquals(result, employee);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetUserNameIsEqual() {
+        User user = new User("Z", "c", "b", "a");
+        User user2 = new User("T", "a", "o", "q");
+        EventEmployee employee = new EventEmployee(user, 1);
+        String result = employee.getUsername();
+        assertNotEquals(result, user2);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetEmailIsEqual() {
+        User user = new User("Z", "c", "b", "a");
+        EventEmployee employee = new EventEmployee(user, 1);
+        String result = user.getEmail();
+        String expectedResult = employee.getEmail();
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureGetEmailIsNotEqual() {
+        User user = new User("Z", "c", "b", "a");
+        User user2 = new User ("T", "a", "o", "q");
+        EventEmployee employee = new EventEmployee(user2, 1);
+        String result = user.getEmail();
+        String expectedResult = employee.getEmail();
+        assertNotEquals(result, expectedResult);
     }
 }
