@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +13,9 @@ import java.util.List;
  *
  * @author MarioDias
  */
-public class ProductList {
+public class ProductList implements Serializable{
     private List<Product> productList;
-
+private static final long serialVersionUID = 1;
     /**
      *
      */

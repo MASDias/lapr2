@@ -5,13 +5,15 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author MarioDias
  */
-public class Product {
+public class Product implements Serializable{
     String productName;
-
+private static final long serialVersionUID = 1;
     /**
      *
      * @param productName

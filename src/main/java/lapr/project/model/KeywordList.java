@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
  *
  * @author MarioDias
  */
-public class KeywordList {
-
+public class KeywordList implements Serializable{
+private static final long serialVersionUID = 1;
     private List<Keyword> keywordList;
 
     /**

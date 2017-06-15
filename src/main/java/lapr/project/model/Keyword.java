@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -16,8 +17,8 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Keyword implements Exportable, Importable<Keyword> {
-
+public class Keyword implements Exportable, Importable<Keyword>, Serializable {
+private static final long serialVersionUID = 1;
 	private static final String ROOT_ELEMENT_NAME = "keyword";
 	private static final String VALUE_ELEMENT_NAME = "value";
 

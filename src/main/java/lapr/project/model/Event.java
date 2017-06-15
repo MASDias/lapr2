@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,8 +8,8 @@ import java.util.Date;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Event {
-
+public class Event implements Serializable{
+private static final long serialVersionUID = 1;
     private String title;
     private String description;
     private Date eventBegin;

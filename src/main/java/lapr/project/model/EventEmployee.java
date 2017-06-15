@@ -1,11 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventEmployee {
-
+public class EventEmployee implements Serializable{
+private static final long serialVersionUID = 1;
     private int experience;
     private User eventEmployee;
     

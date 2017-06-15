@@ -1,11 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventCenter {
-
+public class EventCenter implements Serializable{
+private static final long serialVersionUID = 1;
     private EventEmployeeList eventEmployeeList;
     private ApplicationList applicationList;
     private AreaOfExpertiseList areaExpertiseList;

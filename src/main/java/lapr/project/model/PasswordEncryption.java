@@ -1,11 +1,13 @@
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author
  */
-public class PasswordEncryption {
-
+public class PasswordEncryption implements Serializable{
+private static final long serialVersionUID = 1;
     private static final int[] KEY = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
     
     /**

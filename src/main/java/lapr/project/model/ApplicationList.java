@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,8 +14,9 @@ import javax.swing.JOptionPane;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class ApplicationList {
+public class ApplicationList implements Serializable {
 
+    private static final long serialVersionUID = 1;
     private List<Application> applicationsList;
 
     /**

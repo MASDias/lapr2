@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,6 +71,10 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        importExportMenu = new javax.swing.JMenu();
+        importMenuItem = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        exportMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Event Management");
@@ -168,6 +173,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        importExportMenu.setText("Import/Export");
+
+        importMenuItem.setText("Import File");
+        importMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importMenuItemActionPerformed(evt);
+            }
+        });
+        importExportMenu.add(importMenuItem);
+        importExportMenu.add(jSeparator6);
+
+        exportMenuItem.setText("Export File");
+        exportMenuItem.setToolTipText("");
+        exportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportMenuItemActionPerformed(evt);
+            }
+        });
+        importExportMenu.add(exportMenuItem);
+
+        jMenuBar1.add(importExportMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,6 +253,21 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_decideApplicationItemActionPerformed
 
+    private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
+        
+        
+    }//GEN-LAST:event_exportMenuItemActionPerformed
+
+//    private void writesFile(EventCenter eventCenter) throws Exception{
+//        FileWriter writer = new FileWriter("EventCenter.txt");
+//        writer.write(eventCenter);
+//    }
+    
+    private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
+       
+        
+    }//GEN-LAST:event_importMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,6 +310,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem defineEventManagerMenuItem;
     private javax.swing.JMenuItem defineOrganizerMenuItem;
     private javax.swing.JMenu defineUser;
+    private javax.swing.JMenuItem exportMenuItem;
+    private javax.swing.JMenu importExportMenu;
+    private javax.swing.JMenuItem importMenuItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -277,6 +322,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
