@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
+import lapr.project.model.ExportFile;
 import lapr.project.model.User;
 
 /**
@@ -254,7 +255,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_decideApplicationItemActionPerformed
 
     private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
-        
+        try {
+            ExportFile exportFile = new ExportFile("EventCenter.bin", eventCenter);
+        } catch (Exception ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_exportMenuItemActionPerformed
 
