@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.DefineOrganizerController;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
@@ -23,12 +24,13 @@ public class DefineOrganizer extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
-    private UserRegistry usersList;
-    private OrganizersList organizersList;
-    private EventRegistry eventsList;
+    private UserRegistry listUsers;
+    private OrganizersList listOrganizers;
+    private EventRegistry listEvents;
     private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
     private DefaultListModel<Organizer> modelOrganizersList = new DefaultListModel<Organizer>();
     private DefineOrganizerController controller;
+    private Event event;
 
     /**
      * Creates new form DefineOrganizer
@@ -37,16 +39,21 @@ public class DefineOrganizer extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineOrganizerController(eventCenter);
         initComponents();
-        
-        usersList = controller.getUsersList();
+
+        listOrganizers = new OrganizersList();
+        organizerJList.setModel(modelOrganizersList);
+
+        listUsers = controller.getUsersList();
         userJList.setModel(modelUsersList);
-        for (int i = 0; i < usersList.size(); i++) {
-            modelUsersList.addElement(usersList.getUser(i));
+        for (int i = 0; i < listUsers.size(); i++) {
+            modelUsersList.addElement(listUsers.getUser(i));
         }
-        
-        organizersList = new OrganizersList();
-        eventsList = controller.getEventsList();
-        
+
+        listEvents = controller.getEventsList();
+        for (int i = 0; i < listEvents.size(); i++) {
+            eventComboBox.addItem(listEvents.getEvent(i));
+        }
+
         setVisible(true);
     }
 
@@ -85,6 +92,12 @@ public class DefineOrganizer extends javax.swing.JFrame {
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
+            }
+        });
+
+        eventComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventComboBoxActionPerformed(evt);
             }
         });
 
@@ -189,18 +202,112 @@ public class DefineOrganizer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (listEvents.size() == 0) {
+                JOptionPane.showMessageDialog(null, "There are no events!");
+            } else {
+                User u = modelUsersList.getElementAt(userJList.getSelectedIndex());
+
+                if (!checkOrganizer(u.getUserName(), u.getEmail())) {
+                    Organizer o = new Organizer(u);
+                    modelOrganizersList.addElement(o);
+                } else {
+                    JOptionPane.showMessageDialog(null, "This user is already in organizers list");
+                }
+
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No user selected");
+        }
+
     }//GEN-LAST:event_addUserBtnActionPerformed
 
+    private boolean checkOrganizer(String username, String email) {
+        for (int i = 0; i < modelOrganizersList.size(); i++) {
+            if (username.equals(modelOrganizersList.getElementAt(i).getUsername()) || email.equals(modelOrganizersList.getElementAt(i).getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addOrganizers() {
+        event = (Event) eventComboBox.getSelectedItem();
+        for (int i = 0; i < modelOrganizersList.size(); i++) {
+            event.getOrganizerList().addOrganizer(modelOrganizersList.getElementAt(i));
+        }
+    }
+    
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
+        addOrganizers();
+        JOptionPane.showMessageDialog(null, "Organizers defined with success!");
+        dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
-        // TODO add your handling code here:
+        String userID = userIDTextField.getText();
+        if (listEvents.size() == 0) {
+            JOptionPane.showMessageDialog(null, "There are no events!");
+        } else {
+            if (!validateOrganizer(userID)) {
+                int cont = 0;
+
+                for (int i = 0; i < listUsers.size(); i++) {
+                    User u = listUsers.getUser(i);
+
+                    if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                        Organizer o = new Organizer(u);
+                        listOrganizers.addOrganizer(o);
+                        modelOrganizersList.addElement(o);
+                        cont++;
+                    }
+                }
+                
+                if (cont == 0) {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                }
+                cont = 0;
+            } else {
+                JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
+            }
+        }
+        userIDTextField.setText("");
     }//GEN-LAST:event_userIDTextFieldActionPerformed
 
+    private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
+
+        event = (Event) eventComboBox.getSelectedItem();
+
+        if (!eventComboBox.getSelectedItem().toString().equals(event.toString())) {
+            JOptionPane.showMessageDialog(null, "Already Selected");
+        } else {
+            modelOrganizersList.removeAllElements();
+            updateOrganizerModel();
+        }
+    }//GEN-LAST:event_eventComboBoxActionPerformed
+
+    private void updateOrganizerModel() {
+        listOrganizers = event.getOrganizerList();
+        for (int i = 0; i < listUsers.size(); i++) {
+            if (i < listOrganizers.size()) {
+                modelOrganizersList.addElement(listOrganizers.getOrganizer(i));
+            }
+            modelUsersList.addElement(listUsers.getUser(i));
+        }
+    }
     
+    public boolean validateOrganizer(String id) {
+        for (int i = 0; i < modelOrganizersList.size(); i++) {
+            String[] split = modelOrganizersList.getElementAt(i).toString().split("; ");
+            split[0] = split[0].split(":")[1];
+            split[1] = split[1].split(":")[1];
+            split[2] = split[2].split(":")[1];
+            if (split[1].equals(id) || split[2].equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUserBtn;

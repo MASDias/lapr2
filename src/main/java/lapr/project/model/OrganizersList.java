@@ -25,8 +25,8 @@ public class OrganizersList {
     }
 
     private boolean validate(Organizer organizer) {
-        for (Organizer u : organizersList) {
-            if (u.equals(organizer)) {
+        for (Organizer o : organizersList) {
+            if (o.equals(organizer)) {
                 return false;
             }
         }
@@ -40,9 +40,7 @@ public class OrganizersList {
     public void addOrganizer(Organizer organizer) {
         if (validate(organizer)) {
             organizersList.add(organizer);
-        } else {
-            JOptionPane.showMessageDialog(null, "The employee already exists", "Error!", -1);
-        }
+        } 
     }
 
     /**

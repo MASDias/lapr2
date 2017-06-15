@@ -13,7 +13,6 @@ import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
 import lapr.project.model.EventEmployeeList;
 import lapr.project.model.EventRegistry;
-import lapr.project.model.Organizer;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -41,9 +40,9 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new DefineEventEmployeeController(eventCenter);
         initComponents();
-        
+
         eventEmployeeJList.setModel(modelEmployeesList);
-        
+
         listUsers = controller.getUsersList();
         userJList.setModel(modelUsersList);
         for (int i = 0; i < listUsers.size(); i++) {
@@ -54,7 +53,6 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
-
 
         setVisible(true);
     }
@@ -267,24 +265,28 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private void userIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userIDTextFieldActionPerformed
 
         String userID = userIDTextField.getText();
-        if (!validateEmployee(userID)) {
-            int cont = 0;
-            for (int i = 0; i < listUsers.size(); i++) {
-                User u = listUsers.getUser(i);
-                if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
-                    EventEmployee e = new EventEmployee(u, 0);
-                    listEmployees.addEmployee(e);
-                    modelEmployeesList.addElement(e);
-                    modelUsersList.removeElement(u);
-                    cont++;
-                }
-            }
-            if (cont == 0) {
-                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
-            }
-            cont = 0;
+        if (listEvents.size() == 0) {
+            JOptionPane.showMessageDialog(null, "There are no events!");
         } else {
-            JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
+            if (!validateEmployee(userID)) {
+                int cont = 0;
+                for (int i = 0; i < listUsers.size(); i++) {
+                    User u = listUsers.getUser(i);
+                    if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                        EventEmployee e = new EventEmployee(u, 0);
+                        listEmployees.addEmployee(e);
+                        modelEmployeesList.addElement(e);
+                        modelUsersList.removeElement(u);
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+                }
+                cont = 0;
+            } else {
+                JOptionPane.showMessageDialog(null, "That user is already a Employee of that event");
+            }
         }
 
         userIDTextField.setText("");
