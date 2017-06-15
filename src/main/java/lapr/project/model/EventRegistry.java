@@ -51,6 +51,11 @@ public class EventRegistry {
         return eventsList.size();
     }
     
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Event getEvent(int index){
         return eventsList.get(index);
     }

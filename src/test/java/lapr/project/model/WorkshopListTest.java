@@ -79,7 +79,7 @@ public class WorkshopListTest {
     @Test
     public void EnsureGetWorkshopListIsEqual() {
         WorkshopList list = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", null, null, null,100);
+        Congress congress = new Congress("blabla", "bla bla", null, null, null, null, null, 100);
         congress.setWorkshopList(list);
         WorkshopList result = congress.getWorkshopList();
         WorkshopList expectedResult = list;
@@ -93,7 +93,7 @@ public class WorkshopListTest {
     public void EnsureGetWorkshopListIsNotEqual() {
         WorkshopList list = new WorkshopList();
         WorkshopList list2 = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", null, null, null,100);
+        Congress congress = new Congress("blabla", "bla bla", null, null, null, null, null, 100);
         congress.setWorkshopList(list);
         WorkshopList result = congress.getWorkshopList();
         WorkshopList expectedResult = list2;
@@ -106,7 +106,7 @@ public class WorkshopListTest {
     @Test
     public void EnsureSetWorkshopListIsEqual() {
         WorkshopList result = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", null, null, null,100);
+        Congress congress = new Congress("blabla", "bla bla", null, null, null, null, null, 100);
 
         congress.setWorkshopList(result);
         WorkshopList expectedResult = congress.getWorkshopList();
@@ -120,7 +120,7 @@ public class WorkshopListTest {
     public void EnsureSetWorkshopListIsNotEqual() {
         WorkshopList result = new WorkshopList();
         WorkshopList list = new WorkshopList();
-        Congress congress = new Congress("blabla", "bla bla", null, null, null,100);
+        Congress congress = new Congress("blabla", "bla bla", null, null, null, null, null, 100);
 
         congress.setWorkshopList(result);
         WorkshopList expectedResult = list;

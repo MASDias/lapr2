@@ -50,4 +50,13 @@ public class ApplicationList {
     public int size() {
         return applicationsList.size();
     }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Application getApplication(int index) {
+        return applicationsList.get(index);
+    }
 }

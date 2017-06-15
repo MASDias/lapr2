@@ -33,9 +33,19 @@ public class Enterprise {
         this.contact = contact;
     }
 
+    /**
+     *
+     * @return
+     */
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Enterprise:" + name + " Email:" + email + " Address:" + address + " Taxpayer num:" + taxpayerNumber + " Contact:" + contact;
     }
+
+    
 
 }

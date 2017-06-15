@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+
+
 /**
  *
  * @author MarioDias
@@ -16,6 +18,7 @@ public class Evaluation {
     private int invitation;
     private int overall;
 
+
     /**
      *
      * @param knowledge
@@ -23,7 +26,7 @@ public class Evaluation {
      * @param invitation
      * @param overall
      */
-    public Evaluation(int knowledge, int application, int invitation,int overall) {
+    public Evaluation(int knowledge, int application, int invitation, int overall) {
         this.knowledge = knowledge;
         this.application = application;
         this.invitation = invitation;

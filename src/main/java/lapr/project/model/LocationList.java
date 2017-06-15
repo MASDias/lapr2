@@ -55,6 +55,10 @@ public class LocationList {
         return localList.size();
     }
 
+    /**
+     *
+     * @param local
+     */
     public void removeLocation(Location local) {
         localList.remove(local);
     }

@@ -23,10 +23,18 @@ public class EventEmployee {
         this.applicationList= new ApplicationList();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return eventEmployee.getEmail();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return eventEmployee.getUserName();
     }
@@ -47,18 +55,34 @@ public class EventEmployee {
         return experience;
     }
 
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventRegistry() {
         return eventRegistry;
     }
 
+    /**
+     *
+     * @param eventRegistry
+     */
     public void setEventRegistry(EventRegistry eventRegistry) {
         this.eventRegistry = eventRegistry;
     }
 
+    /**
+     *
+     * @return
+     */
     public ApplicationList getApplicationList() {
         return applicationList;
     }
 
+    /**
+     *
+     * @param applicationList
+     */
     public void setApplicationList(ApplicationList applicationList) {
         this.applicationList = applicationList;
     }
@@ -68,6 +92,10 @@ public class EventEmployee {
         return eventEmployee.toString() + " Experience: " + experience;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getEmployee() {
         return eventEmployee;
     }

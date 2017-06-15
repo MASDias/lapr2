@@ -34,6 +34,7 @@ public class DefineOrganizer extends javax.swing.JFrame {
 
     /**
      * Creates new form DefineOrganizer
+     * @param eventCenter
      */
     public DefineOrganizer(EventCenter eventCenter) {
         this.eventCenter = eventCenter;

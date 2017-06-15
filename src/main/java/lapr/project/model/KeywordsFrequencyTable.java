@@ -11,6 +11,10 @@ package lapr.project.model;
  */
 public class KeywordsFrequencyTable {
 
+    /**
+     *
+     * @param organizer
+     */
     public KeywordsFrequencyTable(Organizer organizer) {
         EventRegistry list = organizer.getEventRegistry();
         

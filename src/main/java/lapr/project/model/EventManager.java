@@ -21,13 +21,26 @@ public class EventManager {
         this.eventManager = eventManager;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getEventManager() {
         return eventManager;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return eventManager.getUserName();
     }
+
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return eventManager.getEmail();
     }

@@ -275,6 +275,11 @@ public class DefineEventManager extends javax.swing.JFrame {
         eventManagerTextField.setText("");
     }//GEN-LAST:event_eventManagerTextFieldActionPerformed
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean validateEventManager(String id) {
         for (int i = 0; i < listEventManagers.size(); i++) {
             String[] split = listEventManagers.getEventManager(i).toString().split("; ");

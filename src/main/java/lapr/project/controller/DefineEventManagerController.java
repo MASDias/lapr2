@@ -17,19 +17,35 @@ import lapr.project.model.UserRegistry;
 public class DefineEventManagerController {
      private EventCenter eventCenter;
      
-     public DefineEventManagerController(EventCenter eventCenter){
+    /**
+     *
+     * @param eventCenter
+     */
+    public DefineEventManagerController(EventCenter eventCenter){
          this.eventCenter = eventCenter;
      }
      
-     public UserRegistry getUsersList(){
+    /**
+     *
+     * @return
+     */
+    public UserRegistry getUsersList(){
         return eventCenter.getUserRegistry();
     }
      
-     public EventRegistry getEventList(){
+    /**
+     *
+     * @return
+     */
+    public EventRegistry getEventList(){
         return eventCenter.getEventRegistry();
     }
      
-     public EventManagerList getEventManagerList(){
+    /**
+     *
+     * @return
+     */
+    public EventManagerList getEventManagerList(){
          return eventCenter.getEventManagerList();
      }
 }

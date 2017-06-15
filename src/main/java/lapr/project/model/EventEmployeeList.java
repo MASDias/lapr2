@@ -51,10 +51,19 @@ public class EventEmployeeList {
         return employeeList.size();
     }
     
+    /**
+     *
+     * @param index
+     * @return
+     */
     public EventEmployee getEmployee(int index){
         return employeeList.get(index);
     }
     
+    /**
+     *
+     * @param e
+     */
     public void removeEmployee(EventEmployee e){
         employeeList.remove(e);
     }

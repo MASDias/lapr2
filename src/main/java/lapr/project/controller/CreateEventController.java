@@ -42,14 +42,26 @@ public class CreateEventController {
         return eventCenter.getUserRegistry();
     }
 
+    /**
+     *
+     * @return
+     */
     public OrganizersList getOrganizersList() {
         return eventCenter.getOrganizersList();
     }
 
+    /**
+     *
+     * @return
+     */
     public EventRegistry getEventsList() {
         return eventCenter.getEventRegistry();
     }
 
+    /**
+     *
+     * @return
+     */
     public LocationList getLocationList() {
         return eventCenter.getLocationList();
     }

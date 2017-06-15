@@ -177,30 +177,58 @@ public class LoginUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isLoginStatus() {
         return loginStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isUserStatus() {
         return userStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEventEmployeeStatus() {
         return eventEmployeeStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEventManagerStatus() {
         return eventManagerStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isOrganizerStatus() {
         return organizerStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }
@@ -235,7 +263,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JTextField idTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JButton loginButton;
+    private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
 }

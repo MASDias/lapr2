@@ -31,14 +31,42 @@ import org.xml.sax.SAXException;
  */
 public class XMLReader {
     
-    public String filepathUsers = "";
-    public String filepathStands = "";
-    public String filepathLocations = "";
-    public final String DEFAULT_FILENAME_USERS = "xml/UserList.xml";
-    public final String DEFAULT_FILENAME_STANDS = "xml/StandsList.xml";
-    public final String DEFAULT_FILENAME_LOCATIONS = "xml/LocationXml.xml";
+    /**
+     *
+     */
+    private String filepathUsers = "";
+
+    /**
+     *
+     */
+    private String filepathStands = "";
+
+    /**
+     *
+     */
+    private String filepathLocations = "";
+
+    /**
+     *
+     */
+    private final String DEFAULT_FILENAME_USERS = "xml/UserList.xml";
+
+    /**
+     *
+     */
+    private final String DEFAULT_FILENAME_STANDS = "xml/StandsList.xml";
+
+    /**
+     *
+     */
+    private final String DEFAULT_FILENAME_LOCATIONS = "xml/LocationXml.xml";
     
-    
+    /**
+     *
+     * @param fileUsers
+     * @param fileStands
+     * @param fileLocations
+     */
     public XMLReader(String fileUsers, String fileStands, String fileLocations){
         
         if(!testFilepath(fileUsers)){
@@ -58,12 +86,24 @@ public class XMLReader {
         }
     }
     
+    /**
+     *
+     */
     public XMLReader(){
         filepathUsers = DEFAULT_FILENAME_USERS;
         filepathStands = DEFAULT_FILENAME_STANDS;
         filepathLocations = DEFAULT_FILENAME_LOCATIONS;
     }
     
+    /**
+     *
+     * @param eventCenter
+     * @return
+     * @throws FileNotFoundException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException{
         try{
             
@@ -147,7 +187,12 @@ public class XMLReader {
         return eventCenter;
     }
     
-    public boolean testFilepath(String filepath){
+    /**
+     *
+     * @param filepath
+     * @return
+     */
+    private boolean testFilepath(String filepath){
         File file = new File(filepath);
         if(!file.exists() || (file.exists() && !file.isDirectory())) { 
             System.out.println("File not found. Using default file");

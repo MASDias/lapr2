@@ -35,6 +35,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     /**
      * Creates new form DefineEventEmployee
+     * @param eventCenter
      */
     public DefineEventEmployee(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
@@ -249,6 +250,9 @@ public class DefineEventEmployee extends javax.swing.JFrame {
         return false;
     }
 
+    /**
+     *
+     */
     public void addEmployees() {
         event = (Event) eventComboBox.getSelectedItem();
         for (int i = 0; i < modelEmployeesList.size(); i++) {
@@ -293,6 +297,11 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     }//GEN-LAST:event_userIDTextFieldActionPerformed
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public boolean validateEmployee(String id) {
         for (int i = 0; i < listEmployees.size(); i++) {
             String[] split = listEmployees.getEmployee(i).toString().split("; ");

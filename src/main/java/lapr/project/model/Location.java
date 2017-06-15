@@ -16,7 +16,6 @@ public class Location implements Serializable{
     /**
      *
      * @param address
-     * @param area
      */
     public Location(String address) {
         this.address = address;
@@ -27,10 +26,18 @@ public class Location implements Serializable{
         return "Address: " +address;
     }
     
+    /**
+     *
+     * @param inUse
+     */
     public void setInUse(boolean inUse){
         this.inUse = inUse;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isInUse() {
         return inUse;
     }
