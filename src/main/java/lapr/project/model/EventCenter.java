@@ -6,14 +6,13 @@ import java.io.Serializable;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventCenter implements Serializable{
-private static final long serialVersionUID = 1;
+public class EventCenter implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private EventEmployeeList eventEmployeeList;
     private ApplicationList applicationList;
-    private AreaOfExpertiseList areaExpertiseList;
     private EventManagerList eventManagerList;
     private EventRegistry eventRegistry;
-    private ExpertsList expertList;
     private LocationList locationList;
     private OrganizersList organizersList;
     private StandRegistry standRegistry;
@@ -27,16 +26,14 @@ private static final long serialVersionUID = 1;
     public EventCenter() {
         this.eventEmployeeList = new EventEmployeeList();
         this.applicationList = new ApplicationList();
-        this.areaExpertiseList = new AreaOfExpertiseList();
         this.eventManagerList = new EventManagerList();
         this.eventRegistry = new EventRegistry();
-        this.expertList = new ExpertsList();
         this.locationList = new LocationList();
         this.organizersList = new OrganizersList();
         this.standRegistry = new StandRegistry();
         this.userRegistry = new UserRegistry();
         this.workshopList = new WorkshopList();
-        this.productList=new ProductList();
+        this.productList = new ProductList();
     }
 
     /**
@@ -75,22 +72,6 @@ private static final long serialVersionUID = 1;
      *
      * @return
      */
-    public AreaOfExpertiseList getAreaExpertiseList() {
-        return areaExpertiseList;
-    }
-
-    /**
-     *
-     * @param areaExpertiseList
-     */
-    public void setAreaExpertiseList(AreaOfExpertiseList areaExpertiseList) {
-        this.areaExpertiseList = areaExpertiseList;
-    }
-
-    /**
-     *
-     * @return
-     */
     public EventManagerList getEventManagerList() {
         return eventManagerList;
     }
@@ -117,22 +98,6 @@ private static final long serialVersionUID = 1;
      */
     public void setEventRegistry(EventRegistry eventRegistry) {
         this.eventRegistry = eventRegistry;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ExpertsList getExpertList() {
-        return expertList;
-    }
-
-    /**
-     *
-     * @param expertList
-     */
-    public void setExpertList(ExpertsList expertList) {
-        this.expertList = expertList;
     }
 
     /**

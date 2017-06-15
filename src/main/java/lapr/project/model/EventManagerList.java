@@ -14,8 +14,9 @@ import javax.swing.JOptionPane;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventManagerList implements Serializable{
-private static final long serialVersionUID = 1;
+public class EventManagerList implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<EventManager> managerList;
 
     /**
@@ -55,21 +56,21 @@ private static final long serialVersionUID = 1;
     public int size() {
         return managerList.size();
     }
-    
+
     /**
      *
      * @param index
      * @return
      */
-    public EventManager getEventManager(int index){
+    public EventManager getEventManager(int index) {
         return managerList.get(index);
     }
-    
+
     /**
      *
      * @param eventManager
      */
-    public void removeEventManager(EventManager eventManager){
+    public void removeEventManager(EventManager eventManager) {
         managerList.remove(eventManager);
     }
 }

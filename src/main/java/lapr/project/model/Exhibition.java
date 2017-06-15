@@ -7,8 +7,10 @@ import java.util.Date;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Exhibition extends Event implements Serializable{
-private static final long serialVersionUID = 1;
+public class Exhibition extends Event implements Serializable {
+
+    private static final long serialVersionUID = 1;
+
     /**
      *
      * @param title

@@ -21,7 +21,7 @@ public class WorkshopTests {
     @Test
     public void EnsureSameObjectWorkshopIsEqual() {
         Theme theme = new Theme("Test Theme");
-        Workshop result = new Workshop("Test", null, theme);
+        Workshop result = new Workshop("Test", theme);
         assertEquals(result, result);
     }
 
@@ -31,8 +31,8 @@ public class WorkshopTests {
     @Test
     public void EnsureSameObjectsWorkshopAreNotEqual() {
         Theme theme = new Theme("Test Theme");
-        Workshop result = new Workshop("Test", null, theme);
-        Workshop expectedResult = new Workshop("Test2", null, null);
+        Workshop result = new Workshop("Test", theme);
+        Workshop expectedResult = new Workshop("Test2", null);
         assertNotEquals(result, expectedResult);
     }
 
@@ -42,7 +42,7 @@ public class WorkshopTests {
     @Test
     public void EnsureDifferentObjectsWorkshopAreNotEqual() {
         Theme theme = new Theme("Test Theme");
-        Workshop result = new Workshop("Test", null, theme);
+        Workshop result = new Workshop("Test", theme);
         Object expectedResult = new Object();
         assertNotEquals(result, expectedResult);
     }
@@ -53,7 +53,7 @@ public class WorkshopTests {
     @Test
     public void EnsureToStringIsEqual() {
         Theme theme = new Theme("Test Theme");
-        Workshop workshop = new Workshop("Test", null, theme);
+        Workshop workshop = new Workshop("Test", theme);
         String result = workshop.toString();
         String expectedResult = "Workshop name: Test Theme: Test Theme";
         assertEquals(result, expectedResult);
@@ -65,7 +65,7 @@ public class WorkshopTests {
     @Test
     public void EnsureToStringIsNotEqual() {
         Theme theme = new Theme("Test Theme");
-        Workshop workshop = new Workshop("Test", null, theme);
+        Workshop workshop = new Workshop("Test", theme);
         String result = workshop.toString();
         String expectedResult = "Workshop name: Error Theme: Test Theme";
         assertNotEquals(result, expectedResult);

@@ -13,8 +13,9 @@ import java.util.List;
  *
  * @author MarioDias
  */
-public class KeywordList implements Serializable{
-private static final long serialVersionUID = 1;
+public class KeywordList implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<Keyword> keywordList;
 
     /**
@@ -24,7 +25,6 @@ private static final long serialVersionUID = 1;
         this.keywordList = new ArrayList<>();
     }
 
-    
     private boolean validate(Keyword keyword) {
         for (Keyword u : keywordList) {
             if (u.equals(keyword)) {
@@ -51,7 +51,7 @@ private static final long serialVersionUID = 1;
     public int size() {
         return keywordList.size();
     }
-    
+
     /**
      *
      * @param index

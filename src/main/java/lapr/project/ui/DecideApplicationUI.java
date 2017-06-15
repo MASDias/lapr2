@@ -6,8 +6,6 @@
 package lapr.project.ui;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.DefaultListModel;
 import lapr.project.controller.DecideApplicationController;
 import lapr.project.model.Application;
@@ -18,9 +16,6 @@ import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
 import lapr.project.model.EventRegistry;
-import lapr.project.model.Exhibition;
-import lapr.project.model.Location;
-import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
 /**
@@ -31,11 +26,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private EventEmployee eventEmployee;
-    private EventRegistry eventRegistry;
     private ApplicationList applicationList;
     private DecideApplicationController controller;
-    private DefaultListModel<Application> modelApplicationList = new DefaultListModel<Application>();
-    private Event event;
+    private DefaultListModel<Application> modelApplicationList = new DefaultListModel<>();
     private EventCenter eventCenter;
     private String logedUser;
     private UserRegistry listUsers;

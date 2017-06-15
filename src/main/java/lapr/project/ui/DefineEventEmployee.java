@@ -24,8 +24,8 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private DefineEventEmployeeController controller;
-    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-    private DefaultListModel<EventEmployee> modelEmployeesList = new DefaultListModel<EventEmployee>();
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<>();
+    private DefaultListModel<EventEmployee> modelEmployeesList = new DefaultListModel<>();
     private UserRegistry listUsers;
     private EventEmployeeList listEmployees;
     private EventRegistry listEvents;
@@ -35,11 +35,12 @@ public class DefineEventEmployee extends javax.swing.JFrame {
 
     /**
      * Creates new form DefineEventEmployee
+     *
      * @param eventCenter
      */
     public DefineEventEmployee(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
-        controller = new DefineEventEmployeeController(eventCenter);
+        controller = new DefineEventEmployeeController(this.eventCenter);
         initComponents();
 
         eventEmployeeJList.setModel(modelEmployeesList);

@@ -7,13 +7,10 @@ package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
 import lapr.project.controller.ShowEventStandsInformationController;
-import lapr.project.model.Congress;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
-import lapr.project.model.Location;
 import lapr.project.model.Stand;
-import lapr.project.model.StandRegistry;
 
 /**
  *
@@ -21,10 +18,11 @@ import lapr.project.model.StandRegistry;
  */
 public class ShowEventStandsInformationUI extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 1;
     private ShowEventStandsInformationController controller;
     private EventRegistry eventRegistry;
     private final EventCenter eventCenter;
-    private DefaultListModel<Stand> modelStand = new DefaultListModel<Stand>();
+    private DefaultListModel<Stand> modelStand = new DefaultListModel<>();
 
     /**
      * Creates new form ShowEventStandsInformationUI

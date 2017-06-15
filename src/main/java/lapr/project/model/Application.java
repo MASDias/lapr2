@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Application implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private Evaluation evaluation;
     private Enterprise enterprise;
     private ArrayList<Evaluation> evaluationList;
     private String description;
@@ -30,9 +29,9 @@ public class Application implements Serializable {
      */
     public Application(Enterprise enterprise, int invites, String description) {
         this.enterprise = enterprise;
-        this.evaluationList = new ArrayList<>();
         this.description = description;
         this.invites = invites;
+        this.evaluationList = new ArrayList<>();
     }
 
     /**
@@ -65,14 +64,6 @@ public class Application implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     *
-     * @param evaluation
-     */
-    public void setEvaluation(Evaluation evaluation) {
-        this.evaluation = evaluation;
     }
 
     /**

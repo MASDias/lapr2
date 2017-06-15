@@ -7,14 +7,14 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventRegistry implements Serializable{
-private static final long serialVersionUID = 1;
+public class EventRegistry implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private ArrayList<Event> eventsList;
 
     /**
@@ -23,7 +23,6 @@ private static final long serialVersionUID = 1;
     public EventRegistry() {
         this.eventsList = new ArrayList<>();
     }
- 
 
     private boolean validate(Event event) {
         for (Event e : eventsList) {
@@ -51,15 +50,14 @@ private static final long serialVersionUID = 1;
     public int size() {
         return eventsList.size();
     }
-    
+
     /**
      *
      * @param index
      * @return
      */
-    public Event getEvent(int index){
+    public Event getEvent(int index) {
         return eventsList.get(index);
     }
-    
-    
+
 }

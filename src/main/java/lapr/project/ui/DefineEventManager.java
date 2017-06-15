@@ -24,8 +24,8 @@ public class DefineEventManager extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private DefineEventManagerController controller;
-    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-    private DefaultListModel<EventManager> modelEventManagersList = new DefaultListModel<EventManager>();
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<>();
+    private DefaultListModel<EventManager> modelEventManagersList = new DefaultListModel<>();
     private UserRegistry listUsers;
     private EventManagerList listEventManagers;
     private EventRegistry listEvents;
@@ -37,7 +37,7 @@ public class DefineEventManager extends javax.swing.JFrame {
      */
     public DefineEventManager(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
-        controller = new DefineEventManagerController(eventCenter);
+        controller = new DefineEventManagerController(this.eventCenter);
 
         initComponents();
 

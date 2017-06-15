@@ -8,14 +8,14 @@ package lapr.project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventEmployeeList implements Serializable{
-private static final long serialVersionUID = 1;
+public class EventEmployeeList implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<EventEmployee> employeeList;
 
     /**
@@ -51,21 +51,21 @@ private static final long serialVersionUID = 1;
     public int size() {
         return employeeList.size();
     }
-    
+
     /**
      *
      * @param index
      * @return
      */
-    public EventEmployee getEmployee(int index){
+    public EventEmployee getEmployee(int index) {
         return employeeList.get(index);
     }
-    
+
     /**
      *
      * @param e
      */
-    public void removeEmployee(EventEmployee e){
+    public void removeEmployee(EventEmployee e) {
         employeeList.remove(e);
     }
 }

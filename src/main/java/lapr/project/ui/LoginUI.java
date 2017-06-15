@@ -21,7 +21,6 @@ public class LoginUI extends javax.swing.JFrame {
     private boolean eventManagerStatus = false;
     private EventCenter eventCenter;
     private JLabel label;
-    private String logedUser;
 
     private User user;
 

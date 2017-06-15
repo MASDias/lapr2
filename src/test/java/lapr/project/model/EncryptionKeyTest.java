@@ -15,11 +15,9 @@ public class EncryptionKeyTest {
      */
     @Test
     public void ensureEncryptionPassword() {
-        
         PasswordEncryption testEncryption = new PasswordEncryption();
-        int key = 2;
         String password = "Password";
-        String encrypt = testEncryption.Encryption(password, key);
+        String encrypt = testEncryption.Encryption(password);
         assertEquals(encrypt, encrypt);
     }
 
@@ -29,9 +27,8 @@ public class EncryptionKeyTest {
     @Test
     public void ensureNotEqualsEncryptionPassword() {
         PasswordEncryption testEncryption = new PasswordEncryption();
-        int key = 2;
         String password = "Password";
-        String encrypt = testEncryption.Encryption(password, key);
+        String encrypt = testEncryption.Encryption(password);
         String result = "password";
         assertNotEquals(encrypt, result);
     }
@@ -44,8 +41,8 @@ public class EncryptionKeyTest {
         PasswordEncryption testDecryption = new PasswordEncryption();
         int key = 2;
         String result = "password";
-        String encrypt = testDecryption.Encryption(result, key);
-        String decrypt = testDecryption.Decryption(encrypt, key);
+        String encrypt = testDecryption.Encryption(result);
+        String decrypt = testDecryption.Decryption(encrypt);
         assertEquals(decrypt, result);
     }
 
@@ -58,8 +55,8 @@ public class EncryptionKeyTest {
         int key = 2;
         String password = "password";
         String result = "passwwrd";
-        String encrypt = testDecryption.Encryption(password, key);
-        String decrypt = testDecryption.Decryption(encrypt, key);
+        String encrypt = testDecryption.Encryption(password);
+        String decrypt = testDecryption.Decryption(encrypt);
         assertNotEquals(decrypt, result);
     }
 }

@@ -9,8 +9,9 @@ import javax.swing.JOptionPane;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class WorkshopList implements Serializable{
-private static final long serialVersionUID = 1;
+public class WorkshopList implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<Workshop> workshopList;
 
     /**

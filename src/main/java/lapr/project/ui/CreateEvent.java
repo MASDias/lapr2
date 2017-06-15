@@ -31,8 +31,8 @@ public class CreateEvent extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateEventController controller;
-    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-    private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<Organizer>();
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<>();
+    private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<>();
     private UserRegistry listUsers;
     private OrganizersList listOrganizers;
     private EventRegistry listEvents;

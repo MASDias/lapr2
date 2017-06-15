@@ -77,30 +77,6 @@ public class EventCenterTest {
     }
 
     @Test
-    public void EnsureGetAreaOfExpertiseListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        AreaOfExpertiseList result = new AreaOfExpertiseList();
-        AreaOfExpertise ee = new AreaOfExpertise("u1");
-        result.addAreaOfExpertise(ee);
-        ec.setAreaExpertiseList(result);
-        AreaOfExpertiseList expectedResult = ec.getAreaExpertiseList();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureSetAreaOfExpertiseListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        AreaOfExpertiseList result = new AreaOfExpertiseList();
-        AreaOfExpertise ee = new AreaOfExpertise("u1");
-        result.addAreaOfExpertise(ee);
-        ec.setAreaExpertiseList(result);
-        AreaOfExpertiseList expectedResult = ec.getAreaExpertiseList();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
     public void EnsureSetEventManagerListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventManagerList result = new EventManagerList();
@@ -146,30 +122,6 @@ public class EventCenterTest {
         result.addEvent(ee);
         ec.setEventRegistry(result);
         EventRegistry expectedResult = ec.getEventRegistry();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureGetExpertsListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        ExpertsList result = new ExpertsList();
-        Expert u1 = new Expert("Miguel", null);
-        result.addExpert(u1);
-        ec.setExpertList(result);
-        ExpertsList expectedResult = ec.getExpertList();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureSetExpertsListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        ExpertsList result = new ExpertsList();
-        Expert u1 = new Expert("Miguel", null);
-        result.addExpert(u1);
-        ec.setExpertList(result);
-        ExpertsList expectedResult = ec.getExpertList();
 
         assertEquals(result, expectedResult);
     }
@@ -268,34 +220,6 @@ public class EventCenterTest {
         result.addUser(ee);
         ec.setUserRegistry(result);
         UserRegistry expectedResult = ec.getUserRegistry();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureSetWorkshopListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        WorkshopList result = new WorkshopList();
-        ExpertsList el = new ExpertsList();
-        Theme th = new Theme("sda");
-        Workshop u2 = new Workshop("sdads", el, th);
-        result.addWorkshop(u2);
-        ec.setWorkshopList(result);
-        WorkshopList expectedResult = ec.getWorkshopList();
-
-        assertEquals(result, expectedResult);
-    }
-
-    @Test
-    public void EnsureGetWorkshopListEventCenterListMethod() {
-        EventCenter ec = new EventCenter();
-        WorkshopList result = new WorkshopList();
-        ExpertsList el = new ExpertsList();
-        Theme th = new Theme("sda");
-        Workshop u2 = new Workshop("sdads", el, th);
-        result.addWorkshop(u2);
-        ec.setWorkshopList(result);
-        WorkshopList expectedResult = ec.getWorkshopList();
 
         assertEquals(result, expectedResult);
     }

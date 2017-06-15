@@ -5,14 +5,11 @@
  */
 package lapr.project.ui;
 
-import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
 import lapr.project.model.ExportFile;
-import lapr.project.model.User;
 
 /**
  *
@@ -27,7 +24,6 @@ public class MainWindow extends javax.swing.JFrame {
     private boolean organizerStatus = false;
     private boolean eventEmployeeStatus = false;
     private boolean eventManagerStatus = false;
-    private String logedUser;
     
     /**
      * Creates new form MainWindow

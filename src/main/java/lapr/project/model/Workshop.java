@@ -6,9 +6,9 @@ import java.io.Serializable;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Workshop implements Serializable{
-private static final long serialVersionUID = 1;
-    private ExpertsList expertList;
+public class Workshop implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private Theme theme;
     private String name;
 
@@ -18,23 +18,14 @@ private static final long serialVersionUID = 1;
      * @param expertList
      * @param theme
      */
-    public Workshop(String name, ExpertsList expertList, Theme theme) {
-        this.expertList = expertList;
+    public Workshop(String name, Theme theme) {
         this.theme = theme;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Workshop name: " + name +" "+ theme;
-    }
-
-    ExpertsList getExpertsList() {
-        return expertList;
-    }
-
-    void setExpertsList(ExpertsList expertList) {
-        this.expertList = expertList;
+        return "Workshop name: " + name + " " + theme;
     }
 
 }

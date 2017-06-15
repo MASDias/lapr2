@@ -7,19 +7,17 @@ package lapr.project.model;
 
 import java.io.Serializable;
 
-
-
 /**
  *
  * @author MarioDias
  */
-public class Evaluation implements Serializable{
-private static final long serialVersionUID = 1;
+public class Evaluation implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int knowledge;
     private int application;
     private int invitation;
     private int overall;
-
 
     /**
      *

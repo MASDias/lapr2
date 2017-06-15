@@ -8,7 +8,6 @@ package lapr.project.ui;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CreateUserController;
 import lapr.project.model.EventCenter;
-import lapr.project.model.UserRegistry;
 
 /**
  *
@@ -19,7 +18,6 @@ public class CreateUser extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateUserController controller;
-    private UserRegistry usersList = new UserRegistry();
 
     /**
      * Creates new form UserRegistryUIw
@@ -28,7 +26,7 @@ public class CreateUser extends javax.swing.JFrame {
      */
     public CreateUser(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
-        controller = new CreateUserController(eventCenter);
+        controller = new CreateUserController(this.eventCenter);
         initComponents();
         setVisible(true);
     }

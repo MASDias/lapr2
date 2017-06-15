@@ -21,10 +21,9 @@ public class WorkshopListTest {
     @Test
     public void EnsureAddWorkshopListMethodAddsExpertToList() {
         WorkshopList list = new WorkshopList();
-        ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
-        Workshop workshop2 = new Workshop("Gonçalo", expert, theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", theme);
+        Workshop workshop2 = new Workshop("Gonçalo", theme);
         list.addWorkshop(workshop);
         list.addWorkshop(workshop2);
         int size = list.size();
@@ -37,9 +36,8 @@ public class WorkshopListTest {
      */
     @Test
     public void EnsureSameObjectsWorkshopListIsEqual() {
-        ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", theme);
         WorkshopList result = new WorkshopList();
         result.addWorkshop(workshop);
         assertEquals(result, result);
@@ -50,9 +48,8 @@ public class WorkshopListTest {
      */
     @Test
     public void EnsureSameObjectsWorkshopListAreNotEqual() {
-        ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", theme);
         WorkshopList result = new WorkshopList();
         WorkshopList expectedResult = new WorkshopList();
         result.addWorkshop(workshop);
@@ -64,9 +61,8 @@ public class WorkshopListTest {
      */
     @Test
     public void EnsureDifferentObjectsWorkshopListAreNotEqual() {
-        ExpertsList expert = new ExpertsList();
         Theme theme = new Theme("Formacao");
-        Workshop workshop = new Workshop("Pedro Abrunhosa", expert, theme);
+        Workshop workshop = new Workshop("Pedro Abrunhosa", theme);
         WorkshopList result = new WorkshopList();
         result.addWorkshop(workshop);
         Object expectedResult = new Object();

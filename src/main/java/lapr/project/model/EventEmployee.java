@@ -6,13 +6,14 @@ import java.io.Serializable;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventEmployee implements Serializable{
-private static final long serialVersionUID = 1;
+public class EventEmployee implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private int experience;
     private User eventEmployee;
-    
+
     private ApplicationList applicationList;
-    
+
     /**
      *
      * @param eventEmployee
@@ -20,8 +21,8 @@ private static final long serialVersionUID = 1;
      */
     public EventEmployee(User eventEmployee, int experience) {
         this.eventEmployee = eventEmployee;
-        this.experience = experience;       
-        this.applicationList= new ApplicationList();
+        this.experience = experience;
+        this.applicationList = new ApplicationList();
     }
 
     /**
@@ -72,11 +73,6 @@ private static final long serialVersionUID = 1;
         this.applicationList = applicationList;
     }
 
-    @Override
-    public String toString() {
-        return eventEmployee.toString() + " Experience: " + experience;
-    }
-
     /**
      *
      * @return
@@ -84,4 +80,10 @@ private static final long serialVersionUID = 1;
     public User getEmployee() {
         return eventEmployee;
     }
+
+    @Override
+    public String toString() {
+        return eventEmployee.toString() + " Experience: " + experience;
+    }
+
 }

@@ -8,14 +8,14 @@ package lapr.project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class UserRegistry implements Serializable{
-private static final long serialVersionUID = 1;
+public class UserRegistry implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<User> usersList;
 
     /**
@@ -24,7 +24,6 @@ private static final long serialVersionUID = 1;
     public UserRegistry() {
         this.usersList = new ArrayList<>();
     }
-
 
     private boolean validate(User user) {
         for (User u : usersList) {
@@ -52,13 +51,13 @@ private static final long serialVersionUID = 1;
     public int size() {
         return usersList.size();
     }
-    
+
     /**
      *
      * @param index
      * @return
      */
-    public User getUser(int index){
+    public User getUser(int index) {
         return usersList.get(index);
     }
 }

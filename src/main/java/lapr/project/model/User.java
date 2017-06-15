@@ -8,8 +8,9 @@ import java.util.regex.Pattern;
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class User implements Serializable{
-private static final long serialVersionUID = 1;
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private static final String AT = "@";
     private int key;
     private String name;
@@ -79,8 +80,14 @@ private static final long serialVersionUID = 1;
                 if (validateUsername()) {
                     if (validatePassword()) {
                         return true;
+                    } else {
+                        return false;
                     }
+                } else {
+                    return false;
                 }
+            } else {
+                return false;
             }
         }
         return false;

@@ -6,22 +6,23 @@ import java.io.Serializable;
  *
  * @author
  */
-public class PasswordEncryption implements Serializable{
-private static final long serialVersionUID = 1;
-    private static final int[] KEY = {125, 10, 20, 896, 45, 11, 637, 200, 193, 469};
-    
+public class PasswordEncryption implements Serializable {
+
+    private static final long serialVersionUID = 1;
+
     /**
      *
      * @param password
      * @param encryptKey
      * @return
      */
-    public String Encryption(String password, int encryptKey) {
+    public String Encryption(String password) {
         String encrytion = "";
+        int encryptKey = password.length() + 10;
         char character;
         for (int i = 0; i < password.length(); i++) {
             character = password.charAt(i);
-            character += KEY[encryptKey];
+            character += encryptKey;
             encrytion += character;
         }
         return encrytion;
@@ -33,12 +34,13 @@ private static final long serialVersionUID = 1;
      * @param decryptKey
      * @return
      */
-    public String Decryption(String encrypted, int decryptKey) {
+    public String Decryption(String encrypted) {
         String decryption = "";
+        int decryptKey = encrypted.length() + 10;
         char character;
         for (int i = 0; i < encrypted.length(); i++) {
             character = encrypted.charAt(i);
-            character -= KEY[decryptKey];
+            character -= decryptKey;
             decryption += character;
         }
         return decryption;

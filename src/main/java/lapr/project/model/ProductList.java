@@ -13,9 +13,11 @@ import java.util.List;
  *
  * @author MarioDias
  */
-public class ProductList implements Serializable{
+public class ProductList implements Serializable {
+
     private List<Product> productList;
-private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1;
+
     /**
      *
      */
@@ -23,7 +25,6 @@ private static final long serialVersionUID = 1;
         this.productList = new ArrayList<>();
     }
 
-    
     private boolean validate(Product product) {
         for (Product u : productList) {
             if (u.equals(product)) {
@@ -50,7 +51,7 @@ private static final long serialVersionUID = 1;
     public int size() {
         return productList.size();
     }
-    
+
     /**
      *
      * @param index

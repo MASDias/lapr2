@@ -27,8 +27,8 @@ public class DefineOrganizer extends javax.swing.JFrame {
     private UserRegistry listUsers;
     private OrganizersList listOrganizers;
     private EventRegistry listEvents;
-    private DefaultListModel<User> modelUsersList = new DefaultListModel<User>();
-    private DefaultListModel<Organizer> modelOrganizersList = new DefaultListModel<Organizer>();
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<>();
+    private DefaultListModel<Organizer> modelOrganizersList = new DefaultListModel<>();
     private DefineOrganizerController controller;
     private Event event;
 
@@ -38,7 +38,7 @@ public class DefineOrganizer extends javax.swing.JFrame {
      */
     public DefineOrganizer(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
-        controller = new DefineOrganizerController(eventCenter);
+        controller = new DefineOrganizerController(this.eventCenter);
         initComponents();
 
         listOrganizers = new OrganizersList();
