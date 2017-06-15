@@ -262,8 +262,7 @@ public class DefineOrganizer extends javax.swing.JFrame {
                         modelOrganizersList.addElement(o);
                         cont++;
                     }
-                }
-                
+                }               
                 if (cont == 0) {
                     JOptionPane.showMessageDialog(null, "Given user doesn't exist");
                 }

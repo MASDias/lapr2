@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Application {
 
-    private Event event;
     private Evaluation evaluation;
     private Enterprise enterprise;
     private ArrayList<Evaluation> evaluationList;
@@ -27,9 +26,8 @@ public class Application {
      * @param invites
      * @param description
      */
-    public Application(Enterprise enterprise, Event event, int invites, String description) {
+    public Application(Enterprise enterprise, int invites, String description) {
         this.enterprise = enterprise;
-        this.event = event;
         this.evaluationList = new ArrayList<>();
         this.description = description;
         this.invites = invites;
@@ -65,14 +63,6 @@ public class Application {
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Event getEvent() {
-        return event;
     }
 
     /**

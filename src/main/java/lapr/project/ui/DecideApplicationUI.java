@@ -14,11 +14,14 @@ import lapr.project.model.Application;
 import lapr.project.model.ApplicationList;
 import lapr.project.model.Enterprise;
 import lapr.project.model.Evaluation;
+import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Exhibition;
 import lapr.project.model.Location;
 import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
 
 /**
  *
@@ -32,6 +35,11 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private ApplicationList applicationList;
     private DecideApplicationController controller;
     private DefaultListModel<Application> modelApplicationList = new DefaultListModel<Application>();
+    private Event event;
+    private EventCenter eventCenter;
+    private String logedUser;
+    private UserRegistry listUsers;
+    private EventRegistry listEvents;
 
     /**
      * Creates new form DecideApplicationUI
@@ -39,31 +47,39 @@ public class DecideApplicationUI extends javax.swing.JFrame {
      * @param eventEmployee
      * @throws java.text.ParseException
      */
-    public DecideApplicationUI(EventEmployee eventEmployee) throws ParseException {
-        this.eventEmployee = eventEmployee;
+    public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
         initComponents();
-        this.controller = new DecideApplicationController(this.eventEmployee);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date beginning = sdf.parse("01-10-2017");
-        Date end = sdf.parse("10-10-2017");
-        Date beginningSub = sdf.parse("01-10-2017");
-        Date endSub = sdf.parse("07-10-2017");
-        Location local = new Location("Example Street");
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, beginningSub, endSub, local, 20);
-        Exhibition exhibition2 = new Exhibition("Exhibition 1212", "Cool Exhibition", beginning, end, beginningSub, endSub, local, 20);
+        this.eventCenter = eventCenter;
+        this.logedUser = logedUser;
+        
+        this.controller = new DecideApplicationController(eventCenter);
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        Date beginning = sdf.parse("01-10-2017");
+//        Date end = sdf.parse("10-10-2017");
+//        Date beginningSub = sdf.parse("01-10-2017");
+//        Date endSub = sdf.parse("07-10-2017");
+//        Location local = new Location("Example Street");
+//        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, beginningSub, endSub, local, 20);
+//        Exhibition exhibition2 = new Exhibition("Exhibition 1212", "Cool Exhibition", beginning, end, beginningSub, endSub, local, 20);
 
-        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
-        applicationJList.setModel(modelApplicationList);
-        EventEmployee eEmployee = new EventEmployee(user, 100);
-
+//        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(e, exhibition2, 60, "12312321321 123 132  312 312 123 123  213 312  21 43 432 34 ");
+        Application application = new Application(e, 60, "12312321321 123 132  312 312 123 123  213 312  21 43 432 34 ");
 
-        Enterprise e2 = new Enterprise("enterprise 2", "e@email.com", "Location X", 123456789, 912645987);
-        Application a2 = new Application(e2, exhibition, 80, "\"dsjkfjksbjfsjds fsdih fodsofds  sdfohosdfhoodshds ohdslhdsldshldsjldsj ldsj pjdspj dsdsfdjs lk\"");
-        eEmployee.getApplicationList().addApplication(application);
-        eEmployee.getApplicationList().addApplication(a2);
-        this.applicationList = eEmployee.getApplicationList();
+        listUsers = controller.getUsersList();
+        listEvents = controller.getEventsList();
+        for (int i = 0; i < listEvents.size(); i++) {
+            Event ev = listEvents.getEvent(i);
+            for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
+                if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
+                    eventEmployee = ev.getEventEmployeeList().getEmployee(j);
+                }
+            }
+        }
+        eventEmployee.getApplicationList().addApplication(application);
+        applicationList = eventEmployee.getApplicationList();
+        applicationJList.setModel(modelApplicationList);
+
 
         initLists();
         this.setVisible(true);
@@ -95,14 +111,14 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         descriptionTextArea = new javax.swing.JTextArea();
         enterpriseNameTextField = new javax.swing.JTextField();
         invitationTextField = new javax.swing.JTextField();
-        knowledgeCombobox = new javax.swing.JComboBox<>();
-        applicationEvalCombobox = new javax.swing.JComboBox<>();
-        inviteEvaluationCombobox = new javax.swing.JComboBox<>();
-        overallEvaluationCombobox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        knowledgeCombobox = new javax.swing.JComboBox<String>();
+        applicationEvalCombobox = new javax.swing.JComboBox<String>();
+        inviteEvaluationCombobox = new javax.swing.JComboBox<String>();
+        overallEvaluationCombobox = new javax.swing.JComboBox<String>();
+        evaluateBtn = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        applicationJList = new javax.swing.JList<>();
+        applicationJList = new javax.swing.JList<Application>();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -136,25 +152,28 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         invitationTextField.setEditable(false);
 
         knowledgeCombobox.setMaximumRowCount(6);
-        knowledgeCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        knowledgeCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        applicationEvalCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        applicationEvalCombobox.setMaximumRowCount(6);
+        applicationEvalCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        inviteEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        inviteEvaluationCombobox.setMaximumRowCount(6);
+        inviteEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        overallEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        overallEvaluationCombobox.setMaximumRowCount(6);
+        overallEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        jButton1.setText("Evaluate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        evaluateBtn.setText("Evaluate");
+        evaluateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                evaluateBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Exit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        exitBtn.setText("Exit");
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                exitBtnActionPerformed(evt);
             }
         });
 
@@ -216,8 +235,8 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(evaluateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,26 +283,26 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                             .addComponent(overallEvaluationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(evaluateBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(exitBtn)
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void evaluateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluateBtnActionPerformed
         int knowledge = Integer.parseInt(knowledgeCombobox.getSelectedItem().toString());
         int applicationEval = Integer.parseInt(applicationEvalCombobox.getSelectedItem().toString());
         int inviteEval = Integer.parseInt(inviteEvaluationCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallEvaluationCombobox.getSelectedItem().toString());
         Evaluation evaluationComplete = new Evaluation(knowledge, applicationEval, inviteEval, overall);
-        controller.getApplication(applicationJList.getSelectedIndex()).addEvaluation(evaluationComplete);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         clearFields();
         resetEvals();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_evaluateBtnActionPerformed
     private void clearFields() {
         eventNameTextField.setText("");
         invitationTextField.setText("");
@@ -297,15 +316,15 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         applicationEvalCombobox.setSelectedIndex(0);
         overallEvaluationCombobox.setSelectedIndex(0);
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_exitBtnActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         enterpriseNameTextField.setText(applicationJList.getSelectedValue().getEnterprise().getName());
         descriptionTextArea.setText(applicationJList.getSelectedValue().getDescription());
         invitationTextField.setText(String.valueOf(applicationJList.getSelectedValue().getInvites()));
-        eventNameTextField.setText(applicationJList.getSelectedValue().getEvent().getTitle());
+//        eventNameTextField.setText(applicationJList.getSelectedValue().getTitle());
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
@@ -314,11 +333,11 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private javax.swing.JList<Application> applicationJList;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JTextField enterpriseNameTextField;
+    private javax.swing.JButton evaluateBtn;
     private javax.swing.JTextField eventNameTextField;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JTextField invitationTextField;
     private javax.swing.JComboBox<String> inviteEvaluationCombobox;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

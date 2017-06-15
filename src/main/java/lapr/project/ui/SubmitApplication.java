@@ -32,6 +32,7 @@ public class SubmitApplication extends javax.swing.JFrame {
     private StandRegistry standRegistry;
     private ProductList productList;
     private EventRegistry eventRegistry;
+    private Event event;
 
     /**
      * Creates new form SubmitApplication
@@ -319,7 +320,9 @@ public class SubmitApplication extends javax.swing.JFrame {
             int contactNumber = Integer.parseInt(contactTextField.getText());
             Product product = (Product) productsComboBox.getSelectedItem();
             Enterprise e = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
-            Application a = new Application(e,(Event) eventsComboBox.getSelectedItem(),invites,description);
+            Application a = new Application(e,invites,description);
+            event = (Event) eventsComboBox.getSelectedItem();
+            event.getApplicationsList().addApplication(a);
             dispose();
         }
 

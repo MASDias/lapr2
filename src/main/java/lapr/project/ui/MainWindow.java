@@ -25,7 +25,8 @@ public class MainWindow extends javax.swing.JFrame {
     private boolean organizerStatus = false;
     private boolean eventEmployeeStatus = false;
     private boolean eventManagerStatus = false;
-
+    private String logedUser;
+    
     /**
      * Creates new form MainWindow
      * @param eventCenter
@@ -67,6 +68,7 @@ public class MainWindow extends javax.swing.JFrame {
         defineEmployeeMenuItem = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         submitApplicationMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,6 +156,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(submitApplicationMenuItem);
+        jMenu1.add(jSeparator2);
 
         decideApplicationItem.setText("Decide Application");
         decideApplicationItem.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +220,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void decideApplicationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decideApplicationItemActionPerformed
         try { 
-            DecideApplicationUI dapp = new DecideApplicationUI(null);
+            DecideApplicationUI dapp = new DecideApplicationUI(userNameLabel.getText(), eventCenter);
         } catch (ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -270,6 +273,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;

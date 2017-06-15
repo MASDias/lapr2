@@ -8,7 +8,7 @@ public class EventEmployee {
 
     private int experience;
     private User eventEmployee;
-    private EventRegistry eventRegistry;
+    
     private ApplicationList applicationList;
     
     /**
@@ -18,8 +18,7 @@ public class EventEmployee {
      */
     public EventEmployee(User eventEmployee, int experience) {
         this.eventEmployee = eventEmployee;
-        this.experience = experience;
-        this.eventRegistry = new EventRegistry();
+        this.experience = experience;       
         this.applicationList= new ApplicationList();
     }
 
@@ -53,22 +52,6 @@ public class EventEmployee {
      */
     public int getExperience() {
         return experience;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public EventRegistry getEventRegistry() {
-        return eventRegistry;
-    }
-
-    /**
-     *
-     * @param eventRegistry
-     */
-    public void setEventRegistry(EventRegistry eventRegistry) {
-        this.eventRegistry = eventRegistry;
     }
 
     /**

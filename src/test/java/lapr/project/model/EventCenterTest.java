@@ -55,7 +55,7 @@ public class EventCenterTest {
         EventCenter ec = new EventCenter();
         ApplicationList result = new ApplicationList();
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application ee = new Application(e, null, 100, "description");
+        Application ee = new Application(e, 100, "description");
         result.addApplication(ee);
         ec.setApplicationList(result);
         ApplicationList expectedResult = ec.getApplicationList();
@@ -68,7 +68,7 @@ public class EventCenterTest {
         EventCenter ec = new EventCenter();
         ApplicationList result = new ApplicationList();
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application ee = new Application(e, null, 100, "description");
+        Application ee = new Application(e, 100, "description");
         result.addApplication(ee);
         ec.setApplicationList(result);
         ApplicationList expectedResult = ec.getApplicationList();

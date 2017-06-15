@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -72,8 +72,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton1" max="32767" attributes="0"/>
-                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="evaluateBtn" max="32767" attributes="0"/>
+                          <Component id="exitBtn" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -136,9 +136,9 @@
                   </Group>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="evaluateBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="exitBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -211,15 +211,8 @@
     <Component class="javax.swing.JComboBox" name="knowledgeCombobox">
       <Properties>
         <Property name="maximumRowCount" type="int" value="6"/>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="0"/>
-            <StringItem index="1" value="1"/>
-            <StringItem index="2" value="2"/>
-            <StringItem index="3" value="3"/>
-            <StringItem index="4" value="4"/>
-            <StringItem index="5" value="5"/>
-          </StringArray>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;String&gt;(new String[] { &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot; })" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -228,15 +221,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="applicationEvalCombobox">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="0"/>
-            <StringItem index="1" value="1"/>
-            <StringItem index="2" value="2"/>
-            <StringItem index="3" value="3"/>
-            <StringItem index="4" value="4"/>
-            <StringItem index="5" value="5"/>
-          </StringArray>
+        <Property name="maximumRowCount" type="int" value="6"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;String&gt;(new String[] { &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot; })" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -245,15 +232,9 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="inviteEvaluationCombobox">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="0"/>
-            <StringItem index="1" value="1"/>
-            <StringItem index="2" value="2"/>
-            <StringItem index="3" value="3"/>
-            <StringItem index="4" value="4"/>
-            <StringItem index="5" value="5"/>
-          </StringArray>
+        <Property name="maximumRowCount" type="int" value="6"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;String&gt;(new String[] { &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot; })" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -262,35 +243,29 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="overallEvaluationCombobox">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="0"/>
-            <StringItem index="1" value="1"/>
-            <StringItem index="2" value="2"/>
-            <StringItem index="3" value="3"/>
-            <StringItem index="4" value="4"/>
-            <StringItem index="5" value="5"/>
-          </StringArray>
+        <Property name="maximumRowCount" type="int" value="6"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.DefaultComboBoxModel&lt;String&gt;(new String[] { &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot; })" type="code"/>
         </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="evaluateBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Evaluate"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="evaluateBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="exitBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitBtnActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">

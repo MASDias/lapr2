@@ -2,7 +2,10 @@ package lapr.project.controller;
 
 import lapr.project.model.Application;
 import lapr.project.model.ApplicationList;
+import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.UserRegistry;
 
 /**
  *
@@ -11,13 +14,13 @@ import lapr.project.model.EventEmployee;
 public class DecideApplicationController {
 
     EventEmployee eventEmployee;
-
+    EventCenter eventCenter;
     /**
      *
      * @param eventEmployee
      */
-    public DecideApplicationController(EventEmployee eventEmployee) {
-        this.eventEmployee = eventEmployee;
+    public DecideApplicationController(EventCenter eventCenter) {
+        this.eventCenter = eventCenter;
     }
 
     /**
@@ -25,15 +28,22 @@ public class DecideApplicationController {
      * @return
      */
     public ApplicationList getApplicationList() {
-        return eventEmployee.getApplicationList();
+        return eventCenter.getApplicationList();
     }
 
+    public UserRegistry getUsersList(){
+        return eventCenter.getUserRegistry();
+    }
     /**
      *
      * @param index
      * @return
      */
     public Application getApplication(int index) {
-        return eventEmployee.getApplicationList().getApplication(index);
+        return eventCenter.getApplicationList().getApplication(index);
+    }
+    
+    public EventRegistry getEventsList(){
+        return eventCenter.getEventRegistry();
     }
 }

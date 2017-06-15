@@ -3,6 +3,7 @@ package lapr.project.ui;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventEmployeeList;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -20,6 +21,7 @@ public class LoginUI extends javax.swing.JFrame {
     private boolean eventManagerStatus = false;
     private EventCenter eventCenter;
     private JLabel label;
+    private String logedUser;
 
     private User user;
 
@@ -33,6 +35,7 @@ public class LoginUI extends javax.swing.JFrame {
      * @param organizerStatus
      * @param eventEmployeeStatus
      * @param eventManagerStatus
+     * @param logedUser
      */
     public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label, boolean userStatus, boolean organizerStatus, boolean eventEmployeeStatus, boolean eventManagerStatus) {
         this.loginStatus = loginStatus;
@@ -140,8 +143,8 @@ public class LoginUI extends javax.swing.JFrame {
                 if (passwordInfo.equals(userRegistry.getUser(i).getPassword())) {
                     userStatus = true;
                     loginStatus = true;
-                    this.user = userRegistry.getUser(i);
-                    label.setText(user.getName());
+                    this.user = userRegistry.getUser(i);                   
+                    label.setText(user.getUserName());
                 } else {
                     JOptionPane.showMessageDialog(null, "Wrong Password!");
                 }
@@ -243,10 +246,14 @@ public class LoginUI extends javax.swing.JFrame {
     }
 
     private boolean checkForEventEmployeeStatus(User user) {
-        for (int i = 0; i < eventCenter.getEventEmployeeList().size(); i++) {
-            if (eventCenter.getEventEmployeeList().getEmployee(i).getEmail().equals(user.getEmail()) || eventCenter.getEventEmployeeList().getEmployee(i).getUsername().equals(user.getUserName())) {
-                return true;
+        for (int i = 0; i < eventCenter.getEventRegistry().size(); i++) {
+            EventEmployeeList employeeList = eventCenter.getEventRegistry().getEvent(i).getEventEmployeeList();
+            for (int j = 0; j < employeeList.size(); j++) {
+                if (employeeList.getEmployee(i).getEmail().equals(user.getEmail()) || employeeList.getEmployee(i).getUsername().equals(user.getUserName())) {
+                    return true;
+                }
             }
+
         }
         return false;
     }
