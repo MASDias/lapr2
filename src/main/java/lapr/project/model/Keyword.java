@@ -18,117 +18,117 @@ import javax.xml.parsers.ParserConfigurationException;
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class Keyword implements Exportable, Importable<Keyword>, Serializable {
-private static final long serialVersionUID = 1;
-	private static final String ROOT_ELEMENT_NAME = "keyword";
-	private static final String VALUE_ELEMENT_NAME = "value";
 
-	/**
-	 * Keyword representation.
-	 */
-	private String value = "";
+    private static final long serialVersionUID = 1;
+    private static final String ROOT_ELEMENT_NAME = "keyword";
+    private static final String VALUE_ELEMENT_NAME = "value";
 
-	/**
-	 * Default empty constructor.
-	 */
-	public Keyword() {
+    /**
+     * Keyword representation.
+     */
+    private String value = "";
 
-	}
+    /**
+     * Default empty constructor.
+     */
+    public Keyword() {
 
-	/**
-	 * Constructor for Keyword Class.
-	 *
-	 * @param keyword Keyword being used.
-	 */
-	public Keyword(String keyword) {
-		this.value = keyword;
-	}
+    }
 
-	/**
-	 * Obtain keyword value.
-	 *
-	 * @return Keyword Value
-	 */
-	private String getValue() {
-		return this.value;
-	}
+    /**
+     * Constructor for Keyword Class.
+     *
+     * @param keyword Keyword being used.
+     */
+    public Keyword(String keyword) {
+        this.value = keyword;
+    }
 
-	@Override
-	public Node exportContentToXMLNode() throws ParserConfigurationException {
-		Node node = null;
+    /**
+     * Obtain keyword value.
+     *
+     * @return Keyword Value
+     */
+    private String getValue() {
+        return this.value;
+    }
 
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
+    @Override
+    public Node exportContentToXMLNode() throws ParserConfigurationException {
+        Node node = null;
 
-		//Obtain a new document
-		Document document = builder.newDocument();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        //Create document builder
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-		//Create root element
-		Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
+        //Obtain a new document
+        Document document = builder.newDocument();
 
-		//Create a sub-element
-		Element elementValue = document.createElement(VALUE_ELEMENT_NAME);
+        //Create root element
+        Element elementKeyword = document.createElement(ROOT_ELEMENT_NAME);
 
-		//Set the sub-element value
-		elementValue.setTextContent(getValue());
+        //Create a sub-element
+        Element elementValue = document.createElement(VALUE_ELEMENT_NAME);
 
-		//Add sub-element to root element
-		elementKeyword.appendChild(elementValue);
+        //Set the sub-element value
+        elementValue.setTextContent(getValue());
 
-		//Add root element to document
-		document.appendChild(elementKeyword);
+        //Add sub-element to root element
+        elementKeyword.appendChild(elementValue);
 
-		node = elementKeyword;
+        //Add root element to document
+        document.appendChild(elementKeyword);
 
-		return node;
-	}
+        node = elementKeyword;
 
-	@Override
-	public Keyword importContentFromXMLNode(Node node) throws ParserConfigurationException {
-		DocumentBuilderFactory factory =
-				DocumentBuilderFactory.newInstance();
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
+        return node;
+    }
 
-		//Obtain a new document
-		Document document = builder.newDocument();
+    @Override
+    public Keyword importContentFromXMLNode(Node node) throws ParserConfigurationException {
+        DocumentBuilderFactory factory
+                = DocumentBuilderFactory.newInstance();
+        //Create document builder
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-		document.appendChild(document.importNode(node, true));
+        //Obtain a new document
+        Document document = builder.newDocument();
 
-		NodeList elementsKeyword = document.getElementsByTagName(VALUE_ELEMENT_NAME);
+        document.appendChild(document.importNode(node, true));
 
-		Node elementKeyword = elementsKeyword.item(0);
+        NodeList elementsKeyword = document.getElementsByTagName(VALUE_ELEMENT_NAME);
 
-		//Get value
-		this.value = elementKeyword.getFirstChild().getNodeValue();
+        Node elementKeyword = elementsKeyword.item(0);
 
-		return this;
-	}
+        //Get value
+        this.value = elementKeyword.getFirstChild().getNodeValue();
 
-	@Override
-	public int hashCode() {
-		return getValue().hashCode();
-	}
+        return this;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Keyword)) {
-			return false;
-		}
+    @Override
+    public int hashCode() {
+        return getValue().hashCode();
+    }
 
-		Keyword that = (Keyword) o;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Keyword)) {
+            return false;
+        }
 
-		return getValue().equals(that.getValue());
+        Keyword that = (Keyword) o;
 
-	}
+        return getValue().equals(that.getValue());
+
+    }
 
     @Override
     public String toString() {
-        return  value;
+        return value;
     }
-        
-        
+
 }
