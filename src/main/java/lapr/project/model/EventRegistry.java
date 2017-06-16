@@ -59,5 +59,9 @@ public class EventRegistry implements Serializable {
     public Event getEvent(int index) {
         return eventsList.get(index);
     }
+    
+    public ArrayList<Event> getEventList(){
+        return eventsList;
+    }
 
 }

@@ -18,6 +18,8 @@ public class Evaluation implements Serializable {
     private int application;
     private int invitation;
     private int overall;
+    private String textDescription;
+    private boolean accepted;
 
     /**
      *
@@ -26,7 +28,9 @@ public class Evaluation implements Serializable {
      * @param invitation
      * @param overall
      */
-    public Evaluation(int knowledge, int application, int invitation, int overall) {
+    public Evaluation(boolean accepted,String textDescription,int knowledge, int application, int invitation, int overall) {
+        this.accepted = accepted;
+        this.textDescription = textDescription;
         this.knowledge = knowledge;
         this.application = application;
         this.invitation = invitation;
