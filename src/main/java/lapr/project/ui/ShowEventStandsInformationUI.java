@@ -24,7 +24,6 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     private StandRegistry standRegistry;
     private DefaultListModel<Stand> modelStand = new DefaultListModel<>();
     ShowStandInformation standInfo;
-//    private float[][] intervalMatrix;
 
     /**
      * Creates new form ShowEventStandsInformationUI
@@ -148,7 +147,6 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void intervalsComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intervalsComboboxActionPerformed
-
         modelStand.clear();
         StandRegistry newStandList = standInfo.newStandRegistryInterval(intervalsCombobox.getSelectedIndex());
         for (int i = 0; i < newStandList.size(); i++) {
