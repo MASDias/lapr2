@@ -56,7 +56,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
 //        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(e, 60, "12312321321 123 132  312 312 123 123  213 312  21 43 432 34 ");
+        Application application = new Application(true, e, 60, "12312321321 123 132  312 312 123 123  213 312  21 43 432 34 ", 0.0f);
         try {
             listUsers = controller.getUsersList();
             listEvents = controller.getEventsList();
@@ -337,7 +337,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         int inviteEval = Integer.parseInt(inviteEvaluationCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallEvaluationCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        Evaluation evaluationComplete = new Evaluation(false, justification, knowledge, applicationEval, inviteEval, overall);
+        Evaluation evaluationComplete = new Evaluation(justification, knowledge, applicationEval, inviteEval, overall);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         clearFields();
         resetEvals();

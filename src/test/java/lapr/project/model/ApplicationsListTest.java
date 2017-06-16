@@ -28,8 +28,8 @@ public class ApplicationsListTest {
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 987654321, 595323141);
-        Application application = new Application(e, 100, "description");
-        Application application2 = new Application(e2,  100, "description");
+        Application application = new Application(true, e, 100, "description", 0.0f);
+        Application application2 = new Application(true, e2, 100, "description", 0.0f);
         list.addApplication(application);
         list.addApplication(application2);
         int size = list.size();
@@ -45,7 +45,7 @@ public class ApplicationsListTest {
     public void EnsureSameObjectsApplicationsListAreEqual() throws Exception {
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(e, 100, "description");
+        Application application = new Application(true, e, 100, "description", 0.0f);
         ApplicationList list = new ApplicationList();
         list.addApplication(application);
         assertEquals(list, list);
@@ -59,7 +59,7 @@ public class ApplicationsListTest {
     public void EnsureSameObjectsApplicationsListAreNotEqual() throws Exception {
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(e, 100, "description");
+        Application application = new Application(true, e, 100, "description", 0.0f);
 
         ApplicationList list = new ApplicationList();
         ApplicationList list2 = new ApplicationList();
@@ -97,7 +97,7 @@ public class ApplicationsListTest {
 
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(e,  100, "description");
+        Application application = new Application(true, e, 100, "description", 0.0f);
 
         result.addApplication(application);
         assertNotEquals(result, expectedResult);

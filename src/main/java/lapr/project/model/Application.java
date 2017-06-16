@@ -19,6 +19,8 @@ public class Application implements Serializable {
     private ArrayList<Evaluation> evaluationList;
     private String description;
     private int invites;
+    private boolean accepted;
+    private float area;
 
     /**
      *
@@ -27,10 +29,12 @@ public class Application implements Serializable {
      * @param invites
      * @param description
      */
-    public Application(Enterprise enterprise, int invites, String description) {
+    public Application(boolean accepted, Enterprise enterprise, int invites, String description, float area) {
+        this.accepted = accepted;
         this.enterprise = enterprise;
         this.description = description;
         this.invites = invites;
+        this.area = area;
         this.evaluationList = new ArrayList<>();
     }
 

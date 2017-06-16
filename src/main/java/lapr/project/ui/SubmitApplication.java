@@ -320,7 +320,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             int contactNumber = Integer.parseInt(contactTextField.getText());
             Product product = (Product) productsComboBox.getSelectedItem();
             Enterprise e = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
-            Application a = new Application(e,invites,description);
+            Application a = new Application(true, e,invites,description, 0.0f);
             event = (Event) eventsComboBox.getSelectedItem();
             event.getApplicationsList().addApplication(a);
             dispose();

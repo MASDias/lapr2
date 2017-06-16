@@ -5,6 +5,7 @@
  */
 package lapr.project.utils;
 
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,6 +16,9 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Application;
+import lapr.project.model.ApplicationList;
+import lapr.project.model.Evaluation;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
@@ -31,13 +35,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import java.nio.charset.StandardCharsets;
+
 
 /**
  *
  * @author playtard
  */
 public class XMLReader {
-
     /**
      *
      */
@@ -208,7 +213,8 @@ public class XMLReader {
             InputSource inputSource = new InputSource();
             inputSource.setCharacterStream(new FileReader(xmlFile));
             Document document = documentBuilder.parse(inputSource);
-
+            
+            
             NodeList eventList = document.getElementsByTagName("event");
             for (int b = 0; b < eventList.getLength(); b++) {
                 NodeList stands = document.getElementsByTagName("stand");
@@ -273,6 +279,8 @@ public class XMLReader {
                         }
                     }
                 }
+                
+                ApplicationList applicationArrayList = exposicao1.getApplicationsList();
                 NodeList applicationSetList = document.getElementsByTagName("applicationSet");
                 for (int i = 0; i < applicationSetList.getLength(); i++) {
                     Element applicationSet = (Element) applicationSetList.item(i);
@@ -291,7 +299,8 @@ public class XMLReader {
 
                         int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
                         System.out.println(invitesQuantity);
-
+                        
+                        Application app = new Application(accepted, null, invitesQuantity, description, area);
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
                             Element reviews = (Element) applicationList.item(k);
@@ -304,9 +313,11 @@ public class XMLReader {
                                 int eventAdequacy = Integer.parseInt(review.getElementsByTagName("eventAdequacy").item(0).getTextContent());
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
-                            
-                            }
+                                
+                                app.addEvaluation(new Evaluation(justificationText,faeTopicKnowledge, eventAdequacy,inviteAdequacy, recommendation));
+                            }                           
                         }
+                        applicationArrayList.addApplication(app);
                     }
                 }
             }
