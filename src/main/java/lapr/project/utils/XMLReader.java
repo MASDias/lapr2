@@ -5,7 +5,6 @@
  */
 package lapr.project.utils;
 
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
