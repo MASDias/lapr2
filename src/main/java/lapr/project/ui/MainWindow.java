@@ -6,7 +6,9 @@
 package lapr.project.ui;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -14,8 +16,6 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
-
-
 
 /**
  *
@@ -278,6 +278,7 @@ public class MainWindow extends javax.swing.JFrame {
                     ObjectOutputStream outObject = new ObjectOutputStream(outFile);
                     outObject.writeObject(eventCenter);
                     outObject.close();
+                    JOptionPane.showMessageDialog(null, "All data saved!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -285,12 +286,30 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "All data saved!");
     }//GEN-LAST:event_exportMenuItemActionPerformed
 
 
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
-
+        try {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("/Documents"));
+            int retrival = fileChooser.showOpenDialog(MainWindow.this);
+            if (retrival == JFileChooser.APPROVE_OPTION) {
+                try {
+                    FileInputStream inputFile = new FileInputStream(fileChooser.getSelectedFile());
+                    ObjectInputStream ois = new ObjectInputStream(inputFile);
+                    EventCenter inputEventCenter = (EventCenter) ois.readObject();
+                    this.eventCenter = inputEventCenter;
+                    
+                    ois.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "All data imported!");
     }//GEN-LAST:event_importMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
