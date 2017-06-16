@@ -5,14 +5,24 @@
  */
 package lapr.project.ui;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SealedObject;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
@@ -75,6 +85,7 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
@@ -175,6 +186,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(decideApplicationItem);
+        jMenu1.add(jSeparator7);
 
         jMenuItem1.setText("Show Stand Information");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +195,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
-        jMenuItem1.getAccessibleContext().setAccessibleName("Show Stand Information");
 
         jMenuBar1.add(jMenu1);
 
@@ -268,51 +279,62 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_decideApplicationItemActionPerformed
 
     private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
-        try {
-            FileOutputStream outFile = null;
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File("/Documents"));
-            int retrival = fileChooser.showSaveDialog(MainWindow.this);
-            if (retrival == JFileChooser.APPROVE_OPTION) {
-                try {
-                    outFile = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
-                    ObjectOutputStream outObject = new ObjectOutputStream(outFile);
-                    outObject.writeObject(eventCenter);
-                    JOptionPane.showMessageDialog(null, "All data saved!");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                } finally {
-                    outFile.close();
-                }
+
+        FileOutputStream outFile = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("/Documents"));
+        int retrival = fileChooser.showSaveDialog(MainWindow.this);
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+
+            SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+            try {
+                Cipher cipher = Cipher.getInstance("blowfish");
+                cipher.init(Cipher.ENCRYPT_MODE, keyToMaximumScoreInLAPR);
+                SealedObject sealedObject = new SealedObject(eventCenter, cipher);
+                CipherOutputStream cipherOutputStream = new CipherOutputStream(new BufferedOutputStream(new FileOutputStream(fileChooser.getSelectedFile() + ".bin")), cipher);
+                ObjectOutputStream outputStream = new ObjectOutputStream(cipherOutputStream);
+                outputStream.writeObject(sealedObject);
+                outputStream.close();
+                JOptionPane.showMessageDialog(null, "All data saved!");
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoSuchPaddingException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
     }//GEN-LAST:event_exportMenuItemActionPerformed
 
 
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
         try {
-            FileInputStream inputFile= null;
+            FileInputStream inputFile = null;
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("/Documents"));
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
+                SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
                 try {
-                    inputFile = new FileInputStream(fileChooser.getSelectedFile());
-                    ObjectInputStream ois = new ObjectInputStream(inputFile);
-                    EventCenter inputEventCenter = (EventCenter) ois.readObject();
-                    this.eventCenter = inputEventCenter;
+                    Cipher cipher = Cipher.getInstance("blowfish");
+                    cipher.init(Cipher.DECRYPT_MODE, keyToMaximumScoreInLAPR);
+                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream(new FileInputStream(fileChooser.getSelectedFile())), cipher);
+                    ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
+                    SealedObject sealedObject = (SealedObject) inputStream.readObject();
+                    this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
+
+                    JOptionPane.showMessageDialog(null, "All data imported!");
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                }finally{
-                    inputFile.close();
-                }
+                } 
             }
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "All data imported!");
+        
     }//GEN-LAST:event_importMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -341,6 +363,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
