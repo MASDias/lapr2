@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import lapr.project.controller.ShowEventStandsInformationController;
 import lapr.project.model.EventCenter;
+import lapr.project.model.ShowStandInformation;
 import lapr.project.model.Stand;
 import lapr.project.model.StandRegistry;
 
@@ -25,7 +26,8 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     private final EventCenter eventCenter;
     private StandRegistry standRegistry;
     private DefaultListModel<Stand> modelStand = new DefaultListModel<>();
-    private float[][] intervalMatrix;
+    ShowStandInformation standInfo;
+//    private float[][] intervalMatrix;
 
     /**
      * Creates new form ShowEventStandsInformationUI
@@ -38,9 +40,15 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
         controller = new ShowEventStandsInformationController(this.eventCenter);
         standRegistry = controller.getStandRegistry();
         standJList.setModel(modelStand);
-        SturgesRule();
-
+        standInfo = new ShowStandInformation(standRegistry);
+        initObjetcts();
         this.setVisible(true);
+    }
+
+    private void initObjetcts() {
+        for (int i = 0; i < standInfo.getIntervals().size(); i++) {
+            intervalsCombobox.addItem(standInfo.getIntervals().get(i));
+        }
     }
 
     /**
@@ -143,43 +151,47 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void intervalsComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intervalsComboboxActionPerformed
+//        modelStand.clear();
+//        for (int i = 0; i < standRegistry.size(); i++) {
+//            if (standRegistry.getStand(i).getArea() < intervalMatrix[intervalsCombobox.getSelectedIndex()][1] && standRegistry.getStand(i).getArea() > intervalMatrix[intervalsCombobox.getSelectedIndex()][0]) {
+//                modelStand.addElement(standRegistry.getStand(i));
+//            }
+//        }
+//        float n = (float) modelStand.size() / standRegistry.size();
+//        float frequency = (n * 100);
+//        frequencyTextField.setText(String.format("%.2f%%", frequency));
         modelStand.clear();
+        StandRegistry newStandList = standInfo.newStandRegistryInterval(intervalsCombobox.getSelectedIndex());
         for (int i = 0; i < standRegistry.size(); i++) {
-            if (standRegistry.getStand(i).getArea() < intervalMatrix[intervalsCombobox.getSelectedIndex()][1] && standRegistry.getStand(i).getArea() > intervalMatrix[intervalsCombobox.getSelectedIndex()][0]) {
-                modelStand.addElement(standRegistry.getStand(i));
-            }
+            modelStand.addElement(newStandList.getStand(i));
         }
-        float n = (float)modelStand.size() / standRegistry.size();
-        float frequency = (n*100);
-        frequencyTextField.setText(String.format("%.2f%%",frequency));
+        frequencyTextField.setText(standInfo.getFrequencyString());
     }//GEN-LAST:event_intervalsComboboxActionPerformed
 
-    private void SturgesRule() {
-        int totalAmplitude = TotalAmplitude();
-        int k = (int) (1 + 3.3 * Math.log10((double) standRegistry.size()));
-        int amplitude = totalAmplitude / k;
-        createElements(amplitude, k);
-    }
-
-    private void createElements(int amplitude, int k) {
-        float value = standRegistry.getStand(0).getArea();
-        intervalMatrix = new float[k][2];
-        for (int i = 0; i < k; i++) {
-            intervalMatrix[i][0] = value;
-            intervalMatrix[i][1] = value + amplitude;
-            intervalsCombobox.addItem("[ " + intervalMatrix[i][0] + " ; " + intervalMatrix[i][1] + " ]");
-            value += amplitude;
-        }
-    }
-
-    private int TotalAmplitude() {
-        int ta = 0;
-        standRegistry.sort();
-        float min = standRegistry.getStand(0).getArea();
-        float max = standRegistry.getStand(standRegistry.size() - 1).getArea();
-        ta = Math.round(max - min);
-        return ta;
-    }
+//    private void SturgesRule() {
+//        int totalAmplitude = TotalAmplitude();
+//        int k = (int) (1 + 3.3 * Math.log10((double) standRegistry.size()));
+//        int amplitude = totalAmplitude / k;
+//        createElements(amplitude, k);
+//    }
+//    private void createElements(int amplitude, int k) {
+//        float value = standRegistry.getStand(0).getArea();
+//        intervalMatrix = new float[k][2];
+//        for (int i = 0; i < k; i++) {
+//            intervalMatrix[i][0] = value;
+//            intervalMatrix[i][1] = value + amplitude;
+//            intervalsCombobox.addItem("[ " + intervalMatrix[i][0] + " ; " + intervalMatrix[i][1] + " ]");
+//            value += amplitude;
+//        }
+//    }
+//    private int TotalAmplitude() {
+//        int ta = 0;
+//        standRegistry.sort();
+//        float min = standRegistry.getStand(0).getArea();
+//        float max = standRegistry.getStand(standRegistry.size() - 1).getArea();
+//        ta = Math.round(max - min);
+//        return ta;
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Interval;
     private javax.swing.JTextField frequencyTextField;
