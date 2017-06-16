@@ -20,7 +20,7 @@ import lapr.project.model.EventCenter;
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class MainWindow extends javax.swing.JFrame {
-    
+
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private boolean loginStatus = false;
@@ -28,13 +28,14 @@ public class MainWindow extends javax.swing.JFrame {
     private boolean organizerStatus = false;
     private boolean eventEmployeeStatus = false;
     private boolean eventManagerStatus = false;
-    
+
     /**
      * Creates new form MainWindow
+     *
      * @param eventCenter
      */
     public MainWindow(EventCenter eventCenter) {
-        
+
         initComponents();
 //        if(!loginStatus){
 //            registerMenuItem.setVisible(false);
@@ -72,6 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -172,6 +174,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu1.add(decideApplicationItem);
 
+        jMenuItem1.setText("Show Stand Information");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+        jMenuItem1.getAccessibleContext().setAccessibleName("Show Stand Information");
+
         jMenuBar1.add(jMenu1);
 
         importExportMenu.setText("Import/Export");
@@ -223,7 +234,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
         LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus);
-        
+
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
@@ -247,7 +258,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_submitApplicationMenuItemActionPerformed
 
     private void decideApplicationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decideApplicationItemActionPerformed
-        try { 
+        try {
             DecideApplicationUI dapp = new DecideApplicationUI(userNameLabel.getText(), eventCenter);
         } catch (ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -275,11 +286,14 @@ public class MainWindow extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "All data saved!");
     }//GEN-LAST:event_exportMenuItemActionPerformed
 
-    
+
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
-       
-        
+
     }//GEN-LAST:event_importMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ShowEventStandsInformationUI jk = new ShowEventStandsInformationUI(eventCenter);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -295,6 +309,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
