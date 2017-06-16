@@ -5,11 +5,15 @@
  */
 package lapr.project.ui;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
-import lapr.project.model.ExportFile;
 
 /**
  *
@@ -252,17 +256,25 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
         try {
-            ExportFile exportFile = new ExportFile("EventCenter.bin", eventCenter);
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File("/Documents"));
+            int retrival = fileChooser.showSaveDialog(MainWindow.this);
+            if (retrival == JFileChooser.APPROVE_OPTION) {
+                try {
+                    FileOutputStream outFile = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
+                    ObjectOutputStream outObject = new ObjectOutputStream(outFile);
+                    outObject.writeObject(eventCenter);
+                    outObject.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        JOptionPane.showMessageDialog(null, "All data saved!");
     }//GEN-LAST:event_exportMenuItemActionPerformed
 
-//    private void writesFile(EventCenter eventCenter) throws Exception{
-//        FileWriter writer = new FileWriter("EventCenter.txt");
-//        writer.write(eventCenter);
-//    }
     
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
        
