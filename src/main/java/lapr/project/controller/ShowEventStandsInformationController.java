@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.EventCenter;
-import lapr.project.model.EventRegistry;
+import lapr.project.model.StandRegistry;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ShowEventStandsInformationController {
         this.eventCenter = eventCenter;
     }
     
-    public EventRegistry getEventList(){
-        return eventCenter.getEventRegistry();
+    public StandRegistry getStandRegistry(){
+        return eventCenter.getStandRegistry();
     }
 }

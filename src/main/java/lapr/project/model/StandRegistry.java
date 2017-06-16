@@ -7,8 +7,8 @@ package lapr.project.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class StandRegistry implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private List<Stand> standsList;
+    private ArrayList<Stand> standsList;
 
     /**
      *
@@ -52,6 +52,15 @@ public class StandRegistry implements Serializable {
         if (validate(stand)) {
             standsList.add(stand);
         }
+    }
+
+    public void sort() {
+        Collections.sort(standsList, new Comparator<Stand>() {
+            @Override
+            public int compare(Stand o1, Stand o2) {
+                return o1.getArea() < o2.getArea() ? -1 : o1.getArea() > o2.getArea() ? 1 : 0;
+            }
+        });
     }
 
     /**

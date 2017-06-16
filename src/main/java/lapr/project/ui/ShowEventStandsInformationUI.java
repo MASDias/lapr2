@@ -6,11 +6,11 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import lapr.project.controller.ShowEventStandsInformationController;
-import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
-import lapr.project.model.EventRegistry;
 import lapr.project.model.Stand;
+import lapr.project.model.StandRegistry;
 
 /**
  *
@@ -20,8 +20,8 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ShowEventStandsInformationController controller;
-    private EventRegistry eventRegistry;
     private final EventCenter eventCenter;
+    private StandRegistry standRegistry;
     private DefaultListModel<Stand> modelStand = new DefaultListModel<>();
 
     /**
@@ -32,17 +32,10 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     public ShowEventStandsInformationUI(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
         controller = new ShowEventStandsInformationController(this.eventCenter);
-        this.eventRegistry = controller.getEventList();
+        standRegistry = controller.getStandRegistry();
         initComponents();
-        standJlist.setModel(modelStand);
-        initCombobox();
+        SturgesRule();
         this.setVisible(true);
-    }
-
-    private void initCombobox() {
-        for (int i = 0; i < eventRegistry.size(); i++) {
-            eventCombobox.addItem(eventRegistry.getEvent(i));
-        }
     }
 
     /**
@@ -55,25 +48,14 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        eventCombobox = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        standJlist = new javax.swing.JList<>();
+        panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Event Stands");
         setResizable(false);
 
         jLabel1.setText("Stands List:");
-
-        eventCombobox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventComboboxActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Event:");
 
         jButton1.setText("Close");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,42 +64,41 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(standJlist);
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 636, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(eventCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(51, 51, 51))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(65, 65, 65)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -129,20 +110,29 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void eventComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboboxActionPerformed
-        Event e = (Event) eventCombobox.getSelectedItem();
-        for (int i = 0; i < e.getStandRegister().size(); i++) {
-            modelStand.addElement(e.getStandRegister().getStand(i));
-        }
-    }//GEN-LAST:event_eventComboboxActionPerformed
+    private void SturgesRule() {
+        int totalAmplitude = TotalAmplitude();
+        int k = (int) (1 + 3.3 * Math.log10((double) standRegistry.size()));
+        int amplitude = totalAmplitude / k;
+        createElements(amplitude, k);
+    }
 
+    private void createElements(int amplitude, int k) {
+        JLabel label[] = new JLabel[k];
 
+    }
+
+    private int TotalAmplitude() {
+        int ta = 0;
+        standRegistry.sort();
+        float max = standRegistry.getStand(0).getArea();
+        float min = standRegistry.getStand(standRegistry.size() - 1).getArea();
+        ta = Math.round(max - min);
+        return ta;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Event> eventCombobox;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<Stand> standJlist;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }
