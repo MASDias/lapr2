@@ -12,13 +12,12 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1;
     private static final String AT = "@";
-    private int key;
     private String name;
     private String email;
     private String userName;
     private String password;
     private boolean userStatus = false;
-    private PasswordEncryption encryption;
+    private PasswordEncryption encryption = new PasswordEncryption();
 
     /**
      *
@@ -31,8 +30,7 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.userName = userName;
-        this.key = (int) (0 + Math.random() * 9);
-        this.password = password;
+        this.password = encryption.Encryption(password);
         this.userStatus = true;
     }
 
@@ -157,22 +155,6 @@ public class User implements Serializable {
      */
     public String getPassword() {
         return password;
-    }
-
-    /**
-     *
-     * @param key
-     */
-    public void setKey(int key) {
-        this.key = key;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getKey() {
-        return key;
     }
 
     /**

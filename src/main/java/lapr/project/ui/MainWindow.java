@@ -269,18 +269,20 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
         try {
+            FileOutputStream outFile = null;
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("/Documents"));
             int retrival = fileChooser.showSaveDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
                 try {
-                    FileOutputStream outFile = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
+                    outFile = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
                     ObjectOutputStream outObject = new ObjectOutputStream(outFile);
                     outObject.writeObject(eventCenter);
-                    outObject.close();
                     JOptionPane.showMessageDialog(null, "All data saved!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                } finally {
+                    outFile.close();
                 }
             }
         } catch (Exception ex) {
@@ -291,19 +293,20 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
         try {
+            FileInputStream inputFile= null;
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File("/Documents"));
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
                 try {
-                    FileInputStream inputFile = new FileInputStream(fileChooser.getSelectedFile());
+                    inputFile = new FileInputStream(fileChooser.getSelectedFile());
                     ObjectInputStream ois = new ObjectInputStream(inputFile);
                     EventCenter inputEventCenter = (EventCenter) ois.readObject();
                     this.eventCenter = inputEventCenter;
-                    
-                    ois.close();
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                }finally{
+                    inputFile.close();
                 }
             }
         } catch (Exception ex) {

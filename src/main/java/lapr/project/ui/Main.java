@@ -1,11 +1,7 @@
 package lapr.project.ui;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import lapr.project.model.CalculatorExample;
-import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
-import lapr.project.model.Location;
 import lapr.project.utils.XMLReader;
 
 /**
@@ -30,7 +26,5 @@ class Main {
         XMLReader xmlFile = new XMLReader();
         eventCenter = xmlFile.readValuesFromXML(eventCenter);
         MainWindow mw = new MainWindow(eventCenter);
-        
-        
     }
 }
