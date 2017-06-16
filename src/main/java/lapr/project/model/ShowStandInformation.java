@@ -16,7 +16,7 @@ public class ShowStandInformation {
     private StandRegistry standRegistry;
     private float intervalMatrix[][];
     private ArrayList<String> intervals;
-    private int totalAmplitude;
+    private int totalAmplitude=0;
     private String frequencyString;
 
     public ShowStandInformation(StandRegistry standRegistry) {
