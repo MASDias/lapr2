@@ -255,8 +255,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_registerMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus);
-
+        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus, MainWindow.this);
+        
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
@@ -353,7 +353,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem createEventMenuItem;
+    public javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;
     private javax.swing.JMenuItem defineEventManagerMenuItem;

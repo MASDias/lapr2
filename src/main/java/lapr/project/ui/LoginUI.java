@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
@@ -21,6 +22,7 @@ public class LoginUI extends javax.swing.JFrame {
     private boolean eventManagerStatus = false;
     private EventCenter eventCenter;
     private JLabel label;
+    private MainWindow mainWindow;
 
     private User user;
 
@@ -36,7 +38,7 @@ public class LoginUI extends javax.swing.JFrame {
      * @param eventManagerStatus
      * @param logedUser
      */
-    public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label, boolean userStatus, boolean organizerStatus, boolean eventEmployeeStatus, boolean eventManagerStatus) {
+    public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label, boolean userStatus, boolean organizerStatus, boolean eventEmployeeStatus, boolean eventManagerStatus, MainWindow mainWindow) {
         this.loginStatus = loginStatus;
         this.eventCenter = eventCenter;
         this.label = label;
@@ -48,6 +50,7 @@ public class LoginUI extends javax.swing.JFrame {
         this.organizerStatus = organizerStatus;
         this.eventEmployeeStatus = eventEmployeeStatus;
         this.eventManagerStatus = eventManagerStatus;
+        this.mainWindow = mainWindow;
         initComponents();
         this.setVisible(true);
     }
@@ -128,10 +131,12 @@ public class LoginUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         loginConfirmation();
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldActionPerformed
@@ -170,6 +175,13 @@ public class LoginUI extends javax.swing.JFrame {
         System.out.println("Organizer:" + organizerStatus);
         System.out.println("Event Employee:" + eventEmployeeStatus);
         System.out.println("EventManager:" + eventManagerStatus);
+        System.out.println("Login Status:" + loginStatus);
+        
+//        if(loginStatus){
+//            mainWindow.createEventMenuItem.setVisible(false);
+//                    
+//        }
+        
     }
 
     private boolean validateLoginStatus() {
