@@ -23,7 +23,7 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     private final EventCenter eventCenter;
     private StandRegistry standRegistry;
     private DefaultListModel<Stand> modelStand = new DefaultListModel<>();
-    ShowStandInformation standInfo;
+    private ShowStandInformation standInfo;
 
     /**
      * Creates new form ShowEventStandsInformationUI

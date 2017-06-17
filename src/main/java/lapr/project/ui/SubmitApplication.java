@@ -33,7 +33,7 @@ public class SubmitApplication extends javax.swing.JFrame {
     private ProductList productList;
     private EventRegistry eventRegistry;
     private Event event;
-
+                   
     /**
      * Creates new form SubmitApplication
      * @param eventCenter

@@ -108,14 +108,14 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         descriptionTextArea = new javax.swing.JTextArea();
         enterpriseNameTextField = new javax.swing.JTextField();
         invitationTextField = new javax.swing.JTextField();
-        knowledgeCombobox = new javax.swing.JComboBox<>();
-        applicationEvalCombobox = new javax.swing.JComboBox<>();
-        inviteEvaluationCombobox = new javax.swing.JComboBox<>();
-        overallEvaluationCombobox = new javax.swing.JComboBox<>();
+        knowledgeCombobox = new javax.swing.JComboBox<String>();
+        applicationEvalCombobox = new javax.swing.JComboBox<String>();
+        inviteEvaluationCombobox = new javax.swing.JComboBox<String>();
+        overallEvaluationCombobox = new javax.swing.JComboBox<String>();
         evaluateBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        applicationJList = new javax.swing.JList<>();
+        applicationJList = new javax.swing.JList<Application>();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -321,9 +321,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                     .addComponent(AcceptedRadiobtn)
                     .addComponent(rejectedRadioBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitBtn)
-                    .addComponent(evaluateBtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(evaluateBtn)
+                    .addComponent(exitBtn))
                 .addContainerGap())
         );
 

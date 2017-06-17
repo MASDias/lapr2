@@ -87,6 +87,8 @@ public class MainWindow extends javax.swing.JFrame {
         decideApplicationItem = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -202,6 +204,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+        jMenu1.add(jSeparator8);
+
+        showEmployeeMeanRatingMenuItem.setText("Show Employee Mean Rating");
+        showEmployeeMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEmployeeMeanRatingMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showEmployeeMeanRatingMenuItem);
 
         jMenuBar1.add(jMenu1);
 
@@ -351,6 +362,10 @@ public class MainWindow extends javax.swing.JFrame {
         ShowEventStandsInformationUI jk = new ShowEventStandsInformationUI(eventCenter);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void showEmployeeMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEmployeeMeanRatingMenuItemActionPerformed
+        ShowEmployeeMeanRating semr = new ShowEmployeeMeanRating(eventCenter);
+    }//GEN-LAST:event_showEmployeeMeanRatingMenuItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem createEventMenuItem;
@@ -374,8 +389,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenuItem registerMenuItem;
+    private javax.swing.JMenuItem showEmployeeMeanRatingMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
     private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
