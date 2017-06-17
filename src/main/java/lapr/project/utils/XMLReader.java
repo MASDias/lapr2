@@ -35,6 +35,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import java.nio.charset.StandardCharsets;
+import lapr.project.model.Organizer;
 
 
 /**
@@ -200,7 +201,7 @@ public class XMLReader {
      return eventCenter;
      }*/
 
-    public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
+        public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
         try {
 
             File xmlFile = new File("xml/exposicao1_v0.1.xml");
@@ -212,8 +213,7 @@ public class XMLReader {
             InputSource inputSource = new InputSource();
             inputSource.setCharacterStream(new FileReader(xmlFile));
             Document document = documentBuilder.parse(inputSource);
-            
-            
+
             NodeList eventList = document.getElementsByTagName("event");
             for (int b = 0; b < eventList.getLength(); b++) {
                 NodeList stands = document.getElementsByTagName("stand");
@@ -278,7 +278,7 @@ public class XMLReader {
                         }
                     }
                 }
-                
+
                 ApplicationList applicationArrayList = exposicao1.getApplicationsList();
                 NodeList applicationSetList = document.getElementsByTagName("applicationSet");
                 for (int i = 0; i < applicationSetList.getLength(); i++) {
@@ -298,7 +298,7 @@ public class XMLReader {
 
                         int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
                         System.out.println(invitesQuantity);
-                        
+
                         Application app = new Application(accepted, null, invitesQuantity, description, area);
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
@@ -312,12 +312,63 @@ public class XMLReader {
                                 int eventAdequacy = Integer.parseInt(review.getElementsByTagName("eventAdequacy").item(0).getTextContent());
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
-                                
-                                app.addEvaluation(new Evaluation(justificationText,faeTopicKnowledge, eventAdequacy,inviteAdequacy, recommendation));
-                            }                           
+
+                                app.addEvaluation(new Evaluation(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
+                            }
                         }
                         applicationArrayList.addApplication(app);
                     }
+                    eventCenter.setApplicationList(applicationArrayList);
+
+                    NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
+                    for (int a = 0; a < OrganizerSet.getLength(); a++) {
+                        Element organizerSet = (Element) OrganizerSet.item(a);
+                        NodeList organizers = organizerSet.getElementsByTagName("Organizer");
+
+                        for (i = 0; i < organizers.getLength(); i++) {
+
+                            Element organizer = (Element) organizers.item(i);
+                            NodeList users = organizer.getElementsByTagName("user");
+                            for (int j = 0; j < users.getLength(); j++) {
+                                Element user = (Element) users.item(j);
+
+                                String nomeStr = user.getElementsByTagName("name").item(0).getTextContent();
+                                System.out.println(nomeStr);
+
+                                String emailStr = user.getElementsByTagName("email").item(0).getTextContent();
+                                System.out.println(emailStr);
+
+                                String usernameStr = user.getElementsByTagName("username").item(0).getTextContent();
+                                System.out.println(usernameStr);
+
+                                String passwordStr = user.getElementsByTagName("password").item(0).getTextContent();
+                                System.out.println(passwordStr);
+                                
+                                User organizerU = new User(nomeStr, emailStr, usernameStr, passwordStr);
+                                Organizer organizerO = new Organizer(organizerU);
+
+                                int cont = 0;
+                                if (eventCenter.getUserRegistry().size() > 0) {
+                                    for (int k = 0; k < eventCenter.getUserRegistry().size(); k++) {
+                                        if (eventCenter.getUserRegistry().getUser(k).equals(organizerU)) {
+                                            cont++;
+                                        }
+                                        if (cont == 0) {
+                                            eventCenter.getUserRegistry().addUser(organizerU);
+                                        } else {
+                                            System.out.println("User already exists.");
+                                        }
+
+                                    }
+                                } else {
+                                    eventCenter.getUserRegistry().addUser(organizerU);
+                                }
+                                exposicao1.getOrganizerList().addOrganizer(organizerO);
+                            }
+
+                        }
+                    }
+                    eventCenter.getEventRegistry().addEvent(exposicao1);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -332,6 +383,7 @@ public class XMLReader {
         }
         return eventCenter;
     }
+
 
     /**
      *
