@@ -11,12 +11,10 @@ package lapr.project.model;
  */
 public class Assignment {
 
-    private Application application;
-    private EventEmployeeList eventEmployeeList;
+    private EventEmployee eventEmployee;
 
-    public Assignment(Application application) {
-        this.application = application;
-        eventEmployeeList = new EventEmployeeList();
+    public Assignment(EventEmployee eventEmployee) {
+        this.eventEmployee = eventEmployee;
     }
-    
+
 }

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.DecideApplicationController;
 import lapr.project.model.Application;
 import lapr.project.model.ApplicationList;
+import lapr.project.model.Assignment;
 import lapr.project.model.Enterprise;
 import lapr.project.model.Review;
 import lapr.project.model.Event;
@@ -34,6 +35,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private String logedUser;
     private UserRegistry listUsers;
     private EventRegistry listEvents;
+    private Assignment assignment;
 
     /**
      * Creates new form DecideApplicationUI
@@ -70,6 +72,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
             }
             User u = new User("mario", "email", "username", "masssss");
             eventEmployee = new EventEmployee(u, 60);
+            assignment = new Assignment(eventEmployee);
             eventEmployee.getApplicationList().addApplication(application);
             applicationList = eventEmployee.getApplicationList();
             applicationJList.setModel(modelApplicationList);
@@ -337,7 +340,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall);
+        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall, assignment);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         clearFields();
         resetEvals();

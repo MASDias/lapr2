@@ -313,7 +313,7 @@ public class XMLReader {
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
 
-                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
+//                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
                             }
                         }
                         applicationArrayList.addApplication(app);
