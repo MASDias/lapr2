@@ -113,6 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jMenu1.setText("Menu");
 
+        loginMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/keyring-icon.png"))); // NOI18N
         loginMenuItem.setText("Login");
         loginMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +123,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(loginMenuItem);
         jMenu1.add(jSeparator3);
 
+        registerMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-user-group-new-icon.png"))); // NOI18N
         registerMenuItem.setMnemonic('M');
         registerMenuItem.setText("Register");
         registerMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +134,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(registerMenuItem);
         jMenu1.add(jSeparator1);
 
+        createEventMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Calendar-icon.png"))); // NOI18N
         createEventMenuItem.setText("Create Event");
         createEventMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +144,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(createEventMenuItem);
         jMenu1.add(jSeparator4);
 
+        defineUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Relationship-icon.png"))); // NOI18N
         defineUser.setText("Define User");
 
         defineEventManagerMenuItem.setText("Define Event Manager");
@@ -170,6 +174,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(defineUser);
         jMenu1.add(jSeparator5);
 
+        submitApplicationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Messaging-Gmail-Login-icon.png"))); // NOI18N
         submitApplicationMenuItem.setText("Submit Application");
         submitApplicationMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +184,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(submitApplicationMenuItem);
         jMenu1.add(jSeparator2);
 
+        decideApplicationItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow-ok-icon.png"))); // NOI18N
         decideApplicationItem.setText("Decide Application");
         decideApplicationItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +194,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.add(decideApplicationItem);
         jMenu1.add(jSeparator7);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Button-Info-icon.png"))); // NOI18N
         jMenuItem1.setText("Show Stand Information");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +207,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         importExportMenu.setText("Import/Export");
 
+        importMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/import-icon.png"))); // NOI18N
         importMenuItem.setText("Import File");
         importMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +217,7 @@ public class MainWindow extends javax.swing.JFrame {
         importExportMenu.add(importMenuItem);
         importExportMenu.add(jSeparator6);
 
+        exportMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/export-icon.png"))); // NOI18N
         exportMenuItem.setText("Export File");
         exportMenuItem.setToolTipText("");
         exportMenuItem.addActionListener(new java.awt.event.ActionListener() {

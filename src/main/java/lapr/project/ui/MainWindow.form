@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="loginMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/keyring-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
               <Events>
@@ -21,6 +24,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="registerMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Actions-user-group-new-icon.png"/>
+                </Property>
                 <Property name="mnemonic" type="int" value="77"/>
                 <Property name="text" type="java.lang.String" value="Register"/>
               </Properties>
@@ -32,6 +38,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="createEventMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Calendar-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Create Event"/>
               </Properties>
               <Events>
@@ -42,6 +51,9 @@
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="defineUser">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Relationship-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Define User"/>
               </Properties>
               <SubComponents>
@@ -75,6 +87,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="submitApplicationMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Messaging-Gmail-Login-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Submit Application"/>
               </Properties>
               <Events>
@@ -85,6 +100,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="decideApplicationItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/yellow-ok-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Decide Application"/>
               </Properties>
               <Events>
@@ -95,6 +113,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Button-Info-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Show Stand Information"/>
               </Properties>
               <Events>
@@ -110,6 +131,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="importMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/import-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Import File"/>
               </Properties>
               <Events>
@@ -120,6 +144,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exportMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/export-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Export File"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
