@@ -345,7 +345,6 @@ public class XMLReader {
                                 System.out.println(passwordStr);
                                 
                                 User organizerU = new User(nomeStr, emailStr, usernameStr, passwordStr);
-                                Organizer organizerO = new Organizer(organizerU);
 
                                 int cont = 0;
                                 if (eventCenter.getUserRegistry().size() > 0) {
@@ -364,6 +363,7 @@ public class XMLReader {
                                     eventCenter.getUserRegistry().addUser(organizerU);
                                 }
                                 if(exposicao1.getOrganizerList().size() != 0){
+                                    Organizer organizerO = new Organizer(organizerU);
                                     exposicao1.getOrganizerList().addOrganizer(organizerO);
                                 } else exposicao1.getOrganizerList().addOrganizer(new Organizer(new User("admin", "admin@expo.pt", "admin", "admin")));
                             }
