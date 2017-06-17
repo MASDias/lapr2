@@ -116,16 +116,24 @@
                               <Component id="jScrollPane2" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
                               <Component id="addOrganizerbtn" alignment="1" min="-2" pref="244" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="newEventbtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="cancelbtn" min="-2" pref="82" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="newEventbtn" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cancelbtn" min="-2" pref="82" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jScrollPane3" pref="241" max="32767" attributes="0"/>
+                                          <Component id="removeOrganizerbtn" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane3" pref="241" max="32767" attributes="0"/>
-                                  <Component id="removeOrganizerbtn" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -197,17 +205,18 @@
                       <Component id="removeOrganizerbtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="addOrganizerbtn" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="13" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addOrganizerByIDTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel12" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="newEventbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -359,6 +368,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="removeOrganizerbtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Close-2-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Remove Organizer"/>
           </Properties>
           <Events>
@@ -396,6 +408,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="addOrganizerbtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/add-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Add Organizer From List"/>
           </Properties>
           <Events>
@@ -434,6 +449,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="invitationTextField">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel12">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Magnifier-icon.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
