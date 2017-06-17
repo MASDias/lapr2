@@ -363,7 +363,9 @@ public class XMLReader {
                                 } else {
                                     eventCenter.getUserRegistry().addUser(organizerU);
                                 }
-                                exposicao1.getOrganizerList().addOrganizer(organizerO);
+                                if(exposicao1.getOrganizerList().size() != 0){
+                                    exposicao1.getOrganizerList().addOrganizer(organizerO);
+                                } else exposicao1.getOrganizerList().addOrganizer(new Organizer(new User("admin", "admin@expo.pt", "admin", "admin")));
                             }
 
                         }
