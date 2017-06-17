@@ -72,6 +72,7 @@ private static final long serialVersionUID = 1;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Employee Mean Rating");
+        setResizable(false);
 
         jLabel1.setText("Employees List:");
 

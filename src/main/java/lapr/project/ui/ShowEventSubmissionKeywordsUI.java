@@ -5,11 +5,14 @@
  */
 package lapr.project.ui;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import lapr.project.controller.ShowEventSubmissionKeywordsController;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Keyword;
+import lapr.project.model.KeywordFrequency;
 
 /**
  *
@@ -17,9 +20,13 @@ import lapr.project.model.Keyword;
  */
 public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private EventRegistry listEvents;
     private ShowEventSubmissionKeywordsController controller;
+    private KeywordFrequency keywordFrequency;
+    private ArrayList<Integer> frequencyCounter = new ArrayList<>();
+    private DefaultListModel<String> modelKeywordList = new DefaultListModel<>();
 
     /**
      * Creates new form ShowEventSubmissionKeywordsUI
@@ -32,18 +39,27 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
 
         initComponents();
 
+        keywordFrequenciesJList.setModel(modelKeywordList);
+
         listEvents = controller.getEventsList();
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
-
+        for (int i = 0; i < listEvents.getEvent(0).getKeywordsList().size(); i++) {
+        System.out.println(listEvents.getEvent(0).getKeywordsList().getKeyword(i));
+            
+        }
+//        keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
         setVisible(true);
     }
 
     private void initKeywords() {
-               
+        keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
+
+        frequencyCounter = keywordFrequency.getFrequencies();
+
         for (int j = 0; j < listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().size(); j++) {
-            keywordsComboBox.addItem(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().getKeyword(j));
+            modelKeywordList.addElement(keywordFrequency.getNewKeyWordList().getKeyword(j).toString() + "    Frequency: " + (float) frequencyCounter.get(j) / listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().size());
         }
 
     }
@@ -61,14 +77,12 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         closeBtn = new javax.swing.JButton();
-        keywordsComboBox = new javax.swing.JComboBox<Keyword>();
-        jLabel3 = new javax.swing.JLabel();
-        keywordFrequencyLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        selectedKeywordLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        keywordFrequenciesJList = new javax.swing.JList<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Keyword Frequency");
+        setResizable(false);
 
         eventComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +101,7 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Keyword Frequency:");
-
-        jLabel4.setText("Selected Keyword:");
+        jScrollPane1.setViewportView(keywordFrequenciesJList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,51 +113,33 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(keywordsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(selectedKeywordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(keywordFrequencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(32, 32, 32))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(closeBtn)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(keywordFrequencyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedKeywordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(keywordsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(closeBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(closeBtn)))
                 .addContainerGap())
         );
 
@@ -159,8 +153,9 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_closeBtnActionPerformed
 
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
-        keywordsComboBox.removeAllItems();
+        modelKeywordList.removeAllElements();
         initKeywords();
+
     }//GEN-LAST:event_eventComboBoxActionPerformed
 
 
@@ -169,10 +164,7 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<Event> eventComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel keywordFrequencyLabel;
-    private javax.swing.JComboBox<Keyword> keywordsComboBox;
-    private javax.swing.JLabel selectedKeywordLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> keywordFrequenciesJList;
     // End of variables declaration//GEN-END:variables
 }
