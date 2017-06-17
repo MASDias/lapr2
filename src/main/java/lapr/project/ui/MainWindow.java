@@ -285,6 +285,7 @@ public class MainWindow extends javax.swing.JFrame {
         fileChooser.setCurrentDirectory(new File("/Documents"));
         int retrival = fileChooser.showSaveDialog(MainWindow.this);
         if (retrival == JFileChooser.APPROVE_OPTION) {
+            
 
             SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
             try {
