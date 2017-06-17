@@ -19,6 +19,8 @@ public class Evaluation implements Serializable {
     private int invitation;
     private int overall;
     private String textDescription;
+    private float meanValue;
+    private final int TOTALFIELDS = 4;
 
     /**
      *
@@ -27,12 +29,13 @@ public class Evaluation implements Serializable {
      * @param invitation
      * @param overall
      */
-    public Evaluation(String textDescription,int knowledge, int application, int invitation, int overall) {
+    public Evaluation(String textDescription, int knowledge, int application, int invitation, int overall) {
         this.textDescription = textDescription;
         this.knowledge = knowledge;
         this.application = application;
         this.invitation = invitation;
         this.overall = overall;
+        this.meanValue = (this.knowledge + this.application + this.invitation + this.overall) / (float) TOTALFIELDS;
     }
 
     /**
