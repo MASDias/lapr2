@@ -23,7 +23,7 @@ public class Event implements Serializable {
     private EventEmployeeList eventEmployeeList;
     private StandRegistry standRegister;
     private OrganizersList organizerList;
-
+    
     /**
      *
      * @param title

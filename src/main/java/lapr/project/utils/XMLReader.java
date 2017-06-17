@@ -17,7 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Application;
 import lapr.project.model.ApplicationList;
-import lapr.project.model.Evaluation;
+import lapr.project.model.Review;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
@@ -313,7 +313,7 @@ public class XMLReader {
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
 
-                                app.addEvaluation(new Evaluation(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
+                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
                             }
                         }
                         applicationArrayList.addApplication(app);

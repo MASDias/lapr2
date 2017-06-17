@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author MarioDias
  */
-public class Evaluation implements Serializable {
+public class Review implements Serializable {
 
     private static final long serialVersionUID = 1;
     private int knowledge;
@@ -29,7 +29,7 @@ public class Evaluation implements Serializable {
      * @param invitation
      * @param overall
      */
-    public Evaluation(String textDescription, int knowledge, int application, int invitation, int overall) {
+    public Review(String textDescription, int knowledge, int application, int invitation, int overall) {
         this.textDescription = textDescription;
         this.knowledge = knowledge;
         this.application = application;
@@ -52,6 +52,10 @@ public class Evaluation implements Serializable {
      */
     public void setKnowledge(int knowledge) {
         this.knowledge = knowledge;
+    }
+
+    public String getTextDescription() {
+        return textDescription;
     }
 
     /**
@@ -101,4 +105,15 @@ public class Evaluation implements Serializable {
     public void setOverall(int overall) {
         this.overall = overall;
     }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return knowledge + " " + application + " " + invitation + " " + overall + " Justification:" + textDescription;
+    }
+
 }

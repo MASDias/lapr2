@@ -12,7 +12,7 @@ import lapr.project.controller.DecideApplicationController;
 import lapr.project.model.Application;
 import lapr.project.model.ApplicationList;
 import lapr.project.model.Enterprise;
-import lapr.project.model.Evaluation;
+import lapr.project.model.Review;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
@@ -108,14 +108,14 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         descriptionTextArea = new javax.swing.JTextArea();
         enterpriseNameTextField = new javax.swing.JTextField();
         invitationTextField = new javax.swing.JTextField();
-        knowledgeCombobox = new javax.swing.JComboBox<String>();
-        applicationEvalCombobox = new javax.swing.JComboBox<String>();
-        inviteEvaluationCombobox = new javax.swing.JComboBox<String>();
-        overallEvaluationCombobox = new javax.swing.JComboBox<String>();
+        knowledgeCombobox = new javax.swing.JComboBox<>();
+        applicationEvalCombobox = new javax.swing.JComboBox<>();
+        inviteReviewCombobox = new javax.swing.JComboBox<>();
+        overallReviewCombobox = new javax.swing.JComboBox<>();
         evaluateBtn = new javax.swing.JButton();
         exitBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        applicationJList = new javax.swing.JList<Application>();
+        applicationJList = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -159,11 +159,11 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         applicationEvalCombobox.setMaximumRowCount(6);
         applicationEvalCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        inviteEvaluationCombobox.setMaximumRowCount(6);
-        inviteEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        inviteReviewCombobox.setMaximumRowCount(6);
+        inviteReviewCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
-        overallEvaluationCombobox.setMaximumRowCount(6);
-        overallEvaluationCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
+        overallReviewCombobox.setMaximumRowCount(6);
+        overallReviewCombobox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "0", "1", "2", "3", "4", "5" }));
 
         evaluateBtn.setText("Evaluate");
         evaluateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -250,8 +250,8 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(overallEvaluationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inviteEvaluationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(overallReviewCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inviteReviewCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(applicationEvalCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(knowledgeCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -306,11 +306,11 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inviteEvaluationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inviteReviewCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(overallEvaluationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(overallReviewCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,10 +334,10 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private void evaluateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluateBtnActionPerformed
         int knowledge = Integer.parseInt(knowledgeCombobox.getSelectedItem().toString());
         int applicationEval = Integer.parseInt(applicationEvalCombobox.getSelectedItem().toString());
-        int inviteEval = Integer.parseInt(inviteEvaluationCombobox.getSelectedItem().toString());
-        int overall = Integer.parseInt(overallEvaluationCombobox.getSelectedItem().toString());
+        int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
+        int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        Evaluation evaluationComplete = new Evaluation(justification, knowledge, applicationEval, inviteEval, overall);
+        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         clearFields();
         resetEvals();
@@ -351,9 +351,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
     private void resetEvals() {
         knowledgeCombobox.setSelectedIndex(0);
-        inviteEvaluationCombobox.setSelectedIndex(0);
+        inviteReviewCombobox.setSelectedIndex(0);
         applicationEvalCombobox.setSelectedIndex(0);
-        overallEvaluationCombobox.setSelectedIndex(0);
+        overallReviewCombobox.setSelectedIndex(0);
     }
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         this.dispose();
@@ -385,7 +385,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private javax.swing.JTextField eventNameTextField;
     private javax.swing.JButton exitBtn;
     private javax.swing.JTextField invitationTextField;
-    private javax.swing.JComboBox<String> inviteEvaluationCombobox;
+    private javax.swing.JComboBox<String> inviteReviewCombobox;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -402,7 +402,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel justifiedTextTextArea;
     private javax.swing.JComboBox<String> knowledgeCombobox;
-    private javax.swing.JComboBox<String> overallEvaluationCombobox;
+    private javax.swing.JComboBox<String> overallReviewCombobox;
     private javax.swing.JRadioButton rejectedRadioBtn;
     // End of variables declaration//GEN-END:variables
 }

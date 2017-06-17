@@ -16,11 +16,14 @@ public class Application implements Serializable {
 
     private static final long serialVersionUID = 1;
     private Enterprise enterprise;
-    private ArrayList<Evaluation> evaluationList;
+    private ArrayList<Review> reviewList;
     private String description;
     private int invites;
     private boolean accepted;
     private float area;
+    private boolean decision;
+    private boolean evaluated;
+    private Event event;
 
     /**
      *
@@ -35,7 +38,24 @@ public class Application implements Serializable {
         this.description = description;
         this.invites = invites;
         this.area = area;
-        this.evaluationList = new ArrayList<>();
+        this.evaluated = false;
+        this.reviewList = new ArrayList<>();
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public boolean isDecision() {
+        return decision;
+    }
+
+    public void setDecision(boolean decision) {
+        this.decision = decision;
     }
 
     /**
@@ -75,16 +95,16 @@ public class Application implements Serializable {
      * @param index
      * @return
      */
-    public Evaluation getEvaluation(int index) {
-        return evaluationList.get(index);
+    public Review getEvaluation(int index) {
+        return reviewList.get(index);
     }
 
     /**
      *
      * @param evaluation
      */
-    public void addEvaluation(Evaluation evaluation) {
-        evaluationList.add(evaluation);
+    public void addEvaluation(Review evaluation) {
+        reviewList.add(evaluation);
     }
 
     @Override

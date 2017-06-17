@@ -61,8 +61,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="overallEvaluationCombobox" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inviteEvaluationCombobox" min="-2" max="-2" attributes="0"/>
+                                  <Component id="overallReviewCombobox" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inviteReviewCombobox" min="-2" max="-2" attributes="0"/>
                                   <Component id="applicationEvalCombobox" min="-2" max="-2" attributes="0"/>
                                   <Component id="knowledgeCombobox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -135,12 +135,12 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="inviteEvaluationCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="inviteReviewCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="overallEvaluationCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="overallReviewCombobox" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -251,7 +251,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="inviteEvaluationCombobox">
+    <Component class="javax.swing.JComboBox" name="inviteReviewCombobox">
       <Properties>
         <Property name="maximumRowCount" type="int" value="6"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -262,7 +262,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="overallEvaluationCombobox">
+    <Component class="javax.swing.JComboBox" name="overallReviewCombobox">
       <Properties>
         <Property name="maximumRowCount" type="int" value="6"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
