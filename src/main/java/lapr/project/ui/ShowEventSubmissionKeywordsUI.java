@@ -46,8 +46,8 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
         for (int i = 0; i < listEvents.getEvent(0).getKeywordsList().size(); i++) {
-        System.out.println(listEvents.getEvent(0).getKeywordsList().getKeyword(i));
-            
+            System.out.println(listEvents.getEvent(0).getKeywordsList().getKeyword(i));
+
         }
 //        keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
         setVisible(true);
@@ -57,11 +57,10 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
         keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
 
         frequencyCounter = keywordFrequency.getFrequencies();
-
-        for (int j = 0; j < listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().size(); j++) {
+        float jjj = 0;
+        for (int j = 0; j < keywordFrequency.getNewKeyWordList().size(); j++) {
             modelKeywordList.addElement(keywordFrequency.getNewKeyWordList().getKeyword(j).toString() + "    Frequency: " + (float) frequencyCounter.get(j) / listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().size());
         }
-
     }
 
     /**

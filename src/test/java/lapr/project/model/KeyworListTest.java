@@ -17,7 +17,6 @@ public class KeyworListTest {
 
     @Test
     public void EnsureAddKeywordMethodAddsLocalToList() throws Exception {
-
         KeywordList list = new KeywordList();
         Keyword k1 = new Keyword("123456789");
         Keyword k2 = new Keyword("qwerty");
@@ -34,13 +33,12 @@ public class KeyworListTest {
      */
     @Test
     public void EnsureAddKeywordMethodAddsUserToListNotValid() throws Exception {
-        KeywordList result = new KeywordList();
+        KeywordList list1 = new KeywordList();
         Keyword keyword = new Keyword("123456789");
-        result.addKeyword(keyword);
-        result.addKeyword(keyword);
-        int size = result.size();
-        int expectedResult = 1;
-        assertEquals(size, expectedResult);
+        list1.addKeyword(keyword);
+        boolean expectedResult = false;
+        boolean result=list1.validate(keyword);
+        assertEquals(result, expectedResult);
     }
 
     /**

@@ -91,6 +91,7 @@ public class MainWindow extends javax.swing.JFrame {
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
+        assignApplicationItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -225,6 +226,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jMenu1.add(showEventsSubmissionKeywordsMenuItem);
 
+        assignApplicationItem.setText("Assign Application");
+        assignApplicationItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignApplicationItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(assignApplicationItem);
+
         jMenuBar1.add(jMenu1);
 
         importExportMenu.setText("Import/Export");
@@ -278,7 +287,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
         LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus, MainWindow.this);
-        
+
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
@@ -316,7 +325,6 @@ public class MainWindow extends javax.swing.JFrame {
         fileChooser.setCurrentDirectory(new File("/Documents"));
         int retrival = fileChooser.showSaveDialog(MainWindow.this);
         if (retrival == JFileChooser.APPROVE_OPTION) {
-            
 
             SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
             try {
@@ -361,12 +369,12 @@ public class MainWindow extends javax.swing.JFrame {
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                } 
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_importMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -381,8 +389,13 @@ public class MainWindow extends javax.swing.JFrame {
         ShowEventSubmissionKeywordsUI swsk = new ShowEventSubmissionKeywordsUI(eventCenter);
     }//GEN-LAST:event_showEventsSubmissionKeywordsMenuItemActionPerformed
 
+    private void assignApplicationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignApplicationItemActionPerformed
+        AssignmentApplicationUI apui = new AssignmentApplicationUI(eventCenter);
+    }//GEN-LAST:event_assignApplicationItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem assignApplicationItem;
     public javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;

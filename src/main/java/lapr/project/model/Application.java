@@ -24,6 +24,7 @@ public class Application implements Serializable {
     private boolean decision;
     private boolean evaluated;
     private Event event;
+    private EventEmployeeList eventEmployeeList;
 
     /**
      *
@@ -40,6 +41,11 @@ public class Application implements Serializable {
         this.area = area;
         this.evaluated = false;
         this.reviewList = new ArrayList<>();
+        this.eventEmployeeList = new EventEmployeeList();
+    }
+
+    public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {
+        this.eventEmployeeList = eventEmployeeList;
     }
 
     public Event getEvent() {

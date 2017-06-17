@@ -340,7 +340,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall, assignment);
+        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         clearFields();
         resetEvals();

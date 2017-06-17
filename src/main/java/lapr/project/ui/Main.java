@@ -27,5 +27,6 @@ class Main {
         XMLReader xmlFile = new XMLReader();
         eventCenter = xmlFile.readValuesFromXML(eventCenter);
         MainWindow mw = new MainWindow(eventCenter);
+        Review r = new Review("", 0, 0, 0, 0);
     }
 }
