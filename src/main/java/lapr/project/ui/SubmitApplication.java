@@ -33,9 +33,10 @@ public class SubmitApplication extends javax.swing.JFrame {
     private ProductList productList;
     private EventRegistry eventRegistry;
     private Event event;
-                   
+
     /**
      * Creates new form SubmitApplication
+     *
      * @param eventCenter
      * @throws java.text.ParseException
      */
@@ -45,9 +46,9 @@ public class SubmitApplication extends javax.swing.JFrame {
         this.productList = controller.getProductList();
         this.eventRegistry = controller.getEventRegistry();
         initComponents();
+        keywordJList.setModel(modelKeyword);
         initCombobox();
         this.pack();
-        keywordList.setModel(modelKeyword);
         setVisible(true);
     }
 
@@ -58,9 +59,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         for (int i = 0; i < this.productList.size(); i++) {
             productsComboBox.addItem(productList.getProduct(i));
         }
-        for (int i = 0; i < this.standRegistry.size(); i++) {
-            standComboBox.addItem(standRegistry.getStand(i));
-        }
+        
     }
 
     /**
@@ -81,7 +80,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        eventsComboBox = new javax.swing.JComboBox<>();
+        eventsComboBox = new javax.swing.JComboBox<Event>();
         enterpriseNameTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
@@ -92,21 +91,21 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        standComboBox = new javax.swing.JComboBox<>();
         standlistLabel = new javax.swing.JLabel();
         invitesLabel = new javax.swing.JLabel();
         invitesTextField = new javax.swing.JTextField();
-        productsComboBox = new javax.swing.JComboBox<>();
+        productsComboBox = new javax.swing.JComboBox<Product>();
         productsLabel = new javax.swing.JLabel();
         keywordTextField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        keywordList = new javax.swing.JList<>();
+        keywordJList = new javax.swing.JList<Keyword>();
         addKeywordBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         dateBeginLabel = new javax.swing.JLabel();
         dateEndLabel = new javax.swing.JLabel();
         locationLabel = new javax.swing.JLabel();
+        pretendedAreaTextField = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -164,7 +163,7 @@ public class SubmitApplication extends javax.swing.JFrame {
 
         productsLabel.setText("Products:");
 
-        jScrollPane3.setViewportView(keywordList);
+        jScrollPane3.setViewportView(keywordJList);
 
         addKeywordBtn.setText("Add Keyword");
         addKeywordBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +175,12 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel9.setText("Begins:");
 
         jLabel10.setText("Ends:");
+
+        pretendedAreaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pretendedAreaTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,8 +197,9 @@ public class SubmitApplication extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)
                         .addComponent(jLabel1)
-                        .addComponent(standlistLabel)
-                        .addComponent(invitesLabel))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(productsLabel)
+                            .addComponent(standlistLabel)))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -205,19 +211,6 @@ public class SubmitApplication extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(productsLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(productsComboBox, 0, 167, Short.MAX_VALUE))
-                    .addComponent(standComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(keywordTextField)
-                            .addComponent(addKeywordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1)
                     .addComponent(addressTextField)
                     .addComponent(emailTextField)
@@ -225,8 +218,21 @@ public class SubmitApplication extends javax.swing.JFrame {
                     .addComponent(taxpayerNumberTextField)
                     .addComponent(enterpriseNameTextField)
                     .addComponent(locationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eventsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(eventsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(keywordTextField)
+                            .addComponent(addKeywordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .addComponent(pretendedAreaTextField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(invitesLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
+                    .addComponent(productsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton)
@@ -286,17 +292,17 @@ public class SubmitApplication extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addKeywordBtn))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(standComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(standlistLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(standlistLabel)
+                    .addComponent(pretendedAreaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(invitesLabel)
-                    .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(productsLabel))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submitButton)
                     .addComponent(cancelButton))
@@ -314,15 +320,18 @@ public class SubmitApplication extends javax.swing.JFrame {
             String email = emailTextField.getText();
             String address = addressTextField.getText();
             String description = descriptionTextArea.getText();
-            Stand s = (Stand) standComboBox.getSelectedItem();
+            float area = Float.parseFloat(pretendedAreaTextField.getText());
             int invites = Integer.parseInt(invitesTextField.getText());
             int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
             int contactNumber = Integer.parseInt(contactTextField.getText());
             Product product = (Product) productsComboBox.getSelectedItem();
-            Enterprise e = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
-            Application a = new Application(true, e,invites,description, 0.0f);
-            event = (Event) eventsComboBox.getSelectedItem();
-            event.getApplicationsList().addApplication(a);
+            Enterprise enterprise = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
+            Application a = new Application(true, enterprise, invites, description, area);
+            eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getApplicationsList().addApplication(a);
+            for (int i = 0; i < modelKeyword.size(); i++) {
+                eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getKeywordsList().addKeyword(modelKeyword.elementAt(i));
+            }
+
             dispose();
         }
 
@@ -399,6 +408,10 @@ public class SubmitApplication extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addKeywordBtnActionPerformed
 
+    private void pretendedAreaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretendedAreaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pretendedAreaTextFieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addKeywordBtn;
     private javax.swing.JTextField addressTextField;
@@ -426,12 +439,12 @@ public class SubmitApplication extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList<Keyword> keywordList;
+    private javax.swing.JList<Keyword> keywordJList;
     private javax.swing.JTextField keywordTextField;
     private javax.swing.JLabel locationLabel;
+    private javax.swing.JTextField pretendedAreaTextField;
     private javax.swing.JComboBox<Product> productsComboBox;
     private javax.swing.JLabel productsLabel;
-    private javax.swing.JComboBox<Stand> standComboBox;
     private javax.swing.JLabel standlistLabel;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField taxpayerNumberTextField;

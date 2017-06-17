@@ -23,6 +23,7 @@ public class Event implements Serializable {
     private EventEmployeeList eventEmployeeList;
     private StandRegistry standRegister;
     private OrganizersList organizerList;
+    private KeywordList keywordsList;
     
     /**
      *
@@ -48,8 +49,14 @@ public class Event implements Serializable {
         this.applicationsList = new ApplicationList();
         this.eventEmployeeList = new EventEmployeeList();
         this.organizerList = new OrganizersList();
+        this.keywordsList = new KeywordList();
     }
 
+    public KeywordList getKeywordsList() {
+        return keywordsList;
+    }
+
+    
     /**
      *
      * @return
