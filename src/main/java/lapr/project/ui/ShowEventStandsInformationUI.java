@@ -58,9 +58,9 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        intervalsCombobox = new javax.swing.JComboBox<>();
+        intervalsCombobox = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        standJList = new javax.swing.JList<>();
+        standJList = new javax.swing.JList<Stand>();
         Interval = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         frequencyTextField = new javax.swing.JTextField();
@@ -140,6 +140,7 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -46,14 +46,14 @@ public class AssignmentApplicationUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        applicationCombobox = new javax.swing.JComboBox<>();
+        applicationCombobox = new javax.swing.JComboBox<Application>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventEmplyeeJList = new javax.swing.JList<>();
+        eventEmplyeeJList = new javax.swing.JList<EventEmployee>();
         okbtn = new javax.swing.JButton();
         cancelbtn = new javax.swing.JButton();
-        eventCombobox = new javax.swing.JComboBox<>();
+        eventCombobox = new javax.swing.JComboBox<Event>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         applicationCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +118,7 @@ public class AssignmentApplicationUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void okbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtnActionPerformed

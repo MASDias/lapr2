@@ -24,6 +24,7 @@ public class Review implements Serializable {
 
     /**
      *
+     * @param textDescription
      * @param knowledge
      * @param application
      * @param invitation
@@ -36,6 +37,10 @@ public class Review implements Serializable {
         this.invitation = invitation;
         this.overall = overall;
         this.meanValue = (this.knowledge + this.application + this.invitation + this.overall) / (float) TOTALFIELDS;
+    }
+
+    public float getMeanValue() {
+        return meanValue;
     }
 
     /**
