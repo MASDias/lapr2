@@ -61,5 +61,26 @@ public class OrganizersListTest {
         list.addOrganizer(organizer);
         assertNotEquals(list, list2);
     }
-
+    @Test
+    public void EnsureAddLocalMethodAddsOrganizersListIndex() throws Exception {
+        OrganizersList list = new OrganizersList();
+        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        Organizer result = new Organizer(user);
+        list.addOrganizer(result);
+        Organizer expectedResult = list.getOrganizer(0);
+        
+        assertEquals(result, expectedResult);
+    }
+    
+    @Test
+    public void EnsureAddLocalMethodAddsApplicationsListIndex() throws Exception {
+        OrganizersList list = new OrganizersList();
+        User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        Organizer organizer = new Organizer(user);
+        list.addOrganizer(organizer);
+        int expectedResult = 0;
+        list.removeOrganizer(organizer);
+        int result = list.size();
+        assertEquals(result, expectedResult);
+    }
 }

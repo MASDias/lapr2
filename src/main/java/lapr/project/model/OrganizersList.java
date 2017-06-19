@@ -60,6 +60,7 @@ private static final long serialVersionUID = 1;
         return organizersList.get(index);
     }
     
+  
     /**
      *
      * @param o
