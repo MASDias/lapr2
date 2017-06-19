@@ -176,6 +176,10 @@ public class Event implements Serializable {
     public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {
         this.eventEmployeeList = eventEmployeeList;
     }
+    
+    public void setTitle(String title){
+        this.title = title;
+    }
 
     @Override
     public String toString() {

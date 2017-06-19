@@ -35,14 +35,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import java.nio.charset.StandardCharsets;
+import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
-
 
 /**
  *
  * @author playtard
  */
 public class XMLReader {
+
     /**
      *
      */
@@ -116,7 +117,6 @@ public class XMLReader {
      * @throws SAXException
      * @throws IOException
      */
-    
     /*
      public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException{
      try{
@@ -200,8 +200,7 @@ public class XMLReader {
      }
      return eventCenter;
      }*/
-
-        public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
+    public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
         try {
 
             File xmlFile = new File("xml/exposicao1_v0.1.xml");
@@ -216,6 +215,9 @@ public class XMLReader {
 
             NodeList eventList = document.getElementsByTagName("event");
             for (int b = 0; b < eventList.getLength(); b++) {
+                Element title = (Element) eventList.item(b);
+                String eventTitle = title.getElementsByTagName("title").item(0).getTextContent();
+                exposicao1.setTitle(eventTitle);
                 NodeList stands = document.getElementsByTagName("stand");
                 StandRegistry standsList = eventCenter.getStandRegistry();
                 for (int i = 0; i < stands.getLength(); i++) {
@@ -313,19 +315,26 @@ public class XMLReader {
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
 
-//                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
+                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
                             }
+                        }
+                        NodeList keywords = document.getElementsByTagName("keywords");
+                        for (int l = 0; l < keywords.getLength(); l++) {
+                            Element keywordValue = (Element) keywords.item(l);
+                            String keyword = keywordValue.getElementsByTagName("keyword").item(0).getTextContent();
+                            exposicao1.getKeywordsList().addKeyword(new Keyword(keyword));
                         }
                         applicationArrayList.addApplication(app);
                     }
                     eventCenter.setApplicationList(applicationArrayList);
-
-                    NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
-                    for (int a = 0; a < OrganizerSet.getLength(); a++) {
+                }
+                NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
+                for (int a = 0; a < OrganizerSet.getLength(); a++) {
+                    if (OrganizerSet.getLength() > 0) {
                         Element organizerSet = (Element) OrganizerSet.item(a);
                         NodeList organizers = organizerSet.getElementsByTagName("Organizer");
 
-                        for (i = 0; i < organizers.getLength(); i++) {
+                        for (int i = 0; i < organizers.getLength(); i++) {
 
                             Element organizer = (Element) organizers.item(i);
                             NodeList users = organizer.getElementsByTagName("user");
@@ -343,7 +352,7 @@ public class XMLReader {
 
                                 String passwordStr = user.getElementsByTagName("password").item(0).getTextContent();
                                 System.out.println(passwordStr);
-                                
+
                                 User organizerU = new User(nomeStr, emailStr, usernameStr, passwordStr);
 
                                 int cont = 0;
@@ -362,17 +371,17 @@ public class XMLReader {
                                 } else {
                                     eventCenter.getUserRegistry().addUser(organizerU);
                                 }
-                                if(exposicao1.getOrganizerList().size() != 0){
-                                    Organizer organizerO = new Organizer(organizerU);
-                                    exposicao1.getOrganizerList().addOrganizer(organizerO);
-                                } else exposicao1.getOrganizerList().addOrganizer(new Organizer(new User("admin", "admin@expo.pt", "admin", "admin")));
+                                Organizer organizerO = new Organizer(organizerU);
+                                exposicao1.getOrganizerList().addOrganizer(organizerO);
                             }
-
                         }
+                        
+                    } else {
+                        break;
                     }
-                    eventCenter.getEventRegistry().addEvent(exposicao1);
                 }
             }
+            eventCenter.getEventRegistry().addEvent(exposicao1);
         } catch (FileNotFoundException e) {
             System.out.println("Ficheiro não encontrado");
 
@@ -385,7 +394,6 @@ public class XMLReader {
         }
         return eventCenter;
     }
-
 
     /**
      *
