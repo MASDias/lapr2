@@ -93,5 +93,13 @@ public class KeyworListTest {
         k1.addKeyword(keyword);
         assertNotEquals(k1, k2);
     }
-
+    public void EnsureValidate() {
+        KeywordList list = new KeywordList();
+        Keyword keyword = new Keyword ("123456789");
+        list.addKeyword(keyword);
+        list.addKeyword(keyword);
+        int result = list.size();
+        int expectedResult = 1;
+        assertEquals(result, expectedResult);
+    }
 }

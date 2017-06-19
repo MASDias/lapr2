@@ -6,6 +6,7 @@
 package lapr.project.users;
 
 import lapr.project.model.Organizer;
+import lapr.project.model.OrganizersList;
 import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -74,4 +75,16 @@ public class OrganizerTest {
         String expectedResult = "Name: Jame Username: juanjames Email: james@gmail.com";
         assertNotEquals(result, expectedResult);
     }
+    @Test
+    public void EnsureValidate() {
+        OrganizersList list = new OrganizersList();
+        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        Organizer organizer = new Organizer(user);
+        list.addOrganizer(organizer);
+        list.addOrganizer(organizer);
+        int result = list.size();
+        int expectedResult = 1;
+        assertEquals(result, expectedResult);
+    }
+    
 }

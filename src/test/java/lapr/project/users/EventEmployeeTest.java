@@ -186,9 +186,10 @@ public class EventEmployeeTest {
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
         Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
-
-        event.setApplicationsList(result);
-        ApplicationList expectedResult = event.getApplicationsList();
+        User user2 = new User ("T", "a", "o", "q");
+        EventEmployee employee = new EventEmployee(user2, 1);
+        employee.setApplicationList(result);
+        ApplicationList expectedResult = employee.getApplicationList();
         assertEquals(expectedResult, result);
     }
 }
