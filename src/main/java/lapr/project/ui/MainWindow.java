@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -363,8 +364,10 @@ public class MainWindow extends javax.swing.JFrame {
                     file.close();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                    LOGGER.info(ex.getMessage());
                 } catch (NullPointerException npx) {
                     JOptionPane.showMessageDialog(null, "Problem with outputing to file");
+                    LOGGER.info(npx.getMessage());
                 }
 
             }
@@ -401,6 +404,7 @@ public class MainWindow extends javax.swing.JFrame {
                         file.close();
                     } catch (NullPointerException npx) {
                         JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                        LOGGER.info(npx.getMessage());
                     }
                 }
             }
