@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployeeList;
+import lapr.project.model.PasswordEncryption;
 import lapr.project.model.User;
 import lapr.project.model.UserRegistry;
 
@@ -147,6 +148,8 @@ public class LoginUI extends javax.swing.JFrame {
         UserRegistry userRegistry = eventCenter.getUserRegistry();
         String loginName = idTextField.getText();
         String passwordInfo = new String(passwordField.getPassword());
+        PasswordEncryption encrypt = new PasswordEncryption();
+        passwordInfo = encrypt.Encryption(passwordInfo);
         for (int i = 0; i < userRegistry.size(); i++) {
             System.out.println(i);
             if (userRegistry.getUser(i).getEmail().equals(loginName) || userRegistry.getUser(i).getUserName().equals(loginName)) {

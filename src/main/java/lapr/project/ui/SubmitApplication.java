@@ -80,7 +80,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        eventsComboBox = new javax.swing.JComboBox<>();
+        eventsComboBox = new javax.swing.JComboBox<Event>();
         enterpriseNameTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
@@ -94,11 +94,11 @@ public class SubmitApplication extends javax.swing.JFrame {
         standlistLabel = new javax.swing.JLabel();
         invitesLabel = new javax.swing.JLabel();
         invitesTextField = new javax.swing.JTextField();
-        productsComboBox = new javax.swing.JComboBox<>();
+        productsComboBox = new javax.swing.JComboBox<Product>();
         productsLabel = new javax.swing.JLabel();
         keywordTextField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        keywordJList = new javax.swing.JList<>();
+        keywordJList = new javax.swing.JList<Keyword>();
         addKeywordBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -156,6 +156,11 @@ public class SubmitApplication extends javax.swing.JFrame {
         });
 
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         standlistLabel.setText("Stand List:");
 
@@ -410,6 +415,10 @@ public class SubmitApplication extends javax.swing.JFrame {
     private void pretendedAreaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretendedAreaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pretendedAreaTextFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addKeywordBtn;

@@ -136,6 +136,11 @@ public class CreateEvent extends javax.swing.JFrame {
         });
 
         newAddressbtn.setText("Create new Address");
+        newAddressbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newAddressbtnActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Submission Application starts:");
 
@@ -507,6 +512,24 @@ public class CreateEvent extends javax.swing.JFrame {
 
         addOrganizerByIDTextField.setText("");
     }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
+
+    private void newAddressbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAddressbtnActionPerformed
+        String address = JOptionPane.showInputDialog("Input new address");
+        Location local = new Location(address);
+        int cont = 0;
+        for(int i = 0; i < locationList.size(); i++){
+            if(locationList.getLocal(i).equals(local)){
+                cont++;
+            }
+        }
+        if(cont > 0){
+            JOptionPane.showMessageDialog(null, "This address is already created!");
+            dispose();
+        } else {
+            locationList.addLocal(local);
+            locationCombobox.addItem(local);
+        }
+    }//GEN-LAST:event_newAddressbtnActionPerformed
 
     /**
      *

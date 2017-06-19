@@ -21,7 +21,7 @@ public class LocationTest {
     public void EnsureToStringIsEqual() {
        Location location = new Location("sy");
        String result = location.toString();
-       String expectedResult = "Address: sy";
+       String expectedResult = "sy";
        assertEquals(result, expectedResult);
     }
 
@@ -32,7 +32,7 @@ public class LocationTest {
     public void EnsureToStringIsNotEqual() {
         Location location = new Location("sy");
        String result = location.toString();
-       String expectedResult = "Address: su";
+       String expectedResult = "su";
        assertNotEquals(result, expectedResult);
     }
      /**

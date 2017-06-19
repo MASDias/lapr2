@@ -37,7 +37,9 @@ import org.xml.sax.SAXException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
@@ -460,11 +462,15 @@ public class XMLReader {
                 String eventEnd = "";
                 String eventSubBeg = "";
                 String eventSubEnd = "";
+                System.out.println(new Date().toString().split("-")[0]);
                 if (dateSet.getLength() == 0) {
-                    Date today = new Date();
-                    int year = today.getYear() + 1900;
-                    int month = today.getMonth() + 1;
-                    int day = today.getDate();
+                    Date date = new Date();
+                    Calendar calendar = new GregorianCalendar();
+                    calendar.setTime(date);
+                    int year = calendar.get(Calendar.YEAR);
+                    //Add one to month {0 - 11}
+                    int month = calendar.get(Calendar.MONTH) + 1;
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
                     eventBegin = day + "-" + month + "-" + year;
                     eventEnd = (day + 21) + "-" + month + "-" + year;
                     eventSubBeg = (day + 1) + "-" + month + "-" + year;
@@ -479,7 +485,7 @@ public class XMLReader {
                         eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
                     }
                 }
-
+                
                 SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
                 exposicao1.setEventBegin(f.parse(eventBegin));
                 exposicao1.setEventEnd(f.parse(eventEnd));
