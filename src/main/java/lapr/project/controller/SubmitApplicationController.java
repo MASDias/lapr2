@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventEmployeeList;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.ProductList;
 import lapr.project.model.StandRegistry;
@@ -44,4 +45,5 @@ public class SubmitApplicationController {
     public EventRegistry getEventRegistry() {
         return this.eventCenter.getEventRegistry();
     }
+    
 }

@@ -40,7 +40,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     /**
      * Creates new form DecideApplicationUI
      *
-     * @param eventEmployee
+     * @param logedUser
+     * @param eventCenter
+     * @param 
      * @throws java.text.ParseException
      */
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
