@@ -47,6 +47,11 @@ public class Application implements Serializable {
         
     }
 
+    public ArrayList<Review> getReviewList() {
+        return reviewList;
+    }
+    
+    
     public KeywordList getKeywordList() {
         return keywordList;
     }

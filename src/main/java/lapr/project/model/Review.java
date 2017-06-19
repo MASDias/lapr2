@@ -21,6 +21,7 @@ public class Review implements Serializable {
     private String textDescription;
     private float meanValue;
     private final int TOTALFIELDS = 4;
+    private Assignment assignment;
 
     /**
      *
@@ -29,6 +30,7 @@ public class Review implements Serializable {
      * @param application
      * @param invitation
      * @param overall
+     * @param assignment
      */
     public Review(String textDescription, int knowledge, int application, int invitation, int overall) {
         this.textDescription = textDescription;
@@ -37,8 +39,20 @@ public class Review implements Serializable {
         this.invitation = invitation;
         this.overall = overall;
         this.meanValue = (this.knowledge + this.application + this.invitation + this.overall) / (float) TOTALFIELDS;
+        
     }
 
+    public void setAssignment(Assignment assignment) {
+        this.assignment = assignment;
+    }
+
+    
+    public Assignment getAssignment() {
+        return assignment;
+    }
+
+    
+    
     public float getMeanValue() {
         return meanValue;
     }

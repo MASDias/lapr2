@@ -7,11 +7,13 @@ package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
 import lapr.project.controller.ShowEmployeeMeanRatingController;
+import lapr.project.model.Application;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
 import lapr.project.model.EventEmployeeList;
 import lapr.project.model.EventRegistry;
+import lapr.project.model.Review;
 
 /**
  *
@@ -114,11 +116,8 @@ private static final long serialVersionUID = 1;
                                     .addComponent(selectEmployeeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(meanRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel2)
+                                    .addComponent(meanRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(55, 55, 55)
                                         .addComponent(jButton1)
@@ -149,10 +148,11 @@ private static final long serialVersionUID = 1;
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(searchEmployeeByIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(searchEmployeeByIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,10 +170,28 @@ private static final long serialVersionUID = 1;
 
     private void selectEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmployeeBtnActionPerformed
         employee = employeeJList.getSelectedValue();
-        
+        float meanRating = calculateFAEMeanRating(employee);
+        meanRatingLabel.setText(String.valueOf(meanRating));
     }//GEN-LAST:event_selectEmployeeBtnActionPerformed
 
-    
+    private float calculateFAEMeanRating(EventEmployee eventEmployee){
+        float meanRating = 0;
+        float finalRate = 0;
+        int counter = 0;
+        for (int i = 0; i < eventEmployee.getApplicationList().size(); i++) {
+            Application employeeApplication = eventEmployee.getApplicationList().getApplication(i);
+            for (int j = 0; j < employeeApplication.getReviewList().size(); j++) {
+                Review applicationReview = employeeApplication.getReviewList().get(j);
+                if(applicationReview.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())){
+                meanRating += (applicationReview.getMeanValue());
+                counter++;    
+                }
+            }
+        }    
+        finalRate = meanRating/counter;    
+        
+        return finalRate;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<EventEmployee> employeeJList;
