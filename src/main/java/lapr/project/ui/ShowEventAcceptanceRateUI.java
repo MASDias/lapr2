@@ -6,7 +6,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ShowEventAcceptanceRateController;
-import lapr.project.model.Application;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
@@ -22,30 +21,24 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
     private EventRegistry listEvents;
     private Event event;
     private float acceptanceRate;
-    
 
     /**
      * Creates new form ShowEventAcceptanceRate
+     *
      * @param eventCenter
      */
     public ShowEventAcceptanceRateUI(EventCenter eventCenter) {
         initComponents();
         controller = new ShowEventAcceptanceRateController(eventCenter);
-        
+
         listEvents = controller.getEventsList();
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
-        event = (Event)eventComboBox.getSelectedItem();
-        
-        acceptanceRate = controller.calcularEventAcceptanceRate(event);
-        acceptanceRateLabel.setText(String.valueOf(acceptanceRate));
-        
+
         setVisible(true);
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +59,12 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setText("Event:");
+
+        eventComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Acceptance Rate:");
 
@@ -122,6 +121,13 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         dispose();
     }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
+        event = (Event) eventComboBox.getSelectedItem();
+        acceptanceRate = controller.calculateEventAcceptanceRate(event);
+        acceptanceRateLabel.setText(String.valueOf(acceptanceRate) + "%");
+        revalidate();
+    }//GEN-LAST:event_eventComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

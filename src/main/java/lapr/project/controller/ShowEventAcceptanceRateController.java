@@ -26,7 +26,7 @@ public class ShowEventAcceptanceRateController {
         return this.eventCenter.getEventRegistry();
     }
 
-    public float calcularEventAcceptanceRate(Event event) {
+    public float calculateEventAcceptanceRate(Event event) {
         int counter = 0;
         float acceptanceRate = 0;
         
@@ -36,8 +36,7 @@ public class ShowEventAcceptanceRateController {
                 counter++;
             }
         }
-        System.out.println(counter);
-        acceptanceRate = (counter)/(float)(event.getApplicationsList().size());
+        acceptanceRate = ((counter)/(float)(event.getApplicationsList().size()))*100;
         
         return acceptanceRate;
     }

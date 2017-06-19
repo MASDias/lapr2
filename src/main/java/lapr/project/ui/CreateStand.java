@@ -137,12 +137,12 @@ public class CreateStand extends javax.swing.JFrame {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         
-        String address = addressTextField.getText();
-        float area = Float.parseFloat(areaTxtField.getText());
         
         if(addressTextField.getText().isEmpty() || areaTxtField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Data missing!");
         }else{
+        String address = addressTextField.getText();
+        float area = Float.parseFloat(areaTxtField.getText());
             
         Stand stand = new Stand(address, area);
         
