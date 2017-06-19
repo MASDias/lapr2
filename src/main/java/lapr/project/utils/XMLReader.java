@@ -293,9 +293,10 @@ public class XMLReader {
 
                     Stand s = new Stand(description, area);
                     standsList.addStand(s);
+                    exposicao1.getStandRegister().addStand(s);
                 }
                 eventCenter.setStandRegistry(standsList);
-
+                
                 NodeList FAEset = document.getElementsByTagName("FAESet");
                 for (int a = 0; a < FAEset.getLength(); a++) {
                     Element FAEsetemplyee = (Element) FAEset.item(a);

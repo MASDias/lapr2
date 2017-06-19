@@ -37,7 +37,6 @@ public class ShowEventAcceptanceRateController {
             }
         }
         acceptanceRate = ((counter)/(float)(event.getApplicationsList().size()))*100;
-        
         return acceptanceRate;
     }
 }

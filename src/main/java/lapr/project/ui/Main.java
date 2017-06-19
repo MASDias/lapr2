@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import java.util.Date;
-import jdk.nashorn.internal.objects.NativeDate;
 import lapr.project.model.CalculatorExample;
-import lapr.project.model.Review;
 import lapr.project.model.EventCenter;
 import lapr.project.utils.XMLReader;
 
@@ -16,7 +13,7 @@ class Main {
      * Private constructor to hide implicit public one.
      */
     private Main() {
-        
+
     }
 
     /**
