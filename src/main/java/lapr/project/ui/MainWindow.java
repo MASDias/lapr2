@@ -71,7 +71,7 @@ public class MainWindow extends javax.swing.JFrame {
         userNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menu = new javax.swing.JMenu();
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         registerMenuItem = new javax.swing.JMenuItem();
@@ -87,7 +87,7 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        showStandInformationMenuItem = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
@@ -97,7 +97,9 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         createStandMenuItem = new javax.swing.JMenuItem();
         jSeparator12 = new javax.swing.JPopupMenu.Separator();
-        showEventAcceptanceRateUI = new javax.swing.JMenuItem();
+        showEventAcceptanceRate = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
+        showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -122,7 +124,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 600, 330);
 
-        jMenu1.setText("Menu");
+        menu.setText("Menu");
 
         loginMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/keyring-icon.png"))); // NOI18N
         loginMenuItem.setText("Login");
@@ -131,8 +133,8 @@ public class MainWindow extends javax.swing.JFrame {
                 loginMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(loginMenuItem);
-        jMenu1.add(jSeparator3);
+        menu.add(loginMenuItem);
+        menu.add(jSeparator3);
 
         registerMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-user-group-new-icon.png"))); // NOI18N
         registerMenuItem.setMnemonic('M');
@@ -142,8 +144,8 @@ public class MainWindow extends javax.swing.JFrame {
                 registerMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(registerMenuItem);
-        jMenu1.add(jSeparator1);
+        menu.add(registerMenuItem);
+        menu.add(jSeparator1);
 
         createEventMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Calendar-icon.png"))); // NOI18N
         createEventMenuItem.setText("Create Event");
@@ -152,8 +154,8 @@ public class MainWindow extends javax.swing.JFrame {
                 createEventMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(createEventMenuItem);
-        jMenu1.add(jSeparator4);
+        menu.add(createEventMenuItem);
+        menu.add(jSeparator4);
 
         defineUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Relationship-icon.png"))); // NOI18N
         defineUser.setText("Define User");
@@ -182,8 +184,8 @@ public class MainWindow extends javax.swing.JFrame {
         });
         defineUser.add(defineEmployeeMenuItem);
 
-        jMenu1.add(defineUser);
-        jMenu1.add(jSeparator5);
+        menu.add(defineUser);
+        menu.add(jSeparator5);
 
         submitApplicationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Messaging-Gmail-Login-icon.png"))); // NOI18N
         submitApplicationMenuItem.setText("Submit Application");
@@ -192,8 +194,8 @@ public class MainWindow extends javax.swing.JFrame {
                 submitApplicationMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(submitApplicationMenuItem);
-        jMenu1.add(jSeparator2);
+        menu.add(submitApplicationMenuItem);
+        menu.add(jSeparator2);
 
         decideApplicationItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow-ok-icon.png"))); // NOI18N
         decideApplicationItem.setText("Decide Application");
@@ -202,18 +204,18 @@ public class MainWindow extends javax.swing.JFrame {
                 decideApplicationItemActionPerformed(evt);
             }
         });
-        jMenu1.add(decideApplicationItem);
-        jMenu1.add(jSeparator7);
+        menu.add(decideApplicationItem);
+        menu.add(jSeparator7);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Button-Info-icon.png"))); // NOI18N
-        jMenuItem1.setText("Show Stand Information");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        showStandInformationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Button-Info-icon.png"))); // NOI18N
+        showStandInformationMenuItem.setText("Show Stand Information");
+        showStandInformationMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                showStandInformationMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
-        jMenu1.add(jSeparator8);
+        menu.add(showStandInformationMenuItem);
+        menu.add(jSeparator8);
 
         showEmployeeMeanRatingMenuItem.setText("Show Employee Mean Rating");
         showEmployeeMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -221,8 +223,8 @@ public class MainWindow extends javax.swing.JFrame {
                 showEmployeeMeanRatingMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(showEmployeeMeanRatingMenuItem);
-        jMenu1.add(jSeparator9);
+        menu.add(showEmployeeMeanRatingMenuItem);
+        menu.add(jSeparator9);
 
         showEventsSubmissionKeywordsMenuItem.setText("Show Event Submission Keywords");
         showEventsSubmissionKeywordsMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -230,8 +232,8 @@ public class MainWindow extends javax.swing.JFrame {
                 showEventsSubmissionKeywordsMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(showEventsSubmissionKeywordsMenuItem);
-        jMenu1.add(jSeparator10);
+        menu.add(showEventsSubmissionKeywordsMenuItem);
+        menu.add(jSeparator10);
 
         assignApplicationItem.setText("Assign Application");
         assignApplicationItem.addActionListener(new java.awt.event.ActionListener() {
@@ -239,8 +241,8 @@ public class MainWindow extends javax.swing.JFrame {
                 assignApplicationItemActionPerformed(evt);
             }
         });
-        jMenu1.add(assignApplicationItem);
-        jMenu1.add(jSeparator11);
+        menu.add(assignApplicationItem);
+        menu.add(jSeparator11);
 
         createStandMenuItem.setText("Create Stand");
         createStandMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -248,18 +250,27 @@ public class MainWindow extends javax.swing.JFrame {
                 createStandMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(createStandMenuItem);
-        jMenu1.add(jSeparator12);
+        menu.add(createStandMenuItem);
+        menu.add(jSeparator12);
 
-        showEventAcceptanceRateUI.setText("Show Event Acceptance Rate");
-        showEventAcceptanceRateUI.addActionListener(new java.awt.event.ActionListener() {
+        showEventAcceptanceRate.setText("Show Event Acceptance Rate");
+        showEventAcceptanceRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showEventAcceptanceRateUIActionPerformed(evt);
+                showEventAcceptanceRateActionPerformed(evt);
             }
         });
-        jMenu1.add(showEventAcceptanceRateUI);
+        menu.add(showEventAcceptanceRate);
+        menu.add(jSeparator13);
 
-        jMenuBar1.add(jMenu1);
+        showGlobalAcceptanceRateMenuItem.setText("Show Global Acceptance Rate");
+        showGlobalAcceptanceRateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showGlobalAcceptanceRateMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(showGlobalAcceptanceRateMenuItem);
+
+        jMenuBar1.add(menu);
 
         importExportMenu.setText("Import/Export");
 
@@ -421,9 +432,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_importMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ShowEventStandsInformationUI jk = new ShowEventStandsInformationUI(eventCenter);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void showStandInformationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showStandInformationMenuItemActionPerformed
+        ShowEventStandsInformationUI sesi = new ShowEventStandsInformationUI(eventCenter);
+    }//GEN-LAST:event_showStandInformationMenuItemActionPerformed
 
     private void showEmployeeMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEmployeeMeanRatingMenuItemActionPerformed
         ShowEmployeeMeanRating semr = new ShowEmployeeMeanRating(eventCenter);
@@ -434,16 +445,21 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_showEventsSubmissionKeywordsMenuItemActionPerformed
 
     private void assignApplicationItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignApplicationItemActionPerformed
-        AssignmentApplicationUI apui = new AssignmentApplicationUI(eventCenter);
+        AssignmentApplicationUI aa = new AssignmentApplicationUI(eventCenter);
     }//GEN-LAST:event_assignApplicationItemActionPerformed
 
     private void createStandMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStandMenuItemActionPerformed
         CreateStand createStand = new CreateStand(eventCenter);
     }//GEN-LAST:event_createStandMenuItemActionPerformed
 
-    private void showEventAcceptanceRateUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventAcceptanceRateUIActionPerformed
+    private void showEventAcceptanceRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventAcceptanceRateActionPerformed
         ShowEventAcceptanceRateUI sear = new ShowEventAcceptanceRateUI(eventCenter);
-    }//GEN-LAST:event_showEventAcceptanceRateUIActionPerformed
+    }//GEN-LAST:event_showEventAcceptanceRateActionPerformed
+
+    private void showGlobalAcceptanceRateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalAcceptanceRateMenuItemActionPerformed
+        ShowGlobalAcceptanceRateUI sgar = new ShowGlobalAcceptanceRateUI(eventCenter);
+        
+    }//GEN-LAST:event_showGlobalAcceptanceRateMenuItemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -459,14 +475,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu importExportMenu;
     private javax.swing.JMenuItem importMenuItem;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -476,10 +491,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenuItem loginMenuItem;
+    private javax.swing.JMenu menu;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem showEmployeeMeanRatingMenuItem;
-    private javax.swing.JMenuItem showEventAcceptanceRateUI;
+    private javax.swing.JMenuItem showEventAcceptanceRate;
     private javax.swing.JMenuItem showEventsSubmissionKeywordsMenuItem;
+    private javax.swing.JMenuItem showGlobalAcceptanceRateMenuItem;
+    private javax.swing.JMenuItem showStandInformationMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
     private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables

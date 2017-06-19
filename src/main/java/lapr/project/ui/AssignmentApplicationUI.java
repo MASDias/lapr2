@@ -54,6 +54,8 @@ public class AssignmentApplicationUI extends javax.swing.JFrame {
         eventCombobox = new javax.swing.JComboBox<Event>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Assign Application");
+        setResizable(false);
 
         applicationCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
