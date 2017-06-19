@@ -26,22 +26,25 @@ public class KeywordFrequency implements Serializable {
 
     private void calculateFrequency() {
         newKeyWordList = new KeywordList();
-        int limite = keywordList.size();
-        for (int i = 0; i < limite; i++) {
-            if (newKeyWordList.size() == 0) {
-                newKeyWordList.addKeyword(keywordList.getKeyword(i));
-            }
-            if (newKeyWordList.validate(keywordList.getKeyword(i))) {
-                newKeyWordList.addKeyword(keywordList.getKeyword(i));
-            }
-            for (int j = i + 1; j < keywordList.size(); j++) {
-                if (keywordList.getKeyword(i).toString().equals(keywordList.getKeyword(j).toString())) {
-                    counter++;
+        KeywordList keyworldListNew = new KeywordList();
+        for( int i = 0; i < keywordList.size(); i++){
+            keyworldListNew.addKeyword(keywordList.getKeyword(i));
+        }
+        for (int i = 0; i < keyworldListNew.size(); i++) {
+            if (!keyworldListNew.getKeyword(i).toString().equals("")) {
+                if (newKeyWordList.validate(keyworldListNew.getKeyword(i))) {
+                    newKeyWordList.addKeyword(keyworldListNew.getKeyword(i));
                 }
-            }
+                for (int j = i + 1; j < keyworldListNew.size(); j++) {
 
-            frequencies.add(counter);
-            counter = 1;
+                    if (keyworldListNew.getKeyword(i).toString().equals(keyworldListNew.getKeyword(j).toString())) {
+                        counter++;
+                        keyworldListNew.setKeyword(j, new Keyword());
+                    }
+                }
+                frequencies.add(counter);
+                counter = 1;
+            }
         }
 
     }

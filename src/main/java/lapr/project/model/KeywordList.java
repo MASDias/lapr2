@@ -24,7 +24,10 @@ public class KeywordList implements Serializable {
     public KeywordList() {
         this.keywordList = new ArrayList<>();
     }
-
+    
+    public void setKeyword(int index, Keyword keyword){
+        this.keywordList.set(index, keyword);
+    }
     public boolean validate(Keyword keyword) {
         for (Keyword u : keywordList) {
             if (u.equals(keyword)) {
