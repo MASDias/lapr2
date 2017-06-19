@@ -346,8 +346,12 @@ public class XMLReader {
                     NodeList applicationList = applicationSet.getElementsByTagName("application");
                     for (int j = 0; j < applicationList.getLength(); j++) {
                         Element application = (Element) applicationList.item(j);
-
-                        boolean accepted = Boolean.getBoolean(application.getElementsByTagName("accepted").item(0).getTextContent());
+                        
+                        boolean accepted;
+                        if(application.getElementsByTagName("accepted").item(0).getTextContent().equals("true")){
+                            accepted = true;
+                        } else accepted = false;
+                        System.out.println(accepted);
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
 
