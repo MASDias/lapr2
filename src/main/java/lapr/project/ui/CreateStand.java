@@ -5,6 +5,13 @@
  */
 package lapr.project.ui;
 
+import javax.swing.JOptionPane;
+import lapr.project.controller.CreateStandController;
+import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.Stand;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
@@ -12,11 +19,26 @@ package lapr.project.ui;
 public class CreateStand extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private EventCenter eventCenter;
+    private CreateStandController controller;
+    private EventRegistry listEvents;
+    private Event event;
+    
     /**
      * Creates new form CreateStand
+     * @param eventCenter
      */
-    public CreateStand() {
+    public CreateStand(EventCenter eventCenter) {
         initComponents();
+        this.eventCenter = eventCenter;
+        controller = new CreateStandController(eventCenter);
+        
+        listEvents = controller.getEventsList();
+        for (int i = 0; i < listEvents.size(); i++) {
+            eventComboBox.addItem(listEvents.getEvent(i));
+        }
+        
+        setVisible(true);
     }
 
     /**
@@ -33,10 +55,13 @@ public class CreateStand extends javax.swing.JFrame {
         areaTxtField = new javax.swing.JTextField();
         createBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        areaTxtField1 = new javax.swing.JTextField();
+        addressTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        eventComboBox = new javax.swing.JComboBox<Event>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create Stand");
+        setResizable(false);
 
         jLabel1.setText("Address name:");
 
@@ -56,6 +81,8 @@ public class CreateStand extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Event:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,8 +101,12 @@ public class CreateStand extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(areaTxtField1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(areaTxtField))))
+                            .addComponent(addressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(areaTxtField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -83,8 +114,12 @@ public class CreateStand extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(eventComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(areaTxtField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -93,7 +128,7 @@ public class CreateStand extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -101,7 +136,15 @@ public class CreateStand extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // TODO add your handling code here:
+        String address = addressTextField.getText();
+        float area = Float.parseFloat(areaTxtField.getText());
+        
+        Stand stand = new Stand(address, area);
+        
+        event = (Event)eventComboBox.getSelectedItem();
+        event.getStandRegister().addStand(stand);
+        
+        JOptionPane.showMessageDialog(null, "Stand created with success!");
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -110,11 +153,13 @@ public class CreateStand extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addressTextField;
     private javax.swing.JTextField areaTxtField;
-    private javax.swing.JTextField areaTxtField1;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton createBtn;
+    private javax.swing.JComboBox<Event> eventComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

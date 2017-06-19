@@ -407,7 +407,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_assignApplicationItemActionPerformed
 
     private void createStandMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStandMenuItemActionPerformed
-        CreateStand createStand = new CreateStand();
+        CreateStand createStand = new CreateStand(eventCenter);
     }//GEN-LAST:event_createStandMenuItemActionPerformed
 
 
