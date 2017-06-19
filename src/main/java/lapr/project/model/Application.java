@@ -19,7 +19,7 @@ public class Application implements Serializable {
     private ArrayList<Review> reviewList;
     private String description;
     private int invites;
-    private boolean accepted;
+
     private float area;
     private boolean decision;
     private boolean evaluated;
@@ -36,8 +36,8 @@ public class Application implements Serializable {
      * @param area
      * @param description
      */
-    public Application( Enterprise enterprise, int invites, String description, float area) {
-        this.accepted = accepted;
+    public Application(Enterprise enterprise, int invites, String description, float area) {
+
         this.enterprise = enterprise;
         this.description = description;
         this.invites = invites;
@@ -49,8 +49,8 @@ public class Application implements Serializable {
 
     }
 
-    public boolean isAccepted() {
-        return accepted;
+    public boolean isEvaluated() {
+        return evaluated;
     }
 
     public void setEvaluated(boolean evaluated) {

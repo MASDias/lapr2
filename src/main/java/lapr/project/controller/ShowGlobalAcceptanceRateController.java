@@ -37,7 +37,7 @@ public class ShowGlobalAcceptanceRateController {
             for (int j = 0; j < event.getApplicationsList().size() ; j++) {              
                 Application application = event.getApplicationsList().getApplication(j);
                 counterTotal++;
-                if (application.isAccepted()) {
+                if (application.isDecision()) {
                     counterAccepted++;
                 }
             }

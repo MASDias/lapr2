@@ -362,8 +362,11 @@ public class XMLReader {
 
                         int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
 
-                        Application app = new Application( new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
+                        Application app = new Application(new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
+                        app.setDecision(accepted);
                         if (accepted) {
+                            System.out.println("AVALIADA");
+                            System.out.println(app.isDecision());
                             app.setEvaluated(true);
                         }
                         NodeList reviewsList = application.getElementsByTagName("reviews");

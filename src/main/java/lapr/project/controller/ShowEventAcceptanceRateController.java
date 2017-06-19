@@ -36,7 +36,7 @@ public class ShowEventAcceptanceRateController {
         for (int i = 0; i < event.getApplicationsList().size(); i++) {
             Application application = event.getApplicationsList().getApplication(i);
             totalCounter++;
-            if (application.isAccepted()) {
+            if (application.isDecision()) {
                 acceptedCounter++;
             }
         }
