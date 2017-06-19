@@ -136,15 +136,22 @@ public class CreateStand extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        
         String address = addressTextField.getText();
         float area = Float.parseFloat(areaTxtField.getText());
         
+        if(addressTextField.getText().isEmpty() || areaTxtField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Data missing!");
+        }else{
+            
         Stand stand = new Stand(address, area);
         
         event = (Event)eventComboBox.getSelectedItem();
         event.getStandRegister().addStand(stand);
         
         JOptionPane.showMessageDialog(null, "Stand created with success!");
+        dispose();
+        }
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed

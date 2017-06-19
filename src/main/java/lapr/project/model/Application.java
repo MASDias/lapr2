@@ -49,6 +49,12 @@ public class Application implements Serializable {
         
     }
 
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    
+    
     public ArrayList<Review> getReviewList() {
         return reviewList;
     }

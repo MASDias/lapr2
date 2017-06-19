@@ -96,6 +96,8 @@ public class MainWindow extends javax.swing.JFrame {
         assignApplicationItem = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         createStandMenuItem = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
+        showEventAcceptanceRateUI = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -247,6 +249,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(createStandMenuItem);
+        jMenu1.add(jSeparator12);
+
+        showEventAcceptanceRateUI.setText("Show Event Acceptance Rate");
+        showEventAcceptanceRateUI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEventAcceptanceRateUIActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showEventAcceptanceRateUI);
 
         jMenuBar1.add(jMenu1);
 
@@ -430,6 +441,10 @@ public class MainWindow extends javax.swing.JFrame {
         CreateStand createStand = new CreateStand(eventCenter);
     }//GEN-LAST:event_createStandMenuItemActionPerformed
 
+    private void showEventAcceptanceRateUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventAcceptanceRateUIActionPerformed
+        ShowEventAcceptanceRateUI sear = new ShowEventAcceptanceRateUI(eventCenter);
+    }//GEN-LAST:event_showEventAcceptanceRateUIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem assignApplicationItem;
@@ -451,6 +466,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -462,6 +478,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem showEmployeeMeanRatingMenuItem;
+    private javax.swing.JMenuItem showEventAcceptanceRateUI;
     private javax.swing.JMenuItem showEventsSubmissionKeywordsMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
     private javax.swing.JLabel userNameLabel;
