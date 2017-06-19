@@ -273,7 +273,6 @@ public class EventCenterTest {
         result.addProduct(product);
         ec.setProductList(result);
         ProductList expectedResult = ec.getProductList();
-
         assertEquals(result, expectedResult);
     }
      @Test
