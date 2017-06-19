@@ -25,7 +25,7 @@ public class ApplicationTest {
     @Test
     public void EnsureSameObjectsApplicationIsEqual() throws Exception {
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(true, e, 10, "description", 0.0f);
+        Application application = new Application( e, 10, "description", 0.0f);
         assertEquals(application, application);
     }
 
@@ -36,9 +36,9 @@ public class ApplicationTest {
     @Test
     public void EnsureSameObjectsApplicationAreNotEqual() throws Exception {
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application result = new Application(true, e, 10, "description", 0.0f);
+        Application result = new Application( e, 10, "description", 0.0f);
         Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 789456423, 951456312);
-        Application expectedResult = new Application(true, e2, 10, "description", 0.0f);
+        Application expectedResult = new Application( e2, 10, "description", 0.0f);
 
         assertNotEquals(result, expectedResult);
     }
@@ -50,7 +50,7 @@ public class ApplicationTest {
     @Test
     public void EnsureDifferentObjectsApplicationAreNotEqual() throws Exception {
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application result = new Application(true, e, 10, "description", 0.0f);
+        Application result = new Application(e, 10, "description", 0.0f);
         Object expectedResult = new Object();
         assertNotEquals(result, expectedResult);
     }
@@ -63,7 +63,7 @@ public class ApplicationTest {
     public void EnsureToStringIsEqual() throws Exception {
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(true, e, 10, "description", 0.0f);
+        Application application = new Application( e, 10, "description", 0.0f);
 
         String result = application.toString();
         String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987; Invites:10; Description:description";
@@ -78,7 +78,7 @@ public class ApplicationTest {
     public void EnsureToStringIsNotEqual() throws Exception {
         
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
-        Application application = new Application(true, e, 10, "description", 0.0f);
+        Application application = new Application( e, 10, "description", 0.0f);
         String result = application.toString();
         System.out.println(result);
         String expectedResult = "Enterprise:enterprise2 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987; Invites:10; Description: description";

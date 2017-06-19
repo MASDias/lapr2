@@ -84,7 +84,7 @@ public class ExhibitionTest {
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
         ApplicationList list = new ApplicationList();
         ApplicationList expectedList = exhibition.getApplicationsList();
-        list.addApplication(new Application(true, null,  10, "description", 0.0f));
+        list.addApplication(new Application(null,  10, "description", 0.0f));
         assertNotEquals(list, expectedList);
     }
 
@@ -111,7 +111,7 @@ public class ExhibitionTest {
         Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
         Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
         ApplicationList list = new ApplicationList();
-        list.addApplication(new Application(true, null, 10, "description", 0.0f));
+        list.addApplication(new Application(null, 10, "description", 0.0f));
         assertNotEquals(exhibition.getApplicationsList(), list);
     }
 

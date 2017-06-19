@@ -330,7 +330,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             int contactNumber = Integer.parseInt(contactTextField.getText());
             Product product = (Product) productsComboBox.getSelectedItem();
             Enterprise enterprise = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
-            Application a = new Application(true, enterprise, invites, description, area);
+            Application a = new Application(enterprise, invites, description, area);
             eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getApplicationsList().addApplication(a);
             for (int i = 0; i < modelKeyword.size(); i++) {
                 a.getKeywordList().addKeyword(modelKeyword.elementAt(i));

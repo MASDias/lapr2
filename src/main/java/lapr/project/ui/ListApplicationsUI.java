@@ -5,6 +5,13 @@
  */
 package lapr.project.ui;
 
+import lapr.project.controller.ApplicationListController;
+import lapr.project.model.ApplicationList;
+import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.Organizer;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
@@ -12,12 +19,19 @@ package lapr.project.ui;
 public class ListApplicationsUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private ApplicationListController applicationListController;
+    private ApplicationList applicationList;
+    private EventRegistry eventRegistry;
+    private String loggedUser;
 
     /**
      * Creates new form ListApplicationsUI
      */
-    public ListApplicationsUI() {
+    public ListApplicationsUI(EventCenter eventCenter, String loggedUser) {
         initComponents();
+        applicationListController = new ApplicationListController(eventCenter);
+        eventRegistry = new EventRegistry();
+
     }
 
     /**
@@ -33,9 +47,9 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         cancelBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        applicationsListJList3 = new javax.swing.JList<String>();
+        applicationsListJList3 = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        applicationsListJList4 = new javax.swing.JList<String>();
+        applicationsListJList4 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("List of Applications");
@@ -76,7 +90,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -97,6 +111,28 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void infoEvent() {
+        for (int i = 0; i < applicationListController.getEventRegistry().size(); i++) {
+            Event e = applicationListController.getEventRegistry().getEvent(i);
+            for (int j = 0; j < e.getOrganizerList().size(); j++) {
+                Organizer o = e.getOrganizerList().getOrganizer(j);
+                if (loggedUser.equals(o.getUsername()) || loggedUser.equals(o.getEmail())) {
+                    eventRegistry.addEvent(e);
+                }
+            }
+        }
+    }
+
+    private void populateList() {
+        for (int i = 0; i < eventRegistry.size(); i++) {
+            ApplicationList al = eventRegistry.getEvent(i).getApplicationsList();
+            for (int j = 0; j < al.size(); j++) {
+                if (al.getApplication(j).isAccepted()) {
+                    
+                }
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> applicationsListJList3;

@@ -296,7 +296,7 @@ public class XMLReader {
                     exposicao1.getStandRegister().addStand(s);
                 }
                 eventCenter.setStandRegistry(standsList);
-                
+
                 NodeList FAEset = document.getElementsByTagName("FAESet");
                 for (int a = 0; a < FAEset.getLength(); a++) {
                     Element FAEsetemplyee = (Element) FAEset.item(a);
@@ -347,21 +347,25 @@ public class XMLReader {
                     NodeList applicationList = applicationSet.getElementsByTagName("application");
                     for (int j = 0; j < applicationList.getLength(); j++) {
                         Element application = (Element) applicationList.item(j);
-                        
+
                         boolean accepted;
-                        if(application.getElementsByTagName("accepted").item(0).getTextContent().equals("true")){
+                        if (application.getElementsByTagName("accepted").item(0).getTextContent().equals("true")) {
                             accepted = true;
-                        } else accepted = false;
+                        } else {
+                            accepted = false;
+                        }
                         System.out.println(accepted);
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
 
                         float area = Float.parseFloat(application.getElementsByTagName("boothArea").item(0).getTextContent());
 
-
                         int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
 
-                        Application app = new Application(accepted, new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
+                        Application app = new Application( new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
+                        if (accepted) {
+                            app.setEvaluated(true);
+                        }
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
                             Element reviews = (Element) applicationList.item(k);
@@ -467,7 +471,7 @@ public class XMLReader {
                         eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
                     }
                 }
-                
+
                 SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
                 exposicao1.setEventBegin(f.parse(eventBegin));
                 exposicao1.setEventEnd(f.parse(eventEnd));
@@ -476,7 +480,7 @@ public class XMLReader {
             }
             eventCenter.getEventRegistry().addEvent(exposicao1);
             int cord = eventCenter.getEventRegistry().getEventList().indexOf(exposicao1);
-            for(int i = 0; i < eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().size(); i++){
+            for (int i = 0; i < eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().size(); i++) {
                 System.out.println(eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().getApplication(i));
             }
         } catch (FileNotFoundException e) {
