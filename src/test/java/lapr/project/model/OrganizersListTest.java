@@ -73,7 +73,7 @@ public class OrganizersListTest {
     }
     
     @Test
-    public void EnsureAddLocalMethodAddsApplicationsListIndex() throws Exception {
+    public void EnsureAddLocalMethodAddsOrganizersListRemove() throws Exception {
         OrganizersList list = new OrganizersList();
         User user = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
         Organizer organizer = new Organizer(user);

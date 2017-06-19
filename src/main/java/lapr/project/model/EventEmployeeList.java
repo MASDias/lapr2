@@ -68,11 +68,5 @@ public class EventEmployeeList implements Serializable {
     public void removeEmployee(EventEmployee e) {
         employeeList.remove(e);
     }
-    
-    public List<EventEmployee> getList(){
-        return employeeList;
-    }
-    public void setList(List<EventEmployee> employeeList){
-        this.employeeList = employeeList;
-    }
+   
 }
