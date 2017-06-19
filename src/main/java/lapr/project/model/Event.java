@@ -21,7 +21,7 @@ public class Event implements Serializable {
     private int invites;
     private ApplicationList applicationsList;
     private EventEmployeeList eventEmployeeList;
-    private StandRegistry standRegister;
+    private StandRegistry standList;
     private OrganizersList organizerList;
     private KeywordList keywordsList;
     
@@ -46,7 +46,7 @@ public class Event implements Serializable {
         this.eventEnd = eventEnd;
         this.local = local;
         this.invites = invites;
-        this.standRegister = new StandRegistry();
+        this.standList = new StandRegistry();
         this.applicationsList = new ApplicationList();
         this.eventEmployeeList = new EventEmployeeList();
         this.organizerList = new OrganizersList();
@@ -55,6 +55,10 @@ public class Event implements Serializable {
 
     public KeywordList getKeywordsList() {
         return keywordsList;
+    }
+
+    public void setLocal(Location local) {
+        this.local = local;
     }
 
     
@@ -169,7 +173,7 @@ public class Event implements Serializable {
      * @return
      */
     public StandRegistry getStandRegister() {
-        return standRegister;
+        return standList;
     }
 
     /**
@@ -177,7 +181,7 @@ public class Event implements Serializable {
      * @param standRegister
      */
     public void setStandRegister(StandRegistry standRegister) {
-        this.standRegister = standRegister;
+        this.standList = standRegister;
     }
 
     /**

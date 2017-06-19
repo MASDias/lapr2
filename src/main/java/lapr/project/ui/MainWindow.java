@@ -91,7 +91,10 @@ public class MainWindow extends javax.swing.JFrame {
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
         assignApplicationItem = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        createStandMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -225,6 +228,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(showEventsSubmissionKeywordsMenuItem);
+        jMenu1.add(jSeparator10);
 
         assignApplicationItem.setText("Assign Application");
         assignApplicationItem.addActionListener(new java.awt.event.ActionListener() {
@@ -233,6 +237,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(assignApplicationItem);
+        jMenu1.add(jSeparator11);
+
+        createStandMenuItem.setText("Create Stand");
+        createStandMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createStandMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(createStandMenuItem);
 
         jMenuBar1.add(jMenu1);
 
@@ -393,10 +406,15 @@ public class MainWindow extends javax.swing.JFrame {
         AssignmentApplicationUI apui = new AssignmentApplicationUI(eventCenter);
     }//GEN-LAST:event_assignApplicationItemActionPerformed
 
+    private void createStandMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStandMenuItemActionPerformed
+        CreateStand createStand = new CreateStand();
+    }//GEN-LAST:event_createStandMenuItemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem assignApplicationItem;
     public javax.swing.JMenuItem createEventMenuItem;
+    private javax.swing.JMenuItem createStandMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;
     private javax.swing.JMenuItem defineEventManagerMenuItem;
@@ -411,6 +429,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
