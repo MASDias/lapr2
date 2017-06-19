@@ -358,12 +358,15 @@ public class MainWindow extends javax.swing.JFrame {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 ex.printStackTrace();
-            } finally{
+            } finally {
                 try {
                     file.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                } catch (NullPointerException npx) {
+                    JOptionPane.showMessageDialog(null, "Problem with outputing to file");
                 }
+
             }
 
         }
@@ -394,7 +397,11 @@ public class MainWindow extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 } finally {
-                    file.close();
+                    try {
+                        file.close();
+                    } catch (NullPointerException npx) {
+                        JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                    }
                 }
             }
         } catch (Exception ex) {
