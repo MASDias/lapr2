@@ -47,4 +47,94 @@ public class OrganizerTest {
         Object expectedResult = new Object();
         assertNotEquals(organizer, expectedResult);
     }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetOrganizersIsEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        User result = organizer.getOrganizer();
+        assertEquals(u1,result);
+    }
+ /**
+     *
+     */
+    @Test
+    public void EnsureGetOrganizersIsNotEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        User u2 = new User("adad","asdad","fafs","adassa");
+        Organizer organizer = new Organizer(u1);
+        User result = organizer.getOrganizer();
+        assertNotEquals(u2,result);
+    }
+   
+ /**
+     *
+     */
+    @Test
+    public void EnsureGetEventRegestryIsEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        EventRegistry expectedResult = new EventRegistry();
+        organizer.setEventRegistry(expectedResult);
+        EventRegistry result = organizer.getEventRegistry();
+        assertEquals(expectedResult,result);
+    }
+ /**
+     *
+     */
+    @Test
+    public void EnsureSetEventRegestryIsEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        EventRegistry expectedResult = new EventRegistry();
+        organizer.setEventRegistry(expectedResult);
+        EventRegistry result = organizer.getEventRegistry();
+        assertEquals(expectedResult,result);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureGetEmailIsEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        String result = organizer.getEmail();
+        String expectedResult = "asdasd";
+        assertEquals(expectedResult,result);
+    }
+ /**
+     *
+     */
+    @Test
+    public void EnsureGetEmailIsNotEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        String result = organizer.getEmail();
+        String expectedResult = "asdd";
+        assertNotEquals(expectedResult,result);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureGetUsernameIsEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        String result = organizer.getUsername();
+        String expectedResult = "fafsd";
+        assertEquals(expectedResult,result);
+    }
+ /**
+     *
+     */
+    @Test
+    public void EnsureGetUsernameIsNotEqual() {
+        User u1 = new User("adaad","asdasd","fafsd","adasdasa");
+        Organizer organizer = new Organizer(u1);
+        String result = organizer.getUsername();
+        String expectedResult = "asdd";
+        assertNotEquals(expectedResult,result);
+    }
 }
