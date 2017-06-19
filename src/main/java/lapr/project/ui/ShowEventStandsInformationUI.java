@@ -37,12 +37,16 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
         standRegistry = controller.getStandRegistry();
         standJList.setModel(modelStand);
         standInfo = new ShowStandInformation(standRegistry);
+        String meanString = String.format("%.2f", standInfo.getMean());
+        String standartDeviationString = String.format("%.2f", standInfo.getStandartDeviation());
+        meanTextField.setText(meanString);
+        standartDeviationTextField.setText(standartDeviationString);
         initObjetcts();
         this.setVisible(true);
     }
 
     private void initObjetcts() {
-        
+
         for (int i = 0; i < standInfo.getIntervals().size(); i++) {
             intervalsCombobox.addItem(standInfo.getIntervals().get(i));
         }
@@ -59,12 +63,16 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        intervalsCombobox = new javax.swing.JComboBox<String>();
+        intervalsCombobox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        standJList = new javax.swing.JList<Stand>();
+        standJList = new javax.swing.JList<>();
         Interval = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         frequencyTextField = new javax.swing.JTextField();
+        meanTextField = new javax.swing.JTextField();
+        standartDeviationTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Event Stands");
@@ -87,11 +95,24 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(standJList);
 
-        Interval.setText("jLabel2");
+        Interval.setText("Intervals");
 
         jLabel2.setText("Frequency:");
 
         frequencyTextField.setEditable(false);
+
+        meanTextField.setEditable(false);
+        meanTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meanTextFieldActionPerformed(evt);
+            }
+        });
+
+        standartDeviationTextField.setEditable(false);
+
+        jLabel3.setText("Mean:");
+
+        label.setText("Stand Deviation:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,23 +121,28 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(intervalsCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Interval)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(intervalsCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Interval)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(frequencyTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(frequencyTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                                    .addComponent(meanTextField)
+                                    .addComponent(standartDeviationTextField, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,17 +153,25 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(Interval))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(intervalsCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(frequencyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(frequencyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(meanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(standartDeviationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,7 +189,21 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
             modelStand.addElement(newStandList.getStand(i));
         }
         frequencyTextField.setText(standInfo.getFrequencyString());
+
     }//GEN-LAST:event_intervalsComboboxActionPerformed
+
+    private void meanTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meanTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_meanTextFieldActionPerformed
+
+    private void calculateMean() {
+        float mean = 0;
+        for (int i = 0; i < standInfo.getClassMarkArray().size(); i++) {
+            mean += standInfo.getClassMarkArray().get(i) * standInfo.getFrequency().get(i);
+        }
+        mean /= standRegistry.size();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Interval;
@@ -164,7 +212,11 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label;
+    private javax.swing.JTextField meanTextField;
     private javax.swing.JList<Stand> standJList;
+    private javax.swing.JTextField standartDeviationTextField;
     // End of variables declaration//GEN-END:variables
 }
