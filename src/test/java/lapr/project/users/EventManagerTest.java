@@ -50,5 +50,27 @@ public class EventManagerTest {
         Object expectedResult = new Object();
         assertNotEquals(result, expectedResult);
     }
+    /**
+     *
+     */
+    @Test
+    public void EnsureToStringIsEqual() {
+        User user = new User("James", "james@gmail.com", "juanjames", "123456789");
+        EventManager eventManager = new EventManager(user);
+        String result = eventManager.toString();
+        String expectedResult = "Name:James; Username:juanjames; Email:james@gmail.com";
+        assertEquals(result, expectedResult);
+    }
 
+    /**
+     *
+     */
+    @Test
+    public void EnsureToStringIsNotEqual() {
+        User user = new User("James", "james@gmail.com", "juanjames", "123456789");
+        EventManager eventManager = new EventManager(user);
+        String result = eventManager.toString();
+        String expectedResult = "Name: Jame Username: juanjames Email: james@gmail.com";
+        assertNotEquals(result, expectedResult);
+    }
 }
