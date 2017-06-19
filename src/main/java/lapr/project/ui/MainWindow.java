@@ -10,6 +10,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
@@ -340,11 +341,13 @@ public class MainWindow extends javax.swing.JFrame {
         if (retrival == JFileChooser.APPROVE_OPTION) {
 
             SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+            FileOutputStream file = null;
             try {
                 Cipher cipher = Cipher.getInstance("blowfish");
                 cipher.init(Cipher.ENCRYPT_MODE, keyToMaximumScoreInLAPR);
                 SealedObject sealedObject = new SealedObject(eventCenter, cipher);
-                CipherOutputStream cipherOutputStream = new CipherOutputStream(new BufferedOutputStream(new FileOutputStream(fileChooser.getSelectedFile() + ".bin")), cipher);
+                file = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
+                CipherOutputStream cipherOutputStream = new CipherOutputStream(new BufferedOutputStream(file), cipher);
                 ObjectOutputStream outputStream = new ObjectOutputStream(cipherOutputStream);
                 outputStream.writeObject(sealedObject);
                 outputStream.close();
@@ -355,6 +358,12 @@ public class MainWindow extends javax.swing.JFrame {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 ex.printStackTrace();
+            } finally{
+                try {
+                    file.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
         }
@@ -370,10 +379,12 @@ public class MainWindow extends javax.swing.JFrame {
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
                 SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+                FileInputStream file = null;
                 try {
                     Cipher cipher = Cipher.getInstance("blowfish");
                     cipher.init(Cipher.DECRYPT_MODE, keyToMaximumScoreInLAPR);
-                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream(new FileInputStream(fileChooser.getSelectedFile())), cipher);
+                    file = new FileInputStream(fileChooser.getSelectedFile());
+                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream((file)), cipher);
                     ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
                     SealedObject sealedObject = (SealedObject) inputStream.readObject();
                     this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
@@ -382,6 +393,8 @@ public class MainWindow extends javax.swing.JFrame {
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                } finally {
+                    file.close();
                 }
             }
         } catch (Exception ex) {
