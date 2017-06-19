@@ -35,6 +35,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
 
@@ -200,7 +203,7 @@ public class XMLReader {
      }
      return eventCenter;
      }*/
-    public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException {
+    public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, ParseException {
         try {
 
             File xmlFile = new File("xml/exposicao1_v0.1.xml");
@@ -387,6 +390,38 @@ public class XMLReader {
                         break;
                     }
                 }
+
+                NodeList dateSet = document.getElementsByTagName("dates");
+                System.out.println(dateSet.getLength());
+                String eventBegin = "";
+                String eventEnd="";
+                String eventSubBeg="";
+                String eventSubEnd="";
+                if (dateSet.getLength() == 0) {
+                    Date today = new Date();
+                    int year = today.getYear() + 1900;
+                    int month = today.getMonth() + 1;
+                    int day = today.getDate();
+                    eventBegin = day + "-" + month + "-" + year;
+                    eventEnd = (day + 21) + "-" + month + "-" + year;
+                    eventSubBeg = (day + 1) + "-" + month + "-" + year;
+                    eventSubEnd = (day + 5) + "-" + month + "-" + year;
+
+                } else {
+                    for(int i = 0; i < dateSet.getLength(); i++){
+                        Element date = (Element) dateSet.item(i);
+                        eventBegin = date.getElementsByTagName("eventBegin").item(0).getTextContent();
+                        eventEnd = date.getElementsByTagName("eventEnd").item(0).getTextContent();
+                        eventSubBeg = date.getElementsByTagName("eventSubBeg").item(0).getTextContent();
+                        eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
+                    }
+                }
+
+                SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+                exposicao1.setEventBegin(f.parse(eventBegin));
+                exposicao1.setEventEnd(f.parse(eventEnd));
+                exposicao1.setEventSubmissionBegin(f.parse(eventSubBeg));
+                exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
             }
             eventCenter.getEventRegistry().addEvent(exposicao1);
         } catch (FileNotFoundException e) {

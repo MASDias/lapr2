@@ -36,6 +36,7 @@ public class Event implements Serializable {
      * @param eventSubmissionEnd
      * @param invites
      */
+    
     public Event(String title, String description, Date eventBegin, Date eventEnd, Date eventSubmissionBegin, Date eventSubmissionEnd, Location local, int invites) {
         this.title = title;
         this.description = description;
@@ -71,6 +72,24 @@ public class Event implements Serializable {
      */
     public Location getLocal() {
         return local;
+    
+    
+    }
+
+    public void setEventBegin(Date eventBegin) {
+        this.eventBegin = eventBegin;
+    }
+
+    public void setEventEnd(Date eventEnd) {
+        this.eventEnd = eventEnd;
+    }
+
+    public void setEventSubmissionBegin(Date eventSubmissionBegin) {
+        this.eventSubmissionBegin = eventSubmissionBegin;
+    }
+
+    public void setEventSubmissionEnd(Date eventSubmissionEnd) {
+        this.eventSubmissionEnd = eventSubmissionEnd;
     }
 
     /**
