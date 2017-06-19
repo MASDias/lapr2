@@ -16,6 +16,8 @@ import lapr.project.model.EventRegistry;
 public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+  
+    
     private ShowGlobalAcceptanceRateController controller;
     private EventRegistry listEvents;
     private float acceptanceRate;

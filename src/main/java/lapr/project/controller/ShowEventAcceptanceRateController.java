@@ -20,6 +20,8 @@ public class ShowEventAcceptanceRateController {
     private int accepted;
     private int total;
 
+    
+    
     public ShowEventAcceptanceRateController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }

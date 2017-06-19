@@ -10,6 +10,8 @@ import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 
+
+
 /**
  *
  * @author Miguel Santos <1161386@isep.ipp.pt>

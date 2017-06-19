@@ -42,10 +42,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="acceptedLabel" pref="126" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="totalLabel" pref="126" max="32767" attributes="0"/>
-                              <Component id="acceptanceRateLabel" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="totalLabel" alignment="1" pref="126" max="32767" attributes="0"/>
+                          <Component id="acceptanceRateLabel" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Component id="closeBtn" min="-2" max="-2" attributes="0"/>
