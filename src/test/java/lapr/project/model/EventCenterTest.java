@@ -19,6 +19,35 @@ public class EventCenterTest {
      *
      */
     @Test
+    public void EnsureSameObjectIsEqual() {
+        EventCenter eventCenter = new EventCenter();
+        assertEquals(eventCenter, eventCenter);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureSameObjectsAreNotEqual() {
+        EventCenter eventCenter = new EventCenter();
+        EventCenter expected = new EventCenter();
+        
+        assertNotEquals(eventCenter, expected);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureDifferentObjectsAreNotEqual() {
+       EventCenter eventCenter = new EventCenter();
+        Object expectedResult = new Object();
+        assertNotEquals(eventCenter, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
     public void EnsureGetEmployeeListEventCenterListMethod() {
         EventCenter ec = new EventCenter();
         EventEmployeeList result = new EventEmployeeList();
@@ -244,7 +273,29 @@ public class EventCenterTest {
         result.addProduct(product);
         ec.setProductList(result);
         ProductList expectedResult = ec.getProductList();
-
+        assertEquals(result, expectedResult);
+    }
+     @Test
+    public void EnsureSetWorkshopListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        WorkshopList result = new WorkshopList();
+        Theme theme = new Theme("theme");
+        Workshop workshop = new Workshop("workshop",theme);
+         result.addWorkshop(workshop);
+        ec.setWorkshopList(result);
+        WorkshopList expectedResult = ec.getWorkshopList();
+        assertEquals(result, expectedResult);
+       
+    }
+     @Test
+    public void EnsureGetWorkshopListEventCenterListMethod() {
+        EventCenter ec = new EventCenter();
+        Theme theme = new Theme("theme");
+        Workshop workshop = new Workshop("workshop",theme);
+        WorkshopList result = new WorkshopList();        
+        result.addWorkshop(workshop);
+        ec.setWorkshopList(result);
+        WorkshopList expectedResult = ec.getWorkshopList();
         assertEquals(result, expectedResult);
     }
 }

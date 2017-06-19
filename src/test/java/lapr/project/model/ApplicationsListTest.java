@@ -25,7 +25,7 @@ public class ApplicationsListTest {
     @Test
     public void EnsureAddApplicationMethodAddsApplicationToList() throws Exception {
         ApplicationList list = new ApplicationList();
-        
+
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 987654321, 595323141);
         Application application = new Application(true, e, 100, "description", 0.0f);
@@ -43,7 +43,7 @@ public class ApplicationsListTest {
      */
     @Test
     public void EnsureSameObjectsApplicationsListAreEqual() throws Exception {
-        
+
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(true, e, 100, "description", 0.0f);
         ApplicationList list = new ApplicationList();
@@ -57,7 +57,7 @@ public class ApplicationsListTest {
      */
     @Test
     public void EnsureSameObjectsApplicationsListAreNotEqual() throws Exception {
-        
+
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(true, e, 100, "description", 0.0f);
 
@@ -95,7 +95,6 @@ public class ApplicationsListTest {
         ApplicationList result = new ApplicationList();
         ApplicationList expectedResult = new ApplicationList();
 
-        
         Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(true, e, 100, "description", 0.0f);
 
@@ -140,14 +139,26 @@ public class ApplicationsListTest {
         ApplicationList expectedResult = new ApplicationList();
         assertNotEquals(expectedResult, result);
     }
-     @Test
+
+    @Test
     public void EnsureAddLocalMethodAddsApplicationsListNotValid() throws Exception {
-         ApplicationList result = new ApplicationList();
-        Application application = new Application(true , null ,2545 , null ,12);
+        ApplicationList result = new ApplicationList();
+        Application application = new Application(true, null, 2545, null, 12);
         result.addApplication(application);
         result.addApplication(application);
         int size = result.size();
         int expectedResult = 1;
         assertEquals(size, expectedResult);
     }
+
+    @Test
+    public void EnsureAddLocalMethodAddsApplicationsListIndex() throws Exception {
+        ApplicationList list = new ApplicationList();
+        Application result = new Application(true, null, 2545, null, 12);
+        list.addApplication(result);
+        Application expectedResult = list.getApplication(0);
+        
+        assertEquals(result, expectedResult);
+    }
+
 }
