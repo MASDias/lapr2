@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import static org.junit.Assert.assertEquals;
@@ -73,7 +74,59 @@ public class EventRegistryTest {
         
         assertEquals(result, expectedResult);
     }
+     /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetEventMethodIsEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        Event result = list.getEvent(0);
+        assertEquals(result, event);
+    }
 
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetEventMethodIsNotEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model 98Example", "Explae string", beginning, end, null, null, local, 100);
+        Event event2 = new Event("Model Example", "Explae2 string", beginning, end, null, null, local, 30);
+        list.addEvent(event);
+        list.addEvent(event2);
+        Event result = list.getEvent(1);
+        assertNotEquals(result, event);
+    }
+     /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetEventListMethodIsNotEqual() throws Exception {
+        EventRegistry result = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        result.addEvent(event);
+        ArrayList<Event> expectedResult = result.getEventList();       
+        assertNotEquals(result, expectedResult);
+    }
+
+   
     /**
      *
      * @throws Exception
