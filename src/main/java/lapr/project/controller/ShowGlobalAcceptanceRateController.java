@@ -16,6 +16,8 @@ import lapr.project.model.EventRegistry;
  */
 public class ShowGlobalAcceptanceRateController {
     private EventCenter eventCenter;
+    private int total;
+    private int accepted;
 
     public ShowGlobalAcceptanceRateController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
@@ -42,8 +44,19 @@ public class ShowGlobalAcceptanceRateController {
         }
         
         acceptanceRate = ((counterAccepted)/(float)(counterTotal))*100;
-        
+        total = counterTotal;
+        accepted = counterAccepted;
         
         return acceptanceRate;
     }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public int getAccepted() {
+        return accepted;
+    }
+    
+    
 }

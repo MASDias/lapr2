@@ -17,6 +17,8 @@ import lapr.project.model.EventRegistry;
 public class ShowEventAcceptanceRateController {
 
     private EventCenter eventCenter;
+    private int accepted;
+    private int total;
 
     public ShowEventAcceptanceRateController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
@@ -27,16 +29,30 @@ public class ShowEventAcceptanceRateController {
     }
 
     public float calculateEventAcceptanceRate(Event event) {
-        int counter = 0;
+        int acceptedCounter = 0;
+        int totalCounter = 0;
         float acceptanceRate = 0;
-        
+
         for (int i = 0; i < event.getApplicationsList().size(); i++) {
             Application application = event.getApplicationsList().getApplication(i);
+            totalCounter++;
             if (application.isAccepted()) {
-                counter++;
+                acceptedCounter++;
             }
         }
-        acceptanceRate = ((counter)/(float)(event.getApplicationsList().size()))*100;
+        total = totalCounter;
+        accepted = acceptedCounter;
+        acceptanceRate = ((acceptedCounter) / (float) (totalCounter)) * 100;
         return acceptanceRate;
     }
+
+    public int getAccepted() {
+        return accepted;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+    
+    
 }

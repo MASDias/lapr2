@@ -19,6 +19,8 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
     private ShowGlobalAcceptanceRateController controller;
     private EventRegistry listEvents;
     private float acceptanceRate;
+    private int totalApplications;
+    private int acceptedApplications;
 
     /**
      * Creates new form ShowGlobalAcceptanceRateUI
@@ -28,10 +30,14 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
     public ShowGlobalAcceptanceRateUI(EventCenter eventCenter) {
         controller = new ShowGlobalAcceptanceRateController(eventCenter);
         initComponents();
-
+        
         listEvents = controller.getEventList();
 
         acceptanceRate = controller.calculateEventAcceptanceRate(listEvents);
+        totalApplications = controller.getTotal();
+        acceptedApplications = controller.getAccepted();
+        acceptedLabel.setText(String.valueOf(acceptedApplications));
+        totalApplicationsLabel.setText(String.valueOf(totalApplications));
         globalAcceptanceRateLabel.setText(String.valueOf(acceptanceRate + "%"));
 
         setVisible(true);
@@ -49,6 +55,10 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         globalAcceptanceRateLabel = new javax.swing.JLabel();
         closeBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        acceptedLabel = new javax.swing.JLabel();
+        totalApplicationsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Global Acceptance Rate");
@@ -63,6 +73,10 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Accepted:");
+
+        jLabel3.setText("Total:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,24 +85,39 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(globalAcceptanceRateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(closeBtn)))
+                        .addComponent(jLabel3)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalApplicationsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(acceptedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(globalAcceptanceRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeBtn)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(globalAcceptanceRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(acceptedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalApplicationsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(globalAcceptanceRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(closeBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -101,8 +130,12 @@ public class ShowGlobalAcceptanceRateUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel acceptedLabel;
     private javax.swing.JButton closeBtn;
     private javax.swing.JLabel globalAcceptanceRateLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel totalApplicationsLabel;
     // End of variables declaration//GEN-END:variables
 }

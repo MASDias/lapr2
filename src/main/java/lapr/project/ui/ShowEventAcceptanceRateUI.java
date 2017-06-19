@@ -21,6 +21,8 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
     private EventRegistry listEvents;
     private Event event;
     private float acceptanceRate;
+    private int total;
+    private int accepted;
 
     /**
      * Creates new form ShowEventAcceptanceRate
@@ -53,6 +55,10 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         acceptanceRateLabel = new javax.swing.JLabel();
         closeBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
+        acceptedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show Event Acceptance Rate");
@@ -75,6 +81,10 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Total:");
+
+        jLabel4.setText("Accepted:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,10 +97,17 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(acceptanceRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(acceptedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(totalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                .addComponent(acceptanceRateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(closeBtn)))
                 .addContainerGap())
         );
@@ -107,7 +124,15 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(acceptanceRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(24, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(acceptedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(closeBtn)
@@ -125,6 +150,10 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
         event = (Event) eventComboBox.getSelectedItem();
         acceptanceRate = controller.calculateEventAcceptanceRate(event);
+        total = controller.getTotal();
+        accepted = controller.getAccepted();
+        acceptedLabel.setText(String.valueOf(accepted));
+        totalLabel.setText(String.valueOf(total));
         acceptanceRateLabel.setText(String.valueOf(acceptanceRate) + "%");
         revalidate();
     }//GEN-LAST:event_eventComboBoxActionPerformed
@@ -132,9 +161,13 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel acceptanceRateLabel;
+    private javax.swing.JLabel acceptedLabel;
     private javax.swing.JButton closeBtn;
     private javax.swing.JComboBox<Event> eventComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
