@@ -171,4 +171,5 @@ public class EventEmployeeTest {
         String expectedResult = employee.getEmail();
         assertNotEquals(result, expectedResult);
     }
+    
 }

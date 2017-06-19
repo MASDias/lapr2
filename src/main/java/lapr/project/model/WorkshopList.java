@@ -45,8 +45,6 @@ public class WorkshopList implements Serializable {
     public void addWorkshop(Workshop workshop) {
         if (validate(workshop)) {
             workshopList.add(workshop);
-        } else {
-            JOptionPane.showMessageDialog(null, "Can't add Workshop to the list!");
         }
     }
 

@@ -122,4 +122,14 @@ public class WorkshopListTest {
         WorkshopList expectedResult = list;
         assertNotEquals(expectedResult, result);
     }
+     @Test
+    public void EnsureAddLocalMethodAddsWorkshopListNotValid() throws Exception {
+         WorkshopList result = new WorkshopList();
+        Workshop workshop = new Workshop("asdsdsa",null);
+        result.addWorkshop(workshop);
+        result.addWorkshop(workshop);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
 }
