@@ -25,9 +25,6 @@ public class WorkshopList implements Serializable {
      *
      * @return
      */
-    public List<Workshop> getWorkshopList() {
-        return workshopList;
-    }
 
     private boolean validate(Workshop workshop) {
         for (Workshop a : workshopList) {
