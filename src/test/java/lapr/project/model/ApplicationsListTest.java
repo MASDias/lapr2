@@ -140,4 +140,14 @@ public class ApplicationsListTest {
         ApplicationList expectedResult = new ApplicationList();
         assertNotEquals(expectedResult, result);
     }
+     @Test
+    public void EnsureAddLocalMethodAddsApplicationsListNotValid() throws Exception {
+         ApplicationList result = new ApplicationList();
+        Application application = new Application(true , null ,2545 , null ,12);
+        result.addApplication(application);
+        result.addApplication(application);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
 }
