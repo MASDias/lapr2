@@ -17,11 +17,9 @@ public class LocationListTest {
 
     @Test
     public void EnsureAddLocalMethodAddsLocalToList() throws Exception {
-
         LocationList list = new LocationList();
         Location l1 = new Location("Rua do prego");
         Location l2 = new Location("Avenida da Liberdade");
-
         list.addLocal(l1);
         list.addLocal(l2);
         int size = list.size();
@@ -35,12 +33,41 @@ public class LocationListTest {
     @Test
     public void EnsureAddLocalMethodAddsUserToListNotValid() throws Exception {
          LocationList result = new LocationList();
+        Location l1 = new Location("Rua do prego");
+        Location l2 = new Location("Avenida da Liberdade");
+        result.addLocal(l1);
+        result.addLocal(l2);
+        int size = result.size();
+        int expectedResult = 1;
+        assertNotEquals(size, expectedResult);
+    }
+    
+    @Test
+    public void EnsureRemoveLocalMethodAddsLocalToList() throws Exception {
+        LocationList list = new LocationList();
+        Location l1 = new Location("Rua do prego");
+        Location l2 = new Location("Avenida da Liberdade");
+        list.addLocal(l1);
+        list.addLocal(l2);
+        list.removeLocation(l2);
+        int size = list.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
+     /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureRemoveLocalMethodAddsUserToListNotValid() throws Exception {
+         LocationList result = new LocationList();
         Location location = new Location("Rua do prego");
         result.addLocal(location);
         result.addLocal(location);
+        result.removeLocation(location);
         int size = result.size();
         int expectedResult = 1;
-        assertEquals(size, expectedResult);
+        assertNotEquals(size, expectedResult);
     }
  /**
      *
