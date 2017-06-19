@@ -80,7 +80,7 @@ public class SubmitApplication extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        eventsComboBox = new javax.swing.JComboBox<Event>();
+        eventsComboBox = new javax.swing.JComboBox<>();
         enterpriseNameTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
@@ -94,11 +94,11 @@ public class SubmitApplication extends javax.swing.JFrame {
         standlistLabel = new javax.swing.JLabel();
         invitesLabel = new javax.swing.JLabel();
         invitesTextField = new javax.swing.JTextField();
-        productsComboBox = new javax.swing.JComboBox<Product>();
+        productsComboBox = new javax.swing.JComboBox<>();
         productsLabel = new javax.swing.JLabel();
         keywordTextField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        keywordJList = new javax.swing.JList<Keyword>();
+        keywordJList = new javax.swing.JList<>();
         addKeywordBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -305,11 +305,10 @@ public class SubmitApplication extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(submitButton)
-                    .addComponent(cancelButton))
-                .addContainerGap())
+                    .addComponent(cancelButton)))
         );
 
-        setSize(new java.awt.Dimension(498, 592));
+        setSize(new java.awt.Dimension(498, 612));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -329,7 +328,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             Application a = new Application(true, enterprise, invites, description, area);
             eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getApplicationsList().addApplication(a);
             for (int i = 0; i < modelKeyword.size(); i++) {
-                eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getKeywordsList().addKeyword(modelKeyword.elementAt(i));
+                a.getKeywordList().addKeyword(modelKeyword.elementAt(i));
             }
 
             dispose();
@@ -389,11 +388,11 @@ public class SubmitApplication extends javax.swing.JFrame {
         }
     }
     private void eventsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsComboBoxActionPerformed
-        Event e = (Event) eventsComboBox.getSelectedItem();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        dateBeginLabel.setText(sdf.format(e.getEventBegin()));
-        dateEndLabel.setText(sdf.format(e.getEventEnd()));
-        locationLabel.setText(e.getLocal().toString());
+//        Event e = (Event) eventsComboBox.getSelectedItem();
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        dateBeginLabel.setText(sdf.format(e.getEventBegin()));
+//        dateEndLabel.setText(sdf.format(e.getEventEnd()));
+//        locationLabel.setText(e.getLocal().toString());
         revalidate();
     }//GEN-LAST:event_eventsComboBoxActionPerformed
 

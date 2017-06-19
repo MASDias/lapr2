@@ -42,6 +42,7 @@ public class ShowEventStandsInformationUI extends javax.swing.JFrame {
     }
 
     private void initObjetcts() {
+        
         for (int i = 0; i < standInfo.getIntervals().size(); i++) {
             intervalsCombobox.addItem(standInfo.getIntervals().get(i));
         }

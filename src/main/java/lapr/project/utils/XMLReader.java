@@ -318,25 +318,22 @@ public class XMLReader {
                                 app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
                             }
                         }
-                        NodeList keywords = document.getElementsByTagName("keywords");
-                        //System.out.println("Keywords" + keywords.getLength());
+                        NodeList keywords = application.getElementsByTagName("keywords");
+                        System.out.println("Keywords" + keywords.getLength());
                         for (int l = 0; l < keywords.getLength(); l++) {
-                            
+
                             Element keywordValue = (Element) keywords.item(l);
                             NodeList keywordSet = keywordValue.getElementsByTagName("keyword");
-                            //System.out.println(keywordSet.getLength());
-                            for(int p = 0; p < keywordSet.getLength(); p++){
+                            System.out.println(keywordSet.getLength());
+                            for (int p = 0; p < keywordSet.getLength(); p++) {
                                 String keyword = keywordValue.getElementsByTagName("keyword").item(p).getTextContent();
                                 System.out.println(keyword);
-                                exposicao1.getKeywordsList().addKeyword(new Keyword(keyword));
-                                
+                                app.getKeywordList().addKeyword(new Keyword(keyword));
                             }
-                            
                         }
                         applicationArrayList.addApplication(app);
                     }
                     eventCenter.setApplicationList(applicationArrayList);
-                    //System.out.println(exposicao1.getKeywordsList().size());;
                 }
                 NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
                 for (int a = 0; a < OrganizerSet.getLength(); a++) {

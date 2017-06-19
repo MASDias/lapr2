@@ -1,5 +1,7 @@
 package lapr.project.ui;
 
+import java.util.Date;
+import jdk.nashorn.internal.objects.NativeDate;
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.Review;
 import lapr.project.model.EventCenter;
@@ -27,6 +29,5 @@ class Main {
         XMLReader xmlFile = new XMLReader();
         eventCenter = xmlFile.readValuesFromXML(eventCenter);
         MainWindow mw = new MainWindow(eventCenter);
-        Review r = new Review("", 0, 0, 0, 0);
     }
 }

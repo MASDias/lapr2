@@ -8,11 +8,14 @@ package lapr.project.ui;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import lapr.project.controller.ShowEventSubmissionKeywordsController;
+import lapr.project.model.Application;
+import lapr.project.model.ApplicationList;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Keyword;
 import lapr.project.model.KeywordFrequency;
+import lapr.project.model.KeywordList;
 
 /**
  *
@@ -45,21 +48,25 @@ public class ShowEventSubmissionKeywordsUI extends javax.swing.JFrame {
         for (int i = 0; i < listEvents.size(); i++) {
             eventComboBox.addItem(listEvents.getEvent(i));
         }
-        for (int i = 0; i < listEvents.getEvent(0).getKeywordsList().size(); i++) {
-            System.out.println(listEvents.getEvent(0).getKeywordsList().getKeyword(i));
 
-        }
-//        keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
         setVisible(true);
     }
 
     private void initKeywords() {
-        keywordFrequency = new KeywordFrequency(listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList());
-
+        KeywordList keywordList = new KeywordList();
+        ApplicationList applicationList = listEvents.getEvent(eventComboBox.getSelectedIndex()).getApplicationsList();
+        for (int i = 0; i < applicationList.size(); i++) {
+            Application a = applicationList.getApplication(i);
+            for (int j = 0; j < a.getKeywordList().size(); j++) {
+                keywordList.addKeyword(a.getKeywordList().getKeyword(j));
+            }
+        }
+        keywordFrequency = new KeywordFrequency(keywordList);
+      
         frequencyCounter = keywordFrequency.getFrequencies();
-        float jjj = 0;
+
         for (int j = 0; j < keywordFrequency.getNewKeyWordList().size(); j++) {
-            modelKeywordList.addElement(keywordFrequency.getNewKeyWordList().getKeyword(j).toString() + "    Frequency: " + (float) frequencyCounter.get(j) / listEvents.getEvent(eventComboBox.getSelectedIndex()).getKeywordsList().size());
+            modelKeywordList.addElement(keywordList.getKeyword(j).toString() + "    Frequency: " + (float) frequencyCounter.get(j) / keywordList.size());
         }
     }
 

@@ -25,6 +25,7 @@ public class Application implements Serializable {
     private boolean evaluated;
     private Event event;
     private EventEmployeeList eventEmployeeList;
+    private KeywordList keywordList;
 
     /**
      *
@@ -42,6 +43,12 @@ public class Application implements Serializable {
         this.evaluated = false;
         this.reviewList = new ArrayList<>();
         this.eventEmployeeList = new EventEmployeeList();
+        this.keywordList = new KeywordList();
+        
+    }
+
+    public KeywordList getKeywordList() {
+        return keywordList;
     }
 
     public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {

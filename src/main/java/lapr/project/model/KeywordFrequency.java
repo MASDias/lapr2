@@ -36,7 +36,6 @@ public class KeywordFrequency implements Serializable {
                     newKeyWordList.addKeyword(keyworldListNew.getKeyword(i));
                 }
                 for (int j = i + 1; j < keyworldListNew.size(); j++) {
-
                     if (keyworldListNew.getKeyword(i).toString().equals(keyworldListNew.getKeyword(j).toString())) {
                         counter++;
                         keyworldListNew.setKeyword(j, new Keyword());
