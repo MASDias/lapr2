@@ -44,4 +44,24 @@ public class ProductTest {
         Object expectedResult = new Object();
         assertNotEquals(product, expectedResult);
     }
+     @Test
+    public void EnsureToStringIsEqual() throws Exception {        
+       Product product = new Product("box");
+       String result = product.toString();
+       String expectedResult = "Product name:box"; 
+       assertEquals(result, expectedResult);
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureToStringIsNotEqual() throws Exception {        
+       Product product = new Product("box");
+       String result = product.toString();
+       String expectedResult = "Product name:stick"; 
+       assertNotEquals(result, expectedResult);
+
+    }
 }
