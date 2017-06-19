@@ -286,7 +286,7 @@ public class DefineOrganizer extends javax.swing.JFrame {
 
         event = (Event) eventComboBox.getSelectedItem();
 
-        if (!eventComboBox.getSelectedItem().toString().equals(event.toString())) {
+        if (eventComboBox.getSelectedItem().toString().equals(event.toString())) {
             JOptionPane.showMessageDialog(null, "Already Selected");
         } else {
             modelOrganizersList.removeAllElements();

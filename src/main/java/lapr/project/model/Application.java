@@ -29,9 +29,11 @@ public class Application implements Serializable {
 
     /**
      *
+     * @param accepted
      * @param enterprise
      * @param event
      * @param invites
+     * @param area
      * @param description
      */
     public Application(boolean accepted, Enterprise enterprise, int invites, String description, float area) {
