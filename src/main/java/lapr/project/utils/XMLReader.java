@@ -38,6 +38,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
 
@@ -220,6 +221,68 @@ public class XMLReader {
             for (int b = 0; b < eventList.getLength(); b++) {
                 Element title = (Element) eventList.item(b);
                 String eventTitle = title.getElementsByTagName("title").item(0).getTextContent();
+
+                NodeList eventManagerList = title.getElementsByTagName("eventmanager");
+                int cont = 0;
+                if (eventManagerList.getLength() == 0) {
+                    User eventManager = new User("eventManager", "eventManager@management.pt", "eventManager", "management");
+                    for (int i = 0; i < eventCenter.getUserRegistry().size(); i++) {
+                        if (eventCenter.getUserRegistry().getUser(i).equals(eventManager)) {
+                            cont++;
+                        }
+                    }
+                    if (cont == 0) {
+                        eventCenter.getUserRegistry().addUser(eventManager);
+                    }
+                    eventCenter.getEventManagerList().addEventManager(new EventManager(eventManager));
+                } else {
+                    for (int i = 0; i < eventManagerList.getLength(); i++) {
+                        cont = 0;
+                        Element eventManagerElement = (Element) eventManagerList.item(i);
+
+                        String nomeStr = eventManagerElement.getElementsByTagName("name").item(0).getTextContent();
+                        System.out.println(nomeStr);
+
+                        String emailStr = eventManagerElement.getElementsByTagName("email").item(0).getTextContent();
+                        System.out.println(emailStr);
+
+                        String usernameStr = eventManagerElement.getElementsByTagName("username").item(0).getTextContent();
+                        System.out.println(usernameStr);
+
+                        String passwordStr = eventManagerElement.getElementsByTagName("password").item(0).getTextContent();
+                        System.out.println(passwordStr);
+
+                        User eventManager = new User(nomeStr, emailStr, usernameStr, passwordStr);
+                        for (int j = 0; j < eventCenter.getUserRegistry().size(); j++) {
+                            if (eventCenter.getUserRegistry().getUser(j).equals(eventManager)) {
+                                cont++;
+                            }
+                        }
+                        if (cont == 0) {
+                            eventCenter.getUserRegistry().addUser(eventManager);
+                        }
+                        eventCenter.getEventManagerList().addEventManager(new EventManager(eventManager));
+
+                    }
+                }
+
+                NodeList locations = title.getElementsByTagName("location");
+                String local;
+                if (locations.getLength() == 0) {
+                    local = "No location set";
+                } else {
+                    local = title.getElementsByTagName("location").item(0).getTextContent();
+                }
+
+                for (int i = 0; i < eventCenter.getLocationList().size(); i++) {
+                    if (eventCenter.getLocationList().getLocal(i).toString().equals(local)) {
+                        cont++;
+                    }
+                }
+                if (cont == 0) {
+                    eventCenter.getLocationList().addLocal(new Location(local));
+                }
+                exposicao1.setLocal(new Location(local));
                 exposicao1.setTitle(eventTitle);
                 NodeList stands = document.getElementsByTagName("stand");
                 StandRegistry standsList = eventCenter.getStandRegistry();
@@ -261,7 +324,7 @@ public class XMLReader {
                             System.out.println(passwordStr);
 
                             User eventEmployee = new User(nomeStr, emailStr, usernameStr, passwordStr);
-                            int cont = 0;
+                            cont = 0;
                             if (eventCenter.getUserRegistry().size() > 0) {
                                 for (int k = 0; k < eventCenter.getUserRegistry().size(); k++) {
                                     if (eventCenter.getUserRegistry().getUser(k).equals(eventEmployee)) {
@@ -365,7 +428,7 @@ public class XMLReader {
 
                                 User organizerU = new User(nomeStr, emailStr, usernameStr, passwordStr);
 
-                                int cont = 0;
+                                cont = 0;
                                 if (eventCenter.getUserRegistry().size() > 0) {
                                     for (int k = 0; k < eventCenter.getUserRegistry().size(); k++) {
                                         if (eventCenter.getUserRegistry().getUser(k).equals(organizerU)) {
@@ -394,9 +457,9 @@ public class XMLReader {
                 NodeList dateSet = document.getElementsByTagName("dates");
                 System.out.println(dateSet.getLength());
                 String eventBegin = "";
-                String eventEnd="";
-                String eventSubBeg="";
-                String eventSubEnd="";
+                String eventEnd = "";
+                String eventSubBeg = "";
+                String eventSubEnd = "";
                 if (dateSet.getLength() == 0) {
                     Date today = new Date();
                     int year = today.getYear() + 1900;
@@ -408,7 +471,7 @@ public class XMLReader {
                     eventSubEnd = (day + 5) + "-" + month + "-" + year;
 
                 } else {
-                    for(int i = 0; i < dateSet.getLength(); i++){
+                    for (int i = 0; i < dateSet.getLength(); i++) {
                         Element date = (Element) dateSet.item(i);
                         eventBegin = date.getElementsByTagName("eventBegin").item(0).getTextContent();
                         eventEnd = date.getElementsByTagName("eventEnd").item(0).getTextContent();

@@ -388,11 +388,11 @@ public class SubmitApplication extends javax.swing.JFrame {
         }
     }
     private void eventsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsComboBoxActionPerformed
-//        Event e = (Event) eventsComboBox.getSelectedItem();
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//        dateBeginLabel.setText(sdf.format(e.getEventBegin()));
-//        dateEndLabel.setText(sdf.format(e.getEventEnd()));
-//        locationLabel.setText(e.getLocal().toString());
+        Event e = (Event) eventsComboBox.getSelectedItem();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        dateBeginLabel.setText(sdf.format(e.getEventBegin()));
+        dateEndLabel.setText(sdf.format(e.getEventEnd()));
+        locationLabel.setText(e.getLocal().toString());
         revalidate();
     }//GEN-LAST:event_eventsComboBoxActionPerformed
 

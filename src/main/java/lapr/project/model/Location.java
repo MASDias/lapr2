@@ -22,7 +22,7 @@ public class Location implements Serializable{
 
     @Override
     public String toString(){
-        return "Address: " +address;
+        return address;
     }
     
     /**
