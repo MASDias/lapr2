@@ -26,6 +26,19 @@ public class KeyworListTest {
         int expectedResult = 2;
         assertEquals(size, expectedResult);
     }
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureAddKeywordMethodAddsUserToListIsValid() throws Exception {
+        KeywordList list1 = new KeywordList();
+        Keyword keyword = new Keyword("123456789");
+        list1.addKeyword(keyword);
+        boolean expectedResult = true;
+        boolean result=list1.validate(keyword);
+        assertNotEquals(result, expectedResult);
+    }
 
     /**
      *
