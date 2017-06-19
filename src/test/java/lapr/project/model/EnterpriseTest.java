@@ -43,4 +43,11 @@ public class EnterpriseTest {
         Object expectedResult = new Object();
         assertNotEquals(enterprise, expectedResult);
     }
+    @Test
+   public void EnsureAddUserMethodAddsenterpriseToListIndex() throws Exception {
+        Enterprise enterprise = new Enterprise("Paulo", null, null, 0, 0);
+        String result = enterprise.getName();
+        String expectedResult = "Paulo";
+        assertEquals(result, expectedResult);
+    }
 }
