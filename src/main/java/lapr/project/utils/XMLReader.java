@@ -40,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import lapr.project.model.Enterprise;
 import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
@@ -243,16 +244,12 @@ public class XMLReader {
                         Element eventManagerElement = (Element) eventManagerList.item(i);
 
                         String nomeStr = eventManagerElement.getElementsByTagName("name").item(0).getTextContent();
-                        System.out.println(nomeStr);
 
                         String emailStr = eventManagerElement.getElementsByTagName("email").item(0).getTextContent();
-                        System.out.println(emailStr);
 
                         String usernameStr = eventManagerElement.getElementsByTagName("username").item(0).getTextContent();
-                        System.out.println(usernameStr);
 
                         String passwordStr = eventManagerElement.getElementsByTagName("password").item(0).getTextContent();
-                        System.out.println(passwordStr);
 
                         User eventManager = new User(nomeStr, emailStr, usernameStr, passwordStr);
                         for (int j = 0; j < eventCenter.getUserRegistry().size(); j++) {
@@ -291,10 +288,8 @@ public class XMLReader {
                 for (int i = 0; i < stands.getLength(); i++) {
                     Element stand = (Element) stands.item(i);
                     String description = stand.getElementsByTagName("description").item(0).getTextContent();
-                    System.out.println("Description: " + description);
 
                     float area = Float.parseFloat(stand.getElementsByTagName("area").item(0).getTextContent());
-                    System.out.println("Area: " + area);
 
                     Stand s = new Stand(description, area);
                     standsList.addStand(s);
@@ -314,16 +309,12 @@ public class XMLReader {
                             Element user = (Element) users.item(j);
 
                             String nomeStr = user.getElementsByTagName("name").item(0).getTextContent();
-                            System.out.println(nomeStr);
 
                             String emailStr = user.getElementsByTagName("email").item(0).getTextContent();
-                            System.out.println(emailStr);
 
                             String usernameStr = user.getElementsByTagName("username").item(0).getTextContent();
-                            System.out.println(usernameStr);
 
                             String passwordStr = user.getElementsByTagName("password").item(0).getTextContent();
-                            System.out.println(passwordStr);
 
                             User eventEmployee = new User(nomeStr, emailStr, usernameStr, passwordStr);
                             cont = 0;
@@ -349,27 +340,27 @@ public class XMLReader {
                     }
                 }
 
-                ApplicationList applicationArrayList = exposicao1.getApplicationsList();
                 NodeList applicationSetList = document.getElementsByTagName("applicationSet");
                 for (int i = 0; i < applicationSetList.getLength(); i++) {
                     Element applicationSet = (Element) applicationSetList.item(i);
                     NodeList applicationList = applicationSet.getElementsByTagName("application");
                     for (int j = 0; j < applicationList.getLength(); j++) {
                         Element application = (Element) applicationList.item(j);
-
-                        boolean accepted = Boolean.getBoolean(application.getElementsByTagName("accepted").item(0).getTextContent());
+                        
+                        boolean accepted;
+                        if(application.getElementsByTagName("accepted").item(0).getTextContent().equals("true")){
+                            accepted = true;
+                        } else accepted = false;
                         System.out.println(accepted);
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
-                        System.out.println(description);
 
                         float area = Float.parseFloat(application.getElementsByTagName("boothArea").item(0).getTextContent());
-                        System.out.println(area);
+
 
                         int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
-                        System.out.println(invitesQuantity);
 
-                        Application app = new Application(accepted, null, invitesQuantity, description, area);
+                        Application app = new Application(accepted, new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
                             Element reviews = (Element) applicationList.item(k);
@@ -387,21 +378,17 @@ public class XMLReader {
                             }
                         }
                         NodeList keywords = application.getElementsByTagName("keywords");
-                        System.out.println("Keywords" + keywords.getLength());
                         for (int l = 0; l < keywords.getLength(); l++) {
 
                             Element keywordValue = (Element) keywords.item(l);
                             NodeList keywordSet = keywordValue.getElementsByTagName("keyword");
-                            System.out.println(keywordSet.getLength());
                             for (int p = 0; p < keywordSet.getLength(); p++) {
                                 String keyword = keywordValue.getElementsByTagName("keyword").item(p).getTextContent();
-                                System.out.println(keyword);
                                 app.getKeywordList().addKeyword(new Keyword(keyword));
                             }
                         }
-                        applicationArrayList.addApplication(app);
+                        exposicao1.getApplicationsList().addApplication(app);
                     }
-                    eventCenter.setApplicationList(applicationArrayList);
                 }
                 NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
                 for (int a = 0; a < OrganizerSet.getLength(); a++) {
@@ -417,16 +404,12 @@ public class XMLReader {
                                 Element user = (Element) users.item(j);
 
                                 String nomeStr = user.getElementsByTagName("name").item(0).getTextContent();
-                                System.out.println(nomeStr);
 
                                 String emailStr = user.getElementsByTagName("email").item(0).getTextContent();
-                                System.out.println(emailStr);
 
                                 String usernameStr = user.getElementsByTagName("username").item(0).getTextContent();
-                                System.out.println(usernameStr);
 
                                 String passwordStr = user.getElementsByTagName("password").item(0).getTextContent();
-                                System.out.println(passwordStr);
 
                                 User organizerU = new User(nomeStr, emailStr, usernameStr, passwordStr);
 
@@ -457,12 +440,10 @@ public class XMLReader {
                 }
 
                 NodeList dateSet = document.getElementsByTagName("dates");
-                System.out.println(dateSet.getLength());
                 String eventBegin = "";
                 String eventEnd = "";
                 String eventSubBeg = "";
                 String eventSubEnd = "";
-                System.out.println(new Date().toString().split("-")[0]);
                 if (dateSet.getLength() == 0) {
                     Date date = new Date();
                     Calendar calendar = new GregorianCalendar();
@@ -493,6 +474,10 @@ public class XMLReader {
                 exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
             }
             eventCenter.getEventRegistry().addEvent(exposicao1);
+            int cord = eventCenter.getEventRegistry().getEventList().indexOf(exposicao1);
+            for(int i = 0; i < eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().size(); i++){
+                System.out.println(eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().getApplication(i));
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Ficheiro não encontrado");
 

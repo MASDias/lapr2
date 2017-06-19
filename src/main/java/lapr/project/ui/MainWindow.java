@@ -10,6 +10,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
@@ -95,6 +96,8 @@ public class MainWindow extends javax.swing.JFrame {
         assignApplicationItem = new javax.swing.JMenuItem();
         jSeparator11 = new javax.swing.JPopupMenu.Separator();
         createStandMenuItem = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
+        showEventAcceptanceRateUI = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -246,6 +249,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(createStandMenuItem);
+        jMenu1.add(jSeparator12);
+
+        showEventAcceptanceRateUI.setText("Show Event Acceptance Rate");
+        showEventAcceptanceRateUI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEventAcceptanceRateUIActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showEventAcceptanceRateUI);
 
         jMenuBar1.add(jMenu1);
 
@@ -340,11 +352,13 @@ public class MainWindow extends javax.swing.JFrame {
         if (retrival == JFileChooser.APPROVE_OPTION) {
 
             SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+            FileOutputStream file = null;
             try {
                 Cipher cipher = Cipher.getInstance("blowfish");
                 cipher.init(Cipher.ENCRYPT_MODE, keyToMaximumScoreInLAPR);
                 SealedObject sealedObject = new SealedObject(eventCenter, cipher);
-                CipherOutputStream cipherOutputStream = new CipherOutputStream(new BufferedOutputStream(new FileOutputStream(fileChooser.getSelectedFile() + ".bin")), cipher);
+                file = new FileOutputStream(fileChooser.getSelectedFile() + ".bin");
+                CipherOutputStream cipherOutputStream = new CipherOutputStream(new BufferedOutputStream(file), cipher);
                 ObjectOutputStream outputStream = new ObjectOutputStream(cipherOutputStream);
                 outputStream.writeObject(sealedObject);
                 outputStream.close();
@@ -355,6 +369,15 @@ public class MainWindow extends javax.swing.JFrame {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 ex.printStackTrace();
+            } finally {
+                try {
+                    file.close();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                } catch (NullPointerException npx) {
+                    JOptionPane.showMessageDialog(null, "Problem with outputing to file");
+                }
+
             }
 
         }
@@ -370,10 +393,12 @@ public class MainWindow extends javax.swing.JFrame {
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
                 SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+                FileInputStream file = null;
                 try {
                     Cipher cipher = Cipher.getInstance("blowfish");
                     cipher.init(Cipher.DECRYPT_MODE, keyToMaximumScoreInLAPR);
-                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream(new FileInputStream(fileChooser.getSelectedFile())), cipher);
+                    file = new FileInputStream(fileChooser.getSelectedFile());
+                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream((file)), cipher);
                     ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
                     SealedObject sealedObject = (SealedObject) inputStream.readObject();
                     this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
@@ -382,6 +407,12 @@ public class MainWindow extends javax.swing.JFrame {
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
+                } finally {
+                    try {
+                        file.close();
+                    } catch (NullPointerException npx) {
+                        JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                    }
                 }
             }
         } catch (Exception ex) {
@@ -410,6 +441,10 @@ public class MainWindow extends javax.swing.JFrame {
         CreateStand createStand = new CreateStand(eventCenter);
     }//GEN-LAST:event_createStandMenuItemActionPerformed
 
+    private void showEventAcceptanceRateUIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventAcceptanceRateUIActionPerformed
+        ShowEventAcceptanceRateUI sear = new ShowEventAcceptanceRateUI(eventCenter);
+    }//GEN-LAST:event_showEventAcceptanceRateUIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem assignApplicationItem;
@@ -431,6 +466,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -442,6 +478,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenuItem registerMenuItem;
     private javax.swing.JMenuItem showEmployeeMeanRatingMenuItem;
+    private javax.swing.JMenuItem showEventAcceptanceRateUI;
     private javax.swing.JMenuItem showEventsSubmissionKeywordsMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
     private javax.swing.JLabel userNameLabel;

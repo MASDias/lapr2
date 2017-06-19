@@ -287,10 +287,10 @@ public class DefineOrganizer extends javax.swing.JFrame {
         event = (Event) eventComboBox.getSelectedItem();
 
         if (eventComboBox.getSelectedItem().toString().equals(event.toString())) {
-            JOptionPane.showMessageDialog(null, "Already Selected");
-        } else {
             modelOrganizersList.removeAllElements();
             updateOrganizerModel();
+        } else {
+            JOptionPane.showMessageDialog(null, "Already Selected");
         }
     }//GEN-LAST:event_eventComboBoxActionPerformed
 
@@ -300,7 +300,6 @@ public class DefineOrganizer extends javax.swing.JFrame {
             if (i < listOrganizers.size()) {
                 modelOrganizersList.addElement(listOrganizers.getOrganizer(i));
             }
-            modelUsersList.addElement(listUsers.getUser(i));
         }
     }
     

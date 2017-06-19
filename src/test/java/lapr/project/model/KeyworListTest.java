@@ -102,4 +102,48 @@ public class KeyworListTest {
         int expectedResult = 1;
         assertEquals(result, expectedResult);
     }
+    @Test
+    public void EnsureGetKeywordIsEqual() throws Exception {
+        KeywordList list = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list.addKeyword(k2);
+        list.setKeyword(0, k2);
+        Keyword result = list.getKeyword(0);
+        assertEquals(k2, result);
+    }
+     @Test
+    public void EnsureGetKeywordIsNotEqual() throws Exception {
+        KeywordList list = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list.addKeyword(k2);
+        list.setKeyword(0, k2);
+        Keyword result = list.getKeyword(0);
+        assertNotEquals(k1, result);
+    }
+     @Test
+    public void EnsureSetKeywordIsEqual() throws Exception {
+        KeywordList list = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list.addKeyword(k2);
+        list.setKeyword(0, k2);
+        Keyword result = list.getKeyword(0);
+        assertEquals(k2, result);
+    }
+     @Test
+    public void EnsureSetKeywordIsNotEqual() throws Exception {
+        KeywordList list = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list.addKeyword(k2);
+        list.setKeyword(0, k2);
+        Keyword result = list.getKeyword(0);
+        assertNotEquals(k1, result);
+    }
 }
