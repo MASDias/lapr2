@@ -12,9 +12,15 @@ package lapr.project.model;
 public class Assignment {
 
     private EventEmployee eventEmployee;
+    
 
     public Assignment(EventEmployee eventEmployee) {
         this.eventEmployee = eventEmployee;
     }
 
+    public EventEmployee getEventEmployee() {
+        return eventEmployee;
+    }
+
+    
 }

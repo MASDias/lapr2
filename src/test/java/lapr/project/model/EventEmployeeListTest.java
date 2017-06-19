@@ -56,6 +56,15 @@ public class EventEmployeeListTest {
         int result = list.size();
         assertEquals(result, expectedResult);
     }
-    
+    public void EnsureValidate() {
+        EventEmployeeList list = new EventEmployeeList();
+        User user = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        EventEmployee organizer = new EventEmployee(user,1);
+        list.addEmployee(organizer);
+        list.addEmployee(organizer);
+        int result = list.size();
+        int expectedResult = 1;
+        assertEquals(result, expectedResult);
+    }
     
 }

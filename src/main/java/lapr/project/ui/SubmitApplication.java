@@ -330,7 +330,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             for (int i = 0; i < modelKeyword.size(); i++) {
                 a.getKeywordList().addKeyword(modelKeyword.elementAt(i));
             }
-
+            eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0).getApplicationList().addApplication(a);
             dispose();
         }
 
