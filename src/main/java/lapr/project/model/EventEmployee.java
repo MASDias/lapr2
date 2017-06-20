@@ -10,7 +10,7 @@ public class EventEmployee implements Serializable {
 
     private static final long serialVersionUID = 1;
     private int experience;
-    private User eventEmployee;
+    private User employeeEvent;
 
     private ApplicationList applicationList;
 
@@ -20,7 +20,7 @@ public class EventEmployee implements Serializable {
      * @param experience
      */
     public EventEmployee(User eventEmployee, int experience) {
-        this.eventEmployee = eventEmployee;
+        this.employeeEvent = eventEmployee;
         this.experience = experience;
         this.applicationList = new ApplicationList();
     }
@@ -30,7 +30,7 @@ public class EventEmployee implements Serializable {
      * @return
      */
     public String getEmail() {
-        return eventEmployee.getEmail();
+        return employeeEvent.getEmail();
     }
 
     /**
@@ -38,7 +38,7 @@ public class EventEmployee implements Serializable {
      * @return
      */
     public String getUsername() {
-        return eventEmployee.getUserName();
+        return employeeEvent.getUserName();
     }
 
     /**
@@ -78,12 +78,12 @@ public class EventEmployee implements Serializable {
      * @return
      */
     public User getEmployee() {
-        return eventEmployee;
+        return employeeEvent;
     }
 
     @Override
     public String toString() {
-        return eventEmployee.toString() + " Experience: " + experience;
+        return employeeEvent.toString() + " Experience: " + experience;
     }
 
 }

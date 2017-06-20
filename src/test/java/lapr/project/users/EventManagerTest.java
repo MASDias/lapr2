@@ -5,6 +5,7 @@
  */
 package lapr.project.users;
 
+import lapr.project.model.EventEmployee;
 import lapr.project.model.EventManager;
 import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
@@ -72,5 +73,37 @@ public class EventManagerTest {
         String result = eventManager.toString();
         String expectedResult = "Name: Jame Username: juanjames Email: james@gmail.com";
         assertNotEquals(result, expectedResult);
+    }
+     @Test
+    public void EnsureGetEmployeeIsNotEqual() {
+        User user = new User("Z", "c", "b", "a");
+        EventManager eventmanager = new EventManager(user);
+        User user2 = eventmanager.getEventManager();
+        EventManager result = new EventManager(user2);
+        assertNotEquals(result, eventmanager);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetUserNameIsEqual() {
+        User user = new User("Z", "c", "b", "a");
+        User user2 = new User("T", "a", "o", "q");
+        EventManager eventmanager = new EventManager(user);
+        String result = eventmanager.getUsername();
+        assertNotEquals(result, user2);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetEmailIsEqual() {
+        User user = new User("Z", "c", "b", "a");
+        EventManager eventmanager = new EventManager(user);
+        String result = user.getEmail();
+        String expectedResult = eventmanager.getEmail();
+        assertEquals(result, expectedResult);
     }
 }

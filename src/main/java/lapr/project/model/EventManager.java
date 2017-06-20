@@ -14,14 +14,14 @@ import java.io.Serializable;
 public class EventManager implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private User eventManager;
+    private User managerEvent;
 
     /**
      *
      * @param eventManager
      */
     public EventManager(User eventManager) {
-        this.eventManager = eventManager;
+        this.managerEvent = eventManager;
     }
 
     /**
@@ -29,7 +29,7 @@ public class EventManager implements Serializable {
      * @return
      */
     public User getEventManager() {
-        return eventManager;
+        return managerEvent;
     }
 
     /**
@@ -37,7 +37,7 @@ public class EventManager implements Serializable {
      * @return
      */
     public String getUsername() {
-        return eventManager.getUserName();
+        return managerEvent.getUserName();
     }
 
     /**
@@ -45,11 +45,11 @@ public class EventManager implements Serializable {
      * @return
      */
     public String getEmail() {
-        return eventManager.getEmail();
+        return managerEvent.getEmail();
     }
 
     @Override
     public String toString() {
-        return eventManager.toString();
+        return managerEvent.toString();
     }
 }

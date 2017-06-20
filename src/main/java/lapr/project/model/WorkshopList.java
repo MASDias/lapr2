@@ -3,7 +3,6 @@ package lapr.project.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,13 +11,13 @@ import javax.swing.JOptionPane;
 public class WorkshopList implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private List<Workshop> workshopList;
+    private List<Workshop> listWorkshop;
 
     /**
      *
      */
     public WorkshopList() {
-        this.workshopList = new ArrayList<>();
+        this.listWorkshop = new ArrayList<>();
     }
 
     /**
@@ -27,7 +26,7 @@ public class WorkshopList implements Serializable {
      */
 
     private boolean validate(Workshop workshop) {
-        for (Workshop a : workshopList) {
+        for (Workshop a : listWorkshop) {
             if (a.equals(workshop)) {
                 return false;
             }
@@ -41,7 +40,7 @@ public class WorkshopList implements Serializable {
      */
     public void addWorkshop(Workshop workshop) {
         if (validate(workshop)) {
-            workshopList.add(workshop);
+            listWorkshop.add(workshop);
         }
     }
 
@@ -50,6 +49,6 @@ public class WorkshopList implements Serializable {
      * @return
      */
     public int size() {
-        return workshopList.size();
+        return listWorkshop.size();
     }
 }

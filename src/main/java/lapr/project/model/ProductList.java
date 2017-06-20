@@ -15,18 +15,18 @@ import java.util.List;
  */
 public class ProductList implements Serializable {
 
-    private List<Product> productList;
+    private List<Product> listProduct;
     private static final long serialVersionUID = 1;
 
     /**
      *
      */
     public ProductList() {
-        this.productList = new ArrayList<>();
+        this.listProduct = new ArrayList<>();
     }
 
     private boolean validate(Product product) {
-        for (Product u : productList) {
+        for (Product u : listProduct) {
             if (u.equals(product)) {
                 return false;
             }
@@ -40,7 +40,7 @@ public class ProductList implements Serializable {
      */
     public void addProduct(Product product) {
         if (validate(product)) {
-            productList.add(product);
+            listProduct.add(product);
         }
     }
 
@@ -49,7 +49,7 @@ public class ProductList implements Serializable {
      * @return
      */
     public int size() {
-        return productList.size();
+        return listProduct.size();
     }
 
     /**
@@ -58,6 +58,6 @@ public class ProductList implements Serializable {
      * @return
      */
     public Product getProduct(int index) {
-        return productList.get(index);
+        return listProduct.get(index);
     }
 }
