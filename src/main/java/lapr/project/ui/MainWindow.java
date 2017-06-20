@@ -53,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         initComponents();
         this.eventCenter = eventCenter;
-        //updateLogin();
+        updateLogin();
         this.setVisible(true);
 
     }
@@ -541,7 +541,6 @@ public class MainWindow extends javax.swing.JFrame {
         this.statisticsMenu = statisticsMenu;
     }
 
-    /*
     public void updateLogin() {
         System.out.println(loginStatus);
         if (!loginStatus) {
@@ -552,6 +551,9 @@ public class MainWindow extends javax.swing.JFrame {
             jSeparator4.setVisible(false); // v
             defineUser.setVisible(false); // v
             jSeparator5.setVisible(false); // v
+            defineEventManagerMenuItem.setVisible(false);
+            defineOrganizerMenuItem.setVisible(false);
+            defineEmployeeMenuItem.setVisible(false);
             createStandMenuItem.setVisible(false); // v
             jSeparator7.setVisible(false); // v
             submitApplicationMenuItem.setVisible(false); // v
@@ -604,6 +606,9 @@ public class MainWindow extends javax.swing.JFrame {
             if (organizerStatus) {
                 //Assign application
                 //Show event employee mean rating, show stand information
+                defineUser.setVisible(true);
+                jSeparator4.setVisible(true);
+                defineEmployeeMenuItem.setVisible(true);
                 statisticsMenu.setVisible(true);
                 jSeparator15.setVisible(true);
                 //--- Menu Item ---
@@ -632,7 +637,7 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         }
-    }*/
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem createEventMenuItem;

@@ -96,6 +96,12 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
 
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+
         loginImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,7 +136,7 @@ public class LoginUI extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(loginButton)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(loginImage, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -147,13 +153,17 @@ public class LoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idTextFieldActionPerformed
 
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+     loginConfirmation();       
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
     private void loginConfirmation() {
         mainWindow.setLoginStatus(false);
         mainWindow.setUserStatus(false);
         mainWindow.setOrganizerStatus(false);
         mainWindow.setEventEmployeeStatus(false);
         mainWindow.setEventManagerStatus(false);
-        //mainWindow.updateLogin();
+        mainWindow.updateLogin();
         UserRegistry userRegistry = eventCenter.getUserRegistry();
         String loginName = idTextField.getText();
         String passwordInfo = new String(passwordField.getPassword());
@@ -189,10 +199,6 @@ public class LoginUI extends javax.swing.JFrame {
         System.out.println("EventManager:" + eventManagerStatus);
         System.out.println("Login Status:" + loginStatus);
 
-//        if(loginStatus){
-//            mainWindow.createEventMenuItem.setVisible(false);
-//                    
-//        }
     }
 
     private boolean validateLoginStatus() {
@@ -202,7 +208,7 @@ public class LoginUI extends javax.swing.JFrame {
             mainWindow.setOrganizerStatus(isOrganizerStatus());
             mainWindow.setEventEmployeeStatus(isEventEmployeeStatus());
             mainWindow.setEventManagerStatus(isEventManagerStatus());
-//            mainWindow.updateLogin();
+            mainWindow.updateLogin();
             JOptionPane.showMessageDialog(null, "Success");
             return true;
         } else {
