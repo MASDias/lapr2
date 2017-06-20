@@ -88,10 +88,8 @@ public class LocationListTest {
      */
     @Test
     public void EnsureSameObjectsLocalListAreEqual() throws Exception {
-
         LocationList list = new LocationList();
         Location location = new Location("Rua do prego");
-
         list.addLocal(location);
         assertEquals(list, list);
     }

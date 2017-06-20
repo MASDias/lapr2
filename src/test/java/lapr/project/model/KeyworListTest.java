@@ -26,6 +26,17 @@ public class KeyworListTest {
         int expectedResult = 2;
         assertEquals(size, expectedResult);
     }
+       @Test
+    public void EnsureAddKeywordMethodDoesntAddLocalToList() throws Exception {
+        KeywordList list = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list.addKeyword(k2);
+        int size = list.size();
+        int expectedResult = 1;
+        assertNotEquals(size, expectedResult);
+    }
     /**
      *
      * @throws Exception
@@ -73,10 +84,8 @@ public class KeyworListTest {
      */
     @Test
     public void EnsureSameObjectsKeywordListAreEqual() throws Exception {
-
         KeywordList list = new KeywordList();
         Keyword keyword = new Keyword("123456789");
-
         list.addKeyword(keyword);
         assertEquals(list, list);
     }
@@ -93,6 +102,8 @@ public class KeyworListTest {
         k1.addKeyword(keyword);
         assertNotEquals(k1, k2);
     }
+    
+    
     public void EnsureValidate() {
         KeywordList list = new KeywordList();
         Keyword keyword = new Keyword ("123456789");
