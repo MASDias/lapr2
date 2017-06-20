@@ -224,7 +224,6 @@ public class XMLReader {
                         }
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
-                        System.out.println(description);
 
                         float area = Float.parseFloat(application.getElementsByTagName("boothArea").item(0).getTextContent());
 
@@ -240,7 +239,6 @@ public class XMLReader {
                                 Element review = (Element) reviewSet.item(l);
 
                                 String justificationText = review.getElementsByTagName("text").item(0).getTextContent();
-                                System.out.println(justificationText);
                                 int faeTopicKnowledge = Integer.parseInt(review.getElementsByTagName("faeTopicKnowledge").item(0).getTextContent());
                                 int eventAdequacy = Integer.parseInt(review.getElementsByTagName("eventAdequacy").item(0).getTextContent());
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());

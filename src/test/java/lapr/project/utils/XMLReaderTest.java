@@ -68,7 +68,7 @@ public class XMLReaderTest {
     public void EnsureTestFilePathIsEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.1.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = true;
+        boolean expectedResult = false;
         assertEquals(result,expectedResult);
     }
     
@@ -76,23 +76,31 @@ public class XMLReaderTest {
     public void EnsureTestFilePathIsNotEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.1.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertNotEquals(result,expectedResult);
     }
     
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureFilePathTestingWorksInConstrutorIsEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = true;
+        boolean expectedResult = false;
         assertEquals(result,expectedResult);
     }
     
-        @Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
     public void EnsureFilePathTestingWorksInConstrutorIsNotEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertNotEquals(result,expectedResult);
     }
 }
