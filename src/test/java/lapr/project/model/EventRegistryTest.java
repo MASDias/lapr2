@@ -121,9 +121,24 @@ public class EventRegistryTest {
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
         Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        ArrayList<Event> expectedResult = result.getEventList();
         result.addEvent(event);
-        ArrayList<Event> expectedResult = result.getEventList();       
         assertNotEquals(result, expectedResult);
+    }
+    
+        @Test
+    public void EnsureGetEventListMethodIsEqual() throws Exception {
+        EventRegistry result = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        result.addEvent(event);
+        ArrayList<Event> resultA = new ArrayList<>();
+        resultA.add(event);
+        ArrayList<Event> expectedResult = result.getEventList();
+        assertEquals(resultA, expectedResult);
     }
 
    

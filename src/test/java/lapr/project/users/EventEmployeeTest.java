@@ -11,6 +11,7 @@ import java.util.Locale;
 import lapr.project.model.ApplicationList;
 import lapr.project.model.Event;
 import lapr.project.model.EventEmployee;
+import lapr.project.model.EventEmployeeList;
 import lapr.project.model.Location;
 import lapr.project.model.User;
 import static org.junit.Assert.assertEquals;
@@ -165,19 +166,21 @@ public class EventEmployeeTest {
         String expectedResult = employee.getEmail();
         assertEquals(result, expectedResult);
     }
-     /**
+
+    /**
      *
      */
     @Test
     public void EnsureGetEmailIsNotEqual() {
         User user = new User("Z", "c", "b", "a");
-        User user2 = new User ("T", "a", "o", "q");
+        User user2 = new User("T", "a", "o", "q");
         EventEmployee employee = new EventEmployee(user2, 1);
         String result = user.getEmail();
         String expectedResult = employee.getEmail();
         assertNotEquals(result, expectedResult);
     }
-     @Test
+
+    @Test
     public void EnsureSetApplicationsListIsEqual() throws Exception {
         ApplicationList result = new ApplicationList();
 
@@ -186,10 +189,11 @@ public class EventEmployeeTest {
         Date end = sdf.parse("01/30/2017");
         Location local = new Location("Example Street");
         Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
-        User user2 = new User ("T", "a", "o", "q");
+        User user2 = new User("T", "a", "o", "q");
         EventEmployee employee = new EventEmployee(user2, 1);
         employee.setApplicationList(result);
         ApplicationList expectedResult = employee.getApplicationList();
         assertEquals(expectedResult, result);
     }
+
 }
