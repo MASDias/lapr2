@@ -53,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         initComponents();
         this.eventCenter = eventCenter;
-        updateLogin();
+//        updateLogin();
         this.setVisible(true);
 
     }
@@ -75,6 +75,7 @@ public class MainWindow extends javax.swing.JFrame {
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         LoggoutMenuItem = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
         registerMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         createEventMenuItem = new javax.swing.JMenuItem();
@@ -137,6 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
         menu.add(loginMenuItem);
         menu.add(jSeparator3);
 
+        LoggoutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Log-Out-icon.png"))); // NOI18N
         LoggoutMenuItem.setText("Logout");
         LoggoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +146,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menu.add(LoggoutMenuItem);
+        menu.add(jSeparator10);
 
         registerMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-user-group-new-icon.png"))); // NOI18N
         registerMenuItem.setMnemonic('M');
@@ -525,7 +528,7 @@ public class MainWindow extends javax.swing.JFrame {
             setOrganizerStatus(false);
             setEventEmployeeStatus(false);
             setEventManagerStatus(false);
-            updateLogin();
+           // updateLogin();
             userNameLabel.setText("");
         }
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
@@ -561,21 +564,24 @@ public class MainWindow extends javax.swing.JFrame {
     public void setStatisticsMenu(JMenu statisticsMenu) {
         this.statisticsMenu = statisticsMenu;
     }
-
+/*
     public void updateLogin() {
         if (!loginStatus) {
             loginMenuItem.setVisible(true);
-            LoggoutMenuItem.setVisible(false);
             jSeparator3.setVisible(true);
+            LoggoutMenuItem.setVisible(false);
+            jSeparator10.setVisible(false);
             registerMenuItem.setVisible(true); // v
             jSeparator1.setVisible(false);
             createEventMenuItem.setVisible(false); // v
             jSeparator4.setVisible(false); // v
             defineUser.setVisible(false); // v
             jSeparator5.setVisible(false); // v
+            //--- Menu Item ---
             defineEventManagerMenuItem.setVisible(false);
             defineOrganizerMenuItem.setVisible(false);
             defineEmployeeMenuItem.setVisible(false);
+            //--- End Menu Item ---
             createStandMenuItem.setVisible(false); // v
             jSeparator7.setVisible(false); // v
             submitApplicationMenuItem.setVisible(false); // v
@@ -597,8 +603,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         } else {
             loginMenuItem.setVisible(false);
-            LoggoutMenuItem.setVisible(true);
             jSeparator3.setVisible(false);
+            LoggoutMenuItem.setVisible(true);
+            jSeparator10.setVisible(true);
             registerMenuItem.setVisible(false);
             jSeparator8.setVisible(true);
             helpMenuItem.setVisible(true);
@@ -634,7 +641,6 @@ public class MainWindow extends javax.swing.JFrame {
                 //Assign application
                 //Show event employee mean rating, show stand information
                 defineUser.setVisible(true);
-                jSeparator4.setVisible(true);
                 defineEmployeeMenuItem.setVisible(true);
                 statisticsMenu.setVisible(true);
                 jSeparator15.setVisible(true);
@@ -650,21 +656,19 @@ public class MainWindow extends javax.swing.JFrame {
             if (eventEmployeeStatus) {
                 //Decide application
                 decideApplicationItem.setVisible(true);
-                jSeparator2.setVisible(true);
+                //jSeparator2.setVisible(true);
             }
             if (userStatus) {
                 //Submit Application
 
                 if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
                     submitApplicationMenuItem.setVisible(true);
-                    jSeparator7.setVisible(true);
                 } else {
                     submitApplicationMenuItem.setVisible(false);
-                    jSeparator7.setVisible(false);
                 }
             }
         }
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;
@@ -684,6 +688,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;

@@ -24,11 +24,16 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="LoggoutMenuItem">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Log-Out-icon.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoggoutMenuItemActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator10">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="registerMenuItem">
               <Properties>

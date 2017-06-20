@@ -6,7 +6,11 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ShowGlobalMeanRatingController;
+import lapr.project.model.Application;
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventEmployee;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.Review;
 
 /**
  *
@@ -16,16 +20,23 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ShowGlobalMeanRatingController controller;
-    
+    private EventRegistry listEvents;
+    private float globalRate;
+
     /**
      * Creates new form ShowGlobalMeanRatingUI
+     *
      * @param eventCenter
      */
     public ShowGlobalMeanRatingUI(EventCenter eventCenter) {
         controller = new ShowGlobalMeanRatingController(eventCenter);
         initComponents();
+
+        listEvents = controller.getEventsList();
+
+        globalRate = calculateGobalMeanRating();
         
-        
+        globalMeanRatingLabel.setText(String.valueOf(globalRate));
         
         setVisible(true);
     }
@@ -40,7 +51,7 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        closeBtn = new javax.swing.JButton();
         globalMeanRatingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -49,10 +60,10 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
 
         jLabel1.setText("Global Mean Rating:");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        closeBtn.setText("Close");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                closeBtnActionPerformed(evt);
             }
         });
 
@@ -69,7 +80,7 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
                         .addComponent(globalMeanRatingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(closeBtn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -82,7 +93,7 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
                         .addGap(0, 3, Short.MAX_VALUE))
                     .addComponent(globalMeanRatingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(closeBtn)
                 .addContainerGap())
         );
 
@@ -90,14 +101,35 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_closeBtnActionPerformed
 
+    private float calculateGobalMeanRating() {
+        float meanRating = 0;
+        float finalRate = 0;
+        int counter = 0;
+
+        for (int i = 0; i < listEvents.size(); i++) {
+            lapr.project.model.Event e = listEvents.getEvent(i);
+            for (int j = 0; j < e.getApplicationsList().size(); j++) {
+                Application application = e.getApplicationsList().getApplication(j);
+                for (int k = 0; k < application.getReviewList().size(); k++) {
+                    Review review = application.getReviewList().get(k);
+                    meanRating += (review.getMeanValue());
+                    counter++;
+
+                }
+            }
+        }
+        finalRate = meanRating / counter;
+
+        return finalRate;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton closeBtn;
     private javax.swing.JLabel globalMeanRatingLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
