@@ -128,7 +128,7 @@ public class KeyworListTest {
         Keyword keyword = new Keyword ("123456789");
         list.addKeyword(keyword);
         boolean result = list.validate(keyword);
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertNotEquals(result, expectedResult);
     }
     @Test
