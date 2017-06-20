@@ -40,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import lapr.project.model.Assignment;
 import lapr.project.model.Enterprise;
 import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
@@ -381,8 +382,39 @@ public class XMLReader {
                                 int eventAdequacy = Integer.parseInt(review.getElementsByTagName("eventAdequacy").item(0).getTextContent());
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
                                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
+                                Review reviewO = new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation);
 
-                                app.addEvaluation(new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation));
+                                NodeList faesAssignment = review.getElementsByTagName("assignment");
+                                ArrayList<EventEmployee> eventEmployeeArrayList = new ArrayList<>();
+                                for (int m = 0; m < faesAssignment.getLength(); m++) {
+                                    Element faeSet = (Element) faesAssignment.item(m);
+
+                                    NodeList faesAssignElement = faeSet.getElementsByTagName("fae");
+                                    for (int n = 0; n < faesAssignElement.getLength(); n++) {
+                                        Element faeX = (Element) faesAssignElement.item(n);
+
+                                        NodeList userList = faeX.getElementsByTagName("user");
+                                        for (int o = 0; o < userList.getLength(); o++) {
+                                            Element userElement = (Element) userList.item(o);
+
+                                            String nomeStr = userElement.getElementsByTagName("name").item(0).getTextContent();
+
+                                            String emailStr = userElement.getElementsByTagName("email").item(0).getTextContent();
+
+                                            String usernameStr = userElement.getElementsByTagName("username").item(0).getTextContent();
+
+                                            String passwordStr = userElement.getElementsByTagName("password").item(0).getTextContent();
+
+                                            eventEmployeeArrayList.add(new EventEmployee(new User(nomeStr,emailStr,usernameStr,passwordStr), 0));
+                                        }
+                                    }
+                                }
+                                for (int m = 0; m < eventEmployeeArrayList.size(); m++) {
+                                    reviewO.setAssignment(new Assignment(eventEmployeeArrayList.get(m)));
+                                }
+                                    
+                                app.addEvaluation(reviewO);
+
                             }
                         }
                         NodeList keywords = application.getElementsByTagName("keywords");

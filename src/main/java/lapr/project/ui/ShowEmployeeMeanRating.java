@@ -20,7 +20,8 @@ import lapr.project.model.Review;
  * @author Miguel Santos <1161386@isep.ipp.pt>
  */
 public class ShowEmployeeMeanRating extends javax.swing.JFrame {
-private static final long serialVersionUID = 1;
+
+    private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private ShowEmployeeMeanRatingController controller;
     private Event event;
@@ -31,22 +32,23 @@ private static final long serialVersionUID = 1;
 
     /**
      * Creates new form ShowFaeMeanRating
+     *
      * @param eventCenter
      */
     public ShowEmployeeMeanRating(EventCenter eventCenter) {
-        this.eventCenter = eventCenter;
+        //this.eventCenter = eventCenter;
         controller = new ShowEmployeeMeanRatingController(eventCenter);
         initComponents();
-        
+
         employeeJList.setModel(modelListEmployees);
-        
+
         listEvents = controller.getEventsList();
         for (int i = 0; i < listEvents.size(); i++) {
             event = listEvents.getEvent(i);
             listEmployees = event.getEventEmployeeList();
             for (int j = 0; j < listEmployees.size(); j++) {
                 modelListEmployees.addElement(event.getEventEmployeeList().getEmployee(j));
-                
+
             }
         }
         setVisible(true);
@@ -174,7 +176,7 @@ private static final long serialVersionUID = 1;
         meanRatingLabel.setText(String.valueOf(meanRating));
     }//GEN-LAST:event_selectEmployeeBtnActionPerformed
 
-    private float calculateFAEMeanRating(EventEmployee eventEmployee){
+    private float calculateFAEMeanRating(EventEmployee eventEmployee) {
         float meanRating = 0;
         float finalRate = 0;
         int counter = 0;
@@ -182,14 +184,15 @@ private static final long serialVersionUID = 1;
             Application employeeApplication = eventEmployee.getApplicationList().getApplication(i);
             for (int j = 0; j < employeeApplication.getReviewList().size(); j++) {
                 Review applicationReview = employeeApplication.getReviewList().get(j);
-                if(applicationReview.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())){
-                meanRating += (applicationReview.getMeanValue());
-                counter++;    
+                System.out.println(applicationReview.toString());
+                if (applicationReview.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
+                    meanRating += (applicationReview.getMeanValue());
+                    counter++;
                 }
             }
-        }    
-        finalRate = meanRating/counter;    
-        
+        }
+        finalRate = meanRating / counter;
+
         return finalRate;
     }
 

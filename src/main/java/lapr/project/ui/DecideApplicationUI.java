@@ -36,44 +36,43 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private UserRegistry listUsers;
     private EventRegistry listEvents;
     private Assignment assignment;
+    private Event ev;
 
     /**
      * Creates new form DecideApplicationUI
      *
      * @param logedUser
      * @param eventCenter
-     * @param 
+     * @param
      * @throws java.text.ParseException
      */
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
         initComponents();
-        this.logedUser = logedUser;
-        this.controller = new DecideApplicationController(eventCenter);
-        
         try {
+            this.logedUser = logedUser;
+            this.controller = new DecideApplicationController(eventCenter);
+
             listUsers = controller.getUsersList();
             listEvents = controller.getEventsList();
             for (int i = 0; i < listEvents.size(); i++) {
-                Event ev = listEvents.getEvent(i);
+                ev = listEvents.getEvent(i);
                 for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
                     if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
                         eventEmployee = ev.getEventEmployeeList().getEmployee(j);
                     }
                 }
-            }          
-            
+            }
+
             applicationList = eventEmployee.getApplicationList();
             applicationJList.setModel(modelApplicationList);
-            for (int i = 0; i < applicationList.size(); i++) {
-                modelApplicationList.addElement(applicationList.getApplication(i));
-            }
+
+            initLists();
+            this.setVisible(true);
         } catch (NullPointerException expt) {
-            JOptionPane.showMessageDialog(null, "There isn't a Event Employee");
+            JOptionPane.showMessageDialog(null, "You haven't logged in and/or you are not an Event Employee");
             this.dispose();
         }
 
-        initLists();
-        this.setVisible(true);
     }
 
     private void initLists() {
@@ -361,7 +360,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         enterpriseNameTextField.setText(applicationJList.getSelectedValue().getEnterprise().getName());
         descriptionTextArea.setText(applicationJList.getSelectedValue().getDescription());
         invitationTextField.setText(String.valueOf(applicationJList.getSelectedValue().getInvites()));
-//        eventNameTextField.setText(applicationJList.getSelectedValue().getTitle());
+        eventNameTextField.setText(ev.getTitle());
     }//GEN-LAST:event_chooseApplicationBtnActionPerformed
 
     private void AcceptedRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptedRadiobtnActionPerformed
