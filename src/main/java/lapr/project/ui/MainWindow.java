@@ -53,9 +53,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         initComponents();
         this.eventCenter = eventCenter;
-        updateLogin();
+        //updateLogin();
         this.setVisible(true);
-        
+
     }
 
     /**
@@ -488,21 +488,21 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void importXmlFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importXmlFileMenuItemActionPerformed
         try {
-            
+
             JFileChooser fileChooser = new JFileChooser();
-            
+
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
-            if (retrival == JFileChooser.APPROVE_OPTION) {              
-                
+            if (retrival == JFileChooser.APPROVE_OPTION) {
+
                 try {
                     File file = fileChooser.getSelectedFile();
-                     XMLReader xmlFile = new XMLReader(file.getAbsolutePath());
-                     eventCenter = xmlFile.readValuesFromXML(eventCenter);
+                    XMLReader xmlFile = new XMLReader(file.getAbsolutePath());
+                    eventCenter = xmlFile.readValuesFromXML(eventCenter);
                     JOptionPane.showMessageDialog(null, "All data imported!");
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                } 
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -540,9 +540,8 @@ public class MainWindow extends javax.swing.JFrame {
     public void setStatisticsMenu(JMenu statisticsMenu) {
         this.statisticsMenu = statisticsMenu;
     }
-    
-    
 
+    /*
     public void updateLogin() {
         System.out.println(loginStatus);
         if (!loginStatus) {
@@ -623,11 +622,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
             if (userStatus) {
                 //Submit Application
-                jSeparator7.setVisible(true);
-                submitApplicationMenuItem.setVisible(true);
+
+                if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
+                    submitApplicationMenuItem.setVisible(true);
+                    jSeparator7.setVisible(true);
+                } else {
+                    submitApplicationMenuItem.setVisible(false);
+                    jSeparator7.setVisible(false);
+                }
             }
         }
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuItem createEventMenuItem;

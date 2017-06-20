@@ -153,7 +153,7 @@ public class LoginUI extends javax.swing.JFrame {
         mainWindow.setOrganizerStatus(false);
         mainWindow.setEventEmployeeStatus(false);
         mainWindow.setEventManagerStatus(false);
-        mainWindow.updateLogin();
+        //mainWindow.updateLogin();
         UserRegistry userRegistry = eventCenter.getUserRegistry();
         String loginName = idTextField.getText();
         String passwordInfo = new String(passwordField.getPassword());
@@ -202,7 +202,7 @@ public class LoginUI extends javax.swing.JFrame {
             mainWindow.setOrganizerStatus(isOrganizerStatus());
             mainWindow.setEventEmployeeStatus(isEventEmployeeStatus());
             mainWindow.setEventManagerStatus(isEventManagerStatus());
-            mainWindow.updateLogin();
+//            mainWindow.updateLogin();
             JOptionPane.showMessageDialog(null, "Success");
             return true;
         } else {

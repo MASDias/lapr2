@@ -193,8 +193,6 @@ public class XMLReader {
                                     }
                                     if (cont == 0) {
                                         eventCenter.getUserRegistry().addUser(eventEmployee);
-                                    } else {
-                                        System.out.println("User already exists.");
                                     }
 
                                 }
@@ -221,7 +219,6 @@ public class XMLReader {
                         } else {
                             accepted = false;
                         }
-                        System.out.println(accepted);
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
 
@@ -231,11 +228,6 @@ public class XMLReader {
 
                         Application app = new Application(new Enterprise(null, null, null, 0, 0), invitesQuantity, description, area);
                         app.setDecision(accepted);
-                        if (accepted) {
-                            System.out.println("AVALIADA");
-                            System.out.println(app.isDecision());
-                            app.setEvaluated(true);
-                        }
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
                             Element reviews = (Element) applicationList.item(k);
@@ -327,8 +319,6 @@ public class XMLReader {
                                         }
                                         if (cont == 0) {
                                             eventCenter.getUserRegistry().addUser(organizerU);
-                                        } else {
-                                            System.out.println("User already exists.");
                                         }
 
                                     }
@@ -380,12 +370,8 @@ public class XMLReader {
                 exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
             }
             eventCenter.getEventRegistry().addEvent(exposicao1);
-            int cord = eventCenter.getEventRegistry().getEventList().indexOf(exposicao1);
-            for (int i = 0; i < eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().size(); i++) {
-                System.out.println(eventCenter.getEventRegistry().getEventList().get(cord).getApplicationsList().getApplication(i));
-            }
         } catch (FileNotFoundException e) {
-            System.out.println("Ficheiro não encontrado");
+            System.out.println("Ficheiro nÃ£o encontrado");
 
         } catch (IOException e) {
 
