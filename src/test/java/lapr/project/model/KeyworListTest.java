@@ -123,6 +123,14 @@ public class KeyworListTest {
         boolean expectedResult = false;
         assertEquals(result, expectedResult);
     }
+    public void EnsureinValidate() {
+        KeywordList list = new KeywordList();
+        Keyword keyword = new Keyword ("123456789");
+        list.addKeyword(keyword);
+        boolean result = list.validate(keyword);
+        boolean expectedResult = false;
+        assertNotEquals(result, expectedResult);
+    }
     @Test
     public void EnsureGetKeywordIsEqual() throws Exception {
         KeywordList list = new KeywordList();

@@ -71,36 +71,41 @@ public class StandRegistryTest {
         Object expectedResult = new Object();
         assertNotEquals(result, expectedResult);
     }
+
     @Test
     public void EnsureValidate() {
         StandRegistry list = new StandRegistry();
-        Stand stand = new Stand("adsda",312312);
+        Stand stand = new Stand("adsda", 312312);
         list.addStand(stand);
         list.addStand(stand);
         int result = list.size();
         int expectedResult = 1;
         assertEquals(result, expectedResult);
     }
+
     @Test
-   public void EnsureIndex() throws Exception {
+    public void EnsureIndex() throws Exception {
         StandRegistry list = new StandRegistry();
-        Stand result = new Stand("adsda",312312);
+        Stand result = new Stand("adsda", 312312);
         list.addStand(result);
         Stand expectedResult = list.getStand(0);
         assertEquals(result, expectedResult);
     }
-   @Test
-   public void EnsureSort() throws Exception {
+
+    @Test
+    public void EnsureSort() throws Exception {
         StandRegistry list = new StandRegistry();
-        Stand result = new Stand("adsda",10);
-        Stand result2 = new Stand("adsda",20);
-        Stand result3 = new Stand("adsda",30);
+        Stand result = new Stand("adsda", 10);
+        Stand result2 = new Stand("adsda", 20);
+        Stand result3 = new Stand("adsda", 30);
         list.addStand(result2);
         list.addStand(result3);
         list.addStand(result);
         list.sort();
+        StandRegistry expe = new StandRegistry();
+        expe = list;
         float results = list.getStand(0).getArea();
         float expectedResult = 10;
-        assertEquals(results, expectedResult,0);
+        assertEquals(results, expectedResult, 0);
     }
 }

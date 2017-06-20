@@ -15,17 +15,17 @@ import java.util.List;
  */
 public class OrganizersList implements Serializable{
 private static final long serialVersionUID = 1;
-    private List<Organizer> organizersList;
+    private List<Organizer> listOrganizers;
 
     /**
      *
      */
     public OrganizersList() {
-        this.organizersList = new ArrayList<>();
+        this.listOrganizers = new ArrayList<>();
     }
 
     private boolean validate(Organizer organizer) {
-        for (Organizer o : organizersList) {
+        for (Organizer o : listOrganizers) {
             if (o.equals(organizer)) {
                 return false;
             }
@@ -39,7 +39,7 @@ private static final long serialVersionUID = 1;
      */
     public void addOrganizer(Organizer organizer) {
         if (validate(organizer)) {
-            organizersList.add(organizer);
+            listOrganizers.add(organizer);
         } 
     }
 
@@ -48,7 +48,7 @@ private static final long serialVersionUID = 1;
      * @return
      */
     public int size() {
-        return organizersList.size();
+        return listOrganizers.size();
     }
     
     /**
@@ -57,7 +57,7 @@ private static final long serialVersionUID = 1;
      * @return
      */
     public Organizer getOrganizer(int index){
-        return organizersList.get(index);
+        return listOrganizers.get(index);
     }
     
   
@@ -66,6 +66,6 @@ private static final long serialVersionUID = 1;
      * @param o
      */
     public void removeOrganizer(Organizer o){
-        organizersList.remove(o);
+        listOrganizers.remove(o);
     }
 }

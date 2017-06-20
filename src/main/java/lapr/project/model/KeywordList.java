@@ -16,20 +16,20 @@ import java.util.List;
 public class KeywordList implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private List<Keyword> keywordList;
+    private List<Keyword> listKeywords;
 
     /**
      *
      */
     public KeywordList() {
-        this.keywordList = new ArrayList<>();
+        this.listKeywords = new ArrayList<>();
     }
     
     public void setKeyword(int index, Keyword keyword){
-        this.keywordList.set(index, keyword);
+        this.listKeywords.set(index, keyword);
     }
     public boolean validate(Keyword keyword) {
-        for (Keyword u : keywordList) {
+        for (Keyword u : listKeywords) {
             if (u.equals(keyword)) {
                 return false;
             }
@@ -42,7 +42,7 @@ public class KeywordList implements Serializable {
      * @param keyword
      */
     public void addKeyword(Keyword keyword) {
-        keywordList.add(keyword);
+        listKeywords.add(keyword);
     }
 
     /**
@@ -50,7 +50,7 @@ public class KeywordList implements Serializable {
      * @return
      */
     public int size() {
-        return keywordList.size();
+        return listKeywords.size();
     }
 
     /**
@@ -59,6 +59,6 @@ public class KeywordList implements Serializable {
      * @return
      */
     public Keyword getKeyword(int index) {
-        return keywordList.get(index);
+        return listKeywords.get(index);
     }
 }

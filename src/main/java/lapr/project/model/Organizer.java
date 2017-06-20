@@ -10,14 +10,14 @@ public class Organizer implements Serializable {
 
     private static final long serialVersionUID = 1;
     private EventRegistry eventRegistry;
-    private User organizer;
+    private User eventOrganizer;
 
     /**
      *
      * @param organizer
      */
     public Organizer(User organizer) {
-        this.organizer = organizer;
+        this.eventOrganizer = organizer;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Organizer implements Serializable {
      * @return
      */
     public User getOrganizer() {
-        return organizer;
+        return eventOrganizer;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Organizer implements Serializable {
      * @return
      */
     public String getEmail() {
-        return organizer.getEmail();
+        return eventOrganizer.getEmail();
     }
 
     /**
@@ -57,12 +57,12 @@ public class Organizer implements Serializable {
      * @return
      */
     public String getUsername() {
-        return organizer.getUserName();
+        return eventOrganizer.getUserName();
     }
 
     @Override
     public String toString() {
-        return organizer.toString();
+        return eventOrganizer.toString();
     }
 
 }
