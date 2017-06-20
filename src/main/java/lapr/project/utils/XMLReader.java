@@ -221,6 +221,7 @@ public class XMLReader {
                         }
 
                         String description = application.getElementsByTagName("description").item(0).getTextContent();
+                        System.out.println(description);
 
                         float area = Float.parseFloat(application.getElementsByTagName("boothArea").item(0).getTextContent());
 
@@ -230,12 +231,13 @@ public class XMLReader {
                         app.setDecision(accepted);
                         NodeList reviewsList = application.getElementsByTagName("reviews");
                         for (int k = 0; k < reviewsList.getLength(); k++) {
-                            Element reviews = (Element) applicationList.item(k);
+                            Element reviews = (Element) reviewsList.item(k);
                             NodeList reviewSet = reviews.getElementsByTagName("review");
                             for (int l = 0; l < reviewSet.getLength(); l++) {
                                 Element review = (Element) reviewSet.item(l);
 
                                 String justificationText = review.getElementsByTagName("text").item(0).getTextContent();
+                                System.out.println(justificationText);
                                 int faeTopicKnowledge = Integer.parseInt(review.getElementsByTagName("faeTopicKnowledge").item(0).getTextContent());
                                 int eventAdequacy = Integer.parseInt(review.getElementsByTagName("eventAdequacy").item(0).getTextContent());
                                 int inviteAdequacy = Integer.parseInt(review.getElementsByTagName("inviteAdequacy").item(0).getTextContent());
