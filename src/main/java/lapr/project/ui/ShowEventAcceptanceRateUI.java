@@ -9,8 +9,7 @@ import lapr.project.controller.ShowEventAcceptanceRateController;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
-
-
+import lapr.project.model.ShowEventAcceptanceRate;
 
 /**
  *
@@ -21,6 +20,7 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private ShowEventAcceptanceRateController controller;
     private EventRegistry listEvents;
+    private ShowEventAcceptanceRate showEventAcceptanceRate;
     private Event event;
     private float acceptanceRate;
     private int total;
@@ -151,14 +151,17 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
 
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
         event = (Event) eventComboBox.getSelectedItem();
-        acceptanceRate = controller.calculateEventAcceptanceRate(event);
-        total = controller.getTotal();
-        accepted = controller.getAccepted();
+        showEventAcceptanceRate = new ShowEventAcceptanceRate(event);
+
+        total = showEventAcceptanceRate.getTotal();
+        accepted = showEventAcceptanceRate.getAccepted();
+        double acceptanceRate = showEventAcceptanceRate.getAcceptanceRate();
         acceptedLabel.setText(String.valueOf(accepted));
         totalLabel.setText(String.valueOf(total));
-        acceptanceRateLabel.setText(String.valueOf(acceptanceRate) + "%");
+        acceptanceRateLabel.setText(String.format("%.2f %%",acceptanceRate));
         revalidate();
     }//GEN-LAST:event_eventComboBoxActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
