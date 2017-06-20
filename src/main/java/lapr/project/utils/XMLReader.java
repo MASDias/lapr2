@@ -32,11 +32,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lapr.project.model.Assignment;
 import lapr.project.model.Enterprise;
 import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
+import lapr.project.ui.MainWindow;
 
 /**
  *
@@ -49,12 +52,11 @@ public class XMLReader {
      */
     private String filepathXML = "";
 
-
     /**
      *
      */
     private final String DEFAULT_FILENAME_XML = "xml/exposicao1_v0.1.xml";
-    
+
     /**
      *
      * @param fileXML
@@ -74,6 +76,7 @@ public class XMLReader {
     public XMLReader() {
         filepathXML = DEFAULT_FILENAME_XML;
     }
+
     public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, ParseException {
         try {
             eventCenter = new EventCenter();
@@ -265,14 +268,14 @@ public class XMLReader {
 
                                             String passwordStr = userElement.getElementsByTagName("password").item(0).getTextContent();
 
-                                            eventEmployeeArrayList.add(new EventEmployee(new User(nomeStr,emailStr,usernameStr,passwordStr), 0));
+                                            eventEmployeeArrayList.add(new EventEmployee(new User(nomeStr, emailStr, usernameStr, passwordStr), 0));
                                         }
                                     }
                                 }
                                 for (int m = 0; m < eventEmployeeArrayList.size(); m++) {
                                     reviewO.setAssignment(new Assignment(eventEmployeeArrayList.get(m)));
                                 }
-                                    
+
                                 app.addEvaluation(reviewO);
 
                             }
@@ -291,8 +294,9 @@ public class XMLReader {
                     }
                 }
                 NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
-                for (int a = 0; a < OrganizerSet.getLength(); a++) {
-                    if (OrganizerSet.getLength() > 0) {
+
+                if (OrganizerSet.getLength() > 0) {
+                    for (int a = 0; a < OrganizerSet.getLength(); a++) {
                         Element organizerSet = (Element) OrganizerSet.item(a);
                         NodeList organizers = organizerSet.getElementsByTagName("Organizer");
 
@@ -332,9 +336,42 @@ public class XMLReader {
                             }
                         }
 
-                    } else {
-                        break;
                     }
+                } else {
+                    User organizerU = new User("Organizer 1", "organizer1@event.pt", "organizer1", "organizer1");
+                    cont = 0;
+                    if (eventCenter.getUserRegistry().size() > 0) {
+                        for (int k = 0; k < eventCenter.getUserRegistry().size(); k++) {
+                            if (eventCenter.getUserRegistry().getUser(k).equals(organizerU)) {
+                                cont++;
+                            }
+                            if (cont == 0) {
+                                eventCenter.getUserRegistry().addUser(organizerU);
+                            }
+
+                        }
+                    } else {
+                        eventCenter.getUserRegistry().addUser(organizerU);
+                    }
+                    Organizer organizerO = new Organizer(organizerU);
+                    exposicao1.getOrganizerList().addOrganizer(organizerO);
+                    organizerU = new User("Organizer 2", "organizer2@event.pt", "organizer2", "organizer2");
+                    cont = 0;
+                    if (eventCenter.getUserRegistry().size() > 0) {
+                        for (int k = 0; k < eventCenter.getUserRegistry().size(); k++) {
+                            if (eventCenter.getUserRegistry().getUser(k).equals(organizerU)) {
+                                cont++;
+                            }
+                            if (cont == 0) {
+                                eventCenter.getUserRegistry().addUser(organizerU);
+                            }
+
+                        }
+                    } else {
+                        eventCenter.getUserRegistry().addUser(organizerU);
+                    }
+                    organizerO = new Organizer(organizerU);
+                    exposicao1.getOrganizerList().addOrganizer(organizerO);
                 }
 
                 NodeList dateSet = document.getElementsByTagName("dates");
@@ -373,14 +410,14 @@ public class XMLReader {
             }
             eventCenter.getEventRegistry().addEvent(exposicao1);
         } catch (FileNotFoundException e) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("Ficheiro nÃ£o encontrado");
-
         } catch (IOException e) {
-
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
         } catch (ParserConfigurationException e) {
-
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
         } catch (SAXException e) {
-
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
         }
         return eventCenter;
     }
@@ -390,7 +427,7 @@ public class XMLReader {
      * @param filepath
      * @return
      */
-    private boolean testFilepath(String filepath) {
+    public boolean testFilepath(String filepath) {
         File file = new File(filepath);
         if (!file.exists() || (file.exists() && !file.isDirectory())) {
             System.out.println("File not found. Using default file");
