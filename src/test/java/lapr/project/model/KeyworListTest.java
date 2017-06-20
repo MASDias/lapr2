@@ -102,6 +102,17 @@ public class KeyworListTest {
         k1.addKeyword(keyword);
         assertNotEquals(k1, k2);
     }
+      /**
+     *
+     */
+    @Test
+    public void EnsureDifferentObjectsKeywordListAreNotEqual() {
+        KeywordList result = new KeywordList();
+        Keyword keyword = new Keyword("123456789");
+        result.addKeyword(keyword);
+        Object expectedResult = new Object();
+        assertNotEquals(result, expectedResult);
+    }
     
     
     public void EnsureValidate() {
