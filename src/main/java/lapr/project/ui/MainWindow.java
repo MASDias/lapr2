@@ -74,6 +74,7 @@ public class MainWindow extends javax.swing.JFrame {
         menu = new javax.swing.JMenu();
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        LoggoutMenuItem = new javax.swing.JMenuItem();
         registerMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         createEventMenuItem = new javax.swing.JMenuItem();
@@ -135,6 +136,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menu.add(loginMenuItem);
         menu.add(jSeparator3);
+
+        LoggoutMenuItem.setText("Logout");
+        LoggoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoggoutMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(LoggoutMenuItem);
 
         registerMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Actions-user-group-new-icon.png"))); // NOI18N
         registerMenuItem.setMnemonic('M');
@@ -509,6 +518,18 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_importXmlFileMenuItemActionPerformed
 
+    private void LoggoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoggoutMenuItemActionPerformed
+        if(loginStatus){
+            setLoginStatus(false);
+            setUserStatus(false);
+            setOrganizerStatus(false);
+            setEventEmployeeStatus(false);
+            setEventManagerStatus(false);
+            updateLogin();
+            userNameLabel.setText("");
+        }
+    }//GEN-LAST:event_LoggoutMenuItemActionPerformed
+
     private void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -542,8 +563,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     public void updateLogin() {
-        System.out.println(loginStatus);
         if (!loginStatus) {
+            loginMenuItem.setVisible(true);
+            LoggoutMenuItem.setVisible(false);
             jSeparator3.setVisible(true);
             registerMenuItem.setVisible(true); // v
             jSeparator1.setVisible(false);
@@ -574,6 +596,8 @@ public class MainWindow extends javax.swing.JFrame {
             importExportMenu.setVisible(false); // v
 
         } else {
+            loginMenuItem.setVisible(false);
+            LoggoutMenuItem.setVisible(true);
             jSeparator3.setVisible(false);
             registerMenuItem.setVisible(false);
             jSeparator8.setVisible(true);
@@ -583,6 +607,9 @@ public class MainWindow extends javax.swing.JFrame {
                 importExportMenu.setVisible(true);
                 defineUser.setVisible(true);
                 jSeparator4.setVisible(true);
+                defineEventManagerMenuItem.setVisible(true);
+                defineOrganizerMenuItem.setVisible(true);
+                defineEmployeeMenuItem.setVisible(true);
                 createEventMenuItem.setVisible(true);
                 jSeparator4.setVisible(true);
                 defineUser.setVisible(true);
@@ -640,6 +667,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem LoggoutMenuItem;
     public javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem createStandMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
