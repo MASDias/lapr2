@@ -10,31 +10,23 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Application;
-import lapr.project.model.ApplicationList;
 import lapr.project.model.Review;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
-import lapr.project.model.EventEmployeeList;
-import lapr.project.model.EventRegistry;
 import lapr.project.model.Location;
-import lapr.project.model.LocationList;
 import lapr.project.model.Stand;
 import lapr.project.model.StandRegistry;
 import lapr.project.model.User;
-import lapr.project.model.UserRegistry;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -84,7 +76,7 @@ public class XMLReader {
     }
     public EventCenter readValuesFromXML(EventCenter eventCenter) throws FileNotFoundException, ParserConfigurationException, SAXException, IOException, ParseException {
         try {
-
+            eventCenter = new EventCenter();
             File xmlFile = new File(filepathXML);
             Event exposicao1 = new Event("", "", null, null, null, null, null, 0);
 

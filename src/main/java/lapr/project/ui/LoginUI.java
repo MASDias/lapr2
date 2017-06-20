@@ -1,8 +1,11 @@
 package lapr.project.ui;
 
+import java.util.ArrayList;
+import javax.accessibility.AccessibleRelation;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployeeList;
 import lapr.project.model.PasswordEncryption;
@@ -137,7 +140,7 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         loginConfirmation();
-        
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void idTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldActionPerformed
@@ -145,6 +148,12 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_idTextFieldActionPerformed
 
     private void loginConfirmation() {
+        mainWindow.setLoginStatus(false);
+        mainWindow.setUserStatus(false);
+        mainWindow.setOrganizerStatus(false);
+        mainWindow.setEventEmployeeStatus(false);
+        mainWindow.setEventManagerStatus(false);
+        mainWindow.updateLogin();
         UserRegistry userRegistry = eventCenter.getUserRegistry();
         String loginName = idTextField.getText();
         String passwordInfo = new String(passwordField.getPassword());
@@ -156,7 +165,7 @@ public class LoginUI extends javax.swing.JFrame {
                 if (passwordInfo.equals(userRegistry.getUser(i).getPassword())) {
                     userStatus = true;
                     loginStatus = true;
-                    this.user = userRegistry.getUser(i);                   
+                    this.user = userRegistry.getUser(i);
                     label.setText(user.getUserName());
                 } else {
                     JOptionPane.showMessageDialog(null, "Wrong Password!");
@@ -179,20 +188,21 @@ public class LoginUI extends javax.swing.JFrame {
         System.out.println("Event Employee:" + eventEmployeeStatus);
         System.out.println("EventManager:" + eventManagerStatus);
         System.out.println("Login Status:" + loginStatus);
-        
+
 //        if(loginStatus){
 //            mainWindow.createEventMenuItem.setVisible(false);
 //                    
 //        }
-        
     }
 
     private boolean validateLoginStatus() {
         if (isLoginStatus()) {
-            userStatus = isUserStatus();
-            organizerStatus = isOrganizerStatus();
-            eventEmployeeStatus = isEventEmployeeStatus();
-            eventManagerStatus = isEventManagerStatus();
+            mainWindow.setLoginStatus(isLoginStatus());
+            mainWindow.setUserStatus(isUserStatus());
+            mainWindow.setOrganizerStatus(isOrganizerStatus());
+            mainWindow.setEventEmployeeStatus(isEventEmployeeStatus());
+            mainWindow.setEventManagerStatus(isEventManagerStatus());
+            mainWindow.updateLogin();
             JOptionPane.showMessageDialog(null, "Success");
             return true;
         } else {
@@ -266,10 +276,11 @@ public class LoginUI extends javax.swing.JFrame {
     }
 
     private boolean checkForEventEmployeeStatus(User user) {
-        for (int i = 0; i < eventCenter.getEventRegistry().size(); i++) {
-            EventEmployeeList employeeList = eventCenter.getEventRegistry().getEvent(i).getEventEmployeeList();
+        ArrayList<Event> events = eventCenter.getEventRegistry().getEventList();
+        for (Event event : events) {
+            EventEmployeeList employeeList = event.getEventEmployeeList();
             for (int j = 0; j < employeeList.size(); j++) {
-                if (employeeList.getEmployee(i).getEmail().equals(user.getEmail()) || employeeList.getEmployee(i).getUsername().equals(user.getUserName())) {
+                if (employeeList.getEmployee(j).getEmail().equals(user.getEmail()) || employeeList.getEmployee(j).getUsername().equals(user.getUserName())) {
                     return true;
                 }
             }
@@ -279,9 +290,12 @@ public class LoginUI extends javax.swing.JFrame {
     }
 
     private boolean checkForOrganizerStatus(User user) {
-        for (int i = 0; i < eventCenter.getOrganizersList().size(); i++) {
-            if (eventCenter.getOrganizersList().getOrganizer(i).getEmail().equals(user.getEmail()) || eventCenter.getOrganizersList().getOrganizer(i).getUsername().equals(user.getUserName())) {
-                return true;
+        ArrayList<Event> events = eventCenter.getEventRegistry().getEventList();
+        for (Event event : events) {
+            for (int i = 0; i < event.getOrganizerList().size(); i++) {
+                if (event.getOrganizerList().getOrganizer(i).getEmail().equals(user.getEmail()) || event.getOrganizerList().getOrganizer(i).getUsername().equals(user.getUserName())) {
+                    return true;
+                }
             }
         }
         return false;
