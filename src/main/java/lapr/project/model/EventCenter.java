@@ -17,7 +17,6 @@ public class EventCenter implements Serializable {
     private OrganizersList organizersList;
     private StandRegistry standRegistry;
     private UserRegistry userRegistry;
-    private WorkshopList workshopList;
     private ProductList productList;
 
     /**
@@ -32,7 +31,6 @@ public class EventCenter implements Serializable {
         this.organizersList = new OrganizersList();
         this.standRegistry = new StandRegistry();
         this.userRegistry = new UserRegistry();
-        this.workshopList = new WorkshopList();
         this.productList = new ProductList();
     }
 
@@ -162,22 +160,6 @@ public class EventCenter implements Serializable {
      */
     public void setUserRegistry(UserRegistry userRegistry) {
         this.userRegistry = userRegistry;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public WorkshopList getWorkshopList() {
-        return workshopList;
-    }
-
-    /**
-     *
-     * @param workshopList
-     */
-    public void setWorkshopList(WorkshopList workshopList) {
-        this.workshopList = workshopList;
     }
 
     /**

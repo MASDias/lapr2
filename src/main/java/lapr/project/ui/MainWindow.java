@@ -94,12 +94,15 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         showStandInformationMenuItem = new javax.swing.JMenuItem();
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
+        showGlobalMeanRatingMenuItem = new javax.swing.JMenuItem();
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
         showEventAcceptanceRate = new javax.swing.JMenuItem();
         showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         helpMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
+        importXmlFileMenuItem = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
         importMenuItem = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         exportMenuItem = new javax.swing.JMenuItem();
@@ -229,7 +232,7 @@ public class MainWindow extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic.png"))); // NOI18N
         jMenu1.setText("Statistic");
 
-        showStandInformationMenuItem.setText("Show Stand Information");
+        showStandInformationMenuItem.setText("Show Stands Information");
         showStandInformationMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showStandInformationMenuItemActionPerformed(evt);
@@ -244,6 +247,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         jMenu1.add(showEmployeeMeanRatingMenuItem);
+
+        showGlobalMeanRatingMenuItem.setText("Show Global Mean Rating");
+        showGlobalMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showGlobalMeanRatingMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(showGlobalMeanRatingMenuItem);
 
         showEventsSubmissionKeywordsMenuItem.setText("Show Event Submission Keywords");
         showEventsSubmissionKeywordsMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -284,6 +295,11 @@ public class MainWindow extends javax.swing.JFrame {
         jMenuBar1.add(menu);
 
         importExportMenu.setText("Import/Export");
+
+        importXmlFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/xml icon.png"))); // NOI18N
+        importXmlFileMenuItem.setText("Import XML File");
+        importExportMenu.add(importXmlFileMenuItem);
+        importExportMenu.add(jSeparator9);
 
         importMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/import-icon.png"))); // NOI18N
         importMenuItem.setText("Import File");
@@ -477,6 +493,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_helpMenuItemActionPerformed
 
+    private void showGlobalMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalMeanRatingMenuItemActionPerformed
+        ShowGlobalMeanRatingUI sgmr = new ShowGlobalMeanRatingUI(eventCenter);
+    }//GEN-LAST:event_showGlobalMeanRatingMenuItemActionPerformed
+
     private void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -498,6 +518,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem helpMenuItem;
     private javax.swing.JMenu importExportMenu;
     private javax.swing.JMenuItem importMenuItem;
+    private javax.swing.JMenuItem importXmlFileMenuItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -512,6 +533,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuItem registerMenuItem;
@@ -519,6 +541,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem showEventAcceptanceRate;
     private javax.swing.JMenuItem showEventsSubmissionKeywordsMenuItem;
     private javax.swing.JMenuItem showGlobalAcceptanceRateMenuItem;
+    private javax.swing.JMenuItem showGlobalMeanRatingMenuItem;
     private javax.swing.JMenuItem showStandInformationMenuItem;
     private javax.swing.JMenuItem submitApplicationMenuItem;
     private javax.swing.JLabel userNameLabel;

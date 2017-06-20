@@ -180,14 +180,17 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
         float meanRating = 0;
         float finalRate = 0;
         int counter = 0;
-        for (int i = 0; i < eventEmployee.getApplicationList().size(); i++) {
-            Application employeeApplication = eventEmployee.getApplicationList().getApplication(i);
-            for (int j = 0; j < employeeApplication.getReviewList().size(); j++) {
-                Review applicationReview = employeeApplication.getReviewList().get(j);
-                System.out.println(applicationReview.toString());
-                if (applicationReview.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
-                    meanRating += (applicationReview.getMeanValue());
-                    counter++;
+
+        for (int i = 0; i < listEvents.size(); i++) {
+            Event e = listEvents.getEvent(i);
+            for (int j = 0; j < e.getApplicationsList().size(); j++) {
+                Application application = e.getApplicationsList().getApplication(j);
+                for (int k = 0; k < application.getReviewList().size(); k++) {
+                    Review review = application.getReviewList().get(k);
+                    if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
+                        meanRating += (review.getMeanValue());
+                        counter++;
+                    }
                 }
             }
         }

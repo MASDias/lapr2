@@ -10,7 +10,6 @@ import java.util.Date;
 public class Congress extends Event implements Serializable {
 
     private static final long serialVersionUID = 1;
-    private WorkshopList workshopList;
 
     /**
      *
@@ -25,22 +24,6 @@ public class Congress extends Event implements Serializable {
      */
     public Congress(String title, String description, Date eventBegin, Date eventEnd, Date eventSubmissionBegin, Date eventSubmissionEnd, Location local, int invites) {
         super(title, description, eventBegin, eventEnd, eventSubmissionBegin, eventSubmissionEnd, local, invites);
-        this.workshopList = new WorkshopList();
     }
 
-    /**
-     *
-     * @return
-     */
-    public WorkshopList getWorkshopList() {
-        return this.workshopList;
-    }
-
-    /**
-     *
-     * @param workshopList
-     */
-    public void setWorkshopList(WorkshopList workshopList) {
-        this.workshopList = workshopList;
-    }
 }

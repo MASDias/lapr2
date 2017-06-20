@@ -47,7 +47,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
      * @throws java.text.ParseException
      */
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
-        initComponents();
+        initComponents();       
         try {
             this.logedUser = logedUser;
             this.controller = new DecideApplicationController(eventCenter);
