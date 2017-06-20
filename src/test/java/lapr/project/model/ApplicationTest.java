@@ -90,7 +90,7 @@ public class ApplicationTest {
        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
        Application application = new Application( e, 10, "description", 0.0f);
        boolean result = application.isEvaluated();
-       boolean expectedResult = true;
+       boolean expectedResult = false;
        assertEquals(result, expectedResult);
     }
       /**
@@ -109,6 +109,8 @@ public class ApplicationTest {
     public void EnsureisDecision() {
        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
        Application application = new Application( e, 10, "description", 0.0f);
+       application.setDecision(true);
+       application.setEvaluated(true);
        boolean result = application.isDecision();
        boolean expectedResult = true;
        assertEquals(result, expectedResult);
