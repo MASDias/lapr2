@@ -28,6 +28,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import lapr.project.model.EventCenter;
+import lapr.project.utils.XMLReader;
 
 /**
  *
@@ -285,6 +286,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         importXmlFileMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/xml icon.png"))); // NOI18N
         importXmlFileMenuItem.setText("Import XML File");
+        importXmlFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importXmlFileMenuItemActionPerformed(evt);
+            }
+        });
         importExportMenu.add(importXmlFileMenuItem);
         importExportMenu.add(jSeparator9);
 
@@ -479,6 +485,29 @@ public class MainWindow extends javax.swing.JFrame {
     private void showGlobalMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalMeanRatingMenuItemActionPerformed
         ShowGlobalMeanRatingUI sgmr = new ShowGlobalMeanRatingUI(eventCenter);
     }//GEN-LAST:event_showGlobalMeanRatingMenuItemActionPerformed
+
+    private void importXmlFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importXmlFileMenuItemActionPerformed
+        try {
+            
+            JFileChooser fileChooser = new JFileChooser();
+            
+            int retrival = fileChooser.showOpenDialog(MainWindow.this);
+            if (retrival == JFileChooser.APPROVE_OPTION) {              
+                
+                try {
+                    File file = fileChooser.getSelectedFile();
+                     XMLReader xmlFile = new XMLReader(file.getAbsolutePath());
+                     eventCenter = xmlFile.readValuesFromXML(eventCenter);
+                    JOptionPane.showMessageDialog(null, "All data imported!");
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } 
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_importXmlFileMenuItemActionPerformed
 
     private void openWebPage(String url) {
         try {
