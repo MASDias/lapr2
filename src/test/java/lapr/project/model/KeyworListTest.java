@@ -114,7 +114,7 @@ public class KeyworListTest {
         assertNotEquals(result, expectedResult);
     }
     
-    
+    @Test
     public void EnsureValidate() {
         KeywordList list = new KeywordList();
         Keyword keyword = new Keyword ("123456789");
@@ -123,6 +123,7 @@ public class KeyworListTest {
         boolean expectedResult = false;
         assertEquals(result, expectedResult);
     }
+    @Test
     public void EnsureinValidate() {
         KeywordList list = new KeywordList();
         Keyword keyword = new Keyword ("123456789");
