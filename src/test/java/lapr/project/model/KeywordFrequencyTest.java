@@ -50,19 +50,20 @@ public class KeywordFrequencyTest {
      */
     @Test
     public void EnsureDifferentObjectsKeywordFrequencyAreNotEqual() {
-        Keyword keyword = new Keyword ("bad");
+        Keyword keyword = new Keyword("bad");
         KeywordList list = new KeywordList();
         list.addKeyword(keyword);
         KeywordFrequency result = new KeywordFrequency(list);
         Object expectedResult = new Object();
         assertNotEquals(result, expectedResult);
     }
-     /**
+
+    /**
      *
      */
     @Test
     public void EnsureGetKeywordFrequencyIsEqual() {
-        Keyword keyword = new Keyword ("bad");
+        Keyword keyword = new Keyword("bad");
         KeywordList list = new KeywordList();
         list.addKeyword(keyword);
         KeywordFrequency keywordFrequency = new KeywordFrequency(list);
@@ -76,7 +77,7 @@ public class KeywordFrequencyTest {
      */
     @Test
     public void EnsureGetKeywordFrequencyIsNotEqual() {
-        Keyword keyword = new Keyword ("bad");
+        Keyword keyword = new Keyword("bad");
         KeywordList list = new KeywordList();
         list.addKeyword(keyword);
         KeywordFrequency keywordFrequency = new KeywordFrequency(list);
@@ -84,4 +85,18 @@ public class KeywordFrequencyTest {
         Integer expectedResult = 2;
         assertNotEquals(result, expectedResult);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetNewKeywordListIsNotEqual() {
+        Keyword keyword = new Keyword("bad");
+        KeywordList list = new KeywordList();
+        list.addKeyword(keyword);
+        KeywordFrequency keywordFrequency = new KeywordFrequency(list);
+        KeywordList list2 = keywordFrequency.getNewKeyWordList();
+        assertNotEquals(list, list2);
+    }
+
 }

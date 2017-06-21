@@ -336,6 +336,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         evaluationComplete.setAssignment(assignment);
         modelApplicationList.getElementAt(applicationJList.getSelectedIndex()).addEvaluation(evaluationComplete);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
+        JOptionPane.showMessageDialog(null, "Application successfully reviewed!");
         clearFields();
         resetEvals();
     }//GEN-LAST:event_evaluateBtnActionPerformed

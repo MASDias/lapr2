@@ -33,6 +33,7 @@ public class SubmitApplication extends javax.swing.JFrame {
     private ProductList productList;
     private EventRegistry eventRegistry;
     private Event event;
+    private String logedUser;
 
     /**
      * Creates new form SubmitApplication
@@ -40,7 +41,7 @@ public class SubmitApplication extends javax.swing.JFrame {
      * @param eventCenter
      * @throws java.text.ParseException
      */
-    public SubmitApplication(EventCenter eventCenter) throws ParseException {
+    public SubmitApplication(EventCenter eventCenter, String logedUser) throws ParseException {
         SubmitApplicationController controller = new SubmitApplicationController(eventCenter);
         this.standRegistry = controller.getStandRegistry();
         this.productList = controller.getProductList();
@@ -336,6 +337,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                 a.getKeywordList().addKeyword(modelKeyword.elementAt(i));
             }
             eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0).getApplicationList().addApplication(a);
+            JOptionPane.showMessageDialog(null, "Application submitted with success!");
             dispose();
         }
 
