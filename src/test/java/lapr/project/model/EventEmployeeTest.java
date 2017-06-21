@@ -134,13 +134,13 @@ public class EventEmployeeTest {
     /**
      *
      */
-    @Test
-    public void EnsureGetEmployeeIsNotEqual() {
+   @Test
+    public void EnsureGetEventEmployeeIsEqual() {
         User user = new User("Z", "c", "b", "a");
-        EventEmployee employee = new EventEmployee(user, 1);
-        User user2 = employee.getEmployee();
-        EventEmployee result = new EventEmployee(user2, 4);
-        assertNotEquals(result, employee);
+        EventEmployee eventEmployee = new EventEmployee(user ,1);
+        User em = eventEmployee.getEmployee();
+        
+        assertEquals(em, user);
     }
 
     /**
@@ -149,10 +149,10 @@ public class EventEmployeeTest {
     @Test
     public void EnsureGetUserNameIsEqual() {
         User user = new User("Z", "c", "b", "a");
-        User user2 = new User("T", "a", "o", "q");
         EventEmployee employee = new EventEmployee(user, 1);
         String result = employee.getUsername();
-        assertNotEquals(result, user2);
+        String expectedResult = user.getUserName();
+        assertEquals(result, expectedResult);
     }
 
     /**
