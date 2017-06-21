@@ -47,7 +47,7 @@ public class ShowGlobalAcceptanceRateController {
                 }
             }
         }
-        
+        if(counterTotal == 0) counterTotal = 1;
         acceptanceRate = ((counterAccepted)/(float)(counterTotal))*100;
         total = counterTotal;
         accepted = counterAccepted;

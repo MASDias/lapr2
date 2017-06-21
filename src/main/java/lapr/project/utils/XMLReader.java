@@ -73,7 +73,7 @@ public class XMLReader {
         filepathXML = DEFAULTFILENAMEXML;
     }
 
-    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException, SAXParseException {
+    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException {
         try {
 
             File xmlFile = new File(filepathXML);

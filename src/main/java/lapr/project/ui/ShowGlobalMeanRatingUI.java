@@ -35,9 +35,9 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
         listEvents = controller.getEventsList();
 
         globalRate = calculateGobalMeanRating();
-        
+
         globalMeanRatingLabel.setText(String.valueOf(globalRate));
-        
+
         setVisible(true);
     }
 
@@ -115,17 +115,17 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
             for (int j = 0; j < e.getApplicationsList().size(); j++) {
                 Application application = e.getApplicationsList().getApplication(j);
                 for (int k = 0; k < application.getReviewList().size(); k++) {
-                    if(application.getReviewList().size()>0){
-                    Review review = application.getReviewList().get(k);
-                    meanRating += (review.getMeanValue());
-                    counter++;
-                    }
-                    else{
+                    if (application.getReviewList().size() > 0) {
+                        Review review = application.getReviewList().get(k);
+                        meanRating += (review.getMeanValue());
+                        counter++;
+                    } else {
                         counter = 1;
                     }
                 }
             }
         }
+        if(counter == 0) counter = 1;
         finalRate = meanRating / counter;
 
         return finalRate;

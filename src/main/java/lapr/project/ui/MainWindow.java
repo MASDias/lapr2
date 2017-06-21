@@ -441,7 +441,9 @@ public class MainWindow extends javax.swing.JFrame {
                 ex.printStackTrace();
             } finally {
                 try {
-                    file.close();
+                    if(file != null){
+                        file.close();
+                    }  else throw new NullPointerException();
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Problem with reading from file");
                 } catch (NullPointerException npx) {
@@ -479,7 +481,9 @@ public class MainWindow extends javax.swing.JFrame {
                     ex.printStackTrace();
                 } finally {
                     try {
-                        file.close();
+                        if(file != null){
+                            file.close();
+                        } else throw new NullPointerException();
                     } catch (NullPointerException npx) {
                         JOptionPane.showMessageDialog(null, "Problem with reading from file");
                     }
