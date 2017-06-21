@@ -44,10 +44,6 @@ public class Enterprise implements Serializable {
         return name;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -62,6 +58,26 @@ public class Enterprise implements Serializable {
 
     public int getContact() {
         return contact;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setTaxpayerNumber(int taxpayerNumber) {
+        this.taxpayerNumber = taxpayerNumber;
+    }
+
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     

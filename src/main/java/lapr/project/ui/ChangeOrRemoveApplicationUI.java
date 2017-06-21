@@ -5,15 +5,19 @@
  */
 package lapr.project.ui;
 
+import java.awt.Checkbox;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.ChangeOrRemoveApplicationController;
 import lapr.project.model.Application;
+import lapr.project.model.Enterprise;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Event;
 import lapr.project.model.Keyword;
 import lapr.project.model.KeywordList;
 import lapr.project.model.Product;
+import lapr.project.model.ProductList;
 
 /**
  *
@@ -28,6 +32,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     private String logedUser;
     private EventRegistry listEvents;
     private KeywordList listKeywords;
+    private ProductList listProducts;
 
     /**
      * Creates new form ChangeOrRemoveApplicationUI
@@ -40,16 +45,18 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         this.logedUser = logedUser;
         initComponents();
         keywordJList.setModel(modelKeywordList);
-        
+        productsJList.setModel(modelProductList);
+
         listEvents = controller.getEventsList();
-        
+
         fillComboBox();
+        disableButtons();
 
         setVisible(true);
     }
 
     private void fillComboBox() {
-        
+
         for (int i = 0; i < listEvents.size(); i++) {
             Event e = listEvents.getEvent(i);
             for (int j = 0; j < e.getApplicationsList().size(); j++) {
@@ -60,6 +67,15 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                     }
                 }
             }
+        }
+    }
+
+    private void disableButtons() {
+        if (applicationsComboBox.getItemCount() == 0) {
+            addKeywordBtn.setEnabled(false);
+            addProductBtn.setEnabled(false);
+            removeKeywordBtn.setEnabled(false);
+            removeProductBtn.setEnabled(false);
         }
     }
 
@@ -87,7 +103,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         enterpriseNameTextField = new javax.swing.JTextField();
-        taxpayerNameTextField = new javax.swing.JTextField();
+        taxpayerNumberTextField = new javax.swing.JTextField();
         contactNumberTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         addressTextField = new javax.swing.JTextField();
@@ -105,8 +121,11 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         productsJList = new javax.swing.JList<Product>();
         addProductBtn = new javax.swing.JButton();
         removeProductBtn = new javax.swing.JButton();
+        removeApplicationCheckBox = new javax.swing.JCheckBox();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Change/Remove Application");
         setResizable(false);
 
         jLabel1.setText("Submitted Applications:");
@@ -169,6 +188,11 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         });
 
         removeKeywordBtn.setText("Remove Keyword");
+        removeKeywordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeKeywordBtnActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(keywordJList);
 
@@ -178,86 +202,122 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
             }
         });
 
+        productsTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productsTextFieldActionPerformed(evt);
+            }
+        });
+
         jScrollPane4.setViewportView(productsJList);
 
         addProductBtn.setText("Add Product");
+        addProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductBtnActionPerformed(evt);
+            }
+        });
 
         removeProductBtn.setText("Remove Product");
+        removeProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProductBtnActionPerformed(evt);
+            }
+        });
+
+        removeApplicationCheckBox.setBackground(new java.awt.Color(255, 204, 204));
+        removeApplicationCheckBox.setText("Delete Application");
+        removeApplicationCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeApplicationCheckBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete-icon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(removeKeywordBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(addKeywordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(applicationsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(6, 6, 6)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(addProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(productsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(removeProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(8, 8, 8))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(55, 55, 55)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(addKeywordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(removeKeywordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(6, 6, 6))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, 0)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(removeApplicationCheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailTextField)
+                            .addComponent(jScrollPane1)
+                            .addComponent(addressTextField)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(taxpayerNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(contactNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(applicationsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                .addGap(125, 125, 125)
+                                .addComponent(saveChangesBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(enterpriseNameTextField)
-                                    .addComponent(emailTextField)
-                                    .addComponent(addressTextField)
-                                    .addComponent(jScrollPane1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(taxpayerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(contactNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
+                                .addComponent(cancelBtn))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(saveChangesBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cancelBtn))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(removeProductBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                                            .addComponent(addProductBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(productsTextField, javax.swing.GroupLayout.Alignment.TRAILING))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -269,12 +329,12 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                     .addComponent(applicationsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(taxpayerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taxpayerNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(contactNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -292,38 +352,45 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(4, 4, 4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addKeywordBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeKeywordBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(productsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addProductBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeProductBtn))
+                        .addComponent(removeProductBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(removeApplicationCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveChangesBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -335,21 +402,138 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void saveChangesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            if (removeApplicationCheckBox.isSelected()) {
+                Application a = (Application) applicationsComboBox.getSelectedItem();
+                for (int i = 0; i < listEvents.size(); i++) {
+                    Event e = listEvents.getEvent(i);
+                    for (int j = 0; j < e.getApplicationsList().size(); j++) {
+                        Application b = e.getApplicationsList().getApplication(j);
+                        if (a.equals(b)) {
+                            int reply = JOptionPane.showConfirmDialog(null, "Do you really wish to delete the application?", "Delete Application?", JOptionPane.YES_NO_OPTION);
+                            if (reply == JOptionPane.YES_OPTION) {
+                                e.getApplicationsList().removeApplication(j);
+                                JOptionPane.showMessageDialog(null, "Application deleted with success!");
+                                dispose();
+                            }
+
+                        }
+                    }
+                }
+            } else {
+                if (validateTaxpayerNumber() && validateContact() && validateInvites()) {
+                    String enterpriseName = enterpriseNameTextField.getText();
+                    String email = emailTextField.getText();
+                    String address = addressTextField.getText();
+                    String description = descriptionTextArea.getText();
+                    float area = Float.parseFloat(areaTextField.getText());
+                    int invites = Integer.parseInt(invitesTextField.getText());
+                    int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+                    int contactNumber = Integer.parseInt(contactNumberTextField.getText());
+
+                    Application application = (Application) applicationsComboBox.getSelectedItem();
+                    Enterprise enterprise = application.getEnterprise();
+
+                    enterprise.setName(enterpriseName);
+                    enterprise.setAddress(address);
+                    enterprise.setContact(contactNumber);
+                    enterprise.setEmail(email);
+                    enterprise.setTaxpayerNumber(taxpayerNumber);
+                    application.setDescription(description);
+                    application.setInvites(invites);
+                    application.setArea(area);
+
+                    KeywordList keywordList = new KeywordList();
+                    ProductList productList = new ProductList();
+                    for (int i = 0; i < modelKeywordList.size(); i++) {
+                        keywordList.addKeyword(modelKeywordList.getElementAt(i));
+                    }
+                    for (int i = 0; i < modelProductList.size(); i++) {
+                        productList.addProduct(modelProductList.getElementAt(i));
+                    }
+
+                    application.setKeywordList(keywordList);
+                    application.setProductList(productList);
+
+                    JOptionPane.showMessageDialog(null, "Application data changed with success!");
+                    dispose();
+                }
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "You didn't submit any applications!");
+        } catch(NumberFormatException a){
+            JOptionPane.showMessageDialog(null, "Incompleted data fields!");
+        }
     }//GEN-LAST:event_saveChangesBtnActionPerformed
 
+    private boolean validateInvites() {
+        String stringInvites = invitesTextField.getText();
+        try {
+            int invites = Integer.parseInt(stringInvites);
+            if (invites <= 0) {
+                JOptionPane.showMessageDialog(null, "Insert a number above zero");
+                invitesTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format for invites (only numbers)");
+            invitesTextField.setText("");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateContact() {
+        String stringContact = contactNumberTextField.getText();
+        try {
+            int contactNumber = Integer.parseInt(contactNumberTextField.getText());
+            if (stringContact.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on contact text field");
+                contactNumberTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in contact Number(only numbers))");
+            contactNumberTextField.setText("");
+            return false;
+        }
+    }
+
+    private boolean validateTaxpayerNumber() {
+        String stringTaxpayer = taxpayerNumberTextField.getText();
+        try {
+            int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+            if (stringTaxpayer.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on taxpayer number text field");
+                taxpayerNumberTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in Taxpayer Number(only numbers))");
+            taxpayerNumberTextField.setText("");
+            return false;
+        }
+    }
+
     private void applicationsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationsComboBoxActionPerformed
+        modelKeywordList.removeAllElements();
+        modelProductList.removeAllElements();
         Application application = (Application) applicationsComboBox.getSelectedItem();
-        
+
         for (int i = 0; i < application.getKeywordList().size(); i++) {
             modelKeywordList.addElement(application.getKeywordList().getKeyword(i));
         }
         for (int i = 0; i < application.getProductList().size(); i++) {
-            
+            modelProductList.addElement(application.getProductList().getProduct(i));
         }
-        
+
         enterpriseNameTextField.setText(application.getEnterprise().getName());
-        taxpayerNameTextField.setText(String.valueOf(application.getEnterprise().getTaxpayerNumber()));
+        taxpayerNumberTextField.setText(String.valueOf(application.getEnterprise().getTaxpayerNumber()));
         contactNumberTextField.setText(String.valueOf(application.getEnterprise().getContact()));
         emailTextField.setText(application.getEnterprise().getEmail());
         addressTextField.setText(application.getEnterprise().getAddress());
@@ -363,12 +547,56 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_enterpriseNameTextFieldActionPerformed
 
     private void addKeywordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addKeywordBtnActionPerformed
-        // TODO add your handling code here:
+        String stringKeyword = keywordTextField.getText();
+        if (!stringKeyword.isEmpty()) {
+            Keyword keyword = new Keyword(stringKeyword);
+            modelKeywordList.addElement(keyword);
+            keywordTextField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please insert a keyword");
+        }
     }//GEN-LAST:event_addKeywordBtnActionPerformed
 
     private void areaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_areaTextFieldActionPerformed
+
+    private void removeProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProductBtnActionPerformed
+        try {
+            Product p = modelProductList.getElementAt(productsJList.getSelectedIndex());
+            modelProductList.removeElement(p);
+        } catch (ArrayIndexOutOfBoundsException a) {
+            JOptionPane.showMessageDialog(null, "No product selected!");
+        }
+    }//GEN-LAST:event_removeProductBtnActionPerformed
+
+    private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
+        String stringProduct = productsTextField.getText();
+        if (!stringProduct.isEmpty()) {
+            Product product = new Product(stringProduct);
+            modelProductList.addElement(product);
+            productsTextField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please insert a product");
+        }
+    }//GEN-LAST:event_addProductBtnActionPerformed
+
+    private void removeKeywordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeKeywordBtnActionPerformed
+        try {
+            Keyword k = modelKeywordList.getElementAt(keywordJList.getSelectedIndex());
+            modelKeywordList.removeElement(k);
+        } catch (ArrayIndexOutOfBoundsException a) {
+            JOptionPane.showMessageDialog(null, "No keyword selected!");
+        }
+    }//GEN-LAST:event_removeKeywordBtnActionPerformed
+
+    private void productsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productsTextFieldActionPerformed
+
+    private void removeApplicationCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeApplicationCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeApplicationCheckBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,6 +614,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -401,9 +630,10 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     private javax.swing.JTextField keywordTextField;
     private javax.swing.JList<Product> productsJList;
     private javax.swing.JTextField productsTextField;
+    private javax.swing.JCheckBox removeApplicationCheckBox;
     private javax.swing.JButton removeKeywordBtn;
     private javax.swing.JButton removeProductBtn;
     private javax.swing.JButton saveChangesBtn;
-    private javax.swing.JTextField taxpayerNameTextField;
+    private javax.swing.JTextField taxpayerNumberTextField;
     // End of variables declaration//GEN-END:variables
 }

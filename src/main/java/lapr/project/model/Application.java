@@ -52,6 +52,22 @@ public class Application implements Serializable {
     public ProductList getProductList() {
         return productList;
     }
+
+    public void setInvites(int invites) {
+        this.invites = invites;
+    }
+
+    public void setArea(float area) {
+        this.area = area;
+    }
+
+    public void setKeywordList(KeywordList keywordList) {
+        this.keywordList = keywordList;
+    }
+
+    public void setProductList(ProductList productList) {
+        this.productList = productList;
+    }
     
     
 

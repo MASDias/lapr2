@@ -60,4 +60,8 @@ public class ApplicationList implements Serializable {
     public Application getApplication(int index) {
         return applicationsList.get(index);
     }
+    
+    public void removeApplication(int index){
+        applicationsList.remove(index);
+    }
 }
