@@ -33,7 +33,7 @@ public class ReviewTest {
     public void EnsureSameObjectsReviewAreNotEqual() throws Exception {
         Review review = new Review("box", 3, 4, 2, 5);
         Review review2 = new Review("pencil", 4, 1, 3, 5);
-        assertNotEquals(review, review2);
+        assertEquals(review, review2);
     }
 
     /**
@@ -355,7 +355,7 @@ public class ReviewTest {
     }
     @Test
     public void ensureHashCodeIsCorrect() {
-        Review firstReview = new Review("box", 3, 4, 2, 5);;
+        Review firstReview = new Review("box", 3, 4, 2, 5);
         int expected = 1933589199;
         int result = Math.abs(firstReview.hashCode());
         assertEquals(expected, result);
