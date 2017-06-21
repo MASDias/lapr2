@@ -73,7 +73,7 @@ public class XMLReader {
         filepathXML = DEFAULTFILENAMEXML;
     }
 
-    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException,SAXParseException {
+    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException, SAXParseException {
         try {
 
             File xmlFile = new File(filepathXML);
@@ -90,11 +90,7 @@ public class XMLReader {
         } catch (FileNotFoundException e) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
             System.out.println("Ficheiro nÃ£o encontrado");
-        } catch (IOException e) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
-        } catch (ParserConfigurationException e) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
-        } catch (SAXException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
         }
         return eventCenter;
@@ -145,44 +141,53 @@ public class XMLReader {
                 exposicao1 = getApplicationFromXMLFile(applicationList, exposicao1);
             }
 
-            NodeList OrganizerSet = document.getElementsByTagName("OrganizerSet");
-            objects = getOrganizersFromXMLFile(eventCenter, exposicao1, OrganizerSet);
+            NodeList organizerSet = document.getElementsByTagName("OrganizerSet");
+            objects = getOrganizersFromXMLFile(eventCenter, exposicao1, organizerSet);
             eventCenter = (EventCenter) objects[0];
             exposicao1 = (Event) objects[1];
             NodeList dateSet = document.getElementsByTagName("dates");
-            String eventBegin = "";
-            String eventEnd = "";
-            String eventSubBeg = "";
-            String eventSubEnd = "";
-            if (dateSet.getLength() == 0) {
-                Date date = new Date();
-                Calendar calendar = new GregorianCalendar();
-                calendar.setTime(date);
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                eventBegin = day + "-" + month + "-" + year;
-                eventEnd = (day + 21) + "-" + month + "-" + year;
-                eventSubBeg = (day + 1) + "-" + month + "-" + year;
-                eventSubEnd = (day + 5) + "-" + month + "-" + year;
-            } else {
-                for (int t = 0; t < dateSet.getLength(); t++) {
-                    Element date = (Element) dateSet.item(t);
-                    eventBegin = date.getElementsByTagName("eventBegin").item(0).getTextContent();
-                    eventEnd = date.getElementsByTagName("eventEnd").item(0).getTextContent();
-                    eventSubBeg = date.getElementsByTagName("eventSubBeg").item(0).getTextContent();
-                    eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
-                }
-            }
-            SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
-            exposicao1.setEventBegin(f.parse(eventBegin));
-            exposicao1.setEventEnd(f.parse(eventEnd));
-            exposicao1.setEventSubmissionBegin(f.parse(eventSubBeg));
-            exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
-        eventCenter.getEventRegistry().addEvent(exposicao1);
+            objects = getDatesFromXMLFile(exposicao1, eventCenter, dateSet);
+            eventCenter = (EventCenter) objects[0];
+            exposicao1 = (Event) objects[1];
+            eventCenter.getEventRegistry().addEvent(exposicao1);
+            
         }
 
         return eventCenter;
+    }
+
+    private Object[] getDatesFromXMLFile(Event exposicao1, EventCenter eventCenter, NodeList dateSet) throws ParseException {
+        String eventBegin = "";
+        String eventEnd = "";
+        String eventSubBeg = "";
+        String eventSubEnd = "";
+        if (dateSet.getLength() == 0) {
+            Date date = new Date();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(date);
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            eventBegin = day + "-" + month + "-" + year;
+            eventEnd = (day + 21) + "-" + month + "-" + year;
+            eventSubBeg = (day + 1) + "-" + month + "-" + year;
+            eventSubEnd = (day + 5) + "-" + month + "-" + year;
+        } else {
+            for (int t = 0; t < dateSet.getLength(); t++) {
+                Element date = (Element) dateSet.item(t);
+                eventBegin = date.getElementsByTagName("eventBegin").item(0).getTextContent();
+                eventEnd = date.getElementsByTagName("eventEnd").item(0).getTextContent();
+                eventSubBeg = date.getElementsByTagName("eventSubBeg").item(0).getTextContent();
+                eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
+            }
+        }
+        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+        exposicao1.setEventBegin(f.parse(eventBegin));
+        exposicao1.setEventEnd(f.parse(eventEnd));
+        exposicao1.setEventSubmissionBegin(f.parse(eventSubBeg));
+        exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
+        
+        return new Object[]{eventCenter,exposicao1};
     }
 
     /**
@@ -223,12 +228,7 @@ public class XMLReader {
     private Event getApplicationFromXMLFile(NodeList applicationList, Event exposicao1) {
         for (int j = 0; j < applicationList.getLength(); j++) {
             Element application = (Element) applicationList.item(j);
-            boolean accepted;
-            if (application.getElementsByTagName("accepted").item(0).getTextContent().equals("true")) {
-                accepted = true;
-            } else {
-                accepted = false;
-            }
+            boolean accepted = application.getElementsByTagName("accepted").item(0).getTextContent().equals("true");
             String description = application.getElementsByTagName("description").item(0).getTextContent();
             float area = Float.parseFloat(application.getElementsByTagName("boothArea").item(0).getTextContent());
             int invitesQuantity = Integer.parseInt(application.getElementsByTagName("invitesQuantity").item(0).getTextContent());
@@ -272,11 +272,11 @@ public class XMLReader {
         return objects;
     }
 
-    private Object[] getOrganizersFromXMLFile(EventCenter eventCenter, Event exposicao1, NodeList OrganizerSet) {
-        if (OrganizerSet.getLength() > 0) {
-            for (int a = 0; a < OrganizerSet.getLength(); a++) {
-                Element organizerSet = (Element) OrganizerSet.item(a);
-                NodeList organizers = organizerSet.getElementsByTagName("Organizer");
+    private Object[] getOrganizersFromXMLFile(EventCenter eventCenter, Event exposicao1, NodeList organizerSet) {
+        if (organizerSet.getLength() > 0) {
+            for (int a = 0; a < organizerSet.getLength(); a++) {
+                Element organizerSetElement = (Element) organizerSet.item(a);
+                NodeList organizers = organizerSetElement.getElementsByTagName("Organizer");
                 for (int t = 0; t < organizers.getLength(); t++) {
                     Element organizer = (Element) organizers.item(t);
                     NodeList users = organizer.getElementsByTagName("user");
@@ -304,8 +304,8 @@ public class XMLReader {
             organizerO = new Organizer(organizerU);
             exposicao1.getOrganizerList().addOrganizer(organizerO);
         }
-        Object[] objects = {eventCenter, exposicao1};
-        return objects;
+
+        return new Object[]{eventCenter, exposicao1};
     }
 
     /**
@@ -333,7 +333,7 @@ public class XMLReader {
                 int recommendation = Integer.parseInt(review.getElementsByTagName("recommendation").item(0).getTextContent());
                 Review reviewO = new Review(justificationText, faeTopicKnowledge, eventAdequacy, inviteAdequacy, recommendation);
                 NodeList faesAssignment = review.getElementsByTagName("assignment");
-                
+
                 ArrayList<EventEmployee> eventEmployeeArrayList = getAssignments(faesAssignment);
                 for (int m = 0; m < eventEmployeeArrayList.size(); m++) {
                     reviewO.setAssignment(new Assignment(eventEmployeeArrayList.get(m)));
