@@ -90,6 +90,7 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        changeOrRemoveApplicationMenuItem = new javax.swing.JMenuItem();
         listApplicationJItem = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         statisticsMenu = new javax.swing.JMenu();
@@ -230,7 +231,17 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menu.add(decideApplicationItem);
 
-        listApplicationJItem.setText("List of Application");
+        changeOrRemoveApplicationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Apps-basket-icon.png"))); // NOI18N
+        changeOrRemoveApplicationMenuItem.setText("Change/Remove Application");
+        changeOrRemoveApplicationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeOrRemoveApplicationMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(changeOrRemoveApplicationMenuItem);
+
+        listApplicationJItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bulleted-List-icon.png"))); // NOI18N
+        listApplicationJItem.setText("List Applications");
         listApplicationJItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listApplicationJItemActionPerformed(evt);
@@ -389,7 +400,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void submitApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitApplicationMenuItemActionPerformed
         try {
-            SubmitApplication s = new SubmitApplication(eventCenter);
+            SubmitApplication s = new SubmitApplication(eventCenter, userNameLabel.getText());
         } catch (ParseException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -552,6 +563,10 @@ public class MainWindow extends javax.swing.JFrame {
         ListApplicationsUI laui = new ListApplicationsUI(eventCenter, userNameLabel.getText());
     }//GEN-LAST:event_listApplicationJItemActionPerformed
 
+    private void changeOrRemoveApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOrRemoveApplicationMenuItemActionPerformed
+        ChangeOrRemoveApplicationUI cora = new ChangeOrRemoveApplicationUI(eventCenter, userNameLabel.getText());
+    }//GEN-LAST:event_changeOrRemoveApplicationMenuItemActionPerformed
+
     private void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -691,6 +706,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;
+    private javax.swing.JMenuItem changeOrRemoveApplicationMenuItem;
     public javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem createStandMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
