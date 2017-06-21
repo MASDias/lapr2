@@ -353,4 +353,11 @@ public class ReviewTest {
         int expectedResult = 5;
         assertNotEquals(result, expectedResult);
     }
+    @Test
+    public void ensureHashCodeIsCorrect() {
+        Review firstReview = new Review("box", 3, 4, 2, 5);;
+        int expected = 1933589199;
+        int result = firstReview.hashCode();
+        assertEquals(expected, result);
+    }
 }
