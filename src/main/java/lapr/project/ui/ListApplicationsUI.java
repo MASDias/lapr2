@@ -135,7 +135,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         for (int i = 0; i < eventRegistry.size(); i++) {
             ApplicationList al = eventRegistry.getEvent(i).getApplicationsList();
             for (int j = 0; j < al.size(); j++) {
-                if (al.getApplication(j).isDecision() || !al.getApplication(j).isDecision()) {
+                if (al.getApplication(j).isEvaluated()) {
                     modelEvaluated.addElement(al.getApplication(j));
                 } else {
                     modelNotEvaluated.addElement(al.getApplication(j));

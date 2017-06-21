@@ -44,6 +44,28 @@ public class Enterprise implements Serializable {
         return name;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getTaxpayerNumber() {
+        return taxpayerNumber;
+    }
+
+    public int getContact() {
+        return contact;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Enterprise:" + name + " Email:" + email + " Address:" + address + " Taxpayer num:" + taxpayerNumber + " Contact:" + contact;

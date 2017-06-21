@@ -19,13 +19,14 @@ public class Application implements Serializable {
     private ArrayList<Review> reviewList;
     private String description;
     private int invites;
-
     private float area;
     private boolean decision;
     private boolean evaluated;
     private Event event;
     private EventEmployeeList eventEmployeeList;
     private KeywordList keywordList;
+    private String user;
+    private ProductList productList;
 
     /**
      *
@@ -45,8 +46,29 @@ public class Application implements Serializable {
         this.reviewList = new ArrayList<>();
         this.eventEmployeeList = new EventEmployeeList();
         this.keywordList = new KeywordList();
+        this.productList = new ProductList();
     }
 
+    public ProductList getProductList() {
+        return productList;
+    }
+    
+    
+
+    public float getArea() {
+        return area;
+    }
+
+    
+    
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    } 
+    
     public boolean isEvaluated() {
         return evaluated;
     }

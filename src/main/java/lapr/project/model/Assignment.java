@@ -5,14 +5,16 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class Assignment {
+public class Assignment implements Serializable{
 
+    private static final long serialVersionUID = 1;
     private EventEmployee eventEmployee;
-    
 
     public Assignment(EventEmployee eventEmployee) {
         this.eventEmployee = eventEmployee;
