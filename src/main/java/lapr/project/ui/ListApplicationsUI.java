@@ -13,7 +13,6 @@ import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Organizer;
-import lapr.project.model.User;
 
 /**
  *
@@ -23,7 +22,6 @@ public class ListApplicationsUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private ApplicationListController applicationListController;
-    private ApplicationList applicationList;
     private EventRegistry eventRegistry;
     private String loggedUser;
     private DefaultListModel<Application> modelNotEvaluated = new DefaultListModel<>();
@@ -33,11 +31,15 @@ public class ListApplicationsUI extends javax.swing.JFrame {
      * Creates new form ListApplicationsUI
      */
     public ListApplicationsUI(EventCenter eventCenter, String loggedUser) {
+        this.loggedUser = loggedUser;
         initComponents();
         applicationListController = new ApplicationListController(eventCenter);
         eventRegistry = new EventRegistry();
         applicationsListJList.setModel(modelNotEvaluated);
-        applicationsListEvaluatedJList4.setModel(modelEvaluated);
+        applicationsListEvaluatedJList.setModel(modelEvaluated);
+        infoEvent();
+        populateList();
+        this.setVisible(true);
     }
 
     /**
@@ -55,7 +57,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         applicationsListJList = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        applicationsListEvaluatedJList4 = new javax.swing.JList<>();
+        applicationsListEvaluatedJList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("List of Applications");
@@ -73,7 +75,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(applicationsListJList);
 
-        jScrollPane5.setViewportView(applicationsListEvaluatedJList4);
+        jScrollPane5.setViewportView(applicationsListEvaluatedJList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +98,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -133,7 +135,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
         for (int i = 0; i < eventRegistry.size(); i++) {
             ApplicationList al = eventRegistry.getEvent(i).getApplicationsList();
             for (int j = 0; j < al.size(); j++) {
-                if (al.getApplication(j).isEvaluated()) {
+                if (al.getApplication(j).isDecision() || !al.getApplication(j).isDecision()) {
                     modelEvaluated.addElement(al.getApplication(j));
                 } else {
                     modelNotEvaluated.addElement(al.getApplication(j));
@@ -143,7 +145,7 @@ public class ListApplicationsUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<Application> applicationsListEvaluatedJList4;
+    private javax.swing.JList<Application> applicationsListEvaluatedJList;
     private javax.swing.JList<Application> applicationsListJList;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;

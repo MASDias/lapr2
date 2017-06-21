@@ -90,6 +90,7 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        listApplicationJItem = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
         statisticsMenu = new javax.swing.JMenu();
         showStandInformationMenuItem = new javax.swing.JMenuItem();
@@ -228,6 +229,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menu.add(decideApplicationItem);
+
+        listApplicationJItem.setText("List of Application");
+        listApplicationJItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listApplicationJItemActionPerformed(evt);
+            }
+        });
+        menu.add(listApplicationJItem);
         menu.add(jSeparator15);
 
         statisticsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic.png"))); // NOI18N
@@ -401,7 +410,6 @@ public class MainWindow extends javax.swing.JFrame {
         fileChooser.setCurrentDirectory(new File("/Documents"));
         int retrival = fileChooser.showSaveDialog(MainWindow.this);
         if (retrival == JFileChooser.APPROVE_OPTION) {
-
             SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
             FileOutputStream file = null;
             try {
@@ -499,7 +507,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void helpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuItemActionPerformed
         openWebPage("https://www.google.pt/");
-
     }//GEN-LAST:event_helpMenuItemActionPerformed
 
     private void showGlobalMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalMeanRatingMenuItemActionPerformed
@@ -508,18 +515,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void importXmlFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importXmlFileMenuItemActionPerformed
         try {
-
             JFileChooser fileChooser = new JFileChooser();
-
             int retrival = fileChooser.showOpenDialog(MainWindow.this);
             if (retrival == JFileChooser.APPROVE_OPTION) {
-
                 try {
                     File file = fileChooser.getSelectedFile();
                     XMLReader xmlFile = new XMLReader(file.getAbsolutePath());
                     eventCenter = xmlFile.readValuesFromXML(eventCenter);
                     JOptionPane.showMessageDialog(null, "All data imported!");
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -544,6 +547,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         EventAcceptanceRateAboveFiftyUI earaf = new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void listApplicationJItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listApplicationJItemActionPerformed
+        ListApplicationsUI laui = new ListApplicationsUI(eventCenter, userNameLabel.getText());
+    }//GEN-LAST:event_listApplicationJItemActionPerformed
 
     private void openWebPage(String url) {
         try {
@@ -711,6 +718,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JMenuItem listApplicationJItem;
     private javax.swing.JMenuItem loginMenuItem;
     private javax.swing.JMenu menu;
     private javax.swing.JMenuItem registerMenuItem;
