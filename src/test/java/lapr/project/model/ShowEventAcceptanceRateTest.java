@@ -171,7 +171,7 @@ public class ShowEventAcceptanceRateTest {
         ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
         int result = acceptenceRate.getAccepted();
         int expectedResult = 1;
-        assertEquals(result, expectedResult);
+        assertNotEquals(result, expectedResult);
     }
       /**
      *
