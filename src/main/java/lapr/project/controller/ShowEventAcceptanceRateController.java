@@ -5,11 +5,8 @@
  */
 package lapr.project.controller;
 
-import lapr.project.model.Application;
-import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
-import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
  *

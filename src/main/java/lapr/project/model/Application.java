@@ -37,7 +37,6 @@ public class Application implements Serializable {
      * @param description
      */
     public Application(Enterprise enterprise, int invites, String description, float area) {
-
         this.enterprise = enterprise;
         this.description = description;
         this.invites = invites;
@@ -46,7 +45,6 @@ public class Application implements Serializable {
         this.reviewList = new ArrayList<>();
         this.eventEmployeeList = new EventEmployeeList();
         this.keywordList = new KeywordList();
-
     }
 
     public boolean isEvaluated() {

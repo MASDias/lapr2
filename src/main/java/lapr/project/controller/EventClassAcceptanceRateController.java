@@ -7,19 +7,25 @@ package lapr.project.controller;
 
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
+import lapr.project.model.Statistics;
 
 /**
  *
  * @author MarioDias
  */
 public class EventClassAcceptanceRateController {
+
     EventCenter eventCenter;
 
     public EventClassAcceptanceRateController(EventCenter eventCenter) {
         this.eventCenter = eventCenter;
     }
-    
-    public EventRegistry getEventRegistry(){
+
+    public EventRegistry getEventRegistry() {
         return eventCenter.getEventRegistry();
+    }
+
+    public Statistics setStatistics(double significance, int total, float AcceptanceRate) {
+        return new Statistics(significance, total, AcceptanceRate);
     }
 }

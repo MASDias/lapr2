@@ -98,6 +98,7 @@ public class MainWindow extends javax.swing.JFrame {
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
         showEventAcceptanceRate = new javax.swing.JMenuItem();
         showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         helpMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
@@ -280,6 +281,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
         statisticsMenu.add(showGlobalAcceptanceRateMenuItem);
 
+        jMenuItem1.setText("Test Event acceptance rate above 50%");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(jMenuItem1);
+
         menu.add(statisticsMenu);
         menu.add(jSeparator8);
 
@@ -355,7 +364,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
         LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus, MainWindow.this);
-
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
@@ -522,16 +530,20 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_importXmlFileMenuItemActionPerformed
 
     private void LoggoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoggoutMenuItemActionPerformed
-        if(loginStatus){
+        if (loginStatus) {
             setLoginStatus(false);
             setUserStatus(false);
             setOrganizerStatus(false);
             setEventEmployeeStatus(false);
             setEventManagerStatus(false);
-           // updateLogin();
+            // updateLogin();
             userNameLabel.setText("");
         }
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        EventAcceptanceRateAboveFiftyUI earaf = new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void openWebPage(String url) {
         try {
@@ -564,7 +576,7 @@ public class MainWindow extends javax.swing.JFrame {
     public void setStatisticsMenu(JMenu statisticsMenu) {
         this.statisticsMenu = statisticsMenu;
     }
-/*
+    /*
     public void updateLogin() {
         if (!loginStatus) {
             loginMenuItem.setVisible(true);
@@ -686,6 +698,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem importXmlFileMenuItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;

@@ -37,7 +37,7 @@ private Event event;
         }
         total = totalCounter;
         accepted = acceptedCounter;
-        acceptanceRate = ((acceptedCounter) / (double) (totalCounter)) * 100;
+        acceptanceRate = ((acceptedCounter) / (double) (totalCounter));
     }
 
     public double getAcceptanceRate() {
