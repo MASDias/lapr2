@@ -441,9 +441,9 @@ public class MainWindow extends javax.swing.JFrame {
                 ex.printStackTrace();
             } finally {
                 try {
-                    if(file != null){
+                    if (file != null) {
                         file.close();
-                    }  else throw new NullPointerException();
+                    }
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "Problem with reading from file");
                 } catch (NullPointerException npx) {
@@ -458,41 +458,40 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
-        try {
-            FileInputStream inputFile = null;
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File("/Documents"));
-            int retrival = fileChooser.showOpenDialog(MainWindow.this);
-            if (retrival == JFileChooser.APPROVE_OPTION) {
-                SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
-                FileInputStream file = null;
+
+        FileInputStream inputFile = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("/Documents"));
+        int retrival = fileChooser.showOpenDialog(MainWindow.this);
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+            SecretKey keyToMaximumScoreInLAPR = new SecretKeySpec(new byte[]{0x13, 0x45, 0x27, 0x19, 0x34, 0x50, 0x67, 0x024, 0x047, 0x09}, "blowfish");
+            FileInputStream file = null;
+            try {
+                Cipher cipher = Cipher.getInstance("blowfish");
+                cipher.init(Cipher.DECRYPT_MODE, keyToMaximumScoreInLAPR);
+                file = new FileInputStream(fileChooser.getSelectedFile());
+                CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream((file)), cipher);
+                ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
+                SealedObject sealedObject = (SealedObject) inputStream.readObject();
+                this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
+                JOptionPane.showMessageDialog(null, "All data imported!");
+            } catch (Exception ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);      
+            } finally {
                 try {
-                    Cipher cipher = Cipher.getInstance("blowfish");
-                    cipher.init(Cipher.DECRYPT_MODE, keyToMaximumScoreInLAPR);
-                    file = new FileInputStream(fileChooser.getSelectedFile());
-                    CipherInputStream cipherInputStream = new CipherInputStream(new BufferedInputStream((file)), cipher);
-                    ObjectInputStream inputStream = new ObjectInputStream(cipherInputStream);
-                    SealedObject sealedObject = (SealedObject) inputStream.readObject();
-                    this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
-
-                    JOptionPane.showMessageDialog(null, "All data imported!");
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                } finally {
-                    try {
-                        if(file != null){
-                            file.close();
-                        } else throw new NullPointerException();
-                    } catch (NullPointerException npx) {
+                    if (file != null) {
+                        file.close();
+                    } else {
                         JOptionPane.showMessageDialog(null, "Problem with reading from file");
                     }
+                } catch (NullPointerException npx) {
+                    JOptionPane.showMessageDialog(null, "Problem with reading from file");
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, npx);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_importMenuItemActionPerformed
 
     private void showStandInformationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showStandInformationMenuItemActionPerformed
@@ -603,110 +602,110 @@ public class MainWindow extends javax.swing.JFrame {
         this.statisticsMenu = statisticsMenu;
     }
     /*
-    public void updateLogin() {
-        if (!loginStatus) {
-            loginMenuItem.setVisible(true);
-            jSeparator3.setVisible(true);
-            LoggoutMenuItem.setVisible(false);
-            jSeparator10.setVisible(false);
-            registerMenuItem.setVisible(true); // v
-            jSeparator1.setVisible(false);
-            createEventMenuItem.setVisible(false); // v
-            jSeparator4.setVisible(false); // v
-            defineUser.setVisible(false); // v
-            jSeparator5.setVisible(false); // v
-            //--- Menu Item ---
-            defineEventManagerMenuItem.setVisible(false);
-            defineOrganizerMenuItem.setVisible(false);
-            defineEmployeeMenuItem.setVisible(false);
-            //--- End Menu Item ---
-            createStandMenuItem.setVisible(false); // v
-            jSeparator7.setVisible(false); // v
-            submitApplicationMenuItem.setVisible(false); // v
-            jSeparator2.setVisible(false); // v
-            decideApplicationItem.setVisible(false); // v
-            jSeparator15.setVisible(false); // v
-            statisticsMenu.setVisible(false); // v
-            //--- Menu Item ---
-            showGlobalAcceptanceRateMenuItem.setVisible(false); // v
-            showEventAcceptanceRate.setVisible(false); // v
-            showEventsSubmissionKeywordsMenuItem.setVisible(false); // v
-            showEmployeeMeanRatingMenuItem.setVisible(false); // v
-            showStandInformationMenuItem.setVisible(false); // v
-            //--- End Menu Item ---
-            jSeparator8.setVisible(false); // v
-            helpMenuItem.setVisible(false); // v
+     public void updateLogin() {
+     if (!loginStatus) {
+     loginMenuItem.setVisible(true);
+     jSeparator3.setVisible(true);
+     LoggoutMenuItem.setVisible(false);
+     jSeparator10.setVisible(false);
+     registerMenuItem.setVisible(true); // v
+     jSeparator1.setVisible(false);
+     createEventMenuItem.setVisible(false); // v
+     jSeparator4.setVisible(false); // v
+     defineUser.setVisible(false); // v
+     jSeparator5.setVisible(false); // v
+     //--- Menu Item ---
+     defineEventManagerMenuItem.setVisible(false);
+     defineOrganizerMenuItem.setVisible(false);
+     defineEmployeeMenuItem.setVisible(false);
+     //--- End Menu Item ---
+     createStandMenuItem.setVisible(false); // v
+     jSeparator7.setVisible(false); // v
+     submitApplicationMenuItem.setVisible(false); // v
+     jSeparator2.setVisible(false); // v
+     decideApplicationItem.setVisible(false); // v
+     jSeparator15.setVisible(false); // v
+     statisticsMenu.setVisible(false); // v
+     //--- Menu Item ---
+     showGlobalAcceptanceRateMenuItem.setVisible(false); // v
+     showEventAcceptanceRate.setVisible(false); // v
+     showEventsSubmissionKeywordsMenuItem.setVisible(false); // v
+     showEmployeeMeanRatingMenuItem.setVisible(false); // v
+     showStandInformationMenuItem.setVisible(false); // v
+     //--- End Menu Item ---
+     jSeparator8.setVisible(false); // v
+     helpMenuItem.setVisible(false); // v
 
-            importExportMenu.setVisible(false); // v
+     importExportMenu.setVisible(false); // v
 
-        } else {
-            loginMenuItem.setVisible(false);
-            jSeparator3.setVisible(false);
-            LoggoutMenuItem.setVisible(true);
-            jSeparator10.setVisible(true);
-            registerMenuItem.setVisible(false);
-            jSeparator8.setVisible(true);
-            helpMenuItem.setVisible(true);
-            importExportMenu.setVisible(false);
-            if (eventManagerStatus) {
-                importExportMenu.setVisible(true);
-                defineUser.setVisible(true);
-                jSeparator4.setVisible(true);
-                defineEventManagerMenuItem.setVisible(true);
-                defineOrganizerMenuItem.setVisible(true);
-                defineEmployeeMenuItem.setVisible(true);
-                createEventMenuItem.setVisible(true);
-                jSeparator4.setVisible(true);
-                defineUser.setVisible(true);
-                jSeparator5.setVisible(true);
-                createStandMenuItem.setVisible(true);
+     } else {
+     loginMenuItem.setVisible(false);
+     jSeparator3.setVisible(false);
+     LoggoutMenuItem.setVisible(true);
+     jSeparator10.setVisible(true);
+     registerMenuItem.setVisible(false);
+     jSeparator8.setVisible(true);
+     helpMenuItem.setVisible(true);
+     importExportMenu.setVisible(false);
+     if (eventManagerStatus) {
+     importExportMenu.setVisible(true);
+     defineUser.setVisible(true);
+     jSeparator4.setVisible(true);
+     defineEventManagerMenuItem.setVisible(true);
+     defineOrganizerMenuItem.setVisible(true);
+     defineEmployeeMenuItem.setVisible(true);
+     createEventMenuItem.setVisible(true);
+     jSeparator4.setVisible(true);
+     defineUser.setVisible(true);
+     jSeparator5.setVisible(true);
+     createStandMenuItem.setVisible(true);
 
-                //Create Event, Create Stand
-                // Statistic -> Others
-                statisticsMenu.setVisible(true);
+     //Create Event, Create Stand
+     // Statistic -> Others
+     statisticsMenu.setVisible(true);
 
-                //--- Menu Item ---
-                showGlobalAcceptanceRateMenuItem.setVisible(true);
-                showEventAcceptanceRate.setVisible(true);
-                showEventsSubmissionKeywordsMenuItem.setVisible(true);
-                showEmployeeMeanRatingMenuItem.setVisible(true);
-                showStandInformationMenuItem.setVisible(true);
-                //--- End Menu Item ---
+     //--- Menu Item ---
+     showGlobalAcceptanceRateMenuItem.setVisible(true);
+     showEventAcceptanceRate.setVisible(true);
+     showEventsSubmissionKeywordsMenuItem.setVisible(true);
+     showEmployeeMeanRatingMenuItem.setVisible(true);
+     showStandInformationMenuItem.setVisible(true);
+     //--- End Menu Item ---
 
-                jSeparator15.setVisible(true);
-            }
-            if (organizerStatus) {
-                //Assign application
-                //Show event employee mean rating, show stand information
-                defineUser.setVisible(true);
-                defineEmployeeMenuItem.setVisible(true);
-                statisticsMenu.setVisible(true);
-                jSeparator15.setVisible(true);
-                //--- Menu Item ---
-                showGlobalAcceptanceRateMenuItem.setVisible(false);
-                showEventAcceptanceRate.setVisible(false);
-                showEventsSubmissionKeywordsMenuItem.setVisible(false);
-                showEmployeeMeanRatingMenuItem.setVisible(true);
-                showStandInformationMenuItem.setVisible(true);
-                //--- End Menu Item ---
+     jSeparator15.setVisible(true);
+     }
+     if (organizerStatus) {
+     //Assign application
+     //Show event employee mean rating, show stand information
+     defineUser.setVisible(true);
+     defineEmployeeMenuItem.setVisible(true);
+     statisticsMenu.setVisible(true);
+     jSeparator15.setVisible(true);
+     //--- Menu Item ---
+     showGlobalAcceptanceRateMenuItem.setVisible(false);
+     showEventAcceptanceRate.setVisible(false);
+     showEventsSubmissionKeywordsMenuItem.setVisible(false);
+     showEmployeeMeanRatingMenuItem.setVisible(true);
+     showStandInformationMenuItem.setVisible(true);
+     //--- End Menu Item ---
 
-            }
-            if (eventEmployeeStatus) {
-                //Decide application
-                decideApplicationItem.setVisible(true);
-                //jSeparator2.setVisible(true);
-            }
-            if (userStatus) {
-                //Submit Application
+     }
+     if (eventEmployeeStatus) {
+     //Decide application
+     decideApplicationItem.setVisible(true);
+     //jSeparator2.setVisible(true);
+     }
+     if (userStatus) {
+     //Submit Application
 
-                if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
-                    submitApplicationMenuItem.setVisible(true);
-                } else {
-                    submitApplicationMenuItem.setVisible(false);
-                }
-            }
-        }
-    }*/
+     if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
+     submitApplicationMenuItem.setVisible(true);
+     } else {
+     submitApplicationMenuItem.setVisible(false);
+     }
+     }
+     }
+     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;

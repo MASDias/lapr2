@@ -23,7 +23,7 @@ public class Event implements Serializable {
     private StandRegistry standList;
     private OrganizersList organizerList;
     private KeywordList keywordsList;
-    
+
     /**
      *
      * @param title
@@ -35,7 +35,6 @@ public class Event implements Serializable {
      * @param eventSubmissionEnd
      * @param invites
      */
-    
     public Event(String title, String description, Date eventBegin, Date eventEnd, Date eventSubmissionBegin, Date eventSubmissionEnd, Location local, int invites) {
         this.title = title;
         this.description = description;
@@ -60,7 +59,6 @@ public class Event implements Serializable {
         this.local = local;
     }
 
-    
     /**
      *
      * @return
@@ -75,8 +73,7 @@ public class Event implements Serializable {
      */
     public Location getLocal() {
         return local;
-    
-    
+
     }
 
     public void setEventBegin(Date eventBegin) {
@@ -116,10 +113,7 @@ public class Event implements Serializable {
      * @return
      */
     public boolean validateDate() {
-        if (!eventBegin.after(eventEnd) || !eventEnd.before(eventBegin)) {
-            return true;
-        }
-        return false;
+        return (!eventBegin.after(eventEnd) || !eventEnd.before(eventBegin));
     }
 
     /**
@@ -127,12 +121,7 @@ public class Event implements Serializable {
      * @return
      */
     public boolean validateSubmissionDate() {
-        if (!eventSubmissionBegin.after(eventSubmissionEnd) && !eventSubmissionEnd.before(eventSubmissionBegin)) {
-            if (!eventSubmissionBegin.after(eventEnd) && !eventSubmissionEnd.after(eventEnd)) {
-                return true;
-            }
-        }
-        return false;
+        return (!eventSubmissionBegin.after(eventSubmissionEnd) && !eventSubmissionEnd.before(eventSubmissionBegin) && !eventSubmissionBegin.after(eventEnd) && !eventSubmissionEnd.after(eventEnd));
     }
 
     /**
@@ -198,8 +187,8 @@ public class Event implements Serializable {
     public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {
         this.eventEmployeeList = eventEmployeeList;
     }
-    
-    public void setTitle(String title){
+
+    public void setTitle(String title) {
         this.title = title;
     }
 
