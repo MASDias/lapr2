@@ -42,6 +42,12 @@ public class Review implements Serializable {
         
     }
 
+    public void setTextDescription(String textDescription) {
+        this.textDescription = textDescription;
+    }
+
+    
+    
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
     }
@@ -85,6 +91,8 @@ public class Review implements Serializable {
         return application;
     }
 
+    
+    
     /**
      *
      * @param application

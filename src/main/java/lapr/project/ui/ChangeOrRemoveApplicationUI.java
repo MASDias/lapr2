@@ -50,7 +50,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         listEvents = controller.getEventsList();
 
         fillComboBox();
-        disableButtons();
+        disableAll();
 
         setVisible(true);
     }
@@ -70,14 +70,28 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         }
     }
 
-    private void disableButtons() {
+    private void disableAll() {
         if (applicationsComboBox.getItemCount() == 0) {
             addKeywordBtn.setEnabled(false);
             addProductBtn.setEnabled(false);
             removeKeywordBtn.setEnabled(false);
             removeProductBtn.setEnabled(false);
+            areaTextField.setEnabled(false);
+            enterpriseNameTextField.setEnabled(false);
+            taxpayerNumberTextField.setEnabled(false);
+            contactNumberTextField.setEnabled(false);
+            emailTextField.setEnabled(false);
+            addressTextField.setEnabled(false);
+            keywordTextField.setEnabled(false);
+            productsTextField.setEnabled(false);
+            invitesTextField.setEnabled(false);
+            descriptionTextArea.setEnabled(false);
+            removeApplicationCheckBox.setEnabled(false);
+            saveChangesBtn.setEnabled(false);
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
