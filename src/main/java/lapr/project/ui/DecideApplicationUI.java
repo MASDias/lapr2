@@ -47,47 +47,30 @@ public class DecideApplicationUI extends javax.swing.JFrame {
      * @throws java.text.ParseException
      */
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
-        initComponents();
+        initComponents();       
         try {
-        this.logedUser = logedUser;
-        this.controller = new DecideApplicationController(eventCenter);
+            this.logedUser = logedUser;
+            this.controller = new DecideApplicationController(eventCenter);
 
-        applicationJList.setModel(modelApplicationList);
-        listUsers = controller.getUsersList();
-        listEvents = controller.getEventsList();
-        for (int i = 0; i < listEvents.size(); i++) {
-            ev = listEvents.getEvent(i);
-            for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
-                if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
-                    eventEmployee = ev.getEventEmployeeList().getEmployee(j);
-                }
-            }
-        }
-        applicationList = new ApplicationList();
-
-        for (int i = 0; i < listEvents.size(); i++) {
-            Event event = listEvents.getEvent(i);
-            for (int j = 0; j < event.getApplicationsList().size(); j++) {
-                Application a = event.getApplicationsList().getApplication(j);
-                for (int k = 0; k < a.getReviewList().size(); k++) {
-                    Review review = a.getReviewList().get(k);
-                    if (!a.isEvaluated()) {
-                        System.out.println(a.toString());
-                        System.out.println(a.getReviewList().get(0).getAssignment().getEventEmployee().getUsername());
-                        System.out.println(eventEmployee.getUsername());
-                        if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
-                            applicationList.addApplication(a);
-                        }
+            listUsers = controller.getUsersList();
+            listEvents = controller.getEventsList();
+            for (int i = 0; i < listEvents.size(); i++) {
+                ev = listEvents.getEvent(i);
+                for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
+                    if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
+                        eventEmployee = ev.getEventEmployeeList().getEmployee(j);
                     }
                 }
             }
-        }
 
-        initLists();
-        this.setVisible(true);
+            applicationList = eventEmployee.getApplicationList();
+            applicationJList.setModel(modelApplicationList);
+
+            initLists();
+            this.setVisible(true);
         } catch (NullPointerException expt) {
-            JOptionPane.showMessageDialog(null, "You don't have any applications to review");
-        this.dispose();
+            JOptionPane.showMessageDialog(null, "You haven't logged in and/or you are not an Event Employee");
+            this.dispose();
         }
 
     }
@@ -348,29 +331,10 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        
-        Application a = modelApplicationList.getElementAt(applicationJList.getSelectedIndex());
-        for (int i = 0; i < listEvents.size(); i++) {
-            Event e = listEvents.getEvent(i);
-            for (int j = 0; j < e.getApplicationsList().size(); j++) {
-                Application b = e.getApplicationsList().getApplication(j);
-                if(b.equals(a)){
-                    for (int k = 0; k < b.getReviewList().size(); k++) {
-                        Review review = b.getReviewList().get(k);
-                        if (review.getAssignment().getEventEmployee().getUsername().equals(logedUser)) {
-                            review.setApplication(applicationEval);
-                            review.setInvitation(inviteEval);
-                            review.setKnowledge(knowledge);
-                            review.setOverall(overall);
-                            review.setTextDescription(justification);
-                            b.setEvaluated(true);
-                        }
-                    }
-                    
-                }
-            }
-        }
-        
+        Assignment assignment = new Assignment(eventEmployee);
+        Review evaluationComplete = new Review(justification, knowledge, applicationEval, inviteEval, overall);
+        evaluationComplete.setAssignment(assignment);
+        modelApplicationList.getElementAt(applicationJList.getSelectedIndex()).addEvaluation(evaluationComplete);
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         JOptionPane.showMessageDialog(null, "Application successfully reviewed!");
         clearFields();

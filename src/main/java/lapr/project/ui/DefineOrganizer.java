@@ -104,11 +104,6 @@ public class DefineOrganizer extends javax.swing.JFrame {
         });
 
         removeUserBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close-2-icon.png"))); // NOI18N
-        removeUserBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeUserBtnActionPerformed(evt);
-            }
-        });
 
         addUserBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-icon.png"))); // NOI18N
         addUserBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -298,16 +293,6 @@ public class DefineOrganizer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Already Selected");
         }
     }//GEN-LAST:event_eventComboBoxActionPerformed
-
-    private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
-        try {
-            Organizer o = modelOrganizersList.getElementAt(organizerJList.getSelectedIndex());
-            listOrganizers.removeOrganizer(o);
-            modelOrganizersList.removeElement(o);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "No employee selected");
-        }
-    }//GEN-LAST:event_removeUserBtnActionPerformed
 
     private void updateOrganizerModel() {
         listOrganizers = event.getOrganizerList();

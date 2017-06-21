@@ -24,9 +24,5 @@ public class Assignment implements Serializable{
         return eventEmployee;
     }
 
-    public void setEventEmployee(EventEmployee eventEmployee) {
-        this.eventEmployee = eventEmployee;
-    }
-
     
 }
