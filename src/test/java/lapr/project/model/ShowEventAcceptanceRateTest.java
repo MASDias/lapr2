@@ -48,14 +48,14 @@ public class ShowEventAcceptanceRateTest {
         Date end = sdf.parse("10-10-2017");
         Location local = new Location("Example Street");
         Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
-        Event event2 = new Event("Model", "string", end, beginning, null, null, local, 100);      
+        Event event2 = new Event("Model", "string", end, beginning, null, null, local, 100);
         Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(enterprise, 10, "description", 0.0f);
         ApplicationList list = new ApplicationList();
         list.addApplication(application);
         event.setApplicationsList(list);
         event2.setApplicationsList(list);
-         ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
+        ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
         ShowEventAcceptanceRate acceptenceRate2 = new ShowEventAcceptanceRate(event2);
         assertNotEquals(acceptenceRate, acceptenceRate2);
     }
@@ -70,7 +70,7 @@ public class ShowEventAcceptanceRateTest {
         Date beginning = sdf.parse("01-10-2017");
         Date end = sdf.parse("10-10-2017");
         Location local = new Location("Example Street");
-        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);        
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
         Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
         Application application = new Application(enterprise, 10, "description", 0.0f);
         ApplicationList list = new ApplicationList();
@@ -104,6 +104,7 @@ public class ShowEventAcceptanceRateTest {
         double expectedResult = 1.0;
         assertEquals(result, expectedResult, 0.0);
     }
+
     /**
      *
      * @throws Exception
@@ -127,7 +128,8 @@ public class ShowEventAcceptanceRateTest {
         double expectedResult = 1.0;
         assertNotEquals(result, expectedResult, 0.0);
     }
-      /**
+
+    /**
      *
      * @throws Exception
      */
@@ -150,7 +152,8 @@ public class ShowEventAcceptanceRateTest {
         int expectedResult = 1;
         assertEquals(result, expectedResult);
     }
-       /**
+
+    /**
      *
      * @throws Exception
      */
@@ -173,7 +176,8 @@ public class ShowEventAcceptanceRateTest {
         int expectedResult = 1;
         assertNotEquals(result, expectedResult);
     }
-      /**
+
+    /**
      *
      * @throws Exception
      */
@@ -196,7 +200,8 @@ public class ShowEventAcceptanceRateTest {
         int expectedResult = 1;
         assertEquals(result, expectedResult);
     }
-      /**
+
+    /**
      *
      * @throws Exception
      */
@@ -212,6 +217,49 @@ public class ShowEventAcceptanceRateTest {
         ApplicationList list = new ApplicationList();
         application.isDecision();
         application.setDecision(true);
+        list.addApplication(application);
+        event.setApplicationsList(list);
+        ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
+        int result = acceptenceRate.getTotal();
+        int expectedResult = 0;
+        assertNotEquals(result, expectedResult);
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetTotalWithoutIsDecisionIsEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        ApplicationList list = new ApplicationList();
+        list.addApplication(application);
+        event.setApplicationsList(list);
+        ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
+        int result = acceptenceRate.getTotal();
+        int expectedResult = 1;
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void EnsureGetTotalWithoutIsDecisionIsNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        ApplicationList list = new ApplicationList();
         list.addApplication(application);
         event.setApplicationsList(list);
         ShowEventAcceptanceRate acceptenceRate = new ShowEventAcceptanceRate(event);
