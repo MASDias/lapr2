@@ -75,12 +75,12 @@ public class EventManagerTest {
         assertNotEquals(result, expectedResult);
     }
      @Test
-    public void EnsureGetEmployeeIsNotEqual() {
+    public void EnsureGetEventManagerIsEqual() {
         User user = new User("Z", "c", "b", "a");
         EventManager eventmanager = new EventManager(user);
-        User user2 = eventmanager.getEventManager();
-        EventManager result = new EventManager(user2);
-        assertNotEquals(result, eventmanager);
+        User em = eventmanager.getEventManager();
+        
+        assertEquals(em, user);
     }
 
     /**
@@ -89,10 +89,10 @@ public class EventManagerTest {
     @Test
     public void EnsureGetUserNameIsEqual() {
         User user = new User("Z", "c", "b", "a");
-        User user2 = new User("T", "a", "o", "q");
         EventManager eventmanager = new EventManager(user);
         String result = eventmanager.getUsername();
-        assertNotEquals(result, user2);
+        String expectedResult = user.getUserName();
+        assertEquals(result, expectedResult);
     }
 
     /**
