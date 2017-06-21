@@ -357,7 +357,7 @@ public class ReviewTest {
     public void ensureHashCodeIsCorrect() {
         Review firstReview = new Review("box", 3, 4, 2, 5);;
         int expected = 1933589199;
-        int result = firstReview.hashCode();
+        int result = Math.abs(firstReview.hashCode());
         assertEquals(expected, result);
     }
 }
