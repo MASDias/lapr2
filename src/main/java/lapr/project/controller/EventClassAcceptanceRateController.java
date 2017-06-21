@@ -28,4 +28,9 @@ public class EventClassAcceptanceRateController {
     public Statistics setStatistics(double significance, int total, float AcceptanceRate) {
         return new Statistics(significance, total, AcceptanceRate);
     }
+
+    public Statistics setStatisticsCompare(double significance, int firsTotal, int secontTotal, float firstProporcion, float secondProporcion) {
+        return new Statistics(significance, firsTotal, secontTotal, firstProporcion, secondProporcion);
+    }
+
 }

@@ -8,46 +8,92 @@ import org.apache.commons.math3.distribution.NormalDistribution;
  */
 public class Statistics {
 
-    private float variance;
+    private float varianceUnilateral;
+    private float varianceBilateral;
+
     private final float FIFTYPERCENT = 0.5f;
     private double zCritical;
-    private int total;
+    private int totalUnilateral;
+    private int totalBilateral;
+
     private double significance;
-    private float acceptanceRate;
+    private float firstProporcion;
+    private float secondProporcion;
     private double obsValue;
 
     /**
      *
      * @param significance
      * @param total
+     * @param firstProportion
      */
-    public Statistics(double significance, int total, float acceptanceRate) {
-        this.total = total;
+    public Statistics(double significance, int total, float firstProportion) {
+        this.totalUnilateral = total;
         this.significance = significance;
-        this.acceptanceRate = acceptanceRate;
-        eventNormalDistributionUnilateral(significance);
+        this.firstProporcion = firstProportion;
+        NormalDistributionUnilateral(significance, this.firstProporcion, FIFTYPERCENT);
     }
 
-    private void eventNormalDistributionUnilateral(double significance) {
+    /**
+     *
+     * @param significance
+     * @param firstTotal
+     * @param secondTotal
+     * @param firstProporcion
+     * @param secondProporcion
+     */
+    public Statistics(double significance, int firstTotal, int secondTotal, float firstProporcion, float secondProporcion) {
+        this.totalUnilateral = firstTotal;
+        this.totalBilateral = secondTotal;
+        this.significance = significance;
+        this.firstProporcion = firstProporcion;
+        this.secondProporcion = secondProporcion;
+        NormalDistributionBilateral(significance);
+        ValueVarianceBilateral(firstProporcion, secondProporcion);
+        obsValueBilateral(firstProporcion, secondProporcion);
+    }
+
+    private void NormalDistributionUnilateral(double significance, float firstProporcion, float secondProporcion) {
         NormalDistribution normal = new NormalDistribution(0, 1);
         zCritical = normal.inverseCumulativeProbability(1 - significance);
-        ValueVariance();
-        obsValueUnilateral();
+        ValueVarianceUnilateral();
+        obsValueUnilateral(firstProporcion, secondProporcion);
     }
 
-    private void obsValueUnilateral() {
-        obsValue = (acceptanceRate - FIFTYPERCENT) / Math.sqrt(variance);
+    private void NormalDistributionBilateral(double significance) {
+        NormalDistribution normal = new NormalDistribution(0, 1);
+        zCritical = normal.inverseCumulativeProbability(1 - (significance / 2));
     }
 
-    private void ValueVariance() {
-
-        variance = (FIFTYPERCENT * (1 - FIFTYPERCENT)) / total;
+    private void obsValueUnilateral(float firstProporcion, float secondProporcion) {
+        obsValue = (firstProporcion - secondProporcion) / Math.sqrt(varianceUnilateral);
     }
 
+    private void obsValueBilateral(float firstProporcion, float secondProporcion) {
+        obsValue = (firstProporcion - secondProporcion) / Math.sqrt((varianceUnilateral + varianceBilateral));
+    }
+
+    private void ValueVarianceBilateral(float firstProporcion, float secondProporcion) {
+        varianceUnilateral = (firstProporcion * (1 - firstProporcion)) / totalUnilateral;
+        varianceBilateral = (secondProporcion * (1 - secondProporcion)) / totalBilateral;
+    }
+
+    private void ValueVarianceUnilateral() {
+        varianceUnilateral = (FIFTYPERCENT * (1 - FIFTYPERCENT)) / totalUnilateral;
+    }
+
+    /**
+     *
+     * @return
+     */
     public double getzCritical() {
         return zCritical;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getObsValue() {
         return obsValue;
     }

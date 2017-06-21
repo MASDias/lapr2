@@ -19,6 +19,10 @@ public class ShowStandInformation {
     private float mean = 0;
     private float standartDeviation = 0;
 
+    /**
+     *
+     * @param standRegistry
+     */
     public ShowStandInformation(StandRegistry standRegistry) {
         this.standRegistry = standRegistry;
         this.intervals = new ArrayList<>();
@@ -33,6 +37,11 @@ public class ShowStandInformation {
         return standRegistry;
     }
 
+    /**
+     *
+     * @param pos
+     * @return
+     */
     public StandRegistry newStandRegistryInterval(int pos) {
         StandRegistry newStandRegistry = new StandRegistry();
         for (int i = 0; i < standRegistry.size(); i++) {
@@ -85,6 +94,10 @@ public class ShowStandInformation {
         standartDeviation = (float) Math.sqrt((double) standartDeviation);//sqrt of the prevvious result, return the Standart Deviation
     }
 
+    /**
+     *
+     * @return
+     */
     public float getStandartDeviation() {
         return standartDeviation;
     }
@@ -114,26 +127,50 @@ public class ShowStandInformation {
         mean /= standRegistry.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public float[][] getIntervalMatrix() {
         return intervalMatrix;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getIntervals() {
         return intervals;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFrequencyString() {
         return frequencyString;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Float> getClassMarkArray() {
         return classMarkArray;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMean() {
         return mean;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Integer> getFrequency() {
         return frequency;
     }

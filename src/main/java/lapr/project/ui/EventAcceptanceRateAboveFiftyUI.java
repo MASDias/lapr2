@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.EventClassAcceptanceRateController;
 import lapr.project.model.EventCenter;
@@ -22,10 +15,12 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
     private boolean option;
-    private ShowEventAcceptanceRate eventAcceptanceRate;
+    private ShowEventAcceptanceRate eventAcceptanceRateOne;
+    private ShowEventAcceptanceRate eventAcceptanceRateTwo;
     private EventClassAcceptanceRateController controller;
     private Statistics statistics;
-    private Event event;
+    private Event eventOne;
+    private Event eventTwo;
 
     /**
      * Creates new form EventAcceptanceRateAboveFiftyUI
@@ -37,10 +32,14 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
     public EventAcceptanceRateAboveFiftyUI(EventCenter eventCenter, boolean option) {
         initComponents();
         this.setVisible(true);
+        this.pack();
         controller = new EventClassAcceptanceRateController(eventCenter);
         this.option = option;
         if (option) {
             eventTwoCombobox.setVisible(false);
+            proportionEventOneTextField.setVisible(false);
+            labelProportionTextField.setVisible(false);
+            labelProportionTwoTextField.setText("Proportion Accepted Event 1");
             populateEventCombobox();
         } else {
             populateEventCombobox();
@@ -57,13 +56,12 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
     private void initComponents() {
 
         eventTextField = new javax.swing.JTextField();
-        proporcionTextField = new javax.swing.JTextField();
+        proportionEventTwoTextField = new javax.swing.JTextField();
         CritValueTextField = new javax.swing.JTextField();
         SigniValueTextField = new javax.swing.JTextField();
         ObsValueTextField = new javax.swing.JTextField();
         decisionTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -73,20 +71,24 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
         selectBtn = new javax.swing.JButton();
         significanceTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        labelProportionTwoTextField = new javax.swing.JLabel();
+        proportionEventOneTextField = new javax.swing.JTextField();
+        labelProportionTextField = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        eventTextField.setEditable(false);
         eventTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eventTextFieldActionPerformed(evt);
             }
         });
 
-        proporcionTextField.setEditable(false);
-        proporcionTextField.addActionListener(new java.awt.event.ActionListener() {
+        proportionEventTwoTextField.setEditable(false);
+        proportionEventTwoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                proporcionTextFieldActionPerformed(evt);
+                proportionEventTwoTextFieldActionPerformed(evt);
             }
         });
 
@@ -95,12 +97,15 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
         SigniValueTextField.setEditable(false);
 
         ObsValueTextField.setEditable(false);
+        ObsValueTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObsValueTextFieldActionPerformed(evt);
+            }
+        });
 
         decisionTextField.setEditable(false);
 
         jLabel1.setText("Event");
-
-        jLabel2.setText("Proporcion Accepted (n>30)");
 
         jLabel3.setText("Critical Value");
 
@@ -125,6 +130,17 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
 
         jLabel7.setText("Significance Level:");
 
+        labelProportionTwoTextField.setText("Proportion Accepted Event 2");
+
+        proportionEventOneTextField.setEditable(false);
+        proportionEventOneTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proportionEventOneTextFieldActionPerformed(evt);
+            }
+        });
+
+        labelProportionTextField.setText("Proportion Accepted Event 1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,35 +148,34 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(significanceTextField))
                     .addComponent(eventTwoCombobox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eventOneCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelProportionTextField)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(labelProportionTwoTextField))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ObsValueTextField)
-                            .addComponent(SigniValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(CritValueTextField)
-                            .addComponent(proporcionTextField)
-                            .addComponent(decisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(selectBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(CritValueTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addComponent(SigniValueTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ObsValueTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(proportionEventTwoTextField)
+                            .addComponent(proportionEventOneTextField)
+                            .addComponent(decisionTextField, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eventTextField)))
+                        .addComponent(eventTextField))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(significanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -170,20 +185,23 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
                 .addComponent(eventOneCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eventTwoCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(significanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel7)
+                    .addComponent(selectBtn))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proporcionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(proportionEventOneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelProportionTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(proportionEventTwoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelProportionTwoTextField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CritValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,24 +218,24 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(decisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showValuesUnilateral() {
+    private void ShowValues() {
         double significance = Double.parseDouble(significanceTextField.getText());
         if (significance > 0 && significance < 1) {
-            event = (Event) eventOneCombobox.getSelectedItem();
-            eventAcceptanceRate = new ShowEventAcceptanceRate(event);
-            int total = eventAcceptanceRate.getTotal();
-            float acceptanceRate = (float) eventAcceptanceRate.getAcceptanceRate();
             if (option) {
+                eventOne = (Event) eventOneCombobox.getSelectedItem();
+                eventAcceptanceRateOne = new ShowEventAcceptanceRate(eventOne);
+                float acceptanceRate = (float) eventAcceptanceRateOne.getAcceptanceRate();
+                int total = eventAcceptanceRateOne.getTotal();
                 statistics = controller.setStatistics(significance, total, acceptanceRate);
-                eventTextField.setText(event.getTitle());
-                proporcionTextField.setText(String.format("%.3f %%", eventAcceptanceRate.getAcceptanceRate() * 100));
+                eventTextField.setText(eventOne.getTitle());
+                proportionEventTwoTextField.setText(String.format("%.3f %%", eventAcceptanceRateOne.getAcceptanceRate() * 100));
                 CritValueTextField.setText(String.format("%.3f", statistics.getzCritical()));
                 SigniValueTextField.setText(String.format("%.2f", significance));
                 ObsValueTextField.setText(String.format("%.3f", statistics.getObsValue()));
@@ -227,7 +245,26 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
                     decisionTextField.setText("No");
                 }
             } else {
-
+                eventOne = (Event) eventOneCombobox.getSelectedItem();
+                eventTwo = (Event) eventTwoCombobox.getSelectedItem();
+                eventAcceptanceRateOne = new ShowEventAcceptanceRate(eventOne);
+                eventAcceptanceRateTwo = new ShowEventAcceptanceRate(eventTwo);
+                int totalEventOne = eventAcceptanceRateOne.getTotal();
+                float acceptanceRateOne = (float) eventAcceptanceRateOne.getAcceptanceRate();
+                int totalEventTwo = eventAcceptanceRateTwo.getTotal();
+                float acceptanceRateTwo = (float) eventAcceptanceRateTwo.getAcceptanceRate();
+                statistics = controller.setStatisticsCompare(significance, totalEventOne, 30, acceptanceRateOne, acceptanceRateTwo);
+                eventTextField.setText(eventOne.getTitle() + " vs. " + eventTwo.getTitle());
+                proportionEventOneTextField.setText(String.format("%.3f %%", eventAcceptanceRateOne.getAcceptanceRate() * 100));
+                proportionEventTwoTextField.setText(String.format("%.3f %%", eventAcceptanceRateTwo.getAcceptanceRate() * 100));
+                CritValueTextField.setText(String.format("%.3f", statistics.getzCritical()));
+                SigniValueTextField.setText(String.format("%.2f", significance));
+                ObsValueTextField.setText(String.format("%.3f", statistics.getObsValue()));
+                if (statistics.getObsValue() > statistics.getzCritical()) {
+                    decisionTextField.setText("Yes");
+                } else {
+                    decisionTextField.setText("No");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Please insert a valid significance value (Between 0 and 1)");
@@ -236,23 +273,31 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         if (!significanceTextField.getText().isEmpty()) {
-            showValuesUnilateral();
+            ShowValues();
         } else {
             JOptionPane.showMessageDialog(null, "Please insert a valid significance value (Between 0 and 1)");
         }
     }//GEN-LAST:event_selectBtnActionPerformed
 
-    private void proporcionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proporcionTextFieldActionPerformed
+    private void proportionEventTwoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proportionEventTwoTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_proporcionTextFieldActionPerformed
+    }//GEN-LAST:event_proportionEventTwoTextFieldActionPerformed
 
     private void eventTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventTextFieldActionPerformed
 
     private void significanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_significanceTextFieldActionPerformed
-        showValuesUnilateral();
+        ShowValues();
     }//GEN-LAST:event_significanceTextFieldActionPerformed
+
+    private void proportionEventOneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proportionEventOneTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_proportionEventOneTextFieldActionPerformed
+
+    private void ObsValueTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObsValueTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ObsValueTextFieldActionPerformed
 
     private void populateEventCombobox() {
         for (int i = 0; i < controller.getEventRegistry().size(); i++) {
@@ -274,13 +319,15 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
     private javax.swing.JTextField eventTextField;
     private javax.swing.JComboBox<Event> eventTwoCombobox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField proporcionTextField;
+    private javax.swing.JLabel labelProportionTextField;
+    private javax.swing.JLabel labelProportionTwoTextField;
+    private javax.swing.JTextField proportionEventOneTextField;
+    private javax.swing.JTextField proportionEventTwoTextField;
     private javax.swing.JButton selectBtn;
     private javax.swing.JTextField significanceTextField;
     // End of variables declaration//GEN-END:variables

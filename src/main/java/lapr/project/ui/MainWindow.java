@@ -101,6 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
         showEventAcceptanceRate = new javax.swing.JMenuItem();
         showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
         testEventAcceptanceRateAboveFiftyPercentMenuItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         helpMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
@@ -308,6 +309,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         statisticsMenu.add(testEventAcceptanceRateAboveFiftyPercentMenuItem);
+
+        jMenuItem1.setText("Compare Event Acceptance Rate");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(jMenuItem1);
 
         menu.add(statisticsMenu);
         menu.add(jSeparator8);
@@ -560,7 +569,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
 
     private void testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
-        new EventAcceptanceRateAboveFiftyUI(eventCenter, false);
+        new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
     }//GEN-LAST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
 
     private void listApplicationJItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listApplicationJItemActionPerformed
@@ -570,6 +579,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void changeOrRemoveApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOrRemoveApplicationMenuItemActionPerformed
         new ChangeOrRemoveApplicationUI(eventCenter, userNameLabel.getText());
     }//GEN-LAST:event_changeOrRemoveApplicationMenuItemActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       new EventAcceptanceRateAboveFiftyUI(eventCenter, false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void openWebPage(String url) {
         try {
@@ -725,6 +738,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem importXmlFileMenuItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
