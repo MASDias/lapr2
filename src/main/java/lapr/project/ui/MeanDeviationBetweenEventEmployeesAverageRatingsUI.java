@@ -25,6 +25,7 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
     private static final long serialVersionUID = 1;
     private MeanDeviationBetweenEventEmployeesAverageRatingsController controller;
     private EventRegistry eventRegistry;
+    private EventEmployee employee;
     private EventEmployeeMeanRating employeeMeanRating;
     private EventEmployeeMeanRating globalMeanRating;
     private DefaultListModel<String> model = new DefaultListModel<>();
@@ -135,7 +136,7 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
     }
 
     private void populateJList() {
-        EventEmployee employee = (EventEmployee) eventEmployeeCombobox.getItemAt(eventEmployeeCombobox.getSelectedIndex());
+        employee = eventEmployeeCombobox.getItemAt(eventEmployeeCombobox.getSelectedIndex());
         String user = employee.getUsername();
         globalMeanRating = controller.getGlobalMeanRating(eventRegistry);
         float globalMean = globalMeanRating.getGlobalMeanRating();
