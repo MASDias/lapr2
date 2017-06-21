@@ -253,7 +253,7 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
                 float acceptanceRateOne = (float) eventAcceptanceRateOne.getAcceptanceRate();
                 int totalEventTwo = eventAcceptanceRateTwo.getTotal();
                 float acceptanceRateTwo = (float) eventAcceptanceRateTwo.getAcceptanceRate();
-                statistics = controller.setStatisticsCompare(significance, totalEventOne, 30, acceptanceRateOne, acceptanceRateTwo);
+                statistics = controller.setStatisticsCompare(significance, totalEventOne, totalEventTwo, acceptanceRateOne, acceptanceRateTwo);
                 eventTextField.setText(eventOne.getTitle() + " vs. " + eventTwo.getTitle());
                 proportionEventOneTextField.setText(String.format("%.3f %%", eventAcceptanceRateOne.getAcceptanceRate() * 100));
                 proportionEventTwoTextField.setText(String.format("%.3f %%", eventAcceptanceRateTwo.getAcceptanceRate() * 100));

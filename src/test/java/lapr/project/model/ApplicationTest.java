@@ -5,9 +5,6 @@
  */
 package lapr.project.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -66,7 +63,7 @@ public class ApplicationTest {
         Application application = new Application( e, 10, "description", 0.0f);
 
         String result = application.toString();
-        String expectedResult = "Enterprise:enterprise 1 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987; Invites:10; Description:description";
+        String expectedResult = "Enterprise:enterprise 1; Invites:10; Description:description";
         assertEquals(result, expectedResult);
     }
 
@@ -81,7 +78,7 @@ public class ApplicationTest {
         Application application = new Application( e, 10, "description", 0.0f);
         String result = application.toString();
         System.out.println(result);
-        String expectedResult = "Enterprise:enterprise2 Email:e@email.com Address:Location X Taxpayer num:123456789 Contact:912645987; Invites:10; Description: description";
+        String expectedResult = "Enterprise:enterprise2";
         assertNotEquals(result, expectedResult);
 
     }

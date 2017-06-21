@@ -96,6 +96,7 @@ public class MainWindow extends javax.swing.JFrame {
         statisticsMenu = new javax.swing.JMenu();
         showStandInformationMenuItem = new javax.swing.JMenuItem();
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         showGlobalMeanRatingMenuItem = new javax.swing.JMenuItem();
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
         showEventAcceptanceRate = new javax.swing.JMenuItem();
@@ -269,6 +270,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         statisticsMenu.add(showEmployeeMeanRatingMenuItem);
+
+        jMenuItem2.setText("Show Mean Deviation between Employees Avarage Rating");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(jMenuItem2);
 
         showGlobalMeanRatingMenuItem.setText("Show Global Mean Rating");
         showGlobalMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -483,7 +492,7 @@ public class MainWindow extends javax.swing.JFrame {
                 this.eventCenter = (EventCenter) sealedObject.getObject(cipher);
                 JOptionPane.showMessageDialog(null, "All data imported!");
             } catch (Exception ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);      
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
                     if (file != null) {
@@ -545,7 +554,7 @@ public class MainWindow extends javax.swing.JFrame {
                     eventCenter = xmlFile.readValuesFromXML(eventCenter);
                     JOptionPane.showMessageDialog(null, "All data imported!");
                 } catch (Exception ex) {
-                   Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } catch (Exception ex) {
@@ -578,8 +587,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_changeOrRemoveApplicationMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       new EventAcceptanceRateAboveFiftyUI(eventCenter, false);
+        new EventAcceptanceRateAboveFiftyUI(eventCenter, false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new MeanDeviationBetweenEventEmployeesAverageRatingsUI(eventCenter);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void openWebPage(String url) {
         try {
@@ -736,6 +749,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;

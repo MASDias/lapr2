@@ -79,12 +79,10 @@ public class Enterprise implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Enterprise:" + name + " Email:" + email + " Address:" + address + " Taxpayer num:" + taxpayerNumber + " Contact:" + contact;
+        return "Enterprise:" + name;
     }
 
 }

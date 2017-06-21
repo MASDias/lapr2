@@ -79,7 +79,6 @@ public class ShowStandInformation {
     }
 
     private void calculateDiferenceClassMarkMean() {
-        System.out.println(classMarkArray.size());
         for (int i = 0; i < classMarkArray.size(); i++) {
             float value = (float) Math.pow((classMarkArray.get(i) - mean), 2);
             clmMinusMeanSquared.add(value);
