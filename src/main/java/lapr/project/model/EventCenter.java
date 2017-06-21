@@ -19,7 +19,6 @@ public class EventCenter implements Serializable {
     private UserRegistry userRegistry;
     private ProductList productList;
 
-    
     /**
      *
      */
