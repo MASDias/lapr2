@@ -39,10 +39,12 @@ public class SubmitApplication extends javax.swing.JFrame {
      * Creates new form SubmitApplication
      *
      * @param eventCenter
+     * @param logedUser
      * @throws java.text.ParseException
      */
     public SubmitApplication(EventCenter eventCenter, String logedUser) throws ParseException {
         SubmitApplicationController controller = new SubmitApplicationController(eventCenter);
+        this.logedUser = logedUser;
         this.standRegistry = controller.getStandRegistry();
         this.productList = controller.getProductList();
         this.eventRegistry = controller.getEventRegistry();
@@ -127,7 +129,7 @@ public class SubmitApplication extends javax.swing.JFrame {
 
         jLabel8.setText("Keywords:");
 
-        jLabel4.setText("Taxpayer Number:");
+        jLabel4.setText("Taxpayer number:");
 
         jLabel1.setText("Description:");
 
@@ -163,7 +165,7 @@ public class SubmitApplication extends javax.swing.JFrame {
             }
         });
 
-        standlistLabel.setText("Stand List:");
+        standlistLabel.setText("Stand area:");
 
         invitesLabel.setText("Invites:");
 
@@ -238,7 +240,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                                 .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
                     .addComponent(productsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton)
@@ -337,6 +339,7 @@ public class SubmitApplication extends javax.swing.JFrame {
                 a.getKeywordList().addKeyword(modelKeyword.elementAt(i));
             }
             eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0).getApplicationList().addApplication(a);
+            a.setUser(logedUser);
             JOptionPane.showMessageDialog(null, "Application submitted with success!");
             dispose();
         }
