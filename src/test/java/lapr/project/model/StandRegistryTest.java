@@ -98,7 +98,9 @@ public class StandRegistryTest {
         Stand result = new Stand("adsda", 10);
         Stand result2 = new Stand("adsda", 20);
         Stand result3 = new Stand("adsda", 30);
+        Stand result4 = new Stand("adsda", 30);
         list.addStand(result2);
+        list.addStand(result4);
         list.addStand(result3);
         list.addStand(result);
         list.sort();
