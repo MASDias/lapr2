@@ -68,7 +68,7 @@ public class XMLReaderTest {
     public void EnsureTestFilePathIsEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.1.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertEquals(result,expectedResult);
     }
     
@@ -76,7 +76,7 @@ public class XMLReaderTest {
     public void EnsureTestFilePathIsNotEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.1.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = true;
+        boolean expectedResult = false;
         assertNotEquals(result,expectedResult);
     }
     
@@ -88,9 +88,10 @@ public class XMLReaderTest {
     public void EnsureFilePathTestingWorksInConstrutorIsEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         assertEquals(result,expectedResult);
     }
+    
     
     /**
      *
@@ -100,7 +101,24 @@ public class XMLReaderTest {
     public void EnsureFilePathTestingWorksInConstrutorIsNotEqual() throws Exception{
         XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
         boolean result = xmlFile.testFilepath("xml/exposicao1_v0.1.xml");
+        boolean expectedResult = false;
+        assertNotEquals(result,expectedResult);
+    }
+    
+    @Test
+    public void EnsureFilePathTestingWorksInConstrutorIsEqualWhenFalse() throws Exception{
+        XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
+        boolean result = xmlFile.testFilepath("xml/exposicao1_v0.xml");
+        boolean expectedResult = false;
+        assertEquals(result,expectedResult);
+    }
+    
+        @Test
+    public void EnsureFilePathTestingWorksInConstrutorIsNotEqualWhenFalse() throws Exception{
+        XMLReader xmlFile = new XMLReader("xml/exposicao1_v0.xml");
+        boolean result = xmlFile.testFilepath("xml/exposicao1_v0.xml");
         boolean expectedResult = true;
         assertNotEquals(result,expectedResult);
     }
+    
 }

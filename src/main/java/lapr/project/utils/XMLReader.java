@@ -62,7 +62,7 @@ public class XMLReader {
      * @param fileXML
      */
     public XMLReader(String fileXML) {
-
+        
         if (!testFilepath(fileXML)) {
             filepathXML = DEFAULT_FILENAME_XML;
         } else {
@@ -427,7 +427,7 @@ public class XMLReader {
      */
     public boolean testFilepath(String filepath) {
         File file = new File(filepath);
-        if (!file.exists() || (file.exists() && !file.isDirectory())) {
+        if (!file.exists() || (file.exists() && file.isDirectory())) {
             System.out.println("File not found. Using default file");
             return false;
         }
