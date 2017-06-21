@@ -64,17 +64,17 @@ public class EventTest {
         Object result = new Object();
         assertNotEquals(event, result);
     }
-//      @Test
-//    public void EnsureGetKeywordListIsEqual() throws Exception {
-//       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//        Date beginning = sdf.parse("01-10-2017");
-//        Date end = sdf.parse("10-10-2017");
-//        Location local = new Location("Example Street");      
-//        Event event = new Event("Model Example", "Example string", beginning, end, null, null, local,100);
-//        KeywordList keywordList = event.getKeywordsList();
-//        KeywordList result = new KeywordList();
-//        assertEquals(result, keywordList);
-//    }
+      @Test
+    public void EnsureGetKeywordListIsNotEqual() throws Exception {
+       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");      
+        Event event = new Event("Model Example", "Example string", beginning, end, null, null, local,100);
+        KeywordList keywordList = event.getKeywordsList();
+        KeywordList result = new KeywordList();
+        assertNotEquals(result, keywordList);
+    }
 
     @Test
     public void EnsureGetTitleIsEqual() throws Exception {
