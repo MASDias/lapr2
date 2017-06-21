@@ -458,8 +458,6 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     private void importMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importMenuItemActionPerformed
-
-        FileInputStream inputFile = null;
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("/Documents"));
         int retrival = fileChooser.showOpenDialog(MainWindow.this);
