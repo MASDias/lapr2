@@ -48,7 +48,7 @@ public class ProductTest {
     public void EnsureToStringIsEqual() throws Exception {        
        Product product = new Product("box");
        String result = product.toString();
-       String expectedResult = "Product name:box"; 
+       String expectedResult = "box"; 
        assertEquals(result, expectedResult);
     }
 

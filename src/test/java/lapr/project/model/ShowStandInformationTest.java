@@ -150,11 +150,11 @@ public class ShowStandInformationTest {
         }
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         ArrayList<String> expectedResult = new ArrayList<>();
-        expectedResult.add("[ 10.00 , 13.80 ]");
-        expectedResult.add("[ 13.80 , 17.60 ]");
-        expectedResult.add("[ 17.60 , 21.40 ]");
-        expectedResult.add("[ 21.40 , 25.20 ]");
-        expectedResult.add("[ 25.20 , 29.00 ]");
+        expectedResult.add("[ 10,00 , 13,80 ]");
+        expectedResult.add("[ 13,80 , 17,60 ]");
+        expectedResult.add("[ 17,60 , 21,40 ]");
+        expectedResult.add("[ 21,40 , 25,20 ]");
+        expectedResult.add("[ 25,20 , 29,00 ]");
         ArrayList<String> result = standInformation.getIntervals();
         assertEquals(expectedResult, result);
 
@@ -171,9 +171,9 @@ public class ShowStandInformationTest {
         }
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         ArrayList<String> expectedResult = new ArrayList<>();
-        expectedResult.add("[ 10.00 , 13.90 ]");
-        expectedResult.add("[ 13.70 , 17.60 ]");
-        expectedResult.add("[ 17.60 , 21.40 ]");
+        expectedResult.add("[ 10,00 , 13.90 ]");
+        expectedResult.add("[ 13,70 , 17.60 ]");
+        expectedResult.add("[ 17,60 , 21.40 ]");
         expectedResult.add("[ 21.40 , 25.20 ]");
         expectedResult.add("[ 25.20 , 29.00 ]");
         ArrayList<String> result = standInformation.getIntervals();
@@ -193,7 +193,7 @@ public class ShowStandInformationTest {
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         StandRegistry n = standInformation.newStandRegistryInterval(0);
         String result = standInformation.getFrequencyString();
-        String expectedResult = "20.00%";
+        String expectedResult = "20,00%";
         assertEquals(expectedResult, result);
 
     }
