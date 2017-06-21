@@ -22,12 +22,11 @@ public class XMLReaderTest {
      */
     @Test
     public void EnsureXMLReaderIsEqual() throws Exception{
-        XMLReader xmlFile = new XMLReader();
         EventCenter ec = new EventCenter();
+        XMLReader xmlFile = new XMLReader();
         ec = xmlFile.readValuesFromXML(ec);
         EventCenter ec2 = ec;
         assertEquals(ec,ec2);
-        
     }
     
         /**

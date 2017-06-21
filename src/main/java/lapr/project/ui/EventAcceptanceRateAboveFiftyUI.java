@@ -42,6 +42,8 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
         if (option) {
             eventTwoCombobox.setVisible(false);
             populateEventCombobox();
+        } else {
+            populateEventCombobox();
         }
     }
 
@@ -255,6 +257,11 @@ public class EventAcceptanceRateAboveFiftyUI extends javax.swing.JFrame {
     private void populateEventCombobox() {
         for (int i = 0; i < controller.getEventRegistry().size(); i++) {
             eventOneCombobox.addItem(controller.getEventRegistry().getEvent(i));
+        }
+        if (!option) {
+            for (int i = 0; i < controller.getEventRegistry().size(); i++) {
+                eventTwoCombobox.addItem(controller.getEventRegistry().getEvent(i));
+            }
         }
     }
 

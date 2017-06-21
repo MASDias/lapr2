@@ -1,9 +1,5 @@
 package lapr.project.model;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import lapr.project.ui.EventAcceptanceRateAboveFiftyUI;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**

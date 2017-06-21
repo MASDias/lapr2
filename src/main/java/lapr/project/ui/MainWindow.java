@@ -556,7 +556,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
 
     private void testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
-        new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
+        new EventAcceptanceRateAboveFiftyUI(eventCenter, false);
     }//GEN-LAST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
 
     private void listApplicationJItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listApplicationJItemActionPerformed

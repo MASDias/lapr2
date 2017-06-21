@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lapr.project.utils;
 
 import java.io.File;
@@ -40,6 +35,7 @@ import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
 import lapr.project.ui.MainWindow;
+import org.xml.sax.SAXParseException;
 
 /**
  *
@@ -77,11 +73,10 @@ public class XMLReader {
         filepathXML = DEFAULTFILENAMEXML;
     }
 
-    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException {
+    public EventCenter readValuesFromXML(EventCenter eventCenter) throws ParseException,SAXParseException {
         try {
-            eventCenter = new EventCenter();
+
             File xmlFile = new File(filepathXML);
-            Event exposicao1 = new Event("", "", null, null, null, null, null, 0);
 
             DocumentBuilderFactory documentBuilderFactory
                     = DocumentBuilderFactory.newInstance();
@@ -90,7 +85,7 @@ public class XMLReader {
             inputSource.setCharacterStream(new FileReader(xmlFile));
             Document document = documentBuilder.parse(inputSource);
             NodeList eventList = document.getElementsByTagName("event");
-            eventCenter = getEventCenterFromXML(eventList, document, eventCenter, exposicao1);
+            eventCenter = getEventCenterFromXML(eventList, document, eventCenter);
 
         } catch (FileNotFoundException e) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
@@ -105,8 +100,9 @@ public class XMLReader {
         return eventCenter;
     }
 
-    private EventCenter getEventCenterFromXML(NodeList eventList, Document document, EventCenter eventCenter, Event exposicao1) throws ParseException {
+    private EventCenter getEventCenterFromXML(NodeList eventList, Document document, EventCenter eventCenter) throws ParseException {
         for (int b = 0; b < eventList.getLength(); b++) {
+            Event exposicao1 = new Event("", "", null, null, null, null, null, 0);
             int cont = 0;
             Element title = (Element) eventList.item(b);
             String eventTitle = title.getElementsByTagName("title").item(0).getTextContent();
@@ -183,8 +179,8 @@ public class XMLReader {
             exposicao1.setEventEnd(f.parse(eventEnd));
             exposicao1.setEventSubmissionBegin(f.parse(eventSubBeg));
             exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
-        }
         eventCenter.getEventRegistry().addEvent(exposicao1);
+        }
 
         return eventCenter;
     }
