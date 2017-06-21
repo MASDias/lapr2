@@ -100,7 +100,7 @@ public class MainWindow extends javax.swing.JFrame {
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
         showEventAcceptanceRate = new javax.swing.JMenuItem();
         showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        testEventAcceptanceRateAboveFiftyPercentMenuItem = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         helpMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
@@ -301,13 +301,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         statisticsMenu.add(showGlobalAcceptanceRateMenuItem);
 
-        jMenuItem1.setText("Test Event acceptance rate above 50%");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        testEventAcceptanceRateAboveFiftyPercentMenuItem.setText("Test Event acceptance rate above 50%");
+        testEventAcceptanceRateAboveFiftyPercentMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(evt);
             }
         });
-        statisticsMenu.add(jMenuItem1);
+        statisticsMenu.add(testEventAcceptanceRateAboveFiftyPercentMenuItem);
 
         menu.add(statisticsMenu);
         menu.add(jSeparator8);
@@ -375,27 +375,27 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createEventMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventMenuItemActionPerformed
-        CreateEvent event = new CreateEvent(eventCenter);
+        new CreateEvent(eventCenter);
     }//GEN-LAST:event_createEventMenuItemActionPerformed
 
     private void registerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerMenuItemActionPerformed
-        CreateUser ur = new CreateUser(eventCenter);
+        new CreateUser(eventCenter);
     }//GEN-LAST:event_registerMenuItemActionPerformed
 
     private void loginMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuItemActionPerformed
-        LoginUI login = new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus, MainWindow.this);
+        new LoginUI(loginStatus, eventCenter, userNameLabel, userStatus, organizerStatus, eventEmployeeStatus, eventManagerStatus, MainWindow.this);
     }//GEN-LAST:event_loginMenuItemActionPerformed
 
     private void defineOrganizerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineOrganizerMenuItemActionPerformed
-        DefineOrganizer defineOrganizer = new DefineOrganizer(eventCenter);
+        new DefineOrganizer(eventCenter);
     }//GEN-LAST:event_defineOrganizerMenuItemActionPerformed
 
     private void defineEventManagerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEventManagerMenuItemActionPerformed
-        DefineEventManager dem = new DefineEventManager(eventCenter);
+        new DefineEventManager(eventCenter);
     }//GEN-LAST:event_defineEventManagerMenuItemActionPerformed
 
     private void defineEmployeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defineEmployeeMenuItemActionPerformed
-        DefineEventEmployee dee = new DefineEventEmployee(eventCenter);
+        new DefineEventEmployee(eventCenter);
     }//GEN-LAST:event_defineEmployeeMenuItemActionPerformed
 
     private void submitApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitApplicationMenuItemActionPerformed
@@ -492,27 +492,27 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_importMenuItemActionPerformed
 
     private void showStandInformationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showStandInformationMenuItemActionPerformed
-        ShowEventStandsInformationUI sesi = new ShowEventStandsInformationUI(eventCenter);
+        new ShowEventStandsInformationUI(eventCenter);
     }//GEN-LAST:event_showStandInformationMenuItemActionPerformed
 
     private void showEmployeeMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEmployeeMeanRatingMenuItemActionPerformed
-        ShowEmployeeMeanRating semr = new ShowEmployeeMeanRating(eventCenter);
+        new ShowEmployeeMeanRating(eventCenter);
     }//GEN-LAST:event_showEmployeeMeanRatingMenuItemActionPerformed
 
     private void showEventsSubmissionKeywordsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventsSubmissionKeywordsMenuItemActionPerformed
-        ShowEventSubmissionKeywordsUI swsk = new ShowEventSubmissionKeywordsUI(eventCenter);
+        new ShowEventSubmissionKeywordsUI(eventCenter);
     }//GEN-LAST:event_showEventsSubmissionKeywordsMenuItemActionPerformed
 
     private void createStandMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStandMenuItemActionPerformed
-        CreateStand createStand = new CreateStand(eventCenter);
+        new CreateStand(eventCenter);
     }//GEN-LAST:event_createStandMenuItemActionPerformed
 
     private void showEventAcceptanceRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEventAcceptanceRateActionPerformed
-        ShowEventAcceptanceRateUI sear = new ShowEventAcceptanceRateUI(eventCenter);
+        new ShowEventAcceptanceRateUI(eventCenter);
     }//GEN-LAST:event_showEventAcceptanceRateActionPerformed
 
     private void showGlobalAcceptanceRateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalAcceptanceRateMenuItemActionPerformed
-        ShowGlobalAcceptanceRateUI sgar = new ShowGlobalAcceptanceRateUI(eventCenter);
+        new ShowGlobalAcceptanceRateUI(eventCenter);
 
     }//GEN-LAST:event_showGlobalAcceptanceRateMenuItemActionPerformed
 
@@ -521,7 +521,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_helpMenuItemActionPerformed
 
     private void showGlobalMeanRatingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showGlobalMeanRatingMenuItemActionPerformed
-        ShowGlobalMeanRatingUI sgmr = new ShowGlobalMeanRatingUI(eventCenter);
+        new ShowGlobalMeanRatingUI(eventCenter);
     }//GEN-LAST:event_showGlobalMeanRatingMenuItemActionPerformed
 
     private void importXmlFileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importXmlFileMenuItemActionPerformed
@@ -555,16 +555,16 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        EventAcceptanceRateAboveFiftyUI earaf = new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
+        new EventAcceptanceRateAboveFiftyUI(eventCenter, true);
+    }//GEN-LAST:event_testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed
 
     private void listApplicationJItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listApplicationJItemActionPerformed
-        ListApplicationsUI laui = new ListApplicationsUI(eventCenter, userNameLabel.getText());
+        new ListApplicationsUI(eventCenter, userNameLabel.getText());
     }//GEN-LAST:event_listApplicationJItemActionPerformed
 
     private void changeOrRemoveApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOrRemoveApplicationMenuItemActionPerformed
-        ChangeOrRemoveApplicationUI cora = new ChangeOrRemoveApplicationUI(eventCenter, userNameLabel.getText());
+        new ChangeOrRemoveApplicationUI(eventCenter, userNameLabel.getText());
     }//GEN-LAST:event_changeOrRemoveApplicationMenuItemActionPerformed
 
     private void openWebPage(String url) {
@@ -721,7 +721,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem importXmlFileMenuItem;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -746,6 +745,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem showStandInformationMenuItem;
     private javax.swing.JMenu statisticsMenu;
     private javax.swing.JMenuItem submitApplicationMenuItem;
+    private javax.swing.JMenuItem testEventAcceptanceRateAboveFiftyPercentMenuItem;
     private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }
