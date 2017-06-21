@@ -190,6 +190,8 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
                     if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
                         meanRating += (review.getMeanValue());
                         counter++;
+                    }else{
+                        counter = 1;
                     }
                 }
             }

@@ -35,10 +35,15 @@ public class ShowGlobalAcceptanceRateController {
         for (int i = 0; i < eventList.size(); i++) {
             Event event = eventList.getEvent(i);
             for (int j = 0; j < event.getApplicationsList().size() ; j++) {              
+                if(event.getApplicationsList().size()>0){
+                    
                 Application application = event.getApplicationsList().getApplication(j);
                 counterTotal++;
                 if (application.isDecision()) {
                     counterAccepted++;
+                }
+                }else{
+                    counterTotal = 0;
                 }
             }
         }

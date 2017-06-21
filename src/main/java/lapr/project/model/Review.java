@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -30,7 +31,6 @@ public class Review implements Serializable {
      * @param application
      * @param invitation
      * @param overall
-     * @param assignment
      */
     public Review(String textDescription, int knowledge, int application, int invitation, int overall) {
         this.textDescription = textDescription;
@@ -128,6 +128,18 @@ public class Review implements Serializable {
     @Override
     public int hashCode() {
         return toString().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Review other = (Review) obj;
+        return Objects.equals(this.assignment, other.assignment);
     }
 
     @Override

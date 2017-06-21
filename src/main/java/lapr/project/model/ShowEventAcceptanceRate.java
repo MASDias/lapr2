@@ -25,10 +25,14 @@ private Event event;
         int totalCounter = 0;
 
         for (int i = 0; i < event.getApplicationsList().size(); i++) {
+            if(event.getApplicationsList().size()>0){
             Application application = event.getApplicationsList().getApplication(i);
             totalCounter++;
             if (application.isDecision()) {
                 acceptedCounter++;
+            }
+            }else{
+                totalCounter = 1;
             }
         }
         total = totalCounter;

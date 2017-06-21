@@ -115,10 +115,14 @@ public class ShowGlobalMeanRatingUI extends javax.swing.JFrame {
             for (int j = 0; j < e.getApplicationsList().size(); j++) {
                 Application application = e.getApplicationsList().getApplication(j);
                 for (int k = 0; k < application.getReviewList().size(); k++) {
+                    if(application.getReviewList().size()>0){
                     Review review = application.getReviewList().get(k);
                     meanRating += (review.getMeanValue());
                     counter++;
-
+                    }
+                    else{
+                        counter = 1;
+                    }
                 }
             }
         }
