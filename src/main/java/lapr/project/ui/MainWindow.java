@@ -438,7 +438,7 @@ public class MainWindow extends javax.swing.JFrame {
             } catch (NoSuchPaddingException ex) {
                 Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
-                ex.printStackTrace();
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 try {
                     if (file != null) {
@@ -536,7 +536,7 @@ public class MainWindow extends javax.swing.JFrame {
                     eventCenter = xmlFile.readValuesFromXML(eventCenter);
                     JOptionPane.showMessageDialog(null, "All data imported!");
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                   Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } catch (Exception ex) {
@@ -708,7 +708,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;
     private javax.swing.JMenuItem changeOrRemoveApplicationMenuItem;
-    public javax.swing.JMenuItem createEventMenuItem;
+    private javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem createStandMenuItem;
     private javax.swing.JMenuItem decideApplicationItem;
     private javax.swing.JMenuItem defineEmployeeMenuItem;
