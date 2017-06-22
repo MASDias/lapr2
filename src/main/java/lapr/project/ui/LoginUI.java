@@ -40,7 +40,7 @@ public class LoginUI extends javax.swing.JFrame {
      * @param organizerStatus
      * @param eventEmployeeStatus
      * @param eventManagerStatus
-     * @param logedUser
+     * @param mainWindow
      */
     public LoginUI(boolean loginStatus, EventCenter eventCenter, JLabel label, boolean userStatus, boolean organizerStatus, boolean eventEmployeeStatus, boolean eventManagerStatus, MainWindow mainWindow) {
         this.loginStatus = loginStatus;

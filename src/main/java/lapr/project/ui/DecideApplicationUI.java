@@ -23,7 +23,7 @@ import lapr.project.model.UserRegistry;
 
 /**
  *
- * @author
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class DecideApplicationUI extends javax.swing.JFrame {
 
@@ -43,7 +43,6 @@ public class DecideApplicationUI extends javax.swing.JFrame {
      *
      * @param logedUser
      * @param eventCenter
-     * @param
      * @throws java.text.ParseException
      */
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
@@ -72,9 +71,6 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                     for (int k = 0; k < a.getReviewList().size(); k++) {
                         Review review = a.getReviewList().get(k);
                         if (!a.isEvaluated()) {
-                            System.out.println(a.toString());
-                            System.out.println(a.getReviewList().get(0).getAssignment().getEventEmployee().getUsername());
-                            System.out.println(eventEmployee.getUsername());
                             if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
                                 applicationList.addApplication(a);
                             }
@@ -131,7 +127,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         eventNameTextField = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        justificationTextArea = new javax.swing.JTextArea();
         justifiedTextTextArea = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -204,9 +200,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
         eventNameTextField.setEditable(false);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        justificationTextArea.setColumns(20);
+        justificationTextArea.setRows(5);
+        jScrollPane3.setViewportView(justificationTextArea);
 
         justifiedTextTextArea.setText("Justification:");
 
@@ -320,11 +316,12 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void evaluateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluateBtnActionPerformed
+        try{
         int knowledge = Integer.parseInt(knowledgeCombobox.getSelectedItem().toString());
         int applicationEval = Integer.parseInt(applicationEvalCombobox.getSelectedItem().toString());
         int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
-        String justification = justifiedTextTextArea.getText();
+        String justification = justificationTextArea.getText();
 
         Application a = modelApplicationList.getElementAt(applicationJList.getSelectedIndex());
         for (int i = 0; i < listEvents.size(); i++) {
@@ -347,8 +344,12 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         JOptionPane.showMessageDialog(null, "Application successfully reviewed!");
+        justificationTextArea.setText("");
         clearFields();
         resetEvals();
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No application selected!");
+        }
     }//GEN-LAST:event_evaluateBtnActionPerformed
     private void clearFields() {
         eventNameTextField.setText("");
@@ -368,10 +369,14 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void chooseApplicationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseApplicationBtnActionPerformed
+        try{
         enterpriseNameTextField.setText(applicationJList.getSelectedValue().getEnterprise().getName());
         descriptionTextArea.setText(applicationJList.getSelectedValue().getDescription());
         invitationTextField.setText(String.valueOf(applicationJList.getSelectedValue().getInvites()));
         eventNameTextField.setText(ev.getTitle());
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "No application selected!");
+        }
     }//GEN-LAST:event_chooseApplicationBtnActionPerformed
 
 
@@ -398,7 +403,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea justificationTextArea;
     private javax.swing.JLabel justifiedTextTextArea;
     private javax.swing.JComboBox<String> knowledgeCombobox;
     private javax.swing.JComboBox<String> overallReviewCombobox;
