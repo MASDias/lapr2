@@ -5,7 +5,6 @@
  */
 package lapr.project.ui;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import lapr.project.controller.DifferenceBetweenTheMeanDeviationAndTheoreticalValueController;
 import lapr.project.model.Application;
@@ -43,7 +42,6 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
     public DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI(EventCenter eventCenter, boolean option) {
         initComponents();
         this.option = option;
-
         if (option) {
             eventEmployeeTwoCombobox.setVisible(false);
             labelProportionOne.setVisible(false);
@@ -51,9 +49,7 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
             labelDeviation2.setVisible(false);
             deviationTwoTextField.setVisible(false);
             labelProportionTwo.setText(LABEL_EVENTEMPLOYEE_ONE);
-        } else {
-
-        }
+        } 
         controller = new DifferenceBetweenTheMeanDeviationAndTheoreticalValueController(eventCenter);
         eventRegistry = controller.getEventRegistry();
         populateCombobox();
