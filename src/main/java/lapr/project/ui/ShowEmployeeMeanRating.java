@@ -90,6 +90,12 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
 
         jLabel3.setText("Search Employee By ID:");
 
+        searchEmployeeByIDTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchEmployeeByIDTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Magnifier-icon.png"))); // NOI18N
 
         selectEmployeeBtn.setText("Select Employee");
@@ -172,6 +178,25 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
         float meanRating = calculateEmployeeMeanRating(employee);
         meanRatingLabel.setText(String.valueOf(meanRating));
     }//GEN-LAST:event_selectEmployeeBtnActionPerformed
+
+    private void searchEmployeeByIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeByIDTextFieldActionPerformed
+        String userID = searchEmployeeByIDTextField.getText();
+
+        for (int i = 0; i < listEvents.size(); i++) {
+            Event e = listEvents.getEvent(i);
+            EventEmployeeList employeesList = e.getEventEmployeeList();
+            for (int j = 0; j < employeesList.size(); j++) {
+                EventEmployee emp = employeesList.getEmployee(j);
+                if (emp.getUsername().equals(userID) || emp.getEmail().equals(userID)) {
+                    employee = emp;
+                    float meanRating = calculateEmployeeMeanRating(employee);
+                    meanRatingLabel.setText(String.valueOf(meanRating));
+                    searchEmployeeByIDTextField.setText("");
+                }
+            }
+        }
+
+    }//GEN-LAST:event_searchEmployeeByIDTextFieldActionPerformed
 
     private float calculateEmployeeMeanRating(EventEmployee eventEmployee) {
         float meanRating = 0;
