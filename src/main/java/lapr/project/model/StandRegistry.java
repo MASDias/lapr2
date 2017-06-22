@@ -70,4 +70,8 @@ public class StandRegistry implements Serializable {
     public int size() {
         return standsList.size();
     }
+    
+    public void removeStand(Stand stand){
+        standsList.remove(stand);
+    }
 }

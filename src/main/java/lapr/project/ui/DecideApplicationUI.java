@@ -133,10 +133,9 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         justifiedTextTextArea = new javax.swing.JLabel();
-        AcceptedRadiobtn = new javax.swing.JRadioButton();
-        rejectedRadioBtn = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Decide Application");
         setResizable(false);
 
         jLabel1.setText("Knowledge about the event topic:");
@@ -211,20 +210,6 @@ public class DecideApplicationUI extends javax.swing.JFrame {
 
         justifiedTextTextArea.setText("Justification:");
 
-        AcceptedRadiobtn.setText("Accepted");
-        AcceptedRadiobtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptedRadiobtnActionPerformed(evt);
-            }
-        });
-
-        rejectedRadioBtn.setText("Rejected");
-        rejectedRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rejectedRadioBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,7 +223,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(chooseApplicationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -273,11 +258,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                                         .addComponent(evaluateBtn)
                                         .addGap(67, 67, 67)
                                         .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(AcceptedRadiobtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rejectedRadioBtn)))))))
+                                    .addComponent(jScrollPane3))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,11 +308,7 @@ public class DecideApplicationUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(justifiedTextTextArea))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AcceptedRadiobtn)
-                    .addComponent(rejectedRadioBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(evaluateBtn)
                     .addComponent(exitBtn))
@@ -397,17 +374,8 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         eventNameTextField.setText(ev.getTitle());
     }//GEN-LAST:event_chooseApplicationBtnActionPerformed
 
-    private void AcceptedRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptedRadiobtnActionPerformed
-        rejectedRadioBtn.setSelected(false);
-    }//GEN-LAST:event_AcceptedRadiobtnActionPerformed
-
-    private void rejectedRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectedRadioBtnActionPerformed
-        AcceptedRadiobtn.setSelected(false);
-    }//GEN-LAST:event_rejectedRadioBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton AcceptedRadiobtn;
     private javax.swing.JComboBox<String> applicationEvalCombobox;
     private javax.swing.JList<Application> applicationJList;
     private javax.swing.JButton chooseApplicationBtn;
@@ -434,6 +402,5 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     private javax.swing.JLabel justifiedTextTextArea;
     private javax.swing.JComboBox<String> knowledgeCombobox;
     private javax.swing.JComboBox<String> overallReviewCombobox;
-    private javax.swing.JRadioButton rejectedRadioBtn;
     // End of variables declaration//GEN-END:variables
 }

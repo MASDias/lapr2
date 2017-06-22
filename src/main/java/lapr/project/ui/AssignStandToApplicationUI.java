@@ -6,8 +6,10 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.AssignStandToApplicationController;
 import lapr.project.model.Application;
+import lapr.project.model.ApplicationList;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Event;
@@ -26,6 +28,8 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
     private String logedUser;
     private DefaultListModel<Stand> modelStandsList = new DefaultListModel<>();
     private Event event;
+    private Application app;
+    private ApplicationList listApplications;
 
     /**
      * Creates new form AssignStandToApplicationUI
@@ -39,24 +43,15 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
         initComponents();
 
         standJList.setModel(modelStandsList);
-        
+
         listEvents = controller.getEventsList();
         fillEventComboBox();
-        
-        for (int i = 0; i < event.getApplicationsList().size(); i++) {
-            Application a = event.getApplicationsList().getApplication(i);
-            applicationComboBox.addItem(a);
-        }
-        
-        for (int i = 0; i < event.getStandRegister().size(); i++) {
-            Stand s = event.getStandRegister().getStand(i);
-            modelStandsList.addElement(s);
-        }
+        fillApplicationComboBox();
 
         setVisible(true);
     }
 
-    private void fillEventComboBox(){
+    private void fillEventComboBox() {
         for (int i = 0; i < listEvents.size(); i++) {
             Event e = listEvents.getEvent(i);
             for (int j = 0; j < e.getOrganizerList().size(); j++) {
@@ -64,11 +59,29 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
                 if (o.getOrganizer().getUserName().equals(logedUser)) {
                     eventComboBox.addItem(e);
                 }
-
             }
         }
     }
-    
+
+    private void fillApplicationComboBox() {
+        listApplications = event.getApplicationsList();
+        for (int i = 0; i < listApplications.size(); i++) {
+            Application a = listApplications.getApplication(i);
+            if (a.getStand() == null) {
+                applicationComboBox.addItem(a);
+            }
+        }
+        app = (Application) applicationComboBox.getSelectedItem();
+        pretendedStandAreaLabel.setText(String.valueOf(app.getArea()));
+    }
+
+    private void fillStandJList() {
+        for (int i = 0; i < event.getStandRegister().size(); i++) {
+            Stand s = event.getStandRegister().getStand(i);
+            modelStandsList.addElement(s);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +100,8 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
         assignStandBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        pretendedStandAreaLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -111,7 +126,7 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
 
         jLabel3.setText("Stand List:");
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Close");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -125,37 +140,40 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Pretended Stand Area:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(assignStandBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelBtn))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eventComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(applicationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(applicationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addComponent(assignStandBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancelBtn))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(pretendedStandAreaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,11 +187,15 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(applicationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(pretendedStandAreaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
                     .addComponent(assignStandBtn))
@@ -189,17 +211,58 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void assignStandBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStandBtnActionPerformed
-        // TODO add your handling code here:
+        Stand s = modelStandsList.getElementAt(standJList.getSelectedIndex());
+        Application a = (Application) applicationComboBox.getSelectedItem();
+        a.setStand(s);
+        for (int i = 0; i < event.getStandRegister().size(); i++) {
+            Stand s2 = event.getStandRegister().getStand(i);
+            if (s2.equals(s)) {
+                event.getStandRegister().removeStand(s2);
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Stand assigned with success!");
+
+        applicationComboBox.removeItem(a);
+        modelStandsList.removeElement(s);
+
     }//GEN-LAST:event_assignStandBtnActionPerformed
 
+    
+    private void updatePretendedAreaLabel(){
+        
+    }
     private void applicationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationComboBoxActionPerformed
-        // TODO add your handling code here:
+        
+        if(applicationComboBox.getSelectedItem() != null){
+            Application a =(Application) applicationComboBox.getSelectedItem();
+            pretendedStandAreaLabel.setText(String.valueOf(a.getArea()));
+        }else{
+            pretendedStandAreaLabel.setText("");
+        }
+        
+
+
     }//GEN-LAST:event_applicationComboBoxActionPerformed
 
     private void eventComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventComboBoxActionPerformed
-        modelStandsList.removeAllElements();
-        fillEventComboBox();
+
         event = (Event) eventComboBox.getSelectedItem();
+
+        if (eventComboBox.getSelectedItem().toString().equals(event.toString())) {
+            modelStandsList.removeAllElements();
+            applicationComboBox.removeAllItems();
+            fillStandJList();
+            if (event.getApplicationsList().size() == 0) {
+                JOptionPane.showMessageDialog(null, "Selected event doesn't have applications without stands");
+            } else {
+                fillApplicationComboBox();
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Already Selected");
+        }
+
+
     }//GEN-LAST:event_eventComboBoxActionPerformed
 
 
@@ -211,7 +274,9 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel pretendedStandAreaLabel;
     private javax.swing.JList<Stand> standJList;
     // End of variables declaration//GEN-END:variables
 }

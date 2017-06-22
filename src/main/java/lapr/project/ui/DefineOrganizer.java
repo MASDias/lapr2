@@ -89,6 +89,11 @@ public class DefineOrganizer extends javax.swing.JFrame {
         jLabel1.setText("Event:");
 
         cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +313,10 @@ public class DefineOrganizer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No employee selected");
         }
     }//GEN-LAST:event_removeUserBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void updateOrganizerModel() {
         listOrganizers = event.getOrganizerList();
