@@ -49,7 +49,7 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
             labelDeviation2.setVisible(false);
             deviationTwoTextField.setVisible(false);
             labelProportionTwo.setText(LABEL_EVENTEMPLOYEE_ONE);
-        } 
+        }
         controller = new DifferenceBetweenTheMeanDeviationAndTheoreticalValueController(eventCenter);
         eventRegistry = controller.getEventRegistry();
         populateCombobox();
@@ -260,7 +260,7 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
                     CritValueTextField.setText(String.format("%.3f", statisticsOne.getzCritical()));
                     deviationOneTextField.setText(String.format("%.3f", statisticsOne.getAverageFirstDeviation()));
                     obsValueTextField.setText(String.format("%.3f", statisticsOne.getObsValue()));
-                    if (Math.abs(statisticsOne.getObsValue()) > statisticsOne.getzCritical()) {
+                    if (statisticsOne.getObsValue() > statisticsOne.getzCritical()) {
                         decisionTextField.setText(YES);
                     } else {
                         decisionTextField.setText(NO);
@@ -303,6 +303,11 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
                         deviationTwoTextField.setText(String.valueOf(secondDeviation));
                         obsValueTextField.setText(String.valueOf(finalStatistics.getObsValue()));
 
+                        if (Math.abs(finalStatistics.getObsValue()) > finalStatistics.getzCritical()) {
+                            decisionTextField.setText(YES);
+                        } else {
+                            decisionTextField.setText(NO);
+                        }
                     }
                 }
             }
