@@ -89,6 +89,7 @@ public class MainWindow extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        assignStandToApplicationMenuItem = new javax.swing.JMenuItem();
         decideApplicationItem = new javax.swing.JMenuItem();
         changeOrRemoveApplicationMenuItem = new javax.swing.JMenuItem();
         listApplicationJItem = new javax.swing.JMenuItem();
@@ -223,6 +224,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menu.add(submitApplicationMenuItem);
         menu.add(jSeparator2);
+
+        assignStandToApplicationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assignStand.png"))); // NOI18N
+        assignStandToApplicationMenuItem.setText("Assign Stand To Application");
+        assignStandToApplicationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignStandToApplicationMenuItemActionPerformed(evt);
+            }
+        });
+        menu.add(assignStandToApplicationMenuItem);
 
         decideApplicationItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow-ok-icon.png"))); // NOI18N
         decideApplicationItem.setText("Decide Application");
@@ -594,6 +604,10 @@ public class MainWindow extends javax.swing.JFrame {
         new MeanDeviationBetweenEventEmployeesAverageRatingsUI(eventCenter);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void assignStandToApplicationMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStandToApplicationMenuItemActionPerformed
+        new AssignStandToApplicationUI(eventCenter, userNameLabel.getText());
+    }//GEN-LAST:event_assignStandToApplicationMenuItemActionPerformed
+
     private void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -733,6 +747,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;
+    private javax.swing.JMenuItem assignStandToApplicationMenuItem;
     private javax.swing.JMenuItem changeOrRemoveApplicationMenuItem;
     private javax.swing.JMenuItem createEventMenuItem;
     private javax.swing.JMenuItem createStandMenuItem;

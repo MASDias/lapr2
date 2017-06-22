@@ -49,45 +49,45 @@ public class DecideApplicationUI extends javax.swing.JFrame {
     public DecideApplicationUI(String logedUser, EventCenter eventCenter) throws ParseException {
         initComponents();
         try {
-        this.logedUser = logedUser;
-        this.controller = new DecideApplicationController(eventCenter);
+            this.logedUser = logedUser;
+            this.controller = new DecideApplicationController(eventCenter);
 
-        applicationJList.setModel(modelApplicationList);
-        listUsers = controller.getUsersList();
-        listEvents = controller.getEventsList();
-        for (int i = 0; i < listEvents.size(); i++) {
-            ev = listEvents.getEvent(i);
-            for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
-                if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
-                    eventEmployee = ev.getEventEmployeeList().getEmployee(j);
+            applicationJList.setModel(modelApplicationList);
+            listUsers = controller.getUsersList();
+            listEvents = controller.getEventsList();
+            for (int i = 0; i < listEvents.size(); i++) {
+                ev = listEvents.getEvent(i);
+                for (int j = 0; j < ev.getEventEmployeeList().size(); j++) {
+                    if (ev.getEventEmployeeList().getEmployee(j).getUsername().equals(logedUser)) {
+                        eventEmployee = ev.getEventEmployeeList().getEmployee(j);
+                    }
                 }
             }
-        }
-        applicationList = new ApplicationList();
+            applicationList = new ApplicationList();
 
-        for (int i = 0; i < listEvents.size(); i++) {
-            Event event = listEvents.getEvent(i);
-            for (int j = 0; j < event.getApplicationsList().size(); j++) {
-                Application a = event.getApplicationsList().getApplication(j);
-                for (int k = 0; k < a.getReviewList().size(); k++) {
-                    Review review = a.getReviewList().get(k);
-                    if (!a.isEvaluated()) {
-                        System.out.println(a.toString());
-                        System.out.println(a.getReviewList().get(0).getAssignment().getEventEmployee().getUsername());
-                        System.out.println(eventEmployee.getUsername());
-                        if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
-                            applicationList.addApplication(a);
+            for (int i = 0; i < listEvents.size(); i++) {
+                Event event = listEvents.getEvent(i);
+                for (int j = 0; j < event.getApplicationsList().size(); j++) {
+                    Application a = event.getApplicationsList().getApplication(j);
+                    for (int k = 0; k < a.getReviewList().size(); k++) {
+                        Review review = a.getReviewList().get(k);
+                        if (!a.isEvaluated()) {
+                            System.out.println(a.toString());
+                            System.out.println(a.getReviewList().get(0).getAssignment().getEventEmployee().getUsername());
+                            System.out.println(eventEmployee.getUsername());
+                            if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
+                                applicationList.addApplication(a);
+                            }
                         }
                     }
                 }
             }
-        }
 
-        initLists();
-        this.setVisible(true);
+            initLists();
+            this.setVisible(true);
         } catch (NullPointerException expt) {
             JOptionPane.showMessageDialog(null, "You don't have any applications to review");
-        this.dispose();
+            this.dispose();
         }
 
     }
@@ -348,29 +348,26 @@ public class DecideApplicationUI extends javax.swing.JFrame {
         int inviteEval = Integer.parseInt(inviteReviewCombobox.getSelectedItem().toString());
         int overall = Integer.parseInt(overallReviewCombobox.getSelectedItem().toString());
         String justification = justifiedTextTextArea.getText();
-        
+
         Application a = modelApplicationList.getElementAt(applicationJList.getSelectedIndex());
         for (int i = 0; i < listEvents.size(); i++) {
             Event e = listEvents.getEvent(i);
             for (int j = 0; j < e.getApplicationsList().size(); j++) {
                 Application b = e.getApplicationsList().getApplication(j);
-                if(b.equals(a)){
+                if (b.equals(a)) {
                     for (int k = 0; k < b.getReviewList().size(); k++) {
                         Review review = b.getReviewList().get(k);
                         if (review.getAssignment().getEventEmployee().getUsername().equals(logedUser)) {
-                            review.setApplication(applicationEval);
-                            review.setInvitation(inviteEval);
-                            review.setKnowledge(knowledge);
-                            review.setOverall(overall);
                             review.setTextDescription(justification);
+                            review.updateMeanValue(knowledge, applicationEval, inviteEval, overall);
                             b.setEvaluated(true);
                         }
                     }
-                    
+
                 }
             }
         }
-        
+
         modelApplicationList.remove(applicationJList.getSelectedIndex());
         JOptionPane.showMessageDialog(null, "Application successfully reviewed!");
         clearFields();

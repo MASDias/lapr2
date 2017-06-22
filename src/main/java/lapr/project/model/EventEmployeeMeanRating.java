@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class EventEmployeeMeanRating {
 
+    private static final long serialVersionUID = 1;
     private String user;
     private float employeeMeanRating = 0;
     private float globalMeanRating = 0;

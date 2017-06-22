@@ -27,12 +27,11 @@ public class Application implements Serializable {
     private KeywordList keywordList;
     private String user;
     private ProductList productList;
+    private Stand stand;
 
     /**
      *
-     * @param accepted
      * @param enterprise
-     * @param event
      * @param invites
      * @param area
      * @param description
@@ -47,6 +46,15 @@ public class Application implements Serializable {
         this.eventEmployeeList = new EventEmployeeList();
         this.keywordList = new KeywordList();
         this.productList = new ProductList();
+
+    }
+
+    public Stand getStand() {
+        return stand;
+    }
+
+    public void setStand(Stand stand) {
+        this.stand = stand;
     }
 
     public ProductList getProductList() {
@@ -68,23 +76,19 @@ public class Application implements Serializable {
     public void setProductList(ProductList productList) {
         this.productList = productList;
     }
-    
-    
 
     public float getArea() {
         return area;
     }
 
-    
-    
     public String getUser() {
         return user;
     }
 
     public void setUser(String user) {
         this.user = user;
-    } 
-    
+    }
+
     public boolean isEvaluated() {
         return evaluated;
     }

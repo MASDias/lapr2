@@ -41,6 +41,10 @@ public class Review implements Serializable {
         this.meanValue = (this.knowledge + this.application + this.invitation + this.overall) / (float) TOTALFIELDS;
 
     }
+    
+    public void updateMeanValue(int knowledgeRate, int applicationRate, int invitationRate, int overallRate) {
+        this.meanValue = (knowledgeRate + applicationRate + invitationRate + overallRate) / (float) (TOTALFIELDS);
+    }
 
     public void setTextDescription(String textDescription) {
         this.textDescription = textDescription;

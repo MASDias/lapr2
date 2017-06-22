@@ -188,6 +188,8 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
                         Review review = application.getReviewList().get(k);
 
                         if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
+                            System.out.println(review.getMeanValue());
+                            
                             meanRating += (review.getMeanValue());
                             counter++;
                         }
@@ -203,6 +205,8 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
 
         return finalRate;
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<EventEmployee> employeeJList;
