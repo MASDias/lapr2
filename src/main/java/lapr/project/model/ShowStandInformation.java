@@ -50,8 +50,8 @@ public class ShowStandInformation {
             }
         }
         float n = (float) newStandRegistry.size() / standRegistry.size();
-        float frequency = (n * 100);
-        frequencyString = String.format("%.2f%%", frequency);
+        float frequency = (float) (n * 100.00);
+        frequencyString = String.valueOf(Math.round(frequency * 100.00) / 100.00+"%");
         return newStandRegistry;
     }
 
@@ -70,7 +70,7 @@ public class ShowStandInformation {
             frequencyForInterval(intervalMatrix[i][0], intervalMatrix[i][1]);
             float classmark = (intervalMatrix[i][0] + intervalMatrix[i][1]) / 2;// ClassMark for each interval
             classMarkArray.add(classmark);
-            intervals.add("[" + Math.round(intervalMatrix[i][0] * 100.00)/100.00 + "," + (Math.round(intervalMatrix[i][1] * 100.00)) / 100.00 + "]");
+            intervals.add("[" + Math.round(intervalMatrix[i][0] * 100.00) / 100.00 + "," + (Math.round(intervalMatrix[i][1] * 100.00)) / 100.00 + "]");
             value += amplitude;
         }
         Mean();

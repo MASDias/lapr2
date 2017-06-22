@@ -192,7 +192,7 @@ public class ShowStandInformationTest {
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         StandRegistry n = standInformation.newStandRegistryInterval(0);
         String result = standInformation.getFrequencyString();
-        String expectedResult = "20,00%";
+        String expectedResult = "20.0%";
         assertEquals(result, expectedResult);
 
     }
