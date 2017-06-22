@@ -24,7 +24,7 @@ import lapr.project.model.UserRegistry;
 
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class CreateEvent extends javax.swing.JFrame {
 
@@ -377,7 +377,6 @@ public class CreateEvent extends javax.swing.JFrame {
         String dateBString = sdf.format(eventBeginningSpinner.getValue());
         String dateEString = sdf.format(eventEndSpinner.getValue());
         Location local = (Location) locationCombobox.getSelectedItem();
-
         String description = descriptionTextField.getText();
         String dateSubB = sdf.format(SubmitAppStart.getValue());
         String dateSubE = sdf.format(submitAppEnd.getValue());
@@ -391,27 +390,34 @@ public class CreateEvent extends javax.swing.JFrame {
                 controller.getLocationList().getLocal(locationCombobox.getSelectedIndex()).setInUse(true);
                 int invite = Integer.parseInt(invitesString);
                 if (listOrganizers.size() > 1) {
-                    Congress c = new Congress(name, description, db, de, dsb, dse, local, invite);
-
-                    c.setOrganizerList(listOrganizers);
-                    listEvents.addEvent(c);
-                    System.out.println("Congress");
-                    JOptionPane.showMessageDialog(null, "Congress created with success!");
-                    modelOrganizerListEvent.removeAllElements();
-                    dispose();
+                    if (nameTextField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Event name missing!");
+                    } else {
+                        Congress c = new Congress(name, description, db, de, dsb, dse, local, invite);
+                        c.setOrganizerList(listOrganizers);
+                        listEvents.addEvent(c);
+                        System.out.println("Congress");
+                        JOptionPane.showMessageDialog(null, "Congress created with success!");
+                        modelOrganizerListEvent.removeAllElements();
+                        dispose();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
                 }
             } else if (exhibitionRadiobtn.isSelected()) {
                 int invite = Integer.parseInt(invitesString);
                 if (listOrganizers.size() > 1) {
-                    Exhibition e = new Exhibition(name, description, db, de, dsb, dse, local, invite);
-                    e.setOrganizerList(listOrganizers);
-                    listEvents.addEvent(e);
-                    System.out.println("Exhibition");
-                    JOptionPane.showMessageDialog(null, "Exhibition created with success!");
-                    modelOrganizerListEvent.removeAllElements();
-                    dispose();
+                    if (nameTextField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Event name missing!");
+                    } else {
+                        Exhibition e = new Exhibition(name, description, db, de, dsb, dse, local, invite);
+                        e.setOrganizerList(listOrganizers);
+                        listEvents.addEvent(e);
+                        System.out.println("Exhibition");
+                        JOptionPane.showMessageDialog(null, "Exhibition created with success!");
+                        modelOrganizerListEvent.removeAllElements();
+                        dispose();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
                 }
@@ -517,12 +523,12 @@ public class CreateEvent extends javax.swing.JFrame {
         String address = JOptionPane.showInputDialog("Input new address");
         Location local = new Location(address);
         int cont = 0;
-        for(int i = 0; i < locationList.size(); i++){
-            if(locationList.getLocal(i).equals(local)){
+        for (int i = 0; i < locationList.size(); i++) {
+            if (locationList.getLocal(i).equals(local)) {
                 cont++;
             }
         }
-        if(cont > 0){
+        if (cont > 0) {
             JOptionPane.showMessageDialog(null, "This address is already created!");
             dispose();
         } else {

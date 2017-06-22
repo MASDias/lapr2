@@ -38,6 +38,7 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
      * @param logedUser
      */
     public AssignStandToApplicationUI(EventCenter eventCenter, String logedUser) {
+        
         controller = new AssignStandToApplicationController(eventCenter);
         this.logedUser = logedUser;
         initComponents();
@@ -211,6 +212,7 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void assignStandBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStandBtnActionPerformed
+        try{
         Stand s = modelStandsList.getElementAt(standJList.getSelectedIndex());
         Application a = (Application) applicationComboBox.getSelectedItem();
         a.setStand(s);
@@ -224,7 +226,9 @@ public class AssignStandToApplicationUI extends javax.swing.JFrame {
 
         applicationComboBox.removeItem(a);
         modelStandsList.removeElement(s);
-
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "No stand selected!");
+        }
     }//GEN-LAST:event_assignStandBtnActionPerformed
 
     

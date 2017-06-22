@@ -46,7 +46,6 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
             listEmployees = event.getEventEmployeeList();
             for (int j = 0; j < listEmployees.size(); j++) {
                 modelListEmployees.addElement(event.getEventEmployeeList().getEmployee(j));
-
             }
         }
         setVisible(true);
@@ -186,10 +185,7 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
                 if (application.isEvaluated()) {
                     for (int k = 0; k < application.getReviewList().size(); k++) {
                         Review review = application.getReviewList().get(k);
-
                         if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
-                            System.out.println(review.getMeanValue());
-                            
                             meanRating += (review.getMeanValue());
                             counter++;
                         }
@@ -205,8 +201,7 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
 
         return finalRate;
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<EventEmployee> employeeJList;
