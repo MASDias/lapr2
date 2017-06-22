@@ -98,6 +98,8 @@ public class MainWindow extends javax.swing.JFrame {
         showStandInformationMenuItem = new javax.swing.JMenuItem();
         showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         showGlobalMeanRatingMenuItem = new javax.swing.JMenuItem();
         showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
         showEventAcceptanceRate = new javax.swing.JMenuItem();
@@ -281,13 +283,29 @@ public class MainWindow extends javax.swing.JFrame {
         });
         statisticsMenu.add(showEmployeeMeanRatingMenuItem);
 
-        jMenuItem2.setText("Show Mean Deviation between Employees Avarage Rating");
+        jMenuItem2.setText("Show Mean Deviation between Employees Average Rating");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         statisticsMenu.add(jMenuItem2);
+
+        jMenuItem3.setText("Difference between the mean deviation and a theoretical value 1 for a Employee");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(jMenuItem3);
+
+        jMenuItem4.setText("Difference between two Employees mean deviations");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(jMenuItem4);
 
         showGlobalMeanRatingMenuItem.setText("Show Global Mean Rating");
         showGlobalMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -608,6 +626,14 @@ public class MainWindow extends javax.swing.JFrame {
         new AssignStandToApplicationUI(eventCenter, userNameLabel.getText());
     }//GEN-LAST:event_assignStandToApplicationMenuItemActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        new DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI(eventCenter, false);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        new DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI(eventCenter, true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -765,6 +791,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;

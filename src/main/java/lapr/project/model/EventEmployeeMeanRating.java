@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author MarioDias
  */
 public class EventEmployeeMeanRating {
-
     private static final long serialVersionUID = 1;
     private String user;
     private float employeeMeanRating = 0;
@@ -34,7 +33,6 @@ public class EventEmployeeMeanRating {
     }
 
     private void calculateMeanRatingEventEmployee() {
-
         for (int i = 0; i < eventRegistry.size(); i++) {
             Event event = eventRegistry.getEvent(i);
             for (int j = 0; j < event.getApplicationsList().size(); j++) {

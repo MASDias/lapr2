@@ -15,7 +15,6 @@ import lapr.project.model.EventEmployee;
 import lapr.project.model.EventEmployeeList;
 import lapr.project.model.EventEmployeeMeanRating;
 import lapr.project.model.EventRegistry;
-import lapr.project.model.Statistics;
 
 /**
  *
@@ -60,7 +59,8 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
         label2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Employee Mean Deviation For Employee Avarage Rating");
 
         jScrollPane2.setViewportView(employeeMeanJlist);
 
@@ -137,7 +137,6 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
     }
 
     private void populateJList() {
-        Statistics s = new Statistics(ICONIFIED, NORMAL, RIGHT_ALIGNMENT);
         employee = eventEmployeeCombobox.getItemAt(eventEmployeeCombobox.getSelectedIndex());
         String user = employee.getUsername();
         globalMeanRating = controller.getGlobalMeanRating(eventRegistry);

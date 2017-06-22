@@ -5,7 +5,16 @@
  */
 package lapr.project.ui;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.controller.DifferenceBetweenTheMeanDeviationAndTheoreticalValueController;
+import lapr.project.model.Application;
+import lapr.project.model.EventCenter;
 import lapr.project.model.EventEmployee;
+import lapr.project.model.EventEmployeeList;
+import lapr.project.model.EventEmployeeMeanRating;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.Statistics;
 
 /**
  *
@@ -14,12 +23,41 @@ import lapr.project.model.EventEmployee;
 public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private DifferenceBetweenTheMeanDeviationAndTheoreticalValueController controller;
+    private boolean option;
+    private EventEmployeeMeanRating employeeOneMeanRating;
+    private EventEmployeeMeanRating employeeTwoMeanRating;
+    private EventEmployeeMeanRating globalMeanRating;
+    private final String LABEL_EVENTEMPLOYEE_ONE = "Mean Rating Employee 1";
+    private final String YES = "Yes";
+    private final String NO = "No";
+    private String user, user2;
+    private Statistics statisticsOne;
+    private Statistics statisticsTwo;
+    private EventRegistry eventRegistry;
+    private float THEORITICAL_VALUE = 1;
 
     /**
      * Creates new form DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI
      */
-    public DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI() {
+    public DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI(EventCenter eventCenter, boolean option) {
         initComponents();
+        this.option = option;
+
+        if (option) {
+            eventEmployeeTwoCombobox.setVisible(false);
+            labelProportionOne.setVisible(false);
+            totalEvalOneTextField.setVisible(false);
+            labelDeviation2.setVisible(false);
+            deviationTwoTextField.setVisible(false);
+            labelProportionTwo.setText(LABEL_EVENTEMPLOYEE_ONE);
+        } else {
+
+        }
+        controller = new DifferenceBetweenTheMeanDeviationAndTheoreticalValueController(eventCenter);
+        eventRegistry = controller.getEventRegistry();
+        populateCombobox();
+        setVisible(true);
     }
 
     /**
@@ -34,62 +72,69 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        eventOneCombobox = new javax.swing.JComboBox<>();
-        eventTwoCombobox = new javax.swing.JComboBox<>();
+        eventEmployeeOneCombobox = new javax.swing.JComboBox<>();
+        eventEmployeeTwoCombobox = new javax.swing.JComboBox<>();
         selectBtn = new javax.swing.JButton();
         significanceTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        labelProportionTwoTextField = new javax.swing.JLabel();
-        eventTextField = new javax.swing.JTextField();
-        proportionEventTwoTextField = new javax.swing.JTextField();
+        labelProportionTwo = new javax.swing.JLabel();
+        employeeTextField = new javax.swing.JTextField();
+        totalEvalTwoTextField = new javax.swing.JTextField();
         CritValueTextField = new javax.swing.JTextField();
-        SigniValueTextField = new javax.swing.JTextField();
-        ObsValueTextField = new javax.swing.JTextField();
+        deviationOneTextField = new javax.swing.JTextField();
+        deviationTwoTextField = new javax.swing.JTextField();
         decisionTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        proportionEventOneTextField = new javax.swing.JTextField();
+        totalEvalOneTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        labelProportionTextField = new javax.swing.JLabel();
+        labelProportionOne = new javax.swing.JLabel();
+        labelDeviation2 = new javax.swing.JLabel();
+        obsValueTextField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mean Ratings For Employee");
+        setResizable(false);
 
-        jLabel4.setText("Significance Level (α%) ");
+        jLabel4.setText("Deviation One");
 
-        jLabel5.setText("Observed Value Of test Statistic");
+        jLabel5.setText("Observed Value");
 
         jLabel6.setText("Decision");
 
         selectBtn.setText("Calculate");
-
-        significanceTextField.addActionListener(new java.awt.event.ActionListener() {
+        selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                significanceTextFieldActionPerformed(evt);
+                selectBtnActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Significance Level:");
 
-        labelProportionTwoTextField.setText("Proportion Accepted Employee 2");
+        labelProportionTwo.setText("Total Sub. Eval. Employee 2");
 
-        eventTextField.setEditable(false);
+        employeeTextField.setEditable(false);
 
-        proportionEventTwoTextField.setEditable(false);
+        totalEvalTwoTextField.setEditable(false);
 
         CritValueTextField.setEditable(false);
 
-        SigniValueTextField.setEditable(false);
+        deviationOneTextField.setEditable(false);
 
-        ObsValueTextField.setEditable(false);
+        deviationTwoTextField.setEditable(false);
 
         decisionTextField.setEditable(false);
 
         jLabel1.setText("EventEmployee");
 
-        proportionEventOneTextField.setEditable(false);
+        totalEvalOneTextField.setEditable(false);
 
         jLabel3.setText("Critical Value");
 
-        labelProportionTextField.setText("Proportion Accepted Employee 1");
+        labelProportionOne.setText("Total Sub. Eval. Employee 1");
+
+        labelDeviation2.setText("Deviation Two");
+
+        obsValueTextField.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,43 +143,59 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventTwoCombobox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eventOneCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eventEmployeeTwoCombobox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eventEmployeeOneCombobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(labelProportionTextField)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(labelProportionTwoTextField))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(CritValueTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                            .addComponent(SigniValueTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ObsValueTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(proportionEventTwoTextField)
-                            .addComponent(proportionEventOneTextField)
-                            .addComponent(decisionTextField, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eventTextField))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(significanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(significanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(employeeTextField))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(labelProportionOne)
+                                        .addComponent(labelProportionTwo))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(totalEvalTwoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                        .addComponent(totalEvalOneTextField)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelDeviation2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(CritValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(deviationTwoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(deviationOneTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                            .addComponent(obsValueTextField)
+                                            .addComponent(decisionTextField))))))
+                        .addGap(0, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(eventOneCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eventEmployeeOneCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(eventTwoCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eventEmployeeTwoCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(significanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,62 +203,174 @@ public class DifferenceBetweenTheMeanDeviationAndTheoreticalValueUI extends java
                     .addComponent(selectBtn))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(employeeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proportionEventOneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelProportionTextField))
+                    .addComponent(totalEvalOneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelProportionOne))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proportionEventTwoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelProportionTwoTextField))
+                    .addComponent(totalEvalTwoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelProportionTwo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deviationOneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deviationTwoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelDeviation2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CritValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SigniValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ObsValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(obsValueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(decisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void significanceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_significanceTextFieldActionPerformed
+    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        calculations();
+        revalidate();
+    }//GEN-LAST:event_selectBtnActionPerformed
+    private void calculations() {
+        float significance = Float.parseFloat(significanceTextField.getText());
+        if (significance < 1 && significance > 0) {
+            if (option) {
+                user = eventEmployeeOneCombobox.getItemAt(eventEmployeeOneCombobox.getSelectedIndex()).getUsername();
+                if (!validadeEvaluation(user)) {
+                    JOptionPane.showMessageDialog(null, "This Employee doens have any evaluation made");
+                } else {
+                    globalMeanRating = controller.GlobalMeanRating(eventRegistry);
+                    float mean = globalMeanRating.getGlobalMeanRating();
 
-    }//GEN-LAST:event_significanceTextFieldActionPerformed
+                    employeeOneMeanRating = controller.EmployeeMeanRating(user, eventRegistry);
+                    double[] valuesOne = employeeOneMeanRating.deviationArray(mean);
+                    statisticsOne = controller.getStatisticsValues(significance, THEORITICAL_VALUE, valuesOne.length, valuesOne);
 
+                    employeeTextField.setText(user);
+                    totalEvalTwoTextField.setText(String.format("%d", valuesOne.length));
+                    CritValueTextField.setText(String.format("%.3f", statisticsOne.getzCritical()));
+                    deviationOneTextField.setText(String.format("%.3f", statisticsOne.getAverageFirstDeviation()));
+                    obsValueTextField.setText(String.format("%.3f", statisticsOne.getObsValue()));
+                    if (Math.abs(statisticsOne.getObsValue()) > statisticsOne.getzCritical()) {
+                        decisionTextField.setText(YES);
+                    } else {
+                        decisionTextField.setText(NO);
+                    }
+                }
+            } else {
+                user = eventEmployeeOneCombobox.getItemAt(eventEmployeeOneCombobox.getSelectedIndex()).getUsername();
+                if (!validadeEvaluation(user)) {
+                    JOptionPane.showMessageDialog(null, "This Employee doens have any evaluation made");
+                } else {
+                    user2 = eventEmployeeTwoCombobox.getItemAt(eventEmployeeTwoCombobox.getSelectedIndex()).getUsername();
+                    if (!validadeEvaluation(user2)) {
+                        JOptionPane.showMessageDialog(null, "This Employee doens have any evaluation made");
+                    } else {
+                        globalMeanRating = controller.GlobalMeanRating(eventRegistry);
+                        float mean = globalMeanRating.getGlobalMeanRating();
+
+                        employeeOneMeanRating = controller.EmployeeMeanRating(user, eventRegistry);
+                        double[] valuesOne = employeeOneMeanRating.deviationArray(mean);
+
+                        employeeTwoMeanRating = controller.EmployeeMeanRating(user2, eventRegistry);
+                        double[] valuesTwo = employeeTwoMeanRating.deviationArray(mean);
+
+                        statisticsOne = controller.getStatisticsValues(significance, THEORITICAL_VALUE, valuesOne.length, valuesOne);
+                        int totalOne = valuesOne.length;
+                        double firstDeviation = statisticsOne.getAverageFirstDeviation();
+                        double firstVariance = statisticsOne.getVarianceFirstDeviation();
+
+                        statisticsTwo = controller.getStatisticsValues(significance, THEORITICAL_VALUE, valuesTwo.length, valuesTwo);
+                        int totalTwo = valuesTwo.length;
+                        double secondDeviation = statisticsTwo.getAverageFirstDeviation();
+                        double secondVariance = statisticsTwo.getVarianceFirstDeviation();
+                        Statistics finalStatistics = controller.getStatisticsValuesCompare(significance, (float) firstDeviation, (float) secondDeviation, totalOne, totalTwo, valuesOne, valuesTwo);
+
+                        employeeTextField.setText(user + " vs. " + user2);
+                        CritValueTextField.setText(String.format("%.3f", finalStatistics.getzCritical()));
+                        totalEvalOneTextField.setText(String.format("%d", totalOne));
+                        totalEvalTwoTextField.setText(String.format("%d", totalTwo));
+                        deviationOneTextField.setText(String.valueOf(firstDeviation));
+                        deviationTwoTextField.setText(String.valueOf(secondDeviation));
+                        obsValueTextField.setText(String.valueOf(finalStatistics.getObsValue()));
+
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please insert a valid significance (Between 0 and 1)");
+        }
+    }
+
+    private boolean validadeEvaluation(String user) {
+        for (int i = 0; i < eventRegistry.size(); i++) {
+            lapr.project.model.Event e = eventRegistry.getEvent(i);
+            for (int j = 0; j < e.getApplicationsList().size(); j++) {
+                Application a = e.getApplicationsList().getApplication(j);
+                for (int k = 0; k < a.getReviewList().size(); k++) {
+                    if (a.getReviewList().get(k).getAssignment().getEventEmployee().getUsername().equals(user)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private void populateCombobox() {
+        if (option) {
+            for (int i = 0; i < controller.getEventRegistry().size(); i++) {
+                EventEmployeeList employeeList = controller.getEmployeeList(i); //get Employee list of event
+                for (int j = 0; j < employeeList.size(); j++) {
+                    eventEmployeeOneCombobox.addItem(employeeList.getEmployee(j));
+                }
+            }
+        } else {
+            for (int i = 0; i < controller.getEventRegistry().size(); i++) {
+                EventEmployeeList employeeList = controller.getEmployeeList(i); //get Employee list of event
+                for (int j = 0; j < employeeList.size(); j++) {
+                    eventEmployeeOneCombobox.addItem(employeeList.getEmployee(j));
+                    eventEmployeeTwoCombobox.addItem(employeeList.getEmployee(j));
+                }
+            }
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CritValueTextField;
-    private javax.swing.JTextField ObsValueTextField;
-    private javax.swing.JTextField SigniValueTextField;
     private javax.swing.JTextField decisionTextField;
-    private javax.swing.JComboBox<EventEmployee> eventOneCombobox;
-    private javax.swing.JTextField eventTextField;
-    private javax.swing.JComboBox<EventEmployee> eventTwoCombobox;
+    private javax.swing.JTextField deviationOneTextField;
+    private javax.swing.JTextField deviationTwoTextField;
+    private javax.swing.JTextField employeeTextField;
+    private javax.swing.JComboBox<EventEmployee> eventEmployeeOneCombobox;
+    private javax.swing.JComboBox<EventEmployee> eventEmployeeTwoCombobox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel labelProportionTextField;
-    private javax.swing.JLabel labelProportionTwoTextField;
-    private javax.swing.JTextField proportionEventOneTextField;
-    private javax.swing.JTextField proportionEventTwoTextField;
+    private javax.swing.JLabel labelDeviation2;
+    private javax.swing.JLabel labelProportionOne;
+    private javax.swing.JLabel labelProportionTwo;
+    private javax.swing.JTextField obsValueTextField;
     private javax.swing.JButton selectBtn;
     private javax.swing.JTextField significanceTextField;
+    private javax.swing.JTextField totalEvalOneTextField;
+    private javax.swing.JTextField totalEvalTwoTextField;
     // End of variables declaration//GEN-END:variables
 }
