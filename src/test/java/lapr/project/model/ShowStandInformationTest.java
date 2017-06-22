@@ -194,7 +194,6 @@ public class ShowStandInformationTest {
         String result = standInformation.getFrequencyString();
         String expectedResult = "20.0%";
         assertEquals(result, expectedResult);
-
     }
 
     /**
