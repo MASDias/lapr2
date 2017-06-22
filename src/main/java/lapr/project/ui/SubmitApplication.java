@@ -11,13 +11,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import lapr.project.controller.SubmitApplicationController;
 import lapr.project.model.Application;
+import lapr.project.model.Assignment;
 import lapr.project.model.Enterprise;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventEmployee;
 import lapr.project.model.EventRegistry;
 import lapr.project.model.Keyword;
 import lapr.project.model.Product;
 import lapr.project.model.ProductList;
+import lapr.project.model.Review;
 import lapr.project.model.Stand;
 import lapr.project.model.StandRegistry;
 
@@ -401,7 +404,10 @@ public class SubmitApplication extends javax.swing.JFrame {
             for (int i = 0; i < modelProduct.size(); i++) {
                 a.getProductList().addProduct(modelProduct.elementAt(i));
             }
-            eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0).getApplicationList().addApplication(a);
+            Review review = new Review(null, 0, 0, 0, 0);
+            a.addEvaluation(review);
+            EventEmployee e = eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0);
+            review.setAssignment(new Assignment(e));
             a.setUser(logedUser);
             JOptionPane.showMessageDialog(null, "Application submitted with success!");
             dispose();

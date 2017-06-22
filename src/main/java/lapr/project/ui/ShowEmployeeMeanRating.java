@@ -22,7 +22,6 @@ import lapr.project.model.Review;
 public class ShowEmployeeMeanRating extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
-    private EventCenter eventCenter;
     private ShowEmployeeMeanRatingController controller;
     private Event event;
     private EventRegistry listEvents;
@@ -36,7 +35,6 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
      * @param eventCenter
      */
     public ShowEmployeeMeanRating(EventCenter eventCenter) {
-        //this.eventCenter = eventCenter;
         controller = new ShowEmployeeMeanRatingController(eventCenter);
         initComponents();
 
@@ -172,11 +170,11 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
 
     private void selectEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmployeeBtnActionPerformed
         employee = employeeJList.getSelectedValue();
-        float meanRating = calculateFAEMeanRating(employee);
+        float meanRating = calculateEmployeeMeanRating(employee);
         meanRatingLabel.setText(String.valueOf(meanRating));
     }//GEN-LAST:event_selectEmployeeBtnActionPerformed
 
-    private float calculateFAEMeanRating(EventEmployee eventEmployee) {
+    private float calculateEmployeeMeanRating(EventEmployee eventEmployee) {
         float meanRating = 0;
         float finalRate = 0;
         int counter = 0;
@@ -185,17 +183,20 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
             Event e = listEvents.getEvent(i);
             for (int j = 0; j < e.getApplicationsList().size(); j++) {
                 Application application = e.getApplicationsList().getApplication(j);
-                for (int k = 0; k < application.getReviewList().size(); k++) {
-                    Review review = application.getReviewList().get(k);
-                    if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
-                        meanRating += (review.getMeanValue());
-                        counter++;
-                    }
+                if (application.isEvaluated()) {
+                    for (int k = 0; k < application.getReviewList().size(); k++) {
+                        Review review = application.getReviewList().get(k);
 
+                        if (review.getAssignment().getEventEmployee().getUsername().equals(eventEmployee.getUsername())) {
+                            meanRating += (review.getMeanValue());
+                            counter++;
+                        }
+
+                    }
                 }
             }
         }
-        if(counter == 0){
+        if (counter == 0) {
             counter = 1;
         }
         finalRate = meanRating / counter;

@@ -50,7 +50,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         listEvents = controller.getEventsList();
 
         fillComboBox();
-        disableButtons();
+        disableAll();
 
         setVisible(true);
     }
@@ -70,14 +70,28 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         }
     }
 
-    private void disableButtons() {
+    private void disableAll() {
         if (applicationsComboBox.getItemCount() == 0) {
             addKeywordBtn.setEnabled(false);
             addProductBtn.setEnabled(false);
             removeKeywordBtn.setEnabled(false);
             removeProductBtn.setEnabled(false);
+            areaTextField.setEnabled(false);
+            enterpriseNameTextField.setEnabled(false);
+            taxpayerNumberTextField.setEnabled(false);
+            contactNumberTextField.setEnabled(false);
+            emailTextField.setEnabled(false);
+            addressTextField.setEnabled(false);
+            keywordTextField.setEnabled(false);
+            productsTextField.setEnabled(false);
+            invitesTextField.setEnabled(false);
+            descriptionTextArea.setEnabled(false);
+            removeApplicationCheckBox.setEnabled(false);
+            saveChangesBtn.setEnabled(false);
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +103,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        applicationsComboBox = new javax.swing.JComboBox<Application>();
+        applicationsComboBox = new javax.swing.JComboBox<>();
         cancelBtn = new javax.swing.JButton();
         saveChangesBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -113,12 +127,12 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
         keywordTextField = new javax.swing.JTextField();
         removeKeywordBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        keywordJList = new javax.swing.JList<Keyword>();
+        keywordJList = new javax.swing.JList<>();
         areaTextField = new javax.swing.JTextField();
         invitesTextField = new javax.swing.JTextField();
         productsTextField = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        productsJList = new javax.swing.JList<Product>();
+        productsJList = new javax.swing.JList<>();
         addProductBtn = new javax.swing.JButton();
         removeProductBtn = new javax.swing.JButton();
         removeApplicationCheckBox = new javax.swing.JCheckBox();
@@ -272,7 +286,6 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -351,9 +364,7 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,9 +380,8 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(areaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel9))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -382,9 +392,9 @@ public class ChangeOrRemoveApplicationUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeProductBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(removeApplicationCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removeApplicationCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
