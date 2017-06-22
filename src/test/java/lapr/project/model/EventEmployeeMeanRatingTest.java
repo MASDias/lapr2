@@ -265,4 +265,182 @@ public class EventEmployeeMeanRatingTest {
         double expectedResult = 0.1;
         assertNotEquals(expectedResult, result[0], 0.0);
     }
+    /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetEmployeeMeanRatingIsEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        String userName = eventEmployee.getUsername();
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(userName, list);
+        double result = employeeMeanRating.getEmployeeMeanRating();
+        double expectedResult = 3.5;
+        assertEquals(expectedResult, result, 0.0);
+    }
+     /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetEmployeeMeanRatingIsNotEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        String userName = eventEmployee.getUsername();
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(userName, list);
+        double result = employeeMeanRating.getEmployeeMeanRating();
+        double expectedResult = 3.6;
+        assertNotEquals(expectedResult, result, 0.0);
+    }
+     /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetCounterAplicationEmployeeIsEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        String userName = eventEmployee.getUsername();
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(userName, list);
+        int result = employeeMeanRating.getCounterAplicationEmployee();
+        int expectedResult = 1;
+        assertEquals(expectedResult, result);
+    }
+    /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetCounterAplicationEmployeeIsNotEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        String userName = eventEmployee.getUsername();
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(userName, list);
+        int result = employeeMeanRating.getCounterAplicationEmployee();
+        int expectedResult = 0;
+        assertNotEquals(expectedResult, result);
+    }
+    /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetGlobalMeanRatingIsEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(list);
+        float result = employeeMeanRating.getGlobalMeanRating();
+        float expectedResult = 3.5F;
+        assertEquals(expectedResult, result,0.0);
+    }
+     /**
+     * Test of getEmployeeEvaluationList method, of class
+     * EventEmployeeMeanRating.
+     */
+    @Test
+    public void EnsureGetGlobalMeanRatingIsNotEqual() throws Exception {
+        EventRegistry list = new EventRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date beginning = sdf.parse("01/10/2017");
+        Date end = sdf.parse("01/30/2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example965", "Explae string", beginning, end, null, null, local, 100);
+        list.addEvent(event);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        ApplicationList list2 = new ApplicationList();
+        list2.addApplication(application);
+        event.setApplicationsList(list2);
+        EventEmployeeMeanRating employeeMeanRating = new EventEmployeeMeanRating(list);
+        float result = employeeMeanRating.getGlobalMeanRating();
+        float expectedResult = 3.6F;
+        assertNotEquals(expectedResult, result,0.0);
+    }
 }
