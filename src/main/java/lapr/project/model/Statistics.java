@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import org.apache.commons.math3.distribution.NormalDistribution;
+import org.apache.commons.math3.stat.descriptive.moment.Variance;
 
 /**
  *
@@ -32,6 +33,8 @@ public class Statistics {
         this.significance = significance;
         this.firstProporcion = firstProportion;
         NormalDistributionUnilateral(significance, this.firstProporcion, FIFTYPERCENT);
+        Variance v = new Variance();
+
     }
 
     /**
@@ -80,6 +83,19 @@ public class Statistics {
 
     private void ValueVarianceUnilateral() {
         varianceUnilateral = (FIFTYPERCENT * (1 - FIFTYPERCENT)) / totalUnilateral;
+    }
+
+    public double deviationVariance(double[] values) {
+        return new Variance().evaluate(values);
+    }
+    
+    public double deviationAvarage(double[] values){
+        double average = 0;
+        for (int i = 0; i < values.length; i++) {
+            System.out.println(average);
+            average+=values[i];
+        }
+        return average/values.length;
     }
 
     /**

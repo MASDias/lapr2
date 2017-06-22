@@ -17,6 +17,7 @@ public class EventEmployeeMeanRating {
     private float employeeMeanRating = 0;
     private float globalMeanRating = 0;
     private int counterAplicationEmployee = 0;
+    private double[] deviation;
     private ArrayList<Float> employeeEvaluationList = new ArrayList<>();
     private EventRegistry eventRegistry;
 
@@ -73,6 +74,14 @@ public class EventEmployeeMeanRating {
 
     public ArrayList<Float> getEmployeeEvaluationList() {
         return employeeEvaluationList;
+    }
+
+    public double[] deviationArray(float mean) {
+        deviation = new double[employeeEvaluationList.size()];
+        for (int i = 0; i < employeeEvaluationList.size(); i++) {
+            deviation[i] = Math.abs(employeeEvaluationList.get(i) - mean);
+        }
+        return deviation;
     }
 
     public float getEmployeeMeanRating() {

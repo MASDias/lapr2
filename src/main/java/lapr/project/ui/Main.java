@@ -26,5 +26,7 @@ class Main {
         XMLReader xmlFile = new XMLReader();
         eventCenter = xmlFile.readValuesFromXML(eventCenter);
         MainWindow mw = new MainWindow(eventCenter);
+
+
     }
 }

@@ -15,6 +15,7 @@ import lapr.project.model.EventEmployee;
 import lapr.project.model.EventEmployeeList;
 import lapr.project.model.EventEmployeeMeanRating;
 import lapr.project.model.EventRegistry;
+import lapr.project.model.Statistics;
 
 /**
  *
@@ -136,6 +137,7 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
     }
 
     private void populateJList() {
+        Statistics s = new Statistics(ICONIFIED, NORMAL, RIGHT_ALIGNMENT);
         employee = eventEmployeeCombobox.getItemAt(eventEmployeeCombobox.getSelectedIndex());
         String user = employee.getUsername();
         globalMeanRating = controller.getGlobalMeanRating(eventRegistry);
@@ -143,7 +145,7 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
         employeeMeanRating = controller.getEmployeeMeanRating(eventRegistry, user);
         if (validadeEvaluation(user)) {
             for (int i = 0; i < employeeMeanRating.getCounterAplicationEmployee(); i++) {
-                model.addElement(String.format("%.3f", Math.abs(employeeMeanRating.getEmployeeEvaluationList().get(i) - globalMean)));
+                model.addElement(String.format("%.3f", employeeMeanRating.deviationArray(globalMean)[i]));
             }
         } else {
             JOptionPane.showMessageDialog(null, "The employee " + user + " doesnt have any evaluations made");

@@ -70,7 +70,7 @@ public class ShowStandInformation {
             frequencyForInterval(intervalMatrix[i][0], intervalMatrix[i][1]);
             float classmark = (intervalMatrix[i][0] + intervalMatrix[i][1]) / 2;// ClassMark for each interval
             classMarkArray.add(classmark);
-            intervals.add(String.format("[ %.2f , %.2f ]", intervalMatrix[i][0], intervalMatrix[i][1]));
+            intervals.add("[" + Math.round(intervalMatrix[i][0] * 100.00)/100.00 + "," + (Math.round(intervalMatrix[i][1] * 100.00)) / 100.00 + "]");
             value += amplitude;
         }
         Mean();

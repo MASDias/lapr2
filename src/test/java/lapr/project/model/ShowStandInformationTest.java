@@ -119,7 +119,7 @@ public class ShowStandInformationTest {
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         float[][] expectedResult = {{10.0F, 13.8F}, {13.8F, 17.6F}, {17.6F, 21.4F}, {21.4F, 25.199999F}, {25.199999F, 28.999998F}};
         float[][] result = standInformation.getIntervalMatrix();
-        assertArrayEquals(expectedResult, result);
+        assertArrayEquals(result,expectedResult);
 
     }
 
@@ -135,7 +135,7 @@ public class ShowStandInformationTest {
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         float[][] expectedResult = {{10.8F, 13.8F}, {13.8F, 17.6F}, {17.6F, 21.4F}, {21.4F, 25.199999F}, {25.199999F, 28.999998F}};
         float[][] result = standInformation.getIntervalMatrix();
-        assertNotEquals(expectedResult, result);
+        assertNotEquals(result,expectedResult);
 
     }
 
@@ -150,14 +150,13 @@ public class ShowStandInformationTest {
         }
         ShowStandInformation standInformation = new ShowStandInformation(standRegistry);
         ArrayList<String> expectedResult = new ArrayList<>();
-        expectedResult.add("[ 10,00 , 13,80 ]");
-        expectedResult.add("[ 13,80 , 17,60 ]");
-        expectedResult.add("[ 17,60 , 21,40 ]");
-        expectedResult.add("[ 21,40 , 25,20 ]");
-        expectedResult.add("[ 25,20 , 29,00 ]");
+        expectedResult.add("[10.0,13.8]");
+        expectedResult.add("[13.8,17.6]");
+        expectedResult.add("[17.6,21.4]");
+        expectedResult.add("[21.4,25.2]");
+        expectedResult.add("[25.2,29.0]");
         ArrayList<String> result = standInformation.getIntervals();
-        assertEquals(expectedResult, result);
-
+        assertEquals(result, expectedResult);
     }
 
     /**
@@ -177,7 +176,7 @@ public class ShowStandInformationTest {
         expectedResult.add("[ 21.40 , 25.20 ]");
         expectedResult.add("[ 25.20 , 29.00 ]");
         ArrayList<String> result = standInformation.getIntervals();
-        assertNotEquals(expectedResult, result);
+        assertNotEquals(result,expectedResult);
 
     }
 
@@ -194,7 +193,7 @@ public class ShowStandInformationTest {
         StandRegistry n = standInformation.newStandRegistryInterval(0);
         String result = standInformation.getFrequencyString();
         String expectedResult = "20,00%";
-        assertEquals(expectedResult, result);
+        assertEquals(result, expectedResult);
 
     }
 
@@ -211,7 +210,7 @@ public class ShowStandInformationTest {
         StandRegistry n = standInformation.newStandRegistryInterval(0);
         String result = standInformation.getFrequencyString();
         String expectedResult = "10.00%";
-        assertNotEquals(expectedResult, result);
+        assertNotEquals(result,expectedResult);
 
     }
 
@@ -232,7 +231,7 @@ public class ShowStandInformationTest {
         expectedResult.add(23.3F);
         expectedResult.add(27.099998F);
         ArrayList<Float> result = standInformation.getClassMarkArray();
-        assertEquals(expectedResult, result);
+        assertEquals(result,expectedResult);
 
     }
 
@@ -253,7 +252,7 @@ public class ShowStandInformationTest {
         expectedResult.add(23.3F);
         expectedResult.add(27.099998F);
         ArrayList<Float> result = standInformation.getClassMarkArray();
-        assertNotEquals(expectedResult, result);
+        assertNotEquals(result,expectedResult);
 
     }
 
@@ -306,7 +305,7 @@ public class ShowStandInformationTest {
         expectedResult.add(4);
         expectedResult.add(4);
         expectedResult.add(3);
-        assertEquals(expectedResult, result);
+        assertEquals(result,expectedResult);
 
     }
 
@@ -327,7 +326,7 @@ public class ShowStandInformationTest {
         expectedResult.add(4);
         expectedResult.add(4);
         expectedResult.add(3);
-        assertNotEquals(expectedResult, result);
+        assertNotEquals(result,expectedResult);
 
     }
 }

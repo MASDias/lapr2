@@ -39,26 +39,21 @@ public class Review implements Serializable {
         this.invitation = invitation;
         this.overall = overall;
         this.meanValue = (this.knowledge + this.application + this.invitation + this.overall) / (float) TOTALFIELDS;
-        
+
     }
 
     public void setTextDescription(String textDescription) {
         this.textDescription = textDescription;
     }
 
-    
-    
     public void setAssignment(Assignment assignment) {
         this.assignment = assignment;
     }
 
-    
     public Assignment getAssignment() {
         return assignment;
     }
 
-    
-    
     public float getMeanValue() {
         return meanValue;
     }
@@ -91,8 +86,6 @@ public class Review implements Serializable {
         return application;
     }
 
-    
-    
     /**
      *
      * @param application
