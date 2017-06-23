@@ -191,11 +191,9 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
                     employee = emp;
                     float meanRating = calculateEmployeeMeanRating(employee);
                     meanRatingLabel.setText(String.valueOf(meanRating));
-                    searchEmployeeByIDTextField.setText("");
                 }
             }
         }
-
     }//GEN-LAST:event_searchEmployeeByIDTextFieldActionPerformed
 
     private float calculateEmployeeMeanRating(EventEmployee eventEmployee) {
@@ -214,7 +212,7 @@ public class ShowEmployeeMeanRating extends javax.swing.JFrame {
                             meanRating += (review.getMeanValue());
                             counter++;
                         }
-
+                        
                     }
                 }
             }

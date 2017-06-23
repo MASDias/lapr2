@@ -72,18 +72,6 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
-        statisticsMenu = new javax.swing.JMenu();
-        showStandInformationMenuItem = new javax.swing.JMenuItem();
-        showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
-        showGlobalMeanRatingMenuItem = new javax.swing.JMenuItem();
-        MeanDeviationAvrgRatingItem = new javax.swing.JMenuItem();
-        DifferencceMeanTheriticalValueOneItem = new javax.swing.JMenuItem();
-        DiferenceMeanDeviationEMployeesItem = new javax.swing.JMenuItem();
-        showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
-        showEventAcceptanceRate = new javax.swing.JMenuItem();
-        showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
-        testEventAcceptanceRateAboveFiftyPercentMenuItem = new javax.swing.JMenuItem();
-        compareEventAcceptanceRateItem = new javax.swing.JMenuItem();
         loginMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         LoggoutMenuItem = new javax.swing.JMenuItem();
@@ -102,10 +90,25 @@ public class MainWindow extends javax.swing.JFrame {
         submitApplicationMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         assignStandToApplicationMenuItem = new javax.swing.JMenuItem();
+        jSeparator13 = new javax.swing.JPopupMenu.Separator();
         decideApplicationItem = new javax.swing.JMenuItem();
+        jSeparator12 = new javax.swing.JPopupMenu.Separator();
         changeOrRemoveApplicationMenuItem = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
         listApplicationJItem = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
+        statisticsMenu = new javax.swing.JMenu();
+        showStandInformationMenuItem = new javax.swing.JMenuItem();
+        showEmployeeMeanRatingMenuItem = new javax.swing.JMenuItem();
+        showGlobalMeanRatingMenuItem = new javax.swing.JMenuItem();
+        MeanDeviationAvrgRatingItem = new javax.swing.JMenuItem();
+        DifferencceMeanTheriticalValueOneItem = new javax.swing.JMenuItem();
+        DiferenceMeanDeviationEMployeesItem = new javax.swing.JMenuItem();
+        showEventsSubmissionKeywordsMenuItem = new javax.swing.JMenuItem();
+        showEventAcceptanceRate = new javax.swing.JMenuItem();
+        showGlobalAcceptanceRateMenuItem = new javax.swing.JMenuItem();
+        testEventAcceptanceRateAboveFiftyPercentMenuItem = new javax.swing.JMenuItem();
+        compareEventAcceptanceRateItem = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         helpMenuItem = new javax.swing.JMenuItem();
         importExportMenu = new javax.swing.JMenu();
@@ -135,99 +138,6 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel2.setBounds(0, 0, 600, 330);
 
         menu.setText("Menu");
-
-        statisticsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic.png"))); // NOI18N
-        statisticsMenu.setText("Statistic");
-
-        showStandInformationMenuItem.setText("Show Stands Information");
-        showStandInformationMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showStandInformationMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showStandInformationMenuItem);
-
-        showEmployeeMeanRatingMenuItem.setText("Show Employee Mean Rating");
-        showEmployeeMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showEmployeeMeanRatingMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showEmployeeMeanRatingMenuItem);
-
-        showGlobalMeanRatingMenuItem.setText("Show Global Mean Rating");
-        showGlobalMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showGlobalMeanRatingMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showGlobalMeanRatingMenuItem);
-
-        MeanDeviationAvrgRatingItem.setText("Show Mean Deviation between Employees Average Rating");
-        MeanDeviationAvrgRatingItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MeanDeviationAvrgRatingItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(MeanDeviationAvrgRatingItem);
-
-        DifferencceMeanTheriticalValueOneItem.setText("Difference between the mean deviation and a theoretical value 1 for a Employee");
-        DifferencceMeanTheriticalValueOneItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DifferencceMeanTheriticalValueOneItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(DifferencceMeanTheriticalValueOneItem);
-
-        DiferenceMeanDeviationEMployeesItem.setText("Difference between two Employees mean deviations");
-        DiferenceMeanDeviationEMployeesItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DiferenceMeanDeviationEMployeesItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(DiferenceMeanDeviationEMployeesItem);
-
-        showEventsSubmissionKeywordsMenuItem.setText("Show Event Submission Keywords");
-        showEventsSubmissionKeywordsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showEventsSubmissionKeywordsMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showEventsSubmissionKeywordsMenuItem);
-
-        showEventAcceptanceRate.setText("Show Event Acceptance Rate");
-        showEventAcceptanceRate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showEventAcceptanceRateActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showEventAcceptanceRate);
-
-        showGlobalAcceptanceRateMenuItem.setText("Show Global Acceptance Rate");
-        showGlobalAcceptanceRateMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showGlobalAcceptanceRateMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(showGlobalAcceptanceRateMenuItem);
-
-        testEventAcceptanceRateAboveFiftyPercentMenuItem.setText("Test Event acceptance rate above 50%");
-        testEventAcceptanceRateAboveFiftyPercentMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(testEventAcceptanceRateAboveFiftyPercentMenuItem);
-
-        compareEventAcceptanceRateItem.setText("Compare Event Acceptance Rate");
-        compareEventAcceptanceRateItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compareEventAcceptanceRateItemActionPerformed(evt);
-            }
-        });
-        statisticsMenu.add(compareEventAcceptanceRateItem);
-
-        menu.add(statisticsMenu);
 
         loginMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/keyring-icon.png"))); // NOI18N
         loginMenuItem.setText("Login");
@@ -328,6 +238,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menu.add(assignStandToApplicationMenuItem);
+        menu.add(jSeparator13);
 
         decideApplicationItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yellow-ok-icon.png"))); // NOI18N
         decideApplicationItem.setText("Decide Application");
@@ -337,6 +248,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menu.add(decideApplicationItem);
+        menu.add(jSeparator12);
 
         changeOrRemoveApplicationMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Apps-basket-icon.png"))); // NOI18N
         changeOrRemoveApplicationMenuItem.setText("Change/Remove Application");
@@ -346,6 +258,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menu.add(changeOrRemoveApplicationMenuItem);
+        menu.add(jSeparator11);
 
         listApplicationJItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bulleted-List-icon.png"))); // NOI18N
         listApplicationJItem.setText("List Applications");
@@ -356,6 +269,99 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menu.add(listApplicationJItem);
         menu.add(jSeparator15);
+
+        statisticsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic.png"))); // NOI18N
+        statisticsMenu.setText("Statistic");
+
+        showStandInformationMenuItem.setText("Show Stands Information");
+        showStandInformationMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showStandInformationMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showStandInformationMenuItem);
+
+        showEmployeeMeanRatingMenuItem.setText("Show Employee Mean Rating");
+        showEmployeeMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEmployeeMeanRatingMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showEmployeeMeanRatingMenuItem);
+
+        showGlobalMeanRatingMenuItem.setText("Show Global Mean Rating");
+        showGlobalMeanRatingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showGlobalMeanRatingMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showGlobalMeanRatingMenuItem);
+
+        MeanDeviationAvrgRatingItem.setText("Show Mean Deviation between Employees Average Rating");
+        MeanDeviationAvrgRatingItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MeanDeviationAvrgRatingItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(MeanDeviationAvrgRatingItem);
+
+        DifferencceMeanTheriticalValueOneItem.setText("Difference Between the Mean Deviation and a Theoretical Value 1 for a Employee");
+        DifferencceMeanTheriticalValueOneItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DifferencceMeanTheriticalValueOneItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(DifferencceMeanTheriticalValueOneItem);
+
+        DiferenceMeanDeviationEMployeesItem.setText("Difference Between Two Employees Mean Deviations");
+        DiferenceMeanDeviationEMployeesItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiferenceMeanDeviationEMployeesItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(DiferenceMeanDeviationEMployeesItem);
+
+        showEventsSubmissionKeywordsMenuItem.setText("Show Event Submission Keywords");
+        showEventsSubmissionKeywordsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEventsSubmissionKeywordsMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showEventsSubmissionKeywordsMenuItem);
+
+        showEventAcceptanceRate.setText("Show Event Acceptance Rate");
+        showEventAcceptanceRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEventAcceptanceRateActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showEventAcceptanceRate);
+
+        showGlobalAcceptanceRateMenuItem.setText("Show Global Acceptance Rate");
+        showGlobalAcceptanceRateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showGlobalAcceptanceRateMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(showGlobalAcceptanceRateMenuItem);
+
+        testEventAcceptanceRateAboveFiftyPercentMenuItem.setText("Test Event Acceptance Rate Above 50%");
+        testEventAcceptanceRateAboveFiftyPercentMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testEventAcceptanceRateAboveFiftyPercentMenuItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(testEventAcceptanceRateAboveFiftyPercentMenuItem);
+
+        compareEventAcceptanceRateItem.setText("Compare Event Acceptance Rate");
+        compareEventAcceptanceRateItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compareEventAcceptanceRateItemActionPerformed(evt);
+            }
+        });
+        statisticsMenu.add(compareEventAcceptanceRateItem);
+
+        menu.add(statisticsMenu);
         menu.add(jSeparator8);
 
         helpMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Button-Info-icon.png"))); // NOI18N
@@ -688,8 +694,11 @@ public class MainWindow extends javax.swing.JFrame {
             submitApplicationMenuItem.setVisible(false); // v
             jSeparator2.setVisible(false); // v
             assignStandToApplicationMenuItem.setVisible(false); //v
+            jSeparator13.setVisible(false);
             decideApplicationItem.setVisible(false); // v
+            jSeparator12.setVisible(false);
             changeOrRemoveApplicationMenuItem.setVisible(false); // v
+            jSeparator11.setVisible(false);
             listApplicationJItem.setVisible(false); // v
             jSeparator15.setVisible(false); // v
             statisticsMenu.setVisible(false); // v
@@ -755,6 +764,7 @@ public class MainWindow extends javax.swing.JFrame {
                 jSeparator2.setVisible(true);
                 assignStandToApplicationMenuItem.setVisible(true);
                 listApplicationJItem.setVisible(true);
+                jSeparator13.setVisible(true);
                 statisticsMenu.setVisible(true);
                 jSeparator15.setVisible(true);
                 //--- Menu Item ---
@@ -814,6 +824,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
+    private javax.swing.JPopupMenu.Separator jSeparator12;
+    private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
