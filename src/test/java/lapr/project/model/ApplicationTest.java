@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -223,7 +225,8 @@ public class ApplicationTest {
         int expectedResult = 10;
         assertEquals(result, expectedResult);
     }
-      /**
+
+    /**
      *
      */
     @Test
@@ -247,6 +250,7 @@ public class ApplicationTest {
         int expectedResult = 14;
         assertEquals(result, expectedResult);
     }
+
     /**
      *
      */
@@ -259,7 +263,8 @@ public class ApplicationTest {
         int expectedResult = 10;
         assertNotEquals(result, expectedResult);
     }
-      /**
+
+    /**
      *
      */
     @Test
@@ -268,9 +273,10 @@ public class ApplicationTest {
         Application application = new Application(e, 10, "description", 10.0f);
         float result = application.getArea();
         float expectedResult = 10.0f;
-        assertEquals(result, expectedResult,0.0);
+        assertEquals(result, expectedResult, 0.0);
     }
-       /**
+
+    /**
      *
      */
     @Test
@@ -279,9 +285,10 @@ public class ApplicationTest {
         Application application = new Application(e, 10, "description", 10.0f);
         float result = application.getArea();
         float expectedResult = 0.1f;
-        assertNotEquals(result, expectedResult,0.0);
+        assertNotEquals(result, expectedResult, 0.0);
     }
-     /**
+
+    /**
      *
      */
     @Test
@@ -291,9 +298,10 @@ public class ApplicationTest {
         application.setArea(20.0f);
         float result = application.getArea();
         float expectedResult = 20.0f;
-        assertEquals(result, expectedResult,0.0);
+        assertEquals(result, expectedResult, 0.0);
     }
-      /**
+
+    /**
      *
      */
     @Test
@@ -303,6 +311,293 @@ public class ApplicationTest {
         application.setArea(20.0f);
         float result = application.getArea();
         float expectedResult = 10.0f;
-        assertNotEquals(result, expectedResult,0.0);
+        assertNotEquals(result, expectedResult, 0.0);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetKeywordListListIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        KeywordList list = new KeywordList();
+        Keyword keyword = new Keyword("123456789");
+        list.addKeyword(keyword);
+        application.setKeywordList(list);
+        KeywordList result = application.getKeywordList();
+        assertEquals(result, list);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetKeywordListListIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        KeywordList list = new KeywordList();
+        KeywordList list2 = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list2.addKeyword(k2);
+        application.setKeywordList(list);
+        KeywordList result = application.getKeywordList();
+        assertNotEquals(result, list2);
+    }
+ /**
+     *
+     */
+    @Test
+    public void EnsureSetKeywordListListIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        KeywordList list = new KeywordList();
+        Keyword keyword = new Keyword("123456789");
+        list.addKeyword(keyword);
+        application.setKeywordList(list);
+        KeywordList result = application.getKeywordList();
+        assertEquals(result, list);
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void EnsureSetKeywordListListIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        KeywordList list = new KeywordList();
+        KeywordList list2 = new KeywordList();
+        Keyword k1 = new Keyword("123456789");
+        Keyword k2 = new Keyword("qwerty");
+        list.addKeyword(k1);
+        list2.addKeyword(k2);
+        application.setKeywordList(list);
+        KeywordList result = application.getKeywordList();
+        assertNotEquals(result, list2);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetUserIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        String userName = user.getUserName();
+        application.setUser(userName);
+        String result = application.getUser();
+        assertEquals(result, userName);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetUserIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        User user2 = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        String userName = user.getUserName();
+        String expectedResult = user2.getUserName();
+        application.setUser(userName);
+        String result = application.getUser();
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureSetUserIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        String userName = user.getUserName();
+        application.setUser(userName);
+        String result = application.getUser();
+        assertEquals(result, userName);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureSetUserIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        User user2 = new User("Miguel", "miguel@gmail.com", "miguel4", "miguel123");
+        String userName = user.getUserName();
+        String expectedResult = user2.getUserName();
+        application.setUser(userName);
+        String result = application.getUser();
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureGetEventIsEqual() throws Exception{
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        application.setEvent(event);
+        Event result = application.getEvent();
+        assertEquals(result, event);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureGetEventIsNotEqual() throws Exception{
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        Event expectedResult = new Event("Model", "string", end, beginning, null, null, local, 100);
+        application.setEvent(event);
+        Event result = application.getEvent();
+        assertNotEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureSetEventIsEqual() throws Exception{
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        application.setEvent(event);
+        Event result = application.getEvent();
+        assertEquals(result, event);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureSetEventIsNotEqual() throws Exception{
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Event event = new Event("Model Example", "Explae string", beginning, end, null, null, local, 100);
+        Event expectedResult = new Event("Model", "string", end, beginning, null, null, local, 100);
+        application.setEvent(event);
+        Event result = application.getEvent();
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetEnterpriseIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        Enterprise result = application.getEnterprise();
+        assertEquals(result, e);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetEnterpriseIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Enterprise e2 = new Enterprise("enterprise 2", "e2@email.com", "Location y", 987654321, 595323141);
+        Application application = new Application(e, 10, "description", 0.0f);
+        Enterprise result = application.getEnterprise();
+        assertNotEquals(result, e2);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetDecriptionIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        String result = application.getDescription();
+        String expectedResult = "description";
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureGetDecriptionIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        String result = application.getDescription();
+        String expectedResult = "something";
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureSetDecriptionIsEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        application.setDescription("something");
+        String result = application.getDescription();
+        String expectedResult = "something";
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureSetDecriptionIsNotEqual() {
+        Enterprise e = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(e, 10, "description", 0.0f);
+        application.setDescription("something");
+        String result = application.getDescription();
+        String expectedResult = "description";
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureGetEvaluationIsEqual() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        Review result = application.getEvaluation(0);
+        assertEquals(result, review);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureGetEvaluationIsNotEqual() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");
+        EventEmployee eventEmployee = new EventEmployee(user, 3);
+        Enterprise enterprise = new Enterprise("enterprise 1", "e@email.com", "Location X", 123456789, 912645987);
+        Application application = new Application(enterprise, 10, "description", 0.0f);
+        Assignment assignment = new Assignment(eventEmployee);
+        Review review = new Review("box", 3, 4, 2, 5);
+        Review review2 = new Review("Stick", 2, 3, 5, 1);
+        review.setAssignment(assignment);
+        application.addEvaluation(review);
+        Review result = application.getEvaluation(0);
+        assertNotEquals(result, review2);
     }
 }

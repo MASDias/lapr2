@@ -105,9 +105,6 @@ public class Application implements Serializable {
         return keywordList;
     }
 
-    public void setEventEmployeeList(EventEmployeeList eventEmployeeList) {
-        this.eventEmployeeList = eventEmployeeList;
-    }
 
     public Event getEvent() {
         return event;
