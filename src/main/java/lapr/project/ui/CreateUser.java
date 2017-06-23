@@ -7,7 +7,10 @@ package lapr.project.ui;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.CreateUserController;
+import lapr.project.model.Event;
 import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.User;
 
 /**
  *
@@ -18,6 +21,7 @@ public class CreateUser extends javax.swing.JFrame {
     private static final long serialVersionUID = 1;
     private EventCenter eventCenter;
     private CreateUserController controller;
+    private EventRegistry listEvents;
 
     /**
      * Creates new form UserRegistryUIw
@@ -28,6 +32,8 @@ public class CreateUser extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         controller = new CreateUserController(this.eventCenter);
         initComponents();
+        listEvents = controller.getEventsList();
+
         setVisible(true);
     }
 
@@ -177,22 +183,38 @@ public class CreateUser extends javax.swing.JFrame {
 
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+
         if (nameTextField.getText().isEmpty() || userNameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || String.valueOf(passwordField.getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(null, "Missing Data!", "Error!", -1);
         } else {
-            if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))) {
-                if (controller.newUser(nameTextField.getText(), emailTextField.getText(), userNameTextField.getText(), String.valueOf(passwordField.getPassword()))) {
-                    controller.addUser();
-                    JOptionPane.showMessageDialog(null, "User created with success!");
-                    dispose();
+            if (!validateUser(userNameTextField.getText(), emailTextField.getText())) {
+                if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(confirmPasswordField.getPassword()))) {
+                    if (controller.newUser(nameTextField.getText(), emailTextField.getText(), userNameTextField.getText(), String.valueOf(passwordField.getPassword()))) {
+                        controller.addUser();
+                        JOptionPane.showMessageDialog(null, "User created with success!");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid Data please check the fields!", "Error!", -1);
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Invalid Data please check the fields!", "Error!", -1);
+                    JOptionPane.showMessageDialog(null, "Inserted passwords are not the same!", "Error!", -1);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Inserted passwords are not the same!", "Error!", -1);
+                JOptionPane.showMessageDialog(null, "Username or Email already in use!");
             }
+
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed
+
+    private boolean validateUser(String username, String email) {
+        for (int i = 0; i < eventCenter.getUserRegistry().size(); i++) {
+            User u = eventCenter.getUserRegistry().getUser(i);
+            if (u.getUserName().equals(username) || u.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         dispose();
