@@ -107,6 +107,7 @@ public class StatisticsTest {
         double result = statistics.getzCritical();
         assertEquals(expResult, result, 0.0);
     }
+
     /**
      * Test of getzCritical method, of class Statistics.
      */
@@ -128,6 +129,25 @@ public class StatisticsTest {
         Statistics statistics = new Statistics(0.01, 1, values.length, values);
         double expResult = -4.045072209064469;
         double result = statistics.getObsValue();
+        assertEquals(expResult, result, 0.0);
+    }
+
+    @Test
+    public void EventAcceptanceRateComparison() {
+        Statistics s = new Statistics(0.05, 30, 40, 0.40f, 0.325f);
+        double expResult = 0.645871241362644;
+        double result = s.getObsValue();
+        assertEquals(expResult, result, 0.0);
+
+    }
+
+    @Test
+    public void EventFAEAcceptanceRateComparison() {
+        double[] values = {0.798, 0.202, 0.202, 0.048, 0.798, 0.298, 0.048, 1.952, 0.952, 0.298, 0.048, 0.202, 0.048, 0.798, 0.048, 0.048, 0.548, 0.298, 1.548, 0.452, 1.048, 0.452, 0.702, 0.702, 0.702, 1.952, 0.952, 0.798, 1.048, 0.298};
+        double[] values2 = {0.298, 0.798, 0.952, 1.452, 0.298, 0.048, 0.702, 0.298, 1.202, 0.548, 0.702, 0.048, 0.048, 0.298, 1.548, 1.298, 0.202, 0.048, 1.048, 1.798, 0.548, 0.048, 1.048, 0.202, 1.452, 1.202, 0.048, 0.452, 1.048, 0.298};
+        Statistics s = new Statistics(0.01, 0.610f, 0.666f, 30, 30, values, values2);
+        double expResult = -0.4080579083946205;
+        double result = s.getObsValue();
         assertEquals(expResult, result, 0.0);
     }
 
