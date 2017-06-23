@@ -108,7 +108,7 @@ public class DefineEventManager extends javax.swing.JFrame {
             }
         });
 
-        okBtn.setText("OK");
+        okBtn.setText("Save");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
@@ -235,7 +235,6 @@ public class DefineEventManager extends javax.swing.JFrame {
                     modelUsersList.addElement(u);
                 }
             }
-            listEventManagers.removeEventManager(em);
             modelEventManagersList.removeElement(em);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "No event manager selected");

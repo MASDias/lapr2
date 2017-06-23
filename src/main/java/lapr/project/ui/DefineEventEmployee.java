@@ -120,7 +120,7 @@ public class DefineEventEmployee extends javax.swing.JFrame {
             }
         });
 
-        okBtn.setText("OK");
+        okBtn.setText("Save");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
@@ -350,7 +350,6 @@ public class DefineEventEmployee extends javax.swing.JFrame {
     private void removeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserBtnActionPerformed
         try {
             EventEmployee e = modelEmployeesList.getElementAt(eventEmployeeJList.getSelectedIndex());
-            listEmployees.removeEmployee(e);
             modelEmployeesList.removeElement(e);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "No employee selected");
