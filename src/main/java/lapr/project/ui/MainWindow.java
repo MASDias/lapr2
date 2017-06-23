@@ -768,7 +768,6 @@ public class MainWindow extends javax.swing.JFrame {
                 DiferenceMeanDeviationEMployeesItem.setVisible(true);
                 compareEventAcceptanceRateItem.setVisible(false);
                 //--- End Menu Item ---
-
             }
             if (eventEmployeeStatus) {
                 //Decide application
