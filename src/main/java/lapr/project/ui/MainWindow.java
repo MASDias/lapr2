@@ -752,6 +752,7 @@ public class MainWindow extends javax.swing.JFrame {
                 showEventsSubmissionKeywordsMenuItem.setVisible(true);
                 showEmployeeMeanRatingMenuItem.setVisible(true);
                 showStandInformationMenuItem.setVisible(true);
+                testEventAcceptanceRateAboveFiftyPercentMenuItem.setVisible(true);
                 //--- End Menu Item ---
 
                 jSeparator15.setVisible(true);
@@ -777,6 +778,7 @@ public class MainWindow extends javax.swing.JFrame {
                 DifferencceMeanTheriticalValueOneItem.setVisible(true);
                 DiferenceMeanDeviationEMployeesItem.setVisible(true);
                 compareEventAcceptanceRateItem.setVisible(false);
+                testEventAcceptanceRateAboveFiftyPercentMenuItem.setVisible(false);
                 //--- End Menu Item ---
             }
             if (eventEmployeeStatus) {
@@ -789,6 +791,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
                     submitApplicationMenuItem.setVisible(true);
+                    jSeparator2.setVisible(true);
                     changeOrRemoveApplicationMenuItem.setVisible(true);
                 } else {
                     submitApplicationMenuItem.setVisible(false);

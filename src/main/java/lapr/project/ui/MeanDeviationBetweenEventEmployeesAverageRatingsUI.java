@@ -53,14 +53,15 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        employeeMeanJlist = new javax.swing.JList<>();
-        eventEmployeeCombobox = new javax.swing.JComboBox<>();
+        employeeMeanJlist = new javax.swing.JList<String>();
+        eventEmployeeCombobox = new javax.swing.JComboBox<EventEmployee>();
         label1 = new javax.swing.JLabel();
         label2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Employee Mean Deviation For Employee Avarage Rating");
+        setResizable(false);
 
         jScrollPane2.setViewportView(employeeMeanJlist);
 
@@ -115,6 +116,7 @@ public class MeanDeviationBetweenEventEmployeesAverageRatingsUI extends javax.sw
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void eventEmployeeComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventEmployeeComboboxActionPerformed
