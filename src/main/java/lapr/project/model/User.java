@@ -148,7 +148,7 @@ public class User implements Serializable {
      * @param password
      */
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encryption.Encryption(password);
     }
 
     /**

@@ -140,6 +140,58 @@ public class UserTest {
         String expectedResult = "Name: l Username: b Email: a";
         assertNotEquals(result, expectedResult);
     }
-    
+     
+    /**
+     *
+     */
+    @Test
+    public void EnsureIsUserSatusIsEqual() {
+        User user = new User("Z", "a", "b", "c");
+        boolean result = user.isUserStatus();
+        boolean expectedResult = true;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureGetPasswordIsEqual() {
+        User user = new User("Z", "a", "b", "c");        
+        String result = user.getPassword();
+        String expectedResult = "n";
+        assertEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureGetPasswordIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");        
+        String result = user.getPassword();
+        String expectedResult = "r";
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureSetPasswordIsEqual() {
+        User user = new User("Z", "a", "b", "c");
+        user.setPassword("r");
+        String result = user.getPassword();
+        String expectedResult = "}";
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureSetPasswordIsNotEqual() {
+        User user = new User("Z", "a", "b", "c");
+        user.setPassword("r");
+        String result = user.getPassword();
+        String expectedResult = "n";
+        assertNotEquals(result, expectedResult);
+    }
     
 }
