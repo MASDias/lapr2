@@ -104,28 +104,7 @@ public class User implements Serializable {
         return false;
     }
 
-    public boolean validatePassword() {
-        Pattern letter = Pattern.compile("[a-zA-z]", Pattern.CASE_INSENSITIVE);
-        Pattern digit = Pattern.compile("[0-9]", Pattern.CASE_INSENSITIVE);
-        Pattern special = Pattern.compile("[.,!@#$%&*()_+=|<>?{}\\[\\]~-]", Pattern.CASE_INSENSITIVE);
-
-        Matcher letters = letter.matcher(encryption.Decryption(this.password));
-        Matcher number = digit.matcher(encryption.Decryption(this.password));
-        Matcher specialChar = special.matcher(encryption.Decryption(this.password));
-
-        if (!letters.find()) {
-            if (!number.find()) {
-                if (!specialChar.find()) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
+   
 
     /**
      *

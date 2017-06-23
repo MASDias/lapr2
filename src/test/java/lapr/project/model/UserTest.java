@@ -193,5 +193,225 @@ public class UserTest {
         String expectedResult = "n";
         assertNotEquals(result, expectedResult);
     }
-    
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameIsTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = true;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameIsNotFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = false;
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameWithNumberIsFalse() {
+        User user = new User("mario2", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameWithNumberIsNotTrue() {
+        User user = new User("mario2", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameWithSimbolIsFalse() {
+        User user = new User("mario£", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureValidateNameWithSimbolIsNotTrue() {
+        User user = new User("mario£", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateName();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureValidateEmailIsTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateEmail();
+        boolean expectedResult = true;
+        assertEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureValidateEmailIsNotFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateEmail();
+        boolean expectedResult = false;
+        assertNotEquals(result, expectedResult);
+    }
+     /**
+     *
+     */
+    @Test
+    public void EnsureValidateEmailWithATIsFalse() {
+        User user = new User("mario", "mgmail.com", "mario1", "m123");        
+        boolean result = user.validateEmail();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateEmailWithATIsNotTrue() {
+        User user = new User("mario", "mgmail.com", "mario1", "m123");        
+        boolean result = user.validateEmail();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateUserNameIsTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateUsername();
+        boolean expectedResult = true;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateUserNameIsNotFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateUsername();
+        boolean expectedResult = false;
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateUserNameWithSimbolIsFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1€", "m123");        
+        boolean result = user.validateUsername();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateUserNameWithSimbolIsNotTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1€", "m123");        
+        boolean result = user.validateUsername();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+       /**
+     *
+     */
+    @Test
+    public void EnsureValidateDataIsTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = true;
+        assertEquals(result, expectedResult);
+    }
+       /**
+     *
+     */
+    @Test
+    public void EnsureValidateDataIsNotFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = false;
+        assertNotEquals(result, expectedResult);
+    }
+       /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidNameIsFalse() {
+        User user = new User("mario1", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidNameIsNotTrue() {
+        User user = new User("mario1", "m@gmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+      /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidEmailIsFalse() {
+        User user = new User("mario", "mgmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+       /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidEmailIsNotTrue() {
+        User user = new User("mario", "mgmail.com", "mario1", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidUserNameIsFalse() {
+        User user = new User("mario", "m@gmail.com", "mario1@", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = false;
+        assertEquals(result, expectedResult);
+    }
+    /**
+     *
+     */
+    @Test
+    public void EnsureValidateDatawithoutValidUserNameIsNotTrue() {
+        User user = new User("mario", "m@gmail.com", "mario1@", "m123");        
+        boolean result = user.validateData();
+        boolean expectedResult = true;
+        assertNotEquals(result, expectedResult);
+    }
+
 }
