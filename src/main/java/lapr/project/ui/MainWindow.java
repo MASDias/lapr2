@@ -55,7 +55,6 @@ public class MainWindow extends javax.swing.JFrame {
         this.eventCenter = eventCenter;
         updateLogin();
         this.setVisible(true);
-
     }
 
     /**

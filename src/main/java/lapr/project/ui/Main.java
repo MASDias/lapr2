@@ -1,9 +1,14 @@
 package lapr.project.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import lapr.project.model.EventCenter;
 import lapr.project.model.EventManager;
 import lapr.project.model.User;
 import lapr.project.utils.XMLReader;
+import lapr.project.model.Event;
+import lapr.project.model.Location;
+import lapr.project.model.Stand;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -27,10 +32,10 @@ class Main {
 
         User user = new User("manager", "manager@email.com", "manager", "password");
         EventManager eventManager = new EventManager(user);
+
         eventCenter.getUserRegistry().addUser(user);
         eventCenter.getEventManagerList().addEventManager(eventManager);
 
         MainWindow mw = new MainWindow(eventCenter);
-
     }
 }

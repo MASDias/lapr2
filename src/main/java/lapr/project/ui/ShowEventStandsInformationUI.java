@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.ShowEventStandsInformationController;
 import lapr.project.model.Event;
 import lapr.project.model.EventCenter;

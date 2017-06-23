@@ -154,7 +154,7 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_idTextFieldActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-     loginConfirmation();       
+        loginConfirmation();
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void loginConfirmation() {
