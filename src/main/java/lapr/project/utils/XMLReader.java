@@ -29,13 +29,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import lapr.project.model.Assignment;
 import lapr.project.model.Enterprise;
 import lapr.project.model.EventManager;
 import lapr.project.model.Keyword;
 import lapr.project.model.Organizer;
-import lapr.project.ui.MainWindow;
-import org.xml.sax.SAXParseException;
 
 /**
  *
@@ -58,10 +57,7 @@ public class XMLReader {
      * @param fileXML
      */
     public XMLReader(String fileXML) {
-
-        if (!testFilepath(fileXML)) {
-            filepathXML = DEFAULTFILENAMEXML;
-        } else {
+        if (testFilepath(fileXML)) {
             filepathXML = fileXML;
         }
     }
@@ -88,10 +84,10 @@ public class XMLReader {
             eventCenter = getEventCenterFromXML(eventList, document, eventCenter);
 
         } catch (FileNotFoundException e) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Ficheiro nÃ£o encontrado");
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Ficheiro nÃ£o encontrado");
         } catch (IOException | ParserConfigurationException | SAXException e) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, e);
         }
         return eventCenter;
     }
@@ -113,10 +109,11 @@ public class XMLReader {
             } else {
                 local = title.getElementsByTagName("location").item(0).getTextContent();
             }
-
-            for (int i = 0; i < eventCenter.getLocationList().size(); i++) {
-                if (eventCenter.getLocationList().getLocal(i).toString().equals(local)) {
-                    cont++;
+            if (eventCenter.getLocationList().size() > 0) {
+                for (int i = 0; i < eventCenter.getLocationList().size(); i++) {
+                    if (eventCenter.getLocationList().getLocal(i).toString().equals(local)) {
+                        cont++;
+                    }
                 }
             }
             if (cont == 0) {
@@ -150,7 +147,7 @@ public class XMLReader {
             eventCenter = (EventCenter) objects[0];
             exposicao1 = (Event) objects[1];
             eventCenter.getEventRegistry().addEvent(exposicao1);
-            
+
         }
 
         return eventCenter;
@@ -161,33 +158,48 @@ public class XMLReader {
         String eventEnd = "";
         String eventSubBeg = "";
         String eventSubEnd = "";
+        String[] eventDates = new String[]{eventBegin, eventEnd, eventSubBeg, eventSubEnd};
         if (dateSet.getLength() == 0) {
-            Date date = new Date();
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime(date);
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH) + 1;
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            eventBegin = day + "-" + month + "-" + year;
-            eventEnd = (day + 21) + "-" + month + "-" + year;
-            eventSubBeg = (day + 1) + "-" + month + "-" + year;
-            eventSubEnd = (day + 5) + "-" + month + "-" + year;
+            eventDates = getDefaultDatesForXMLFile(eventDates);
         } else {
-            for (int t = 0; t < dateSet.getLength(); t++) {
-                Element date = (Element) dateSet.item(t);
-                eventBegin = date.getElementsByTagName("eventBegin").item(0).getTextContent();
-                eventEnd = date.getElementsByTagName("eventEnd").item(0).getTextContent();
-                eventSubBeg = date.getElementsByTagName("eventSubBeg").item(0).getTextContent();
-                eventSubEnd = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
-            }
+            eventDates = getDatesFromXMLFile(dateSet, eventDates);
         }
+        eventBegin = eventDates[0];
+        eventEnd = eventDates[1];
+        eventSubBeg = eventDates[2];
+        eventSubEnd = eventDates[3];
         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
         exposicao1.setEventBegin(f.parse(eventBegin));
         exposicao1.setEventEnd(f.parse(eventEnd));
         exposicao1.setEventSubmissionBegin(f.parse(eventSubBeg));
         exposicao1.setEventSubmissionEnd(f.parse(eventSubEnd));
-        
-        return new Object[]{eventCenter,exposicao1};
+
+        return new Object[]{eventCenter, exposicao1};
+    }
+
+    private String[] getDefaultDatesForXMLFile(String[] dates) {
+        Date date = new Date();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        dates[0] = day + "-" + month + "-" + year;
+        dates[1] = (day + 21) + "-" + month + "-" + year;
+        dates[2] = (day + 1) + "-" + month + "-" + year;
+        dates[3] = (day + 5) + "-" + month + "-" + year;
+        return dates;
+    }
+
+    private String[] getDatesFromXMLFile(NodeList dateSet, String[] dates) {
+        for (int t = 0; t < dateSet.getLength(); t++) {
+            Element date = (Element) dateSet.item(t);
+            dates[0] = date.getElementsByTagName("eventBegin").item(0).getTextContent();
+            dates[1] = date.getElementsByTagName("eventEnd").item(0).getTextContent();
+            dates[2] = date.getElementsByTagName("eventSubBeg").item(0).getTextContent();
+            dates[3] = date.getElementsByTagName("eventSubEnd").item(0).getTextContent();
+        }
+        return dates;
     }
 
     /**
@@ -197,14 +209,11 @@ public class XMLReader {
      * @return
      */
     private EventCenter getEventManagersFromList(EventCenter eventCenter, NodeList eventManagerList) {
+        User eventManager = createNewUser("eventManager", "eventManager@management.pt", "eventManager", "management");
         if (eventManagerList.getLength() == 0) {
-            User eventManager = createNewUser("eventManager", "eventManager@management.pt", "eventManager", "management");
-            if (!userExists(eventCenter, eventManager)) {
-                eventCenter.getUserRegistry().addUser(eventManager);
-            } else if (eventCenter.getUserRegistry().size() == 0) {
+            if (!userExists(eventCenter, eventManager) || eventCenter.getUserRegistry().size() == 0) {
                 eventCenter.getUserRegistry().addUser(eventManager);
             }
-            eventCenter.getEventManagerList().addEventManager(new EventManager(eventManager));
         } else {
             for (int i = 0; i < eventManagerList.getLength(); i++) {
                 Element eventManagerElement = (Element) eventManagerList.item(i);
@@ -212,16 +221,14 @@ public class XMLReader {
                 String emailStr = eventManagerElement.getElementsByTagName("email").item(0).getTextContent();
                 String usernameStr = eventManagerElement.getElementsByTagName("username").item(0).getTextContent();
                 String passwordStr = eventManagerElement.getElementsByTagName("password").item(0).getTextContent();
-                User eventManager = createNewUser(nomeStr, emailStr, usernameStr, passwordStr);
-                if (!userExists(eventCenter, eventManager)) {
-                    eventCenter.getUserRegistry().addUser(eventManager);
-                } else if (eventCenter.getUserRegistry().size() == 0) {
+                eventManager = createNewUser(nomeStr, emailStr, usernameStr, passwordStr);
+                if (!userExists(eventCenter, eventManager) || eventCenter.getUserRegistry().size() == 0) {
                     eventCenter.getUserRegistry().addUser(eventManager);
                 }
 
-                eventCenter.getEventManagerList().addEventManager(new EventManager(eventManager));
             }
         }
+        eventCenter.getEventManagerList().addEventManager(new EventManager(eventManager));
         return eventCenter;
     }
 

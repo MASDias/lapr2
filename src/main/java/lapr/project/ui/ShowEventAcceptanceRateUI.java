@@ -158,7 +158,7 @@ public class ShowEventAcceptanceRateUI extends javax.swing.JFrame {
         double acceptanceRate = showEventAcceptanceRate.getAcceptanceRate();
         acceptedLabel.setText(String.valueOf(accepted));
         totalLabel.setText(String.valueOf(total));
-        acceptanceRateLabel.setText(String.format("%.2f %%",acceptanceRate));
+        acceptanceRateLabel.setText(String.format("%.1f %%",acceptanceRate*100));
         revalidate();
     }//GEN-LAST:event_eventComboBoxActionPerformed
 

@@ -53,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         initComponents();
         this.eventCenter = eventCenter;
-//        updateLogin();
+        updateLogin();
         this.setVisible(true);
 
     }
@@ -597,7 +597,7 @@ public class MainWindow extends javax.swing.JFrame {
             setOrganizerStatus(false);
             setEventEmployeeStatus(false);
             setEventManagerStatus(false);
-            // updateLogin();
+            updateLogin();
             userNameLabel.setText("");
         }
     }//GEN-LAST:event_LoggoutMenuItemActionPerformed
@@ -665,111 +665,119 @@ public class MainWindow extends javax.swing.JFrame {
     public void setStatisticsMenu(JMenu statisticsMenu) {
         this.statisticsMenu = statisticsMenu;
     }
-    /*
-     public void updateLogin() {
-     if (!loginStatus) {
-     loginMenuItem.setVisible(true);
-     jSeparator3.setVisible(true);
-     LoggoutMenuItem.setVisible(false);
-     jSeparator10.setVisible(false);
-     registerMenuItem.setVisible(true); // v
-     jSeparator1.setVisible(false);
-     createEventMenuItem.setVisible(false); // v
-     jSeparator4.setVisible(false); // v
-     defineUser.setVisible(false); // v
-     jSeparator5.setVisible(false); // v
-     //--- Menu Item ---
-     defineEventManagerMenuItem.setVisible(false);
-     defineOrganizerMenuItem.setVisible(false);
-     defineEmployeeMenuItem.setVisible(false);
-     //--- End Menu Item ---
-     createStandMenuItem.setVisible(false); // v
-     jSeparator7.setVisible(false); // v
-     submitApplicationMenuItem.setVisible(false); // v
-     jSeparator2.setVisible(false); // v
-     decideApplicationItem.setVisible(false); // v
-     jSeparator15.setVisible(false); // v
-     statisticsMenu.setVisible(false); // v
-     //--- Menu Item ---
-     showGlobalAcceptanceRateMenuItem.setVisible(false); // v
-     showEventAcceptanceRate.setVisible(false); // v
-     showEventsSubmissionKeywordsMenuItem.setVisible(false); // v
-     showEmployeeMeanRatingMenuItem.setVisible(false); // v
-     showStandInformationMenuItem.setVisible(false); // v
-     //--- End Menu Item ---
-     jSeparator8.setVisible(false); // v
-     helpMenuItem.setVisible(false); // v
 
-     importExportMenu.setVisible(false); // v
+    public void updateLogin() {
+        if (!loginStatus) {
+            loginMenuItem.setVisible(true);
+            jSeparator3.setVisible(true);
+            LoggoutMenuItem.setVisible(false);
+            jSeparator10.setVisible(false);
+            registerMenuItem.setVisible(true); // v
+            jSeparator1.setVisible(false);
+            createEventMenuItem.setVisible(false); // v
+            jSeparator4.setVisible(false); // v
+            defineUser.setVisible(false); // v
+            jSeparator5.setVisible(false); // v
+            //--- Menu Item ---
+            defineEventManagerMenuItem.setVisible(false);
+            defineOrganizerMenuItem.setVisible(false);
+            defineEmployeeMenuItem.setVisible(false);
+            //--- End Menu Item ---
+            createStandMenuItem.setVisible(false); // v
+            jSeparator7.setVisible(false); // v
+            submitApplicationMenuItem.setVisible(false); // v
+            jSeparator2.setVisible(false); // v
+            assignStandToApplicationMenuItem.setVisible(false); //v
+            decideApplicationItem.setVisible(false); // v
+            changeOrRemoveApplicationMenuItem.setVisible(false); // v
+            listApplicationJItem.setVisible(false); // v
+            jSeparator15.setVisible(false); // v
+            statisticsMenu.setVisible(false); // v
+            //--- Menu Item ---
+            showGlobalAcceptanceRateMenuItem.setVisible(false); // v
+            showEventAcceptanceRate.setVisible(false); // v
+            showEventsSubmissionKeywordsMenuItem.setVisible(false); // v
+            showEmployeeMeanRatingMenuItem.setVisible(false); // v
+            showStandInformationMenuItem.setVisible(false); // v
+            //--- End Menu Item ---
+            jSeparator8.setVisible(false); // v
+            helpMenuItem.setVisible(false); // v
 
-     } else {
-     loginMenuItem.setVisible(false);
-     jSeparator3.setVisible(false);
-     LoggoutMenuItem.setVisible(true);
-     jSeparator10.setVisible(true);
-     registerMenuItem.setVisible(false);
-     jSeparator8.setVisible(true);
-     helpMenuItem.setVisible(true);
-     importExportMenu.setVisible(false);
-     if (eventManagerStatus) {
-     importExportMenu.setVisible(true);
-     defineUser.setVisible(true);
-     jSeparator4.setVisible(true);
-     defineEventManagerMenuItem.setVisible(true);
-     defineOrganizerMenuItem.setVisible(true);
-     defineEmployeeMenuItem.setVisible(true);
-     createEventMenuItem.setVisible(true);
-     jSeparator4.setVisible(true);
-     defineUser.setVisible(true);
-     jSeparator5.setVisible(true);
-     createStandMenuItem.setVisible(true);
+            importExportMenu.setVisible(false); // v
 
-     //Create Event, Create Stand
-     // Statistic -> Others
-     statisticsMenu.setVisible(true);
+        } else {
+            loginMenuItem.setVisible(false);
+            jSeparator3.setVisible(false);
+            LoggoutMenuItem.setVisible(true);
+            jSeparator10.setVisible(true);
+            registerMenuItem.setVisible(false);
+            jSeparator8.setVisible(true);
+            helpMenuItem.setVisible(true);
+            importExportMenu.setVisible(false);
+            if (eventManagerStatus) {
+                importExportMenu.setVisible(true);
+                defineUser.setVisible(true);
+                jSeparator4.setVisible(true);
+                defineEventManagerMenuItem.setVisible(true);
+                defineOrganizerMenuItem.setVisible(true);
+                defineEmployeeMenuItem.setVisible(true);
+                createEventMenuItem.setVisible(true);
+                jSeparator4.setVisible(true);
+                defineUser.setVisible(true);
+                jSeparator5.setVisible(true);
+                createStandMenuItem.setVisible(true);
 
-     //--- Menu Item ---
-     showGlobalAcceptanceRateMenuItem.setVisible(true);
-     showEventAcceptanceRate.setVisible(true);
-     showEventsSubmissionKeywordsMenuItem.setVisible(true);
-     showEmployeeMeanRatingMenuItem.setVisible(true);
-     showStandInformationMenuItem.setVisible(true);
-     //--- End Menu Item ---
+                //Create Event, Create Stand
+                // Statistic -> Others
+                statisticsMenu.setVisible(true);
 
-     jSeparator15.setVisible(true);
-     }
-     if (organizerStatus) {
-     //Assign application
-     //Show event employee mean rating, show stand information
-     defineUser.setVisible(true);
-     defineEmployeeMenuItem.setVisible(true);
-     statisticsMenu.setVisible(true);
-     jSeparator15.setVisible(true);
-     //--- Menu Item ---
-     showGlobalAcceptanceRateMenuItem.setVisible(false);
-     showEventAcceptanceRate.setVisible(false);
-     showEventsSubmissionKeywordsMenuItem.setVisible(false);
-     showEmployeeMeanRatingMenuItem.setVisible(true);
-     showStandInformationMenuItem.setVisible(true);
-     //--- End Menu Item ---
+                //--- Menu Item ---
+                showGlobalAcceptanceRateMenuItem.setVisible(true);
+                showEventAcceptanceRate.setVisible(true);
+                showEventsSubmissionKeywordsMenuItem.setVisible(true);
+                showEmployeeMeanRatingMenuItem.setVisible(true);
+                showStandInformationMenuItem.setVisible(true);
+                //--- End Menu Item ---
 
-     }
-     if (eventEmployeeStatus) {
-     //Decide application
-     decideApplicationItem.setVisible(true);
-     //jSeparator2.setVisible(true);
-     }
-     if (userStatus) {
-     //Submit Application
+                jSeparator15.setVisible(true);
+            }
+            if (organizerStatus) {
+                //Assign application
+                //Show event employee mean rating, show stand information
+                defineUser.setVisible(true);
+                defineEmployeeMenuItem.setVisible(true);
+                jSeparator2.setVisible(true); 
+                assignStandToApplicationMenuItem.setVisible(true);
+                listApplicationJItem.setVisible(true);
+                statisticsMenu.setVisible(true);
+                jSeparator15.setVisible(true);
+                //--- Menu Item ---
+                showGlobalAcceptanceRateMenuItem.setVisible(false);
+                showEventAcceptanceRate.setVisible(false);
+                showEventsSubmissionKeywordsMenuItem.setVisible(false);
+                showEmployeeMeanRatingMenuItem.setVisible(true);
+                showStandInformationMenuItem.setVisible(true);
+                //--- End Menu Item ---
 
-     if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
-     submitApplicationMenuItem.setVisible(true);
-     } else {
-     submitApplicationMenuItem.setVisible(false);
-     }
-     }
-     }
-     }*/
+            }
+            if (eventEmployeeStatus) {
+                //Decide application
+                decideApplicationItem.setVisible(true);
+                //jSeparator2.setVisible(true);
+            }
+            if (userStatus) {
+                //Submit Application
+
+                if (!eventEmployeeStatus && !organizerStatus && !eventManagerStatus) {
+                    submitApplicationMenuItem.setVisible(true);
+                    changeOrRemoveApplicationMenuItem.setVisible(true);
+                } else {
+                    submitApplicationMenuItem.setVisible(false);
+                    changeOrRemoveApplicationMenuItem.setVisible(false);
+                }
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem LoggoutMenuItem;
