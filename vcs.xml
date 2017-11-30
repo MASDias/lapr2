@@ -6,8 +6,12 @@
           <option name="url" value="https://1151708@bitbucket.org/lei-isep/lapr2-2016-g041.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://1151708@bitbucket.org/1151708/2dg_1151708_1161386_esinf3.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="C:\Users\MarioDias\Desktop\ExpoTest" />
+    <option name="cloneParentDir" value="C:\Users\MarioDias\Documents\ESINF" />
   </component>
 </application>
