@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -18,36 +17,48 @@ import org.junit.Test;
  */
 public class CongressTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectCongressIsEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
-        Congress event = new Congress("Model Example", "Explae string", beginning, end, local);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Congress event = new Congress("Model Example", "Explae string", beginning, end, null, null, local, 100);
         assertEquals(event, event);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsCongressAreNotEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
 
-        Congress event = new Congress("Model Example", "Example string", beginning, end, local);
-        Congress result = new Congress("Model", "string", end, beginning, local);
+        Congress event = new Congress("Model Example", "Example string", beginning, end, null, null, local, 100);
+        Congress result = new Congress("Model", "string", end, beginning, null, null, local, 100);
         assertNotEquals(event, result);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureDifferentObjectsCongressAreNotEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
 
-        Congress event = new Congress("Model Example", "Example string",  beginning, end, local);
+        Congress event = new Congress("Model Example", "Example string", beginning, end, null, null, local, 100);
         Object result = new Object();
         assertNotEquals(event, result);
     }

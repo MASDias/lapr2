@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
@@ -18,37 +17,150 @@ import org.junit.Test;
  */
 public class ExhibitionTest {
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectStandIsEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
         assertEquals(exhibition, exhibition);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsStandAreNotEqual() throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
-        Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 10);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 10);
         assertNotEquals(exhibition, exhibition2);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureDifferentObjectsStandAreNotEqual() throws Exception {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-        Date beginning = sdf.parse("01/10/2017");
-        Date end = sdf.parse("01/30/2017");
-        Local local = new Local("Example Street", 500);
-        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, local, 20);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
         assertEquals(exhibition, exhibition);
         Object expectedResult = new Object();
         assertNotEquals(exhibition, expectedResult);
+    }
+
+    @Test
+    public void EnsureGetApplicationsListIsEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        ApplicationList list = new ApplicationList();
+        ApplicationList expectedList = list;
+        assertEquals(list, expectedList);
+    }
+
+    @Test
+    public void EnsureGetApplicationsListIsNotEqual() throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        ApplicationList list = new ApplicationList();
+        ApplicationList expectedList = exhibition.getApplicationsList();
+        list.addApplication(new Application(null,  10, "description", 0.0f));
+        assertNotEquals(list, expectedList);
+    }
+
+    @Test
+    public void EnsureSetApplicationListIsEqual() throws Exception {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        Exhibition expectedResult = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        exhibition.setApplicationsList(expectedResult.getApplicationsList());
+        assertEquals(exhibition.getApplicationsList(), expectedResult.getApplicationsList());
+    }
+
+    @Test
+    public void EnsureSetApplicationListIsNotEqual() throws Exception {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        Exhibition exhibition2 = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        ApplicationList list = new ApplicationList();
+        list.addApplication(new Application(null, 10, "description", 0.0f));
+        assertNotEquals(exhibition.getApplicationsList(), list);
+    }
+
+    @Test
+    public void EnsureGetStandRegistryIsEqual() throws Exception {
+        StandRegistry standRegistry = new StandRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        assertEquals(exhibition.getStandRegister(), exhibition.getStandRegister());
+    }
+
+    @Test
+    public void EnsureGetStandRegistryIsNotEqual() throws Exception {
+        StandRegistry standRegistry = new StandRegistry();
+        standRegistry.addStand(new Stand("", 0.0f));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        assertNotEquals(exhibition.getStandRegister(), standRegistry);
+    }
+
+    @Test
+    public void EnsureSetStandRegistryIsEqual() throws Exception {
+        StandRegistry standRegistry = new StandRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        exhibition.setStandRegister(standRegistry);
+        assertEquals(exhibition.getStandRegister(), standRegistry);
+    }
+
+    @Test
+    public void EnsureSetStandRegistryIsNotEqual() throws Exception {
+        StandRegistry standRegistry = new StandRegistry();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date beginning = sdf.parse("01-10-2017");
+        Date end = sdf.parse("10-10-2017");
+        Location local = new Location("Example Street");
+        Exhibition exhibition = new Exhibition("Exhibition", "Cool Exhibition", beginning, end, null, null, local, 20);
+        exhibition.setStandRegister(standRegistry);
+        StandRegistry expectedStandRegistry = new StandRegistry();
+        expectedStandRegistry.addStand(new Stand("", 0.0f));
+        assertNotEquals(exhibition.getStandRegister(), expectedStandRegistry);
     }
 }

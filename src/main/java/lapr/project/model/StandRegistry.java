@@ -5,28 +5,34 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class StandRegistry {
+public class StandRegistry implements Serializable {
 
-    private List<Stand> standsList;
+    private static final long serialVersionUID = 1;
+    private ArrayList<Stand> standsList;
 
+    /**
+     *
+     */
     public StandRegistry() {
         this.standsList = new ArrayList<>();
     }
 
-    public List<Stand> getListStands() {
-        return standsList;
-    }
-
-    public void setListaStands(List<Stand> listaStands) {
-        this.standsList = listaStands;
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Stand getStand(int index) {
+        return standsList.get(index);
     }
 
     private boolean validate(Stand stand) {
@@ -38,15 +44,34 @@ public class StandRegistry {
         return true;
     }
 
+    /**
+     *
+     * @param stand
+     */
     public void addStand(Stand stand) {
         if (validate(stand)) {
             standsList.add(stand);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error!");
         }
     }
-    
-    public int size (){
+
+    public void sort() {
+        Collections.sort(standsList, new Comparator<Stand>() {
+            @Override
+            public int compare(Stand o1, Stand o2) {
+                return o1.getArea() < o2.getArea() ? -1 : o1.getArea() > o2.getArea() ? 1 : 0;
+            }
+        });
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
         return standsList.size();
+    }
+    
+    public void removeStand(Stand stand){
+        standsList.remove(stand);
     }
 }

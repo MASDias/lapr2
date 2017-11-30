@@ -18,6 +18,8 @@ public interface Exportable {
 	 * Exports the object content to a string format.
 	 *
 	 * @return Structured String containing content.
+     * @throws javax.xml.transform.TransformerException
+     * @throws javax.xml.parsers.ParserConfigurationException
 	 */
 	default String exportContentToString() throws TransformerException, ParserConfigurationException {
 		String content = "";
@@ -36,6 +38,7 @@ public interface Exportable {
 	 * Exports the object content to a string format.
 	 *
 	 * @return Structured String containing content.
+     * @throws javax.xml.parsers.ParserConfigurationException
 	 */
 	Node exportContentToXMLNode() throws ParserConfigurationException;
 }

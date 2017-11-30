@@ -5,47 +5,67 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class OrganizersList {
-    private List<Organizer> organizersList;
-    
-    public OrganizersList(){
-        this.organizersList = new ArrayList<>();
+public class OrganizersList implements Serializable{
+private static final long serialVersionUID = 1;
+    private List<Organizer> listOrganizers;
+
+    /**
+     *
+     */
+    public OrganizersList() {
+        this.listOrganizers = new ArrayList<>();
     }
-    
-    public List<Organizer> getOrganizersList(){
-        return organizersList;
-    }
-    
-    public void setOrganizersList(List<Organizer> organizersList){
-        this.organizersList = organizersList;
-    }
-    
-    private boolean validate(Organizer organizer){
-        for (Organizer u: organizersList){
-            if(u.equals(organizer)){
+
+    private boolean validate(Organizer organizer) {
+        for (Organizer o : listOrganizers) {
+            if (o.equals(organizer)) {
                 return false;
             }
         }
         return true;
     }
-    
-    public void addOrganizer(Organizer organizer){
-        if(validate(organizer)){
-            organizersList.add(organizer);
-        }else{
-            JOptionPane.showMessageDialog(null, "The employee "+organizer.getName(), "Error!", -1);
-        }
+
+    /**
+     *
+     * @param organizer
+     */
+    public void addOrganizer(Organizer organizer) {
+        if (validate(organizer)) {
+            listOrganizers.add(organizer);
+        } 
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
+        return listOrganizers.size();
     }
     
-    public int size (){
-        return organizersList.size();
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Organizer getOrganizer(int index){
+        return listOrganizers.get(index);
+    }
+    
+  
+    /**
+     *
+     * @param o
+     */
+    public void removeOrganizer(Organizer o){
+        listOrganizers.remove(o);
     }
 }

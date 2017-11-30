@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<UserRegistry>
+<User>
+		<Name>Mario</Name>
+		<Username>mariodias</Username>
+		<Email>mario@gmail.com</Email>
+		<Password>test</Password>
+		<Serialkey>1</Serialkey>
+
+</User>
+<User>
+		<Name>Mario dias</Name>
+		<Username>mariodias12</Username>
+		<Email>mario2@gmail.com</Email>
+		<Password>test2</Password>
+		<Serialkey>1</Serialkey>
+</User>
+</UserRegistry>

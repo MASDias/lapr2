@@ -5,50 +5,71 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
+public class EventManagerList implements Serializable {
 
-
-public class EventManagerList {
-    
+    private static final long serialVersionUID = 1;
     private List<EventManager> managerList;
-    
-    public EventManagerList(){
+
+    /**
+     *
+     */
+    public EventManagerList() {
         this.managerList = new ArrayList<>();
     }
-    
-    public List<EventManager> getEventManagersList(){
-        return managerList;
-    }
-    
-    public void setEventManagersList(List<EventManager> managerList){
-        this.managerList = managerList;
-    }
-    
-    private boolean validate(EventManager eventManager){
-        for (EventManager u: managerList){
-            if(u.equals(eventManager)){
+
+    /**
+     *
+     * @return
+     */
+    private boolean validate(EventManager eventManager) {
+        for (EventManager u : managerList) {
+            if (u.equals(eventManager)) {
                 return false;
             }
         }
         return true;
     }
-    
-    public void addEventManager(EventManager eventManager){
-        if(validate(eventManager)){
+
+    /**
+     *
+     * @param eventManager
+     */
+    public void addEventManager(EventManager eventManager) {
+        if (validate(eventManager)) {
             managerList.add(eventManager);
-        }else{
-            JOptionPane.showMessageDialog(null, "The event manager "+eventManager.getName(), "Error!", -1);
         }
     }
-    
-    public int size (){
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
         return managerList.size();
+    }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public EventManager getEventManager(int index) {
+        return managerList.get(index);
+    }
+
+    /**
+     *
+     * @param eventManager
+     */
+    public void removeEventManager(EventManager eventManager) {
+        managerList.remove(eventManager);
     }
 }

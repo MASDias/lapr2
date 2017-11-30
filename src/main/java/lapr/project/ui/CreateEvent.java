@@ -5,19 +5,59 @@
  */
 package lapr.project.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.controller.CreateEventController;
+import lapr.project.model.Congress;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventRegistry;
+import lapr.project.model.Exhibition;
+import lapr.project.model.LocationList;
+import lapr.project.model.Location;
+import lapr.project.model.Organizer;
+import lapr.project.model.OrganizersList;
+import lapr.project.model.User;
+import lapr.project.model.UserRegistry;
+
 /**
  *
- * @author MarioDias
+ * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
 public class CreateEvent extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private EventCenter eventCenter;
+    private CreateEventController controller;
+    private DefaultListModel<User> modelUsersList = new DefaultListModel<>();
+    private DefaultListModel<Organizer> modelOrganizerListEvent = new DefaultListModel<>();
+    private UserRegistry listUsers;
+    private OrganizersList listOrganizers;
+    private EventRegistry listEvents;
+    private LocationList locationList;
 
     /**
      * Creates new form CreateEvent
+     *
+     * @param eventCenter
      */
-    public CreateEvent() {
+    public CreateEvent(EventCenter eventCenter) {
+        this.eventCenter = eventCenter;
+        controller = new CreateEventController(this.eventCenter);
         initComponents();
+        listEvents = controller.getEventsList();
+        locationList = controller.getLocationList();
+
+        listUsers = controller.getUsersList();
+        usersJList.setModel(modelUsersList);
+
+        listOrganizers = new OrganizersList();
+        organizersList.setModel(modelOrganizerListEvent);
+
+        initObjects();
+        setVisible(true);
     }
 
     /**
@@ -29,222 +69,524 @@ public class CreateEvent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextArea();
+        descriptionTextField = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        name = new javax.swing.JTextField();
-        locals = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        nameTextField = new javax.swing.JTextField();
+        locationCombobox = new javax.swing.JComboBox<Location>();
+        newAddressbtn = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
-        congress = new javax.swing.JRadioButton();
-        exhibition = new javax.swing.JRadioButton();
+        eventBeginningSpinner = new javax.swing.JSpinner();
+        eventEndSpinner = new javax.swing.JSpinner();
+        SubmitAppStart = new javax.swing.JSpinner();
+        submitAppEnd = new javax.swing.JSpinner();
+        congressRadiobtn = new javax.swing.JRadioButton();
+        exhibitionRadiobtn = new javax.swing.JRadioButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        organizersList = new javax.swing.JList<Organizer>();
+        removeOrganizerbtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        usersJList = new javax.swing.JList<User>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        addOrganizerbtn = new javax.swing.JButton();
+        newEventbtn = new javax.swing.JButton();
+        cancelbtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        addOrganizerByIDTextField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        invitationTextField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Create Event");
+        setResizable(false);
 
         jPanel1.setToolTipText("");
 
-        description.setColumns(20);
-        description.setRows(5);
-        jScrollPane1.setViewportView(description);
+        descriptionTextField.setColumns(20);
+        descriptionTextField.setRows(5);
+        descriptionTextField.setWrapStyleWord(true);
+        descriptionTextField.setPreferredSize(new java.awt.Dimension(180, 94));
+        jScrollPane1.setViewportView(descriptionTextField);
 
         jLabel1.setText("Event name:");
 
         jLabel2.setText("Event starts:");
 
-        jLabel3.setText("Event Ends (days):");
+        jLabel3.setText("Event Ends:");
 
         jLabel4.setText("Address:");
 
         jLabel6.setText("Description:");
 
-        locals.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        locals.addActionListener(new java.awt.event.ActionListener() {
+        locationCombobox.setMinimumSize(new java.awt.Dimension(180, 20));
+        locationCombobox.setPreferredSize(new java.awt.Dimension(180, 20));
+        locationCombobox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                localsActionPerformed(evt);
+                locationComboboxActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Create new Local");
+        newAddressbtn.setText("Create new Address");
+        newAddressbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newAddressbtnActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Submission Application starts:");
 
         jLabel8.setText("Submission Application ends:");
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        eventBeginningSpinner.setModel(new javax.swing.SpinnerDateModel());
 
-        jSpinner2.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1496919000000L), new java.util.Date(1496919000000L), null, java.util.Calendar.DAY_OF_MONTH));
+        eventEndSpinner.setModel(new javax.swing.SpinnerDateModel());
 
-        jSpinner3.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        SubmitAppStart.setModel(new javax.swing.SpinnerDateModel());
 
-        jSpinner4.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH));
+        submitAppEnd.setModel(new javax.swing.SpinnerDateModel());
 
-        congress.setText("Congress");
+        congressRadiobtn.setText("Congress");
+        congressRadiobtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                congressRadiobtnActionPerformed(evt);
+            }
+        });
 
-        exhibition.setText("Exhibiton");
+        exhibitionRadiobtn.setText("Exhibiton");
+        exhibitionRadiobtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exhibitionRadiobtnActionPerformed(evt);
+            }
+        });
+
+        jScrollPane3.setViewportView(organizersList);
+
+        removeOrganizerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close-2-icon.png"))); // NOI18N
+        removeOrganizerbtn.setText("Remove Organizer");
+        removeOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeOrganizerbtnActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setViewportView(usersJList);
+
+        jLabel9.setText("Event's Organizers");
+
+        jLabel5.setText("Users List");
+
+        addOrganizerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-icon.png"))); // NOI18N
+        addOrganizerbtn.setText("Add Organizer From List");
+        addOrganizerbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrganizerbtnActionPerformed(evt);
+            }
+        });
+
+        newEventbtn.setText("New Event");
+        newEventbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newEventbtnActionPerformed(evt);
+            }
+        });
+
+        cancelbtn.setText("Cancel");
+        cancelbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelbtnActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Add Organizer By ID:");
+
+        addOrganizerByIDTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrganizerByIDTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Number of invitations:");
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Magnifier-icon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(congress)
-                                .addGap(18, 18, 18)
-                                .addComponent(exhibition)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(locals, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))))
+                                .addComponent(congressRadiobtn)
+                                .addGap(40, 40, 40)
+                                .addComponent(exhibitionRadiobtn)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(locationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(newAddressbtn))
+                                            .addComponent(invitationTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(SubmitAppStart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eventEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 42, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(224, 224, 224)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addOrganizerByIDTextField))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addOrganizerbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(newEventbtn)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cancelbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                        .addComponent(removeOrganizerbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(eventBeginningSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventEndSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(locals, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(locationCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newAddressbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(invitationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SubmitAppStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitAppEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(congressRadiobtn)
+                    .addComponent(exhibitionRadiobtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeOrganizerbtn)
+                    .addComponent(addOrganizerbtn))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(addOrganizerByIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(congress)
-                    .addComponent(exhibition))
-                .addGap(0, 130, Short.MAX_VALUE))
+                    .addComponent(newEventbtn)
+                    .addComponent(cancelbtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void localsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_localsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_localsActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void newEventbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEventbtnActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String name = nameTextField.getText();
+        String dateBString = sdf.format(eventBeginningSpinner.getValue());
+        String dateEString = sdf.format(eventEndSpinner.getValue());
+        Location local = (Location) locationCombobox.getSelectedItem();
+        String description = descriptionTextField.getText();
+        String dateSubB = sdf.format(SubmitAppStart.getValue());
+        String dateSubE = sdf.format(submitAppEnd.getValue());
+        String invitesString = invitationTextField.getText();
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            Date db = sdf.parse(dateBString);
+            Date de = sdf.parse(dateEString);
+            Date dsb = sdf.parse(dateSubB);
+            Date dse = sdf.parse(dateSubE);
+            if (congressRadiobtn.isSelected()) {
+                controller.getLocationList().getLocal(locationCombobox.getSelectedIndex()).setInUse(true);
+                int invite = Integer.parseInt(invitesString);
+                if (listOrganizers.size() > 1) {
+                    if (nameTextField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Event name missing!");
+                    } else {
+                        Congress c = new Congress(name, description, db, de, dsb, dse, local, invite);
+                        c.setOrganizerList(listOrganizers);
+                        listEvents.addEvent(c);
+                        System.out.println("Congress");
+                        JOptionPane.showMessageDialog(null, "Congress created with success!");
+                        modelOrganizerListEvent.removeAllElements();
+                        dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+            } else if (exhibitionRadiobtn.isSelected()) {
+                int invite = Integer.parseInt(invitesString);
+                if (listOrganizers.size() > 1) {
+                    if (nameTextField.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Event name missing!");
+                    } else {
+                        Exhibition e = new Exhibition(name, description, db, de, dsb, dse, local, invite);
+                        e.setOrganizerList(listOrganizers);
+                        listEvents.addEvent(e);
+                        System.out.println("Exhibition");
+                        JOptionPane.showMessageDialog(null, "Exhibition created with success!");
+                        modelOrganizerListEvent.removeAllElements();
+                        dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Define at least 2 organizers for the event");
+                }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateEvent().setVisible(true);
+            } else if (!exhibitionRadiobtn.isSelected() && !congressRadiobtn.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Please choose the type of event");
             }
-        });
+
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Error inserting date");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error in number of invites field");
+        }
+
+
+    }//GEN-LAST:event_newEventbtnActionPerformed
+
+    private void initObjects() {
+        for (int i = 0; i < listUsers.size(); i++) {
+            modelUsersList.addElement(listUsers.getUser(i));
+        }
+        for (int i = 0; i < locationList.size(); i++) {
+            if (!locationList.getLocal(i).isInUse()) {
+                locationCombobox.addItem(locationList.getLocal(i));
+            }
+        }
     }
 
+    private void addOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerbtnActionPerformed
+        try {
+            User u = modelUsersList.getElementAt(usersJList.getSelectedIndex());
+            Organizer o = new Organizer(u);
+            listOrganizers.addOrganizer(o);
+            modelOrganizerListEvent.addElement(o);
+            modelUsersList.removeElement(u);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No user selected");
+        }
+    }//GEN-LAST:event_addOrganizerbtnActionPerformed
+
+    private void removeOrganizerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeOrganizerbtnActionPerformed
+        try {
+            Organizer o = modelOrganizerListEvent.getElementAt(organizersList.getSelectedIndex());
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(o.getOrganizer().getUserName())) {
+                    modelUsersList.addElement(u);
+                }
+            }
+            listOrganizers.removeOrganizer(o);
+            modelOrganizerListEvent.removeElement(o);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "No organizer selected");
+        }
+    }//GEN-LAST:event_removeOrganizerbtnActionPerformed
+
+
+    private void congressRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congressRadiobtnActionPerformed
+        congressRadiobtn.setSelected(true);
+        exhibitionRadiobtn.setSelected(false);
+    }//GEN-LAST:event_congressRadiobtnActionPerformed
+
+    private void locationComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationComboboxActionPerformed
+
+    private void exhibitionRadiobtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exhibitionRadiobtnActionPerformed
+        congressRadiobtn.setSelected(false);
+        exhibitionRadiobtn.setSelected(true);
+    }//GEN-LAST:event_exhibitionRadiobtnActionPerformed
+
+    private void cancelbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbtnActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelbtnActionPerformed
+
+    private void addOrganizerByIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrganizerByIDTextFieldActionPerformed
+        String userID = addOrganizerByIDTextField.getText();
+        int cont = 0;
+        if (!validateOrganizer(userID)) {
+            for (int i = 0; i < listUsers.size(); i++) {
+                User u = listUsers.getUser(i);
+                if (u.getUserName().equals(userID) || u.getEmail().equals(userID)) {
+                    Organizer o = new Organizer(u);
+                    listOrganizers.addOrganizer(o);
+                    modelOrganizerListEvent.addElement(o);
+                    modelUsersList.removeElement(u);
+                    cont++;
+                }
+
+            }
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "Given user doesn't exist");
+            }
+            cont = 0;
+        } else {
+            JOptionPane.showMessageDialog(null, "That user is already a Organizer of that event");
+        }
+
+        addOrganizerByIDTextField.setText("");
+    }//GEN-LAST:event_addOrganizerByIDTextFieldActionPerformed
+
+    private void newAddressbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newAddressbtnActionPerformed
+        String address = JOptionPane.showInputDialog("Input new address");
+        Location local = new Location(address);
+        int cont = 0;
+        for (int i = 0; i < locationList.size(); i++) {
+            if (locationList.getLocal(i).equals(local)) {
+                cont++;
+            }
+        }
+        if (cont > 0) {
+            JOptionPane.showMessageDialog(null, "This address is already created!");
+            dispose();
+        } else {
+            locationList.addLocal(local);
+            locationCombobox.addItem(local);
+        }
+    }//GEN-LAST:event_newAddressbtnActionPerformed
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public boolean validateOrganizer(String id) {
+        for (int i = 0; i < listOrganizers.size(); i++) {
+            if (listOrganizers.getOrganizer(i).getUsername().equals(id) || listOrganizers.getOrganizer(i).getEmail().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton congress;
-    private javax.swing.JTextArea description;
-    private javax.swing.JRadioButton exhibition;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JSpinner SubmitAppStart;
+    private javax.swing.JTextField addOrganizerByIDTextField;
+    private javax.swing.JButton addOrganizerbtn;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton cancelbtn;
+    private javax.swing.JRadioButton congressRadiobtn;
+    private javax.swing.JTextArea descriptionTextField;
+    private javax.swing.JSpinner eventBeginningSpinner;
+    private javax.swing.JSpinner eventEndSpinner;
+    private javax.swing.JRadioButton exhibitionRadiobtn;
+    private javax.swing.JTextField invitationTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JComboBox<String> locals;
-    private javax.swing.JTextField name;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JComboBox<Location> locationCombobox;
+    private javax.swing.JTextField nameTextField;
+    private javax.swing.JButton newAddressbtn;
+    private javax.swing.JButton newEventbtn;
+    private javax.swing.JList<Organizer> organizersList;
+    private javax.swing.JButton removeOrganizerbtn;
+    private javax.swing.JSpinner submitAppEnd;
+    private javax.swing.JList<User> usersJList;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,26 @@
  * and open the template in the editor.
  */
 package lapr.project.ui;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.controller.SubmitApplicationController;
+import lapr.project.model.Application;
+import lapr.project.model.Assignment;
+import lapr.project.model.Enterprise;
+import lapr.project.model.Event;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventEmployee;
 import lapr.project.model.EventRegistry;
+import lapr.project.model.Keyword;
+import lapr.project.model.Product;
+import lapr.project.model.ProductList;
+import lapr.project.model.Review;
+import lapr.project.model.Stand;
+import lapr.project.model.StandRegistry;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
@@ -12,12 +31,43 @@ import lapr.project.model.EventRegistry;
 public class SubmitApplication extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1;
+    private DefaultListModel<Keyword> modelKeyword = new DefaultListModel<>();
+    private DefaultListModel<Product> modelProduct = new DefaultListModel<>();
+    private StandRegistry standRegistry;
+    private ProductList productList;
+    private EventRegistry eventRegistry;
+    private Event event;
+    private String logedUser;
 
     /**
      * Creates new form SubmitApplication
+     *
+     * @param eventCenter
+     * @param logedUser
+     * @throws java.text.ParseException
      */
-    public SubmitApplication() {
+    public SubmitApplication(EventCenter eventCenter, String logedUser) throws ParseException {
+        SubmitApplicationController controller = new SubmitApplicationController(eventCenter);
+        this.logedUser = logedUser;
+        this.standRegistry = controller.getStandRegistry();
+        this.productList = controller.getProductList();
+        this.eventRegistry = controller.getEventRegistry();
         initComponents();
+        keywordJList.setModel(modelKeyword);
+        productJList.setModel(modelProduct);
+        initCombobox();
+        this.pack();
+        setVisible(true);
+    }
+
+    private void initCombobox() {
+        for (int i = 0; i < this.eventRegistry.size(); i++) {
+            eventsComboBox.addItem(eventRegistry.getEvent(i));
+        }
+        for (int i = 0; i < this.productList.size(); i++) {
+            modelProduct.addElement(productList.getProduct(i));
+        }
+        
     }
 
     /**
@@ -31,13 +81,44 @@ public class SubmitApplication extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jFrame1 = new javax.swing.JFrame();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        event = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        eventsComboBox = new javax.swing.JComboBox<Event>();
+        enterpriseNameTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextArea();
-        Submit = new javax.swing.JButton();
+        descriptionTextArea = new javax.swing.JTextArea();
+        taxpayerNumberTextField = new javax.swing.JTextField();
+        contactTextField = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
+        addressTextField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        standlistLabel = new javax.swing.JLabel();
+        invitesLabel = new javax.swing.JLabel();
+        invitesTextField = new javax.swing.JTextField();
+        productsLabel = new javax.swing.JLabel();
+        keywordTextField = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        keywordJList = new javax.swing.JList<Keyword>();
+        addKeywordBtn = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        dateBeginLabel = new javax.swing.JLabel();
+        dateEndLabel = new javax.swing.JLabel();
+        locationLabel = new javax.swing.JLabel();
+        pretendedAreaTextField = new javax.swing.JTextField();
+        productTextField = new javax.swing.JTextField();
+        removeKeywordBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productJList = new javax.swing.JList<Product>();
+        addProductBtn = new javax.swing.JButton();
+        removeProductBtn = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -50,125 +131,439 @@ public class SubmitApplication extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Submit Application");
+        setResizable(false);
+
+        jLabel3.setText("Enteprise name:");
+
+        jLabel8.setText("Keywords:");
+
+        jLabel4.setText("Taxpayer Number:");
 
         jLabel1.setText("Description:");
 
+        jLabel5.setText("Contact number:");
+
         jLabel2.setText("Event:");
 
-        description.setColumns(20);
-        description.setRows(5);
-        jScrollPane1.setViewportView(description);
+        jLabel6.setText("Email:");
 
-        Submit.setText("Submit");
-        Submit.addActionListener(new java.awt.event.ActionListener() {
+        eventsComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitActionPerformed(evt);
+                eventsComboBoxActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(event, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(Submit)))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(event, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(Submit)
-                .addGap(29, 29, 29))
-        );
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextArea);
+
+        jLabel7.setText("Address:");
+
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        standlistLabel.setText("Pretended stand area:");
+
+        invitesLabel.setText("Invites:");
+
+        productsLabel.setText("Products:");
+
+        jScrollPane3.setViewportView(keywordJList);
+
+        addKeywordBtn.setText("Add Keyword");
+        addKeywordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addKeywordBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Begins:");
+
+        jLabel10.setText("Ends:");
+
+        pretendedAreaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pretendedAreaTextFieldActionPerformed(evt);
+            }
+        });
+
+        removeKeywordBtn.setText("Remove Keyword");
+        removeKeywordBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeKeywordBtnActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setViewportView(productJList);
+
+        addProductBtn.setText("Add Product");
+        addProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductBtnActionPerformed(evt);
+            }
+        });
+
+        removeProductBtn.setText("Remove Product");
+        removeProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProductBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cancelButton)
+                .addGap(163, 163, 163))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(invitesLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(productsLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(standlistLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(productTextField)
+                            .addComponent(addProductBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(removeProductBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateBeginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addKeywordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(removeKeywordBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(invitesTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                .addComponent(pretendedAreaTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(taxpayerNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(contactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addressTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(locationLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(eventsComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateBeginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(dateEndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(locationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(taxpayerNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(contactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(keywordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addKeywordBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeKeywordBtn))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(standlistLabel)
+                    .addComponent(pretendedAreaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(invitesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(invitesLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productsLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addProductBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeProductBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(submitButton)
+                    .addComponent(cancelButton))
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(498, 704));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        if (validateTaxpayerNumber() && validateContact() && validateInvites()) {
+            String enterpriseName = enterpriseNameTextField.getText();
+            String email = emailTextField.getText();
+            String address = addressTextField.getText();
+            String description = descriptionTextArea.getText();
+            float area = Float.parseFloat(pretendedAreaTextField.getText());
+            int invites = Integer.parseInt(invitesTextField.getText());
+            int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+            int contactNumber = Integer.parseInt(contactTextField.getText());
+            
+            
+            Enterprise enterprise = new Enterprise(enterpriseName, email, address, taxpayerNumber, contactNumber);
+            Application a = new Application(enterprise, invites, description, area);
+            eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getApplicationsList().addApplication(a);
+            for (int i = 0; i < modelKeyword.size(); i++) {
+                a.getKeywordList().addKeyword(modelKeyword.elementAt(i));
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubmitApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubmitApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubmitApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubmitApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            for (int i = 0; i < modelProduct.size(); i++) {
+                a.getProductList().addProduct(modelProduct.elementAt(i));
+            }
+            Review review = new Review(null, 0, 0, 0, 0);
+            a.addEvaluation(review);
+            EventEmployee e = eventRegistry.getEvent(eventsComboBox.getSelectedIndex()).getEventEmployeeList().getEmployee(0);
+            review.setAssignment(new Assignment(e));
+            a.setUser(logedUser);
+            JOptionPane.showMessageDialog(null, "Application submitted with success!");
+            dispose();
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SubmitApplication().setVisible(true);
+    }//GEN-LAST:event_submitButtonActionPerformed
+    private boolean validateInvites() {
+        String stringInvites = invitesTextField.getText();
+        try {
+            int invites = Integer.parseInt(stringInvites);
+            if (invites <= 0) {
+                JOptionPane.showMessageDialog(null, "Insert a number above zero");
+                invitesTextField.setText("");
+                return false;
             }
-        });
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format for invites (only numbers)");
+            invitesTextField.setText("");
+            return false;
+        }
+        return true;
     }
 
+    private boolean validateContact() {
+        String stringContact = contactTextField.getText();
+        try {
+            int contactNumber = Integer.parseInt(contactTextField.getText());
+            if (stringContact.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on contact text field");
+                contactTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in contact Number(only numbers))");
+            contactTextField.setText("");
+            return false;
+        }
+    }
+
+    private boolean validateTaxpayerNumber() {
+        String stringTaxpayer = taxpayerNumberTextField.getText();
+        try {
+            int taxpayerNumber = Integer.parseInt(taxpayerNumberTextField.getText());
+            if (stringTaxpayer.length() == 9) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Insert 9 digits on taxpayer number text field");
+                taxpayerNumberTextField.setText("");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format in Taxpayer Number(only numbers))");
+            taxpayerNumberTextField.setText("");
+            return false;
+        }
+    }
+    private void eventsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsComboBoxActionPerformed
+        Event e = (Event) eventsComboBox.getSelectedItem();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        dateBeginLabel.setText(sdf.format(e.getEventBegin()));
+        dateEndLabel.setText(sdf.format(e.getEventEnd()));
+        locationLabel.setText(e.getLocal().toString());
+        revalidate();
+    }//GEN-LAST:event_eventsComboBoxActionPerformed
+
+    private void addKeywordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addKeywordBtnActionPerformed
+        String stringKeyword = keywordTextField.getText();
+        if (!stringKeyword.isEmpty()) {
+            Keyword keyword = new Keyword(stringKeyword);
+            modelKeyword.addElement(keyword);
+            keywordTextField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please insert a keyword");
+        }
+    }//GEN-LAST:event_addKeywordBtnActionPerformed
+
+    private void pretendedAreaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretendedAreaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pretendedAreaTextFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void removeKeywordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeKeywordBtnActionPerformed
+        try{   
+        Keyword k = modelKeyword.getElementAt(keywordJList.getSelectedIndex());
+        modelKeyword.removeElement(k);
+        }catch(ArrayIndexOutOfBoundsException a){
+            JOptionPane.showMessageDialog(null, "No keyword selected!");
+        }
+        
+    }//GEN-LAST:event_removeKeywordBtnActionPerformed
+
+    private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
+        String stringProduct = productTextField.getText();
+        if(!stringProduct.isEmpty()){
+            Product product = new Product(stringProduct);
+            modelProduct.addElement(product);
+            productTextField.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Please insert a product");
+        }
+    }//GEN-LAST:event_addProductBtnActionPerformed
+
+    private void removeProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProductBtnActionPerformed
+        try{   
+        Product p = modelProduct.getElementAt(productJList.getSelectedIndex());
+        modelProduct.removeElement(p);
+        }catch(ArrayIndexOutOfBoundsException a){
+            JOptionPane.showMessageDialog(null, "No product selected!");
+        }
+    }//GEN-LAST:event_removeProductBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Submit;
-    private javax.swing.JTextArea description;
-    private javax.swing.JComboBox<EventRegistry> event;
+    private javax.swing.JButton addKeywordBtn;
+    private javax.swing.JButton addProductBtn;
+    private javax.swing.JTextField addressTextField;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JTextField contactTextField;
+    private javax.swing.JLabel dateBeginLabel;
+    private javax.swing.JLabel dateEndLabel;
+    private javax.swing.JTextArea descriptionTextArea;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JTextField enterpriseNameTextField;
+    private javax.swing.JComboBox<Event> eventsComboBox;
+    private javax.swing.JLabel invitesLabel;
+    private javax.swing.JTextField invitesTextField;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<Keyword> keywordJList;
+    private javax.swing.JTextField keywordTextField;
+    private javax.swing.JLabel locationLabel;
+    private javax.swing.JTextField pretendedAreaTextField;
+    private javax.swing.JList<Product> productJList;
+    private javax.swing.JTextField productTextField;
+    private javax.swing.JLabel productsLabel;
+    private javax.swing.JButton removeKeywordBtn;
+    private javax.swing.JButton removeProductBtn;
+    private javax.swing.JLabel standlistLabel;
+    private javax.swing.JButton submitButton;
+    private javax.swing.JTextField taxpayerNumberTextField;
     // End of variables declaration//GEN-END:variables
 }

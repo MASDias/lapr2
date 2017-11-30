@@ -5,47 +5,68 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventEmployeeList {
+public class EventEmployeeList implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<EventEmployee> employeeList;
-    
-    public EventEmployeeList(){
+
+    /**
+     *
+     */
+    public EventEmployeeList() {
         this.employeeList = new ArrayList<>();
     }
-    
-    public List<EventEmployee> getEmployeeList(){
-        return employeeList;
-    }
-    
-    public void setEmployeeList(List<EventEmployee> employeeList){
-        this.employeeList = employeeList;
-    }
-    
-    private boolean validate(EventEmployee user){
-        for (EventEmployee u: employeeList){
-            if(u.equals(user)){
+
+    private boolean validate(EventEmployee user) {
+        for (EventEmployee u : employeeList) {
+            if (u.equals(user)) {
                 return false;
             }
         }
         return true;
     }
-    
-    public void addEmployee(EventEmployee employee){
-        if(validate(employee)){
+
+    /**
+     *
+     * @param employee
+     */
+    public void addEmployee(EventEmployee employee) {
+        if (validate(employee)) {
             employeeList.add(employee);
-        }else{
-            JOptionPane.showMessageDialog(null, "The employee "+employee.getName(), "Error!", -1);
         }
     }
-    
-    public int size (){
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
         return employeeList.size();
     }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public EventEmployee getEmployee(int index) {
+        return employeeList.get(index);
+    }
+
+    /**
+     *
+     * @param e
+     */
+    public void removeEmployee(EventEmployee e) {
+        employeeList.remove(e);
+    }
+   
 }

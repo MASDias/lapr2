@@ -1,6 +1,14 @@
 package lapr.project.ui;
 
-import lapr.project.model.CalculatorExample;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import lapr.project.model.EventCenter;
+import lapr.project.model.EventManager;
+import lapr.project.model.User;
+import lapr.project.utils.XMLReader;
+import lapr.project.model.Event;
+import lapr.project.model.Location;
+import lapr.project.model.Stand;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -17,9 +25,17 @@ class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        CalculatorExample calculatorExample = new CalculatorExample();
-        System.out.println(calculatorExample.sum(3, 5));   
-    }
+    public static void main(String[] args) throws Exception {
+        EventCenter eventCenter = new EventCenter();
+//        XMLReader xmlFile = new XMLReader();
+//        eventCenter = xmlFile.readValuesFromXML(eventCenter);
 
+        User user = new User("manager", "manager@email.com", "manager", "password");
+        EventManager eventManager = new EventManager(user);
+
+        eventCenter.getUserRegistry().addUser(user);
+        eventCenter.getEventManagerList().addEventManager(eventManager);
+
+        MainWindow mw = new MainWindow(eventCenter);
+    }
 }

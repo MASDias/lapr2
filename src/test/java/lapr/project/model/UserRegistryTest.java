@@ -17,6 +17,11 @@ import org.junit.Test;
  */
 public class UserRegistryTest {
 
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
     public void EnsureAddUserMethodAddsUserToList() throws Exception {
         UserRegistry list = new UserRegistry();
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
@@ -28,6 +33,10 @@ public class UserRegistryTest {
         assertEquals(size, expectedResult);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsEventRegistryListAreEqual() throws Exception {
         User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
@@ -38,6 +47,10 @@ public class UserRegistryTest {
         assertEquals(list, list);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void EnsureSameObjectsUserListAreNotEqual() throws Exception {
 
@@ -48,5 +61,22 @@ public class UserRegistryTest {
         list.addUser(user);
         assertNotEquals(list, list2);
     }
-
+    @Test
+   public void EnsureAddUserMethodAddsUserToListNotValid() throws Exception {
+        UserRegistry result = new UserRegistry();
+        User u1 = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        result.addUser(u1);
+        result.addUser(u1);
+        int size = result.size();
+        int expectedResult = 1;
+        assertEquals(size, expectedResult);
+    }
+   @Test
+   public void EnsureAddUserMethodAddsUserToListIndex() throws Exception {
+        UserRegistry list = new UserRegistry();
+        User result = new User("Miguel", "miguel@gmail.com,", "miguelSantos", "123456789");
+        list.addUser(result);
+        User expectedResult = list.getUser(0);
+        assertEquals(result, expectedResult);
+    }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <EventCenter>
+       <Exhibition>
+          <submission> 1 </submission>
+                    <exhibition> exposicao3 </exhibition>
+                    <accepted> false </accepted>
+                    <description> Descricao: 74568 </description>
+                    <pretendedArea> 308 </pretendedArea>
+                    <invites> 248 </invites>
+                    <avaliation>
+                            <text> texto5443 </text>
+                            <FAEKnowledge> 5 </FAEKnowledge>
+                            <exhibitionAdequation> 4 </exhibitionAdequation>
+                            <inviteAdequation> 4 </inviteAdequation>
+                            <recommendation> 3 </recommendation>
+                            <FAE>
+                                    <name> Fae1 </name>
+                                    <email> Fae1@centro.pt </email>
+                                    <username> Fae1@centro.pt </username>
+                                    <password> password </password>
+                            </FAE>
+                    </avaliation>
+                    <avaliation2>
+                            <text> texto0101 </text>
+                            <FAEKnowledge> 0 </FAEKnowledge>
+                            <exhibitionAdequation> 1 </exhibitionAdequation>
+                            <inviteAdequation> 0 </inviteAdequation>
+                            <recommendation> 1 </recommendation>
+                            <FAE>
+                                    <name> FAE2 </name>
+                                    <email> Fae2@centro.pt </email>
+                                    <username> Fae2@centro.pt </username>
+                                    <password> password </password>
+                            </FAE>
+                    </avaliation2>
+            </Exhibition>
+    </EventCenter>		
+</root>

@@ -5,50 +5,59 @@
  */
 package lapr.project.model;
 
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class UserRegistry  {
-    
+public class UserRegistry implements Serializable {
+
+    private static final long serialVersionUID = 1;
     private List<User> usersList;
-    
-    public UserRegistry(){
+
+    /**
+     *
+     */
+    public UserRegistry() {
         this.usersList = new ArrayList<>();
     }
-    
-    public List<User> getUsersList(){
-        return usersList;
-    }
-    
-    public void setUsersList(List<User> usersList){
-        this.usersList = usersList;
-    }
-    
-    private boolean validate(User user){
-        for (User u: usersList){
-            if(u.equals(user)){
+
+    private boolean validate(User user) {
+        for (User u : usersList) {
+            if (u.equals(user)) {
                 return false;
             }
         }
         return true;
     }
-    
-    public void addUser(User user){
-        if(validate(user)){
+
+    /**
+     *
+     * @param user
+     */
+    public void addUser(User user) {
+        if (validate(user)) {
             usersList.add(user);
-        }else{
-            JOptionPane.showMessageDialog(null, "The User "+user.getName(), "Error!", -1);
         }
     }
-    
-    public int size (){
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
         return usersList.size();
+    }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public User getUser(int index) {
+        return usersList.get(index);
     }
 }

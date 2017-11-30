@@ -5,14 +5,51 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventManager extends User {
+public class EventManager implements Serializable {
 
-    public EventManager(String name, String email, String userName, String password) {
-        super(name, email, userName, password);
+    private static final long serialVersionUID = 1;
+    private User managerEvent;
+
+    /**
+     *
+     * @param eventManager
+     */
+    public EventManager(User eventManager) {
+        this.managerEvent = eventManager;
     }
 
+    /**
+     *
+     * @return
+     */
+    public User getEventManager() {
+        return managerEvent;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getUsername() {
+        return managerEvent.getUserName();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getEmail() {
+        return managerEvent.getEmail();
+    }
+
+    @Override
+    public String toString() {
+        return managerEvent.toString();
+    }
 }

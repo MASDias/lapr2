@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<StandList>
+   <Stand>
+      <address>Rua dos coretos</address>
+      <area>123</area>
+   </Stand>
+   <Stand>
+      <address>Rua da mari</address>
+      <area>123</area>
+   </Stand>
+</StandList>

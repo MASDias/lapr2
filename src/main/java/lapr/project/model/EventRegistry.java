@@ -5,27 +5,23 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author 1161386_1161391_1151708_1151172_1150807_Grupo41
  */
-public class EventRegistry {
+public class EventRegistry implements Serializable {
 
+    private static final long serialVersionUID = 1;
     private ArrayList<Event> eventsList;
 
+    /**
+     *
+     */
     public EventRegistry() {
         this.eventsList = new ArrayList<>();
-    }
-
-    public ArrayList<Event> getEventsList() {
-        return eventsList;
-    }
-
-    public void setEventsList(ArrayList<Event> eventsList) {
-        this.eventsList = eventsList;
     }
 
     private boolean validate(Event event) {
@@ -37,15 +33,35 @@ public class EventRegistry {
         return true;
     }
 
+    /**
+     *
+     * @param event
+     */
     public void addEvent(Event event) {
         if (validate(event)) {
             eventsList.add(event);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error!");
         }
     }
-    
-    public int size (){
+
+    /**
+     *
+     * @return
+     */
+    public int size() {
         return eventsList.size();
     }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Event getEvent(int index) {
+        return eventsList.get(index);
+    }
+    
+    public ArrayList<Event> getEventList(){
+        return eventsList;
+    }
+
 }

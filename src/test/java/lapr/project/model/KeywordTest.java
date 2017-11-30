@@ -13,154 +13,203 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import static org.junit.Assert.*;
 
 /**
- * Example of a domain class that is used in Candidatura.
- * Created by Nuno Bettencourt [NMB] on 29/05/16.
+ * Example of a domain class that is used in Candidatura. Created by Nuno
+ * Bettencourt [NMB] on 29/05/16.
  */
 public class KeywordTest {
 
-    
-	/**
-	 * StringUtil variable to access utils for Strings.
-	 */
-	private StringUtil stringUtil = new StringUtil();
+    /**
+     * StringUtil variable to access utils for Strings.
+     */
+    private StringUtil stringUtil = new StringUtil();
 
-	/**
-	 * Get OS independent line break.
-	 *
-	 * @return OS independent line break "%n".
-	 */
-	private String getLineBreak() {
-		if (stringUtil == null) {
-			stringUtil = new StringUtil();
-		}
-		return stringUtil.getLineBreak();
-	}
+    /**
+     * Get OS independent line break.
+     *
+     * @return OS independent line break "%n".
+     */
+    private String getLineBreak() {
+        if (stringUtil == null) {
+            stringUtil = new StringUtil();
+        }
+        return stringUtil.getLineBreak();
+    }
 
-	@Test
-	public void ensureSameContentObjectsAreEqual() {
-		Keyword expected = new Keyword("Doors");
-		Keyword result = new Keyword("Doors");
-		assertEquals(expected, result);
-	}
+    /**
+     *
+     */
+    @Test
+    public void ensureSameContentObjectsAreEqual() {
+        Keyword expected = new Keyword("Doors");
+        Keyword result = new Keyword("Doors");
+        assertEquals(expected, result);
+    }
 
-	@Test
-	public void ensureSameObjectIsEqual() {
-		Keyword expected = new Keyword("Doors");
-		assertEquals(expected, expected);
-	}
+    /**
+     *
+     */
+    @Test
+    public void ensureSameObjectIsEqual() {
+        Keyword expected = new Keyword("Doors");
+        assertEquals(expected, expected);
+    }
 
-	@Test
-	public void ensureDifferentObjectsAreNotEqual() {
-		Keyword expected = new Keyword("Doors");
-		Object result = new Object();
-		assertNotEquals(expected, result);
-	}
+    /**
+     *
+     */
+    @Test
+    public void ensureDifferentObjectsAreNotEqual() {
+        Keyword expected = new Keyword("Doors");
+        Object result = new Object();
+        assertNotEquals(expected, result);
+    }
 
-	@Test
-	public void ensureHashCodeIsCorrect() {
-		Keyword firstKeyword = new Keyword("Doors");
+    /**
+     *
+     */
+    @Test
+    public void ensureHashCodeIsCorrect() {
+        Keyword firstKeyword = new Keyword("Doors");
 
-		int expected = 66216549;
-		int result = firstKeyword.hashCode();
-		assertEquals(expected, result);
-	}
+        int expected = 66216549;
+        int result = firstKeyword.hashCode();
+        assertEquals(expected, result);
+    }
 
-	@Test
-	public void ensureXMLElementExportToStringIsValid() throws Exception {
-		String expected = "<keyword>" + getLineBreak() +
-				"<value>Doors</value>" + getLineBreak() +
-				"</keyword>" + getLineBreak();
-		Keyword keyword = new Keyword("Doors");
-		String result = keyword.exportContentToString();
-		assertEquals(expected, result);
-	}
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void ensureXMLElementExportToStringIsValid() throws Exception {
+        String expected = "<keyword>" + getLineBreak()
+                + "<value>Doors</value>" + getLineBreak()
+                + "</keyword>" + getLineBreak();
+        Keyword keyword = new Keyword("Doors");
+        String result = keyword.exportContentToString();
+        assertEquals(expected, result);
+    }
 
-	@Test
-	public void ensureXMLElementExportToNodeIsValid() throws Exception {
-		DocumentBuilderFactory factory =
-				DocumentBuilderFactory.newInstance();
-		Node expected = null;
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void ensureXMLElementExportToNodeIsValid() throws Exception {
+        DocumentBuilderFactory factory
+                = DocumentBuilderFactory.newInstance();
+        Node expected = null;
 
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
+        //Create document builder
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-		//Obtain a new document
-		Document document = builder.newDocument();
+        //Obtain a new document
+        Document document = builder.newDocument();
 
-		//Create root element
-		Element elementKeyword = document.createElement("keyword");
+        //Create root element
+        Element elementKeyword = document.createElement("keyword");
 
-		//Create a sub-element
-		Element elementValue = document.createElement("value");
+        //Create a sub-element
+        Element elementValue = document.createElement("value");
 
-		//Set the sub-element value
-		elementValue.setTextContent("Doors");
+        //Set the sub-element value
+        elementValue.setTextContent("Doors");
 
-		//Add sub-element to root element
-		elementKeyword.appendChild(elementValue);
+        //Add sub-element to root element
+        elementKeyword.appendChild(elementValue);
 
-		//Add root element to document
-		document.appendChild(elementKeyword);
+        //Add root element to document
+        document.appendChild(elementKeyword);
 
-		expected = elementKeyword;
+        expected = elementKeyword;
 
+        Keyword keyword = new Keyword("Doors");
 
-		Keyword keyword = new Keyword("Doors");
+        Node result = keyword.exportContentToXMLNode();
+        assertTrue(expected.isEqualNode(result));
+    }
 
-		Node result = keyword.exportContentToXMLNode();
-		assertTrue(expected.isEqualNode(result));
-	}
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void ensureImportFromXMLElementNodeIsValid() throws Exception {
+        Keyword expected = new Keyword("Doors");
 
-	@Test
-	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
-		Keyword expected = new Keyword("Doors");
+        DocumentBuilderFactory factory
+                = DocumentBuilderFactory.newInstance();
 
-		DocumentBuilderFactory factory =
-				DocumentBuilderFactory.newInstance();
+        //Create document builder
+        DocumentBuilder builder = factory.newDocumentBuilder();
 
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
+        //Obtain a new document
+        Document document = builder.newDocument();
 
-		//Obtain a new document
-		Document document = builder.newDocument();
+        //Create root element
+        Element elementKeyword = document.createElement("keyword");
 
-		//Create root element
-		Element elementKeyword = document.createElement("keyword");
+        //Create a sub-element
+        Element elementValue = document.createElement("value");
 
-		//Create a sub-element
-		Element elementValue = document.createElement("value");
+        //Set the sub-element value
+        elementValue.setTextContent("Doors");
 
-		//Set the sub-element value
-		elementValue.setTextContent("Doors");
+        //Add sub-element to root element
+        elementKeyword.appendChild(elementValue);
 
-		//Add sub-element to root element
-		elementKeyword.appendChild(elementValue);
+        //Add root element to document
+        document.appendChild(elementKeyword);
 
-		//Add root element to document
-		document.appendChild(elementKeyword);
+        Keyword keyword = new Keyword("Doors");
 
-		Keyword keyword = new Keyword("Doors");
+        Keyword result = keyword.importContentFromXMLNode(elementKeyword);
 
-		Keyword result = keyword.importContentFromXMLNode(elementKeyword);
+        assertEquals(expected, result);
+    }
 
-		assertEquals(expected, result);
-	}
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testCreateExportImport() throws Exception {
+        String filename = "target/test-classes/TestKeywordImportExport.xml";
+        Keyword expected = new Keyword("Doors");
 
-	@Test
-	public void testCreateExportImport() throws Exception {
-		String filename = "target/test-classes/TestKeywordImportExport.xml";
-		Keyword expected = new Keyword("Doors");
+        Node memoryNode = expected.exportContentToXMLNode();
 
-		Node memoryNode = expected.exportContentToXMLNode();
+        XMLParser xmlParser = new XMLParser();
+        xmlParser.writeXMLElementToFile(memoryNode, filename);
 
-		XMLParser xmlParser = new XMLParser();
-		xmlParser.writeXMLElementToFile(memoryNode, filename);
+        Node fileNode = xmlParser.readXMLElementFromFile(filename);
 
-		Node fileNode = xmlParser.readXMLElementFromFile(filename);
+        Keyword result = new Keyword();
+        result = result.importContentFromXMLNode(fileNode);
 
-		Keyword result = new Keyword();
-		result = result.importContentFromXMLNode(fileNode);
+        assertEquals(expected, result);
+    }
 
-		assertEquals(expected, result);
-	}
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
+    public void ensureSameToStringIsEqual() throws Exception {
+        Keyword keyword = new Keyword("qwerty");
+        String result = keyword.toString();
+        String expectedResult = "qwerty";
+        assertEquals(result, expectedResult);
+
+    }
+  /**
+     *
+     */
+    @Test
+    public void ensureToStringIsNotEqual() {
+       Keyword keyword = new Keyword("qwerty");
+        String result = keyword.toString();
+        String expectedResult = "12345";
+        assertNotEquals(result, expectedResult);
+    }
 }

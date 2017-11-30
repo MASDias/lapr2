@@ -38,7 +38,11 @@ public class XMLParserTest {
 		return stringUtil.getLineBreak();
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureXMLElementExportToStringIsValid() throws Exception {
 		String expected = "<keyword>" + getLineBreak()
 				+ "<value>Doors</value>" + getLineBreak()
@@ -52,7 +56,11 @@ public class XMLParserTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void ensureXMLDocumentExportToStringIsValid() throws Exception {
 		String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><keyword>" + getLineBreak()
 				+ "<value>Doors</value>" + getLineBreak()
@@ -89,7 +97,11 @@ public class XMLParserTest {
 		assertEquals(expected, result);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void readFromValidFile() throws Exception {
 		DocumentBuilderFactory factory
 				= DocumentBuilderFactory.newInstance();
@@ -128,7 +140,11 @@ public class XMLParserTest {
 		assertXMLEqual(expected.getOwnerDocument(), result.getOwnerDocument());
 	}
 
-	@Test(expected = SAXParseException.class)
+    /**
+     *
+     * @throws Exception
+     */
+    @Test(expected = SAXParseException.class)
 	public void readFromInvalidFile() throws Exception {
 		String filename = "target/test-classes/KeywordXMLInvalidExample.xml";
 		XMLParser xmlParser = new XMLParser();
@@ -136,7 +152,11 @@ public class XMLParserTest {
 		xmlParser.readXMLElementFromFile(filename);
 	}
 
-	@Test(expected = FileNotFoundException.class)
+    /**
+     *
+     * @throws Exception
+     */
+    @Test(expected = FileNotFoundException.class)
 	public void readFromNonExistingFile() throws Exception {
 		String filename = "InvalidFileName";
 		XMLParser xmlParser = new XMLParser();
@@ -144,7 +164,11 @@ public class XMLParserTest {
 		xmlParser.readXMLElementFromFile(filename);
 	}
 
-	@Test
+    /**
+     *
+     * @throws Exception
+     */
+    @Test
 	public void writeXMLElementToFile() throws Exception {
 		DocumentBuilderFactory factory
 				= DocumentBuilderFactory.newInstance();
